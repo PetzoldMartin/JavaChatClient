@@ -33,7 +33,156 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.example.exampleprojekt.app" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="ab410108-fc76-47a8-826b-c3b3c06a32b1" name="Default" comment="" />
+    <list default="true" readonly="true" id="ab410108-fc76-47a8-826b-c3b3c06a32b1" name="Default" comment="test svn ignore">
+      <change type="DELETED" beforePath="D:\Programming\Android Studio Workspace\Redmine\ExampleOne\.idea\libraries\appcompat_v7_19_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Programming\Android Studio Workspace\Redmine\ExampleOne\.idea\libraries\support_v4_19_0_1.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea" afterPath="$PROJECT_DIR$/.idea" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$" afterPath="$PROJECT_DIR$" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle" afterPath="$PROJECT_DIR$/gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries" afterPath="$PROJECT_DIR$/.idea/libraries" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/scopes" afterPath="$PROJECT_DIR$/.idea/scopes" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/wrapper" afterPath="$PROJECT_DIR$/gradle/wrapper" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
+    <list id="2993ea06-5633-414f-b5c6-afbf2012be94" name="Rejected commit: Default" comment="test svn ignore">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/exampleprojekt/app/FinanceService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/source/aidl" afterPath="$PROJECT_DIR$/app/build/source/aidl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/source/r/debug/android" afterPath="$PROJECT_DIR$/app/build/source/r/debug/android" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/anim" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/anim" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app" afterPath="$PROJECT_DIR$/app" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/source/buildConfig/debug/com/example/exampleprojekt/app" afterPath="$PROJECT_DIR$/app/build/source/buildConfig/debug/com/example/exampleprojekt/app" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/source/r/debug/com/example/exampleprojekt/app" afterPath="$PROJECT_DIR$/app/build/source/r/debug/com/example/exampleprojekt/app" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/exampleprojekt/app" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/exampleprojekt/app" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/source/r/debug/android/support/v7/appcompat" afterPath="$PROJECT_DIR$/app/build/source/r/debug/android/support/v7/appcompat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/assets" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/assets" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/source/buildConfig" afterPath="$PROJECT_DIR$/app/build/source/buildConfig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build" afterPath="$PROJECT_DIR$/app/build" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/color" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/color" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/source/buildConfig/debug/com" afterPath="$PROJECT_DIR$/app/build/source/buildConfig/debug/com" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/source/r/debug/com" afterPath="$PROJECT_DIR$/app/build/source/r/debug/com" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com" afterPath="$PROJECT_DIR$/app/src/main/java/com" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright" afterPath="$PROJECT_DIR$/.idea/copyright" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/dex/debug" afterPath="$PROJECT_DIR$/app/build/dex/debug" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/ndk/debug" afterPath="$PROJECT_DIR$/app/build/ndk/debug" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/pre-dexed/debug" afterPath="$PROJECT_DIR$/app/build/pre-dexed/debug" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/rs/debug" afterPath="$PROJECT_DIR$/app/build/rs/debug" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/source/aidl/debug" afterPath="$PROJECT_DIR$/app/build/source/aidl/debug" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/source/buildConfig/debug" afterPath="$PROJECT_DIR$/app/build/source/buildConfig/debug" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/source/r/debug" afterPath="$PROJECT_DIR$/app/build/source/r/debug" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/source/rs/debug" afterPath="$PROJECT_DIR$/app/build/source/rs/debug" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/dex" afterPath="$PROJECT_DIR$/app/build/dex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/drawable-hdpi" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/drawable-hdpi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/drawable-mdpi" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/drawable-mdpi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/drawable-xhdpi" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/drawable-xhdpi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/drawable" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/drawable" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/source/buildConfig/debug/com/example" afterPath="$PROJECT_DIR$/app/build/source/buildConfig/debug/com/example" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/source/r/debug/com/example" afterPath="$PROJECT_DIR$/app/build/source/r/debug/com/example" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example" afterPath="$PROJECT_DIR$/app/src/main/java/com/example" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/source/buildConfig/debug/com/example/exampleprojekt" afterPath="$PROJECT_DIR$/app/build/source/buildConfig/debug/com/example/exampleprojekt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/source/r/debug/com/example/exampleprojekt" afterPath="$PROJECT_DIR$/app/build/source/r/debug/com/example/exampleprojekt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/exampleprojekt" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/exampleprojekt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar" afterPath="$PROJECT_DIR$/app/build/exploded-aar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java" afterPath="$PROJECT_DIR$/app/src/main/java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/layout-v11" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/layout-v11" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/layout-v14" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/layout-v14" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/layout" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/layout" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout" afterPath="$PROJECT_DIR$/app/src/main/res/layout" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/ndk/debug/lib" afterPath="$PROJECT_DIR$/app/build/ndk/debug/lib" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/rs/debug/lib" afterPath="$PROJECT_DIR$/app/build/rs/debug/lib" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/libs" afterPath="$PROJECT_DIR$/app/libs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main" afterPath="$PROJECT_DIR$/app/src/main" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu" afterPath="$PROJECT_DIR$/app/src/main/res/menu" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/ndk" afterPath="$PROJECT_DIR$/app/build/ndk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/ndk/debug/obj" afterPath="$PROJECT_DIR$/app/build/ndk/debug/obj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/rs/debug/obj" afterPath="$PROJECT_DIR$/app/build/rs/debug/obj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/pre-dexed" afterPath="$PROJECT_DIR$/app/build/pre-dexed" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/source/r" afterPath="$PROJECT_DIR$/app/build/source/r" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res" afterPath="$PROJECT_DIR$/app/src/main/res" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/rs" afterPath="$PROJECT_DIR$/app/build/rs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/source/rs" afterPath="$PROJECT_DIR$/app/build/source/rs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/source" afterPath="$PROJECT_DIR$/app/build/source" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src" afterPath="$PROJECT_DIR$/app/src" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/source/r/debug/android/support" afterPath="$PROJECT_DIR$/app/build/source/r/debug/android/support" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/source/r/debug/android/support/v7" afterPath="$PROJECT_DIR$/app/build/source/r/debug/android/support/v7" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-af" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-af" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-am" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-am" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-ar" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-ar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-bg" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-bg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-ca" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-ca" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-cs" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-da" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-da" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-de" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-de" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-el" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-el" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-en-rGB" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-en-rGB" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-en-rIN" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-en-rIN" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-es-rUS" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-es-rUS" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-es" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-es" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-et-rEE" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-et-rEE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-fa" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-fa" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-fi" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-fi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-fr-rCA" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-fr-rCA" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-fr" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-fr" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-hi" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-hi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-hr" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-hr" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-hu" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-hu" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-hy-rAM" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-hy-rAM" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-in" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-in" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-it" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-it" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-iw" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-iw" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-ja" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-ja" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-ka-rGE" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-ka-rGE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-km-rKH" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-km-rKH" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-ko" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-ko" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-land" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-land" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-large" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-large" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-lo-rLA" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-lo-rLA" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-lt" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-lt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-lv" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-lv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-mn-rMN" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-mn-rMN" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-ms-rMY" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-ms-rMY" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-nb" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-nb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-nl" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-nl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-pl" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-pl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-pt-rPT" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-pt-rPT" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-pt" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-pt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-ro" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-ro" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-ru" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-ru" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-sk" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-sk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-sl" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-sl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-sr" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-sr" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-sv" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-sv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-sw600dp" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-sw600dp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-sw" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-sw" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-th" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-th" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-tl" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-tl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-tr" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-tr" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-uk" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-uk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-v11" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-v11" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-v14" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-v14" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-vi" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-vi" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-w360dp" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-w360dp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-w480dp" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-w480dp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-w500dp" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-w500dp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-w600dp" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-w600dp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-w720dp" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-w720dp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values-w820dp" afterPath="$PROJECT_DIR$/app/src/main/res/values-w820dp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-xlarge" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-xlarge" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-zh-rCN" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-zh-rCN" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-zh-rHK" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-zh-rHK" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-zh-rTW" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-zh-rTW" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-zu" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-zu" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values" afterPath="$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values" afterPath="$PROJECT_DIR$/app/src/main/res/values" />
+    </list>
     <ignored path="ExampleProjekt.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -98,8 +247,8 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/exampleprojekt/app/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="856" max-vertical-offset="1332">
-              <caret line="62" column="8" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
+            <state vertical-scroll-proportion="-20.48" vertical-offset="253" max-vertical-offset="1105">
+              <caret line="54" column="52" selection-start-line="54" selection-start-column="52" selection-end-line="54" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -108,18 +257,18 @@
       <file leaf-file-name="R.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/build/source/r/debug/com/example/exampleprojekt/app/R.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="48816">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="68" max-vertical-offset="46019">
               <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8244275" vertical-offset="0" max-vertical-offset="540">
-              <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+            <state vertical-scroll-proportion="-12.24" vertical-offset="0" max-vertical-offset="510">
+              <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -128,7 +277,7 @@
       <file leaf-file-name="Other.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/exampleprojekt/app/Other.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="522">
+            <state vertical-scroll-proportion="-12.24" vertical-offset="0" max-vertical-offset="493">
               <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
               <folding />
             </state>
@@ -138,18 +287,8 @@
       <file leaf-file-name="main.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/main.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="272">
               <caret line="0" column="36" selection-start-line="0" selection-start-column="36" selection-end-line="0" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dimens.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="216">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -158,7 +297,7 @@
       <file leaf-file-name="activity_main.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="1008">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="952">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -171,7 +310,7 @@
       <file leaf-file-name="other.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/other.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="216">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -184,9 +323,23 @@
       <file leaf-file-name="ExampleActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/exampleprojekt/app/ExampleActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="270">
-              <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
+            <state vertical-scroll-proportion="-4.76" vertical-offset="0" max-vertical-offset="255">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FinanceService.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/exampleprojekt/app/FinanceService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.46195653" vertical-offset="0" max-vertical-offset="552">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#276#277#0" expanded="true" />
+                <element signature="e#303#304#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -194,7 +347,7 @@
       <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="270">
+            <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="255">
               <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
@@ -878,12 +1031,15 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/exampleprojekt/app/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/exampleprojekt/app/Other.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/exampleprojekt/app/FinanceService.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1366" />
-    <option name="height" value="740" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1060" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -911,8 +1067,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -927,73 +1083,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ExampleProjekt" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ExampleProjekt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ExampleProjekt" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ExampleProjekt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ExampleProjekt" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ExampleProjekt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ExampleProjekt" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="ExampleOne" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1019,6 +1109,8 @@
     <property name="DEBUGGABLE_DEVICE" value="015d15b5232c2012" />
     <property name="DEBUGGABLE_PROCESS" value="com.example.exampleprojekt.app" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
+    <property name="OverrideImplement.combined" value="true" />
+    <property name="OverrideImplement.overriding.sorted" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -1056,6 +1148,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -1081,19 +1186,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -1128,6 +1220,15 @@
       </option>
       <envs />
       <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="AppEngineRunConfiguration" factoryName="App Engine DevAppServer">
+      <module name="" />
+      <setting name="serverAddress" value="" />
+      <setting name="sdkPath" value="" />
+      <setting name="serverPort" value="" />
+      <setting name="vmArgs" value="" />
+      <setting name="warPath" value="" />
       <method />
     </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -1185,8 +1286,34 @@
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SvnConfiguration" cleanupOnStartRun="true">
-    <configuration>$USER_HOME$/.subversion</configuration>
+    <configuration>C:\Users\Heliosana\AppData\Roaming\Subversion</configuration>
     <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\Programming\Android Studio Workspace\Redmine\ExampleOne" />
+          <option name="myCopyRoot" value="D:\Programming\Android Studio Workspace\Redmine\ExampleOne" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\Programming\Android Studio Workspace\Redmine\ExampleOne\.idea" />
+          <option name="myCopyRoot" value="D:\Programming\Android Studio Workspace\Redmine\ExampleOne\.idea" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\Programming\Android Studio Workspace\Redmine\ExampleOne\app" />
+          <option name="myCopyRoot" value="D:\Programming\Android Studio Workspace\Redmine\ExampleOne\app" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\Programming\Android Studio Workspace\Redmine\ExampleOne" />
+          <option name="myCopyRoot" value="D:\Programming\Android Studio Workspace\Redmine\ExampleOne" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -1197,12 +1324,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1366" height="740" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="SVN Properties" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32967034" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38621795" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1211,7 +1340,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32692307" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32637364" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1219,7 +1348,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24011713" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24010417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" x="99" y="100" width="1168" height="541" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1227,7 +1356,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1251,7 +1379,8 @@
     <MESSAGE value="clear repository" />
     <MESSAGE value="rebuild repository" />
     <MESSAGE value="New Example Project for FH-Lessions" />
-    <option name="LAST_COMMIT_MESSAGE" value="New Example Project for FH-Lessions" />
+    <MESSAGE value="test svn ignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="test svn ignore" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1266,6 +1395,33 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/other.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/exampleprojekt/app/ExampleActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="255">
+          <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="255">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="1008">
@@ -1309,13 +1465,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1332">
           <caret line="62" column="8" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/sdk/sources/android-19/java/lang/ClassLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="13680" max-vertical-offset="15156">
-          <caret line="760" column="0" selection-start-line="760" selection-start-column="0" selection-end-line="760" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1588,20 +1737,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/sdk/sources/android-19/android/app/ActivityThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.5124223" vertical-offset="35875" max-vertical-offset="87372">
-          <caret line="2200" column="24" selection-start-line="2200" selection-start-column="24" selection-end-line="2200" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/sdk/sources/android-19/com/android/internal/os/ZygoteInit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3313433" vertical-offset="9789" max-vertical-offset="13590">
-          <caret line="594" column="0" selection-start-line="594" selection-start-column="0" selection-end-line="594" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/app/build/exploded-aar/com.android.support/appcompat-v7/19.0.1/classes.jar!/android/support/v7/app/ActionBarActivity.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.55" vertical-offset="209" max-vertical-offset="1818">
@@ -1617,41 +1752,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
-          <caret line="0" column="36" selection-start-line="0" selection-start-column="36" selection-end-line="0" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="270">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/sdk/sources/android-19/java/lang/ClassLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="12464" max-vertical-offset="13950">
-          <caret line="760" column="0" selection-start-line="760" selection-start-column="0" selection-end-line="760" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/exampleprojekt/app/ExampleActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
-          <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/exampleprojekt/app/Other.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="432">
-          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -1678,10 +1782,26 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/exampleprojekt/app/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="856" max-vertical-offset="1332">
-          <caret line="62" column="8" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
+        <state vertical-scroll-proportion="-12.24" vertical-offset="0" max-vertical-offset="510">
+          <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/exampleprojekt/app/Other.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.24" vertical-offset="0" max-vertical-offset="493">
+          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
+          <caret line="0" column="36" selection-start-line="0" selection-start-column="36" selection-end-line="0" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -1694,11 +1814,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/exampleprojekt/app/ExampleActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8244275" vertical-offset="0" max-vertical-offset="540">
-          <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+        <state vertical-scroll-proportion="-4.76" vertical-offset="0" max-vertical-offset="255">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/exampleprojekt/app/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.48" vertical-offset="253" max-vertical-offset="1105">
+          <caret line="54" column="52" selection-start-line="54" selection-start-column="52" selection-end-line="54" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/exampleprojekt/app/FinanceService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46195653" vertical-offset="0" max-vertical-offset="552">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#276#277#0" expanded="true" />
+            <element signature="e#303#304#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
