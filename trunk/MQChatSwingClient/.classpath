@@ -9,5 +9,6 @@
 			<attribute name="javadoc_location" value="http://activemq.apache.org/maven/5.8.0/apidocs"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="activemq-all-5.9.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
