@@ -107,7 +107,7 @@ public class MqClientPanel extends JPanel implements TextMessageListener {
 		} catch (JMSException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (NullPointerException e) {}
+		}
 	}
 
 	@Override
