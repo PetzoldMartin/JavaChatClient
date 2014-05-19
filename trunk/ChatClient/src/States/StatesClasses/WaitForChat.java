@@ -2,6 +2,7 @@ package States.StatesClasses;
 
 import States.ChatClientState;
 
-public class WaitForChat extends ChatClientState {
+public abstract class WaitForChat extends ChatClientState {
 
+	public abstract void gotChatStarted();
 }
