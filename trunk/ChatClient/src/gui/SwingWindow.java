@@ -1,17 +1,23 @@
 package gui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 import java.awt.BorderLayout;
+
 import javax.swing.JTextField;
+
 import java.awt.FlowLayout;
+
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 import javax.swing.BoxLayout;
 
-public class SwingWindow {
+import messaging.ChatJmsAdapter;
+
+public class SwingWindow implements Runnable {
+	
+	private ChatJmsAdapter jmsAdapter;
 
 	private JFrame frame;
 	private JTextField txtName;
@@ -25,26 +31,10 @@ public class SwingWindow {
 	private JTextPane textPaneLog;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SwingWindow window = new SwingWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the application.
 	 */
 	public SwingWindow() {
-		initialize();
+		
 	}
 
 	/**
@@ -94,6 +84,18 @@ public class SwingWindow {
 		
 		textPaneLog = new JTextPane();
 		panelChatLog.add(textPaneLog);
+		
+	}
+
+	@Override
+	public void run() {
+		try {
+			initialize();	
+			frame.validate();
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
