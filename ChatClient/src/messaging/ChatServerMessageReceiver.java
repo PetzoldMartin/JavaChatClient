@@ -1,7 +1,7 @@
 /**
  * 
  */
-package gui;
+package messaging;
 
 /**
  * interface defines methods for all messages that could be sent from chat
