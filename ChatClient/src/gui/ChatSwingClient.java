@@ -1,9 +1,16 @@
 package gui;
 
+
 import messaging.ChatServerMessageReceiver;
 
 public class ChatSwingClient implements ChatServerMessageReceiver{
 
+	private static ChatSwingClient chatSwingClient = null;
+	
+	private ChatSwingClient(){
+		
+	}
+	
 	@Override
 	public void gotSuccess() {
 		// TODO Auto-generated method stub
@@ -92,6 +99,14 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	public void gotAccepted() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public ChatSwingClient getInstance()
+	{
+		if(chatSwingClient==null){
+			chatSwingClient= new ChatSwingClient();
+		}
+		return chatSwingClient;
 	}
 
 }
