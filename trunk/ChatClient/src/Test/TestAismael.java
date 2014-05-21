@@ -1,5 +1,7 @@
 package Test;
 
+import java.awt.EventQueue;
+
 import gui.ChatSwingClient;
 
 import javax.jms.JMSException;
@@ -15,20 +17,45 @@ public class TestAismael {
 		AuthenticationServer.main(args);
 		ChatServer.main(args);
 		
-		ChatJmsAdapter CJA=ChatJmsAdapter.getInstance();
-		CJA.setMessageReceiver(ChatSwingClient.getInstance());
+		EventQueue.invokeLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				ChatJmsAdapter CJA=ChatJmsAdapter.getInstance();
+				CJA.setMessageReceiver(ChatSwingClient.getInstance());
 
-		String brokerUri;
-		if (args.length == 0) {
-			String localConnection = "tcp://localhost:61616";
-			brokerUri = localConnection;
-		} else {
-			brokerUri = args[0];
-		}
-		CJA.connectToServer(brokerUri);
-		CJA.register("xy", "xy");
-		CJA.register("xy", "xy");
-		CJA.logout();
+				String brokerUri;
+				
+					String localConnection = "tcp://localhost:61616";
+					brokerUri = localConnection;
+				
+					;
+				
+				CJA.connectToServer(brokerUri);
+			
+				try {
+					CJA.register("xy", "xy");
+				} catch (JMSException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				try {
+					CJA.login("xy", "xy");
+				} catch (JMSException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				try {
+					CJA.logout();
+				} catch (JMSException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		});
+		
 		
 
 	}
