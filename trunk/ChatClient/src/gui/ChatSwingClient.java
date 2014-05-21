@@ -101,7 +101,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 		
 	}
 	
-	public ChatSwingClient getInstance()
+	public static ChatSwingClient getInstance()
 	{
 		if(chatSwingClient==null){
 			chatSwingClient= new ChatSwingClient();

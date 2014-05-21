@@ -260,7 +260,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 		}
 	};
 
-	public ChatJmsAdapter getInstance()
+	public static ChatJmsAdapter getInstance()
 	{
 		if(chatJmsAdapter==null){
 			chatJmsAdapter= new ChatJmsAdapter();
