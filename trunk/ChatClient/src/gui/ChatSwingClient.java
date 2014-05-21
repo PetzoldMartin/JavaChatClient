@@ -4,7 +4,7 @@ package gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import de.fh_zwickau.pti.chatclientcommon.ChatClientState;
+import States.ChatClientState;
 import messaging.ChatJmsAdapter;
 import messaging.ChatServerMessageProducer;
 import messaging.ChatServerMessageReceiver;
@@ -142,7 +142,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	 * Button for Logout is Pressed
 	 */
 	public void buttonLogoutPressed() {
-		state.onlogout();
+		state.onLogout();
 	}
 	
 	/**
