@@ -1,7 +1,16 @@
 package States;
 
+import gui.ChatSwingClient;
+import messaging.ChatJmsAdapter;
+
 public class ChatClientState {
 	
+	protected ChatJmsAdapter chatJmsAdapter;
+	protected ChatSwingClient chatSwingClient;
+	
+	public ChatClientState() {
+		chatJmsAdapter = chatJmsAdapter.getInstance();
+	}
 
 	public void onRegister() {
 		System.err.println("unexpected event");

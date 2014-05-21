@@ -4,7 +4,10 @@ import States.ChatClientState;
 
 public abstract class NotLoggedIn extends ChatClientState {
 
-	public abstract void gotFail();
+
+	public void gotFail(){
+	
+	}
 	public abstract void gotSucess();
 
 	public abstract void onRegister();
