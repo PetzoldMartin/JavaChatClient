@@ -66,7 +66,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 			// consumer für die reply (temporary) queue anlegen und mit einem
 			// MessageListener verbinden
 			MessageConsumer consumer = session.createConsumer(reply);
-		//TODO	consumer.setMessageListener(msgListener);
+		consumer.setMessageListener(msgListener);
 		} catch (Exception e) {
 			System.out.println("[EchoRequestQ] Caught: " + e);
 			e.printStackTrace();

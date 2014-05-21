@@ -2,9 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="activemq-all-5.9.1.jar"/>
 	<classpathentry kind="lib" path="miglayout15-swing.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/MQChatCommon"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/MQGameServer"/>
+	<classpathentry kind="lib" path="/MQGameServer/activemq-all-5.9.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,18 +1,36 @@
 package gui;
 
 
-import States.ChatClientState;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import de.fh_zwickau.pti.chatclientcommon.ChatClientState;
+import messaging.ChatJmsAdapter;
 import messaging.ChatServerMessageReceiver;
 
 public class ChatSwingClient implements ChatServerMessageReceiver{
 
 	// Singleton instance
-	private static ChatSwingClient chatSwingClient = null;
+	private static ChatSwingClient chatSwingClient;
+	private ChatJmsAdapter messageProducer;
+
 	
 	private SwingWindow gui;
 	private ChatClientState state;
 	
-	private ChatSwingClient(){
+	public ChatSwingClient() {
+		myInit();
+	}
+	private void myInit() {
+		messageProducer = ChatJmsAdapter.getInstance();
+		messageProducer.setMessageReceiver(this);
+		String localConnection = "tcp://localhost:61616";
+		((ChatJmsAdapter) messageProducer).connectToServer(localConnection);
+		
+
+		state = new ChatClientState() {
+		};
+
 		// Create GUI and run it on a new Thread
 		gui = new SwingWindow();
 		Thread threadWindow = new Thread(gui);
@@ -21,19 +39,19 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	
 	@Override
 	public void gotSuccess() {
-		// TODO Auto-generated method stub
+		System.out.println("sucess");
 		
 	}
 
 	@Override
 	public void gotFail() {
-		// TODO Auto-generated method stub
+		System.out.println("fail");
 		
 	}
 
 	@Override
 	public void gotLogout() {
-		// TODO Auto-generated method stub
+		System.out.println("Logout");
 		
 	}
 
@@ -105,7 +123,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 
 	@Override
 	public void gotAccepted() {
-		// TODO Auto-generated method stub
+		System.out.println("Accepted");
 		
 	}
 	
@@ -123,7 +141,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	 * Button for Logout is Pressed
 	 */
 	public void buttonLogoutPressed() {
-		state.onLogout();
+		state.onlogout();
 	}
 	
 	/**
