@@ -3,6 +3,14 @@ package States;
 import gui.ChatSwingClient;
 import messaging.ChatJmsAdapter;
 
+/**
+ * @author Peter
+ *
+ */
+/**
+ * @author Peter
+ *
+ */
 public class ChatClientState {
 	
 	protected ChatJmsAdapter chatJmsAdapter;
@@ -12,28 +20,52 @@ public class ChatClientState {
 		chatJmsAdapter = chatJmsAdapter.getInstance();
 		chatSwingClient = chatSwingClient.getInstance();
 	}
-
-	public void onRegister() {
+	/**
+	 * Try to execute a Registration on the current State 
+	 * @param username
+	 * @param passwort
+	 */
+	public void onRegister(String username , String passwort) {
 		System.err.println("unexpected event");
 	};
 
-	public void onLogin() {
+	/**
+	 * Try to execute a LogIn on the current State 
+	 * @param username
+	 * @param passwort
+	 */
+	public void onLogin(String username , String passwort) {
+		
 		System.err.println("unexpected event");
 	};
-
+	/**
+	 * LogOut this user
+	 */
 	public void onLogout() {
 		System.err.println("unexpected event");
 	};
 
-	public void onRequest() {
+
+	/**
+	 * make a request to chat with the given participant
+	 * @param theParticipant
+	 */
+	public void onRequest(String theParticipant) {
 		System.err.println("unexpected event");
 	};
 
+	/**
+	 * Start to Chat, waiting for a ChatRoom
+	 */
 	public void onStartChat() {
 		System.err.println("unexpected event");
 	};
 
-	public void onDeny() {
+	/**
+	 * deny a chat request
+	 * @param request
+	 */
+	public void onDeny(String request) {
 		System.err.println("unexpected event");
 	};
 
