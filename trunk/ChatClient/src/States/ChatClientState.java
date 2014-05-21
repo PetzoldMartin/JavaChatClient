@@ -120,5 +120,4 @@ public class ChatClientState {
 	public void gotAccepted() {
 		System.err.println("unexpected event");
 	};
-		
 }

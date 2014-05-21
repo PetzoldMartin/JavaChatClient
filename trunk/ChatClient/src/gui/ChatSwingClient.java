@@ -101,6 +101,10 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 		
 	}
 	
+	public void onLoginOut() {
+		
+	}
+	
 	public static ChatSwingClient getInstance()
 	{
 		if(chatSwingClient==null){
