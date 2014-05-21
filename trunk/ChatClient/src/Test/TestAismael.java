@@ -12,8 +12,8 @@ public class TestAismael {
 
 	public static void main(String[] args) throws Exception {
 		
-		//AuthenticationServer.main(args);
-		//ChatServer.main(args);
+		AuthenticationServer.main(args);
+		ChatServer.main(args);
 		
 		ChatJmsAdapter CJA=ChatJmsAdapter.getInstance();
 		CJA.setMessageReceiver(ChatSwingClient.getInstance());
