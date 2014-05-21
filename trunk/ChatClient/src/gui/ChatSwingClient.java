@@ -1,5 +1,7 @@
 package gui;
 
+import messaging.ChatServerMessageReceiver;
+
 public class ChatSwingClient implements ChatServerMessageReceiver{
 
 	@Override
