@@ -120,6 +120,13 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	}
 	
 	/**
+	 * Button for Logout is Pressed
+	 */
+	public void buttonLogoutPressed() {
+		state.onLogout();
+	}
+	
+	/**
 	 * Button to send a message is Pressed
 	 */
 	public void btnSendPressed() {

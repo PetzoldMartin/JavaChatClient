@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 public class SwingWindow implements Runnable {
 	
 	private ChatSwingClient chatClient;
+	private boolean toggleLoginOut;				// true -> login false -> logout
 
 	private JFrame frame;
 	private JTextField txtName;
@@ -36,7 +37,7 @@ public class SwingWindow implements Runnable {
 	 * Create the application.
 	 */
 	public SwingWindow() {
-		
+		toggleLoginOut = true;
 	}
 
 	/**
@@ -66,7 +67,10 @@ public class SwingWindow implements Runnable {
 		btnLoginOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// Log in/out Button pressed
-				chatClient.buttonLoginPressed();
+				if(toggleLoginOut)
+					chatClient.buttonLoginPressed();
+				else
+					chatClient.buttonLogoutPressed();
 				// TODO: Maybe display some stuff
 			}
 		});
