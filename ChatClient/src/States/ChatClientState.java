@@ -10,6 +10,7 @@ public class ChatClientState {
 	
 	public ChatClientState() {
 		chatJmsAdapter = chatJmsAdapter.getInstance();
+		chatSwingClient = chatSwingClient.getInstance();
 	}
 
 	public void onRegister() {
