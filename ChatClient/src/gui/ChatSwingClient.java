@@ -6,13 +6,14 @@ import java.awt.event.ActionListener;
 
 import de.fh_zwickau.pti.chatclientcommon.ChatClientState;
 import messaging.ChatJmsAdapter;
+import messaging.ChatServerMessageProducer;
 import messaging.ChatServerMessageReceiver;
 
 public class ChatSwingClient implements ChatServerMessageReceiver{
 
 	// Singleton instance
 	private static ChatSwingClient chatSwingClient;
-	private ChatJmsAdapter messageProducer;
+	private ChatServerMessageProducer messageProducer;
 
 	
 	private SwingWindow gui;
