@@ -14,10 +14,12 @@ import javax.swing.JTextPane;
 import javax.swing.BoxLayout;
 
 import messaging.ChatJmsAdapter;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class SwingWindow implements Runnable {
 	
-	private ChatJmsAdapter jmsAdapter;
+	private ChatSwingClient chatClient;
 
 	private JFrame frame;
 	private JTextField txtName;
@@ -61,6 +63,13 @@ public class SwingWindow implements Runnable {
 		txtPassword.setColumns(10);
 		
 		btnLoginOut = new JButton("Login");
+		btnLoginOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// Log in/out Button pressed
+				chatClient.onLoginOut();
+				// TODO: Maybe display some stuff
+			}
+		});
 		panelAccount.add(btnLoginOut);
 		
 		btnRegister = new JButton("Register");
@@ -87,6 +96,9 @@ public class SwingWindow implements Runnable {
 		
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	@Override
 	public void run() {
 		try {
@@ -96,6 +108,14 @@ public class SwingWindow implements Runnable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public String getName() {
+		return txtName.getText();
+	}
+	
+	public String getPassword() {
+		return txtPassword.getText();
 	}
 
 }
