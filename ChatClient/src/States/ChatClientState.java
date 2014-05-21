@@ -11,14 +11,14 @@ import messaging.ChatJmsAdapter;
  * @author Peter
  *
  */
-public class ChatClientState {
+public class ChatClientState  {
 	
 	protected ChatJmsAdapter chatJmsAdapter;
 	protected ChatSwingClient chatSwingClient;
 	
 	public ChatClientState() {
-		chatJmsAdapter = chatJmsAdapter.getInstance();
-		chatSwingClient = chatSwingClient.getInstance();
+		chatJmsAdapter = ChatJmsAdapter.getInstance();
+		//TODO not working chatSwingClient = ChatSwingClient.getInstance();
 	}
 	/**
 	 * Try to execute a Registration on the current State 

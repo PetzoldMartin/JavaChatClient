@@ -16,13 +16,15 @@ public class TestAismael {
 		
 		AuthenticationServer.main(args);
 		ChatServer.main(args);
+		System.out.println("xx");
+
 		
-		EventQueue.invokeLater(new Runnable() {
-			
-			@Override
-			public void run() {
 				ChatJmsAdapter CJA=ChatJmsAdapter.getInstance();
-				CJA.setMessageReceiver(ChatSwingClient.getInstance());
+				System.out.println("xx");
+				ChatSwingClient CSC=ChatSwingClient.getInstance();
+				System.out.println("xy");
+				CJA.setMessageReceiver(CSC);
+				System.out.println("xx");
 
 				String brokerUri;
 				
@@ -30,32 +32,23 @@ public class TestAismael {
 					brokerUri = localConnection;
 				
 					;
-				
-				CJA.connectToServer(brokerUri);
+					System.out.println("xx");
+
+					CJA.connectToServer(brokerUri);
 			
-				try {
+				
 					CJA.register("xy", "xy");
-				} catch (JMSException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 				
-				try {
+					// TODO Auto-generated catch block
+					System.out.println("xx");
+				
 					CJA.login("xy", "xy");
-				} catch (JMSException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				try {
-					CJA.logout();
-				} catch (JMSException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 				
-			}
-		});
+				
+					CJA.logout();
+				
 		
+	
 		
 
 	}
