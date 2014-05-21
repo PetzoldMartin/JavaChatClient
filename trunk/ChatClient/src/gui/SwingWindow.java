@@ -66,7 +66,7 @@ public class SwingWindow implements Runnable {
 		btnLoginOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// Log in/out Button pressed
-				chatClient.onLoginOut();
+				chatClient.buttonLoginPressed();
 				// TODO: Maybe display some stuff
 			}
 		});
@@ -105,6 +105,7 @@ public class SwingWindow implements Runnable {
 			initialize();	
 			frame.validate();
 			frame.setVisible(true);
+			chatClient = ChatSwingClient.getInstance();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -116,6 +117,10 @@ public class SwingWindow implements Runnable {
 	
 	public String getPassword() {
 		return txtPassword.getText();
+	}
+	
+	public String getMessage() {
+		return txtSendmessage.getText();
 	}
 
 }

@@ -1,14 +1,22 @@
 package gui;
 
 
+import States.ChatClientState;
 import messaging.ChatServerMessageReceiver;
 
 public class ChatSwingClient implements ChatServerMessageReceiver{
 
+	// Singleton instance
 	private static ChatSwingClient chatSwingClient = null;
 	
+	private SwingWindow gui;
+	private ChatClientState state;
+	
 	private ChatSwingClient(){
-		
+		// Create GUI and run it on a new Thread
+		gui = new SwingWindow();
+		Thread threadWindow = new Thread(gui);
+		threadWindow.start();
 	}
 	
 	@Override
@@ -101,8 +109,23 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 		
 	}
 	
-	public void onLoginOut() {
+	/**
+	 * Button for Login is Pressed
+	 */
+	public void buttonLoginPressed() {
+		String name = gui.getName();
+		String password = gui.getPassword();
 		
+		//state.onLogin(name, password);
+	}
+	
+	/**
+	 * Button to send a message is Pressed
+	 */
+	public void btnSendPressed() {
+		String message = gui.getMessage();
+		
+		//state.onChat(message);
 	}
 	
 	public static ChatSwingClient getInstance()
