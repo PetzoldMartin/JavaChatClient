@@ -35,6 +35,7 @@ import de.fh_zwickau.pti.mqgamecommon.MessageKind;
 
 public class ChatJmsAdapter implements ChatServerMessageProducer{
 
+	private static ChatJmsAdapter chatJmsAdapter = null;
 	private String authToken = "";
 	private Destination chatServiceQ;
 	private Destination loginQ, reply;
@@ -42,6 +43,9 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 	private MessageProducer requestProducer;
 	private ChatServerMessageReceiver messageReceiver;
 	
+	private ChatJmsAdapter(){
+	
+	}	
 	public void connectToServer(String brokerUri) {
 		try {
 			// Factory für Verbindungen zu einem JMS Server
@@ -198,5 +202,69 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 		textMessage.setJMSReplyTo(reply);
 		textMessage.setJMSDestination(destination);
 		return textMessage;
+	}
+	
+	private MessageListener msgListener = new MessageListener() {
+		@Override
+		public void onMessage(Message replyMessage) {
+			try {
+				if (replyMessage instanceof TextMessage) {
+					TextMessage textMessage = (TextMessage) replyMessage;
+					String msgKind = textMessage
+							.getStringProperty(MessageHeader.MsgKind.toString());
+					MessageKind messageKind = MessageKind.valueOf(msgKind);
+					switch (messageKind) {
+					case authenticated:
+						authToken = textMessage
+								.getStringProperty(MessageHeader.AuthToken
+										.toString());
+						chatServiceQ = textMessage.getJMSReplyTo();
+						if(messageReceiver != null)
+							SwingUtilities.invokeLater(new Runnable() {
+								
+								@Override
+								public void run() {
+									messageReceiver.gotSuccess();
+								}
+							});
+						break;
+					case failed:
+						if(messageReceiver != null)
+							SwingUtilities.invokeLater(new Runnable() {
+								
+								@Override
+								public void run() {
+									messageReceiver.gotFail();
+								}
+							});
+						break;
+					case loggedOut:
+						if(messageReceiver != null)
+							SwingUtilities.invokeLater(new Runnable() {
+								
+								@Override
+								public void run() {
+									messageReceiver.gotLogout();
+								}
+							});
+						break;
+
+					default:
+						break;
+					}
+				}
+			} catch (JMSException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	};
+
+	ChatJmsAdapter getInstance()
+	{
+		if(chatJmsAdapter==null){
+			chatJmsAdapter= new ChatJmsAdapter();
+		}
+		return chatJmsAdapter;
 	}
 }
