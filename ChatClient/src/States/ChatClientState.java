@@ -16,10 +16,10 @@ import messaging.ChatServerMessageReceiver;
  */
 public abstract class ChatClientState  {
 	
-	private ChatServerMessageProducer messageProducer;
-	private ChatSwingClient messageReceiver;
+	protected ChatJmsAdapter messageProducer;
+	protected ChatSwingClient messageReceiver;
 	
-	public ChatClientState(ChatServerMessageProducer messageProducer, ChatSwingClient messageReceiver) {
+	public ChatClientState(ChatJmsAdapter messageProducer, ChatSwingClient messageReceiver) {
 		this.messageProducer=messageProducer;
 		this.messageReceiver=messageReceiver;
 		
@@ -155,6 +155,10 @@ public abstract class ChatClientState  {
 
 	public void gotAccepted() {
 		System.err.println("unexpected event");
+	}
+	public void gotLogout() {
+		System.err.println("unexpected event");
+		
 	};
 
 }

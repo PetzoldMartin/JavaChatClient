@@ -38,15 +38,15 @@ public class TestAismael {
 					CJA.connectToServer(brokerUri);
 			
 				
-					//CJA.register("xy", "xy");
+					CJA.register("xy", "xy");
 				
 					// TODO Auto-generated catch block
 					System.out.println("xx");
 				
-					//CJA.login("xy", "xy");
+					CJA.login("xy", "xy");
 				
 				
-					//CJA.logout();
+					CJA.logout();
 				
 		
 	

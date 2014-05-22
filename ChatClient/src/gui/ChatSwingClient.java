@@ -14,7 +14,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 
 	// Singleton instance
 	private static ChatSwingClient chatSwingClient=null;
-	private ChatServerMessageProducer messageProducer;
+	private ChatJmsAdapter messageProducer;
 	
 	// client info
 	private String userName;
@@ -27,12 +27,15 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	}
 	private void myInit() {
 		messageProducer = ChatJmsAdapter.getInstance();
-		messageProducer.setMessageReceiver(this);
+		//messageProducer.setMessageReceiver(this);
+		
+		
+
+		messageProducer.setState(state);
 		String localConnection = "tcp://localhost:61616";
 		((ChatJmsAdapter) messageProducer).connectToServer(localConnection);
-		
-		state = new NotLoggedIn(messageProducer,this) {
-		};
+
+
 
 		gui = new SwingWindow(this);
 	}
