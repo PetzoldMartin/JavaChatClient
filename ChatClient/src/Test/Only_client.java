@@ -10,12 +10,12 @@ import de.fh_zwickau.pti.jms.userservice.AuthenticationServer;
 import de.fh_zwickau.pti.jms.userservice.chat.ChatServer;
 import messaging.ChatJmsAdapter;
 
-public class TestAismael {
+public class Only_client {
 
 	public static void main(String[] args) throws Exception {
 
-		AuthenticationServer.main(args);
-		ChatServer.main(args);
+		//AuthenticationServer.main(args);
+		//ChatServer.main(args);
 		ChatSwingClient CSC = ChatSwingClient.getInstance();
 
 		ChatJmsAdapter CJA = ChatJmsAdapter.getInstance();
