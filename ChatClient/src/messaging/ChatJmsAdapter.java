@@ -226,7 +226,8 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 								
 								@Override
 								public void run() {
-									state.gotSucess();;
+									state.gotSucess();
+									
 								}
 							});
 						break;

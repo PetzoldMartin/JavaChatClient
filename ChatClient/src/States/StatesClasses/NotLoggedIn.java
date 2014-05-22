@@ -15,6 +15,7 @@ public abstract class NotLoggedIn extends ChatClientState {
 	public NotLoggedIn(ChatJmsAdapter messageProducer,
 			ChatSwingClient messageReceiver) {
 		super(messageProducer, messageReceiver);
+		System.out.println("State:NotLoggedin");
 		// TODO Auto-generated constructor stub
 	}
 	@Override
@@ -24,6 +25,8 @@ public abstract class NotLoggedIn extends ChatClientState {
 	@Override
 	public void gotSucess(){
 		messageReceiver.gotSuccess();
+		super.changeState(new LoggedIn(messageProducer, messageReceiver) {
+		});
 	}
 	@Override
 	public  void onRegister(String username , String passwort){

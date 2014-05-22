@@ -27,14 +27,15 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	}
 	private void myInit() {
 		messageProducer = ChatJmsAdapter.getInstance();
-		//messageProducer.setMessageReceiver(this);
+		messageProducer.setMessageReceiver(this);
 		
 		
-
+		state=new NotLoggedIn(messageProducer,this) {
+		};
 		messageProducer.setState(state);
 		String localConnection = "tcp://localhost:61616";
 		((ChatJmsAdapter) messageProducer).connectToServer(localConnection);
-
+		
 
 
 		gui = new SwingWindow(this);
