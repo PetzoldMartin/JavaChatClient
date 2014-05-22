@@ -1,5 +1,7 @@
 package messaging;
 
+import java.awt.TrayIcon.MessageType;
+
 import javax.jms.Connection;
 import javax.jms.DeliveryMode;
 import javax.jms.Destination;
@@ -138,8 +140,14 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 	}
 
 	@Override
-	public void requestParticipian() {
-		// TODO Auto-generated method stub
+	public void requestParticipian(String ParticipianName) throws JMSException {
+		TextMessage message = createMessage(chatServiceQ);
+		message.setStringProperty(MessageHeader.MsgKind.toString(),
+				MessageKind.chatterMsgRequestParticipation.toString());
+		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
+
+		message.setStringProperty(MessageHeader.ChatterNickname.toString(), ParticipianName);
+		requestProducer.send(chatServiceQ, message);
 		
 	}
 
@@ -171,15 +179,23 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 	}
 
 	@Override
-	public void close() {
-		// TODO Auto-generated method stub
+	public void close() throws JMSException {
+		TextMessage message = createMessage(chatServiceQ);
+		message.setStringProperty(MessageHeader.MsgKind.toString(),
+				MessageKind.chatterMsgClose.toString());
+		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
+		requestProducer.send(chatServiceQ, message);
 		
 	}
 
 	@Override
-	public void chat() {
-		// TODO Auto-generated method stub
-		
+	public void chat(String messageText) throws JMSException {
+		TextMessage message = createMessage(chatServiceQ);
+		message.setStringProperty(MessageHeader.MsgKind.toString(),
+				MessageKind.chatterMsgChat.toString());
+		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
+		message.setText(messageText);
+		requestProducer.send(chatServiceQ, message);
 	}
 
 	@Override
@@ -210,16 +226,23 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 	}
 	
 	private MessageListener msgListener = new MessageListener() {
+		private String messageText;
+
 		@Override
 		public void onMessage(Message replyMessage) {
 			System.out.println("Client: "+replyMessage.toString());
 			try {
-				if (replyMessage instanceof TextMessage) {
-					TextMessage textMessage = (TextMessage) replyMessage;
+				if (replyMessage instanceof Message) {
+					Message textMessage = (Message) replyMessage;
 					String msgKind = textMessage
 							.getStringProperty(MessageHeader.MsgKind.toString());
 					MessageKind messageKind = MessageKind.valueOf(msgKind);
-					System.out.println("client2: "+messageKind);
+					//get Text if we had Some
+					if (replyMessage instanceof TextMessage) {
+					TextMessage messageIn=(TextMessage)replyMessage;
+					messageText = messageIn.getText();
+					}
+					//System.out.println("client2: "+messageKind);
 					switch (messageKind) {
 					case authenticated:
 						authToken = textMessage
@@ -257,10 +280,31 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 								}
 							});
 						break;
-
-					default:
-						System.out.println(messageKind.toString() );
+					case clientChatStarted:
+						if(state != null)
+							SwingUtilities.invokeLater(new Runnable() {
+								
+								@Override
+								public void run() {
+									state.gotChatStarted();
+								}
+							});
 						break;
+					case clientNewChat:
+						if(state != null)
+							SwingUtilities.invokeLater(new Runnable() {
+								
+								@Override
+								public void run() {
+									state.gotNewChat(messageText);
+								}
+							});
+						break;
+					default:
+						
+						System.out.println(" Kind: "+messageKind.toString() +" Text: "+ messageText);
+						break;
+						
 					}
 				}//else{
 					//if(replyMessage instanceof Message)
@@ -275,6 +319,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 		}
 	};
 

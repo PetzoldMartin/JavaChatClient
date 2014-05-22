@@ -31,10 +31,16 @@ public class Client_with_server_Start {
 
 		CJA.connectToServer(brokerUri);
 		CJA.register("xy", "xy");
-		
+		CJA.logout();
+		CJA.register("xx", "xx");
 		Thread.sleep(500);
 		
 		CJA.startChat();
+		Thread.sleep(500);
+		CJA.chat("Hello");
+		Thread.sleep(500);
+		CJA.close();
+		//TODO Later CJA.requestParticipian("xy");
 		//CJA.register("xy", "xy");
 		
 		//CJA.logout();

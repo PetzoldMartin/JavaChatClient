@@ -48,14 +48,15 @@ public interface ChatServerMessageProducer {
 	void setMessageReceiver(ChatServerMessageReceiver messageReceiver);
 	
 	void deny();
-	void requestParticipian();
 	void startChat() throws JMSException;
 	void cancel();
 	void leave();
 	void acceptInvitation();
-	void close();
-	void chat();
+	void close() throws JMSException;
+	void chat(String messageText) throws JMSException;
 	void invite();
 	void reject();
 	void accept();
+
+	void requestParticipian(String ParticipianName) throws JMSException;
 }
