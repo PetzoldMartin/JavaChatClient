@@ -11,6 +11,9 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	private static ChatSwingClient chatSwingClient=null;
 	private ChatServerMessageProducer messageProducer;
 	
+	// client info
+	private String userName;
+	
 	private SwingWindow gui;
 	private ChatClientState state;
 	
@@ -111,10 +114,10 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	 * Button for Login is Pressed
 	 */
 	public void buttonLoginPressed() {
-		String name = gui.getName();
+		userName = gui.getName();
 		String password = gui.getPassword();
 		
-		state.onLogin(name, password);
+		state.onLogin(userName, password);
 	}
 	
 	/**
@@ -129,6 +132,9 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	 */
 	public void btnSendPressed() {
 		String message = gui.getMessage();
+		
+		// Add message to Log
+		gui.AddLineToLog(userName + ": " + message);
 		
 		//state.onChat(message);
 	}
