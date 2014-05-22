@@ -8,15 +8,10 @@ import States.ChatClientState;
 
 public abstract class NotLoggedIn extends ChatClientState {
 
-	
-	
-
-	
 	public NotLoggedIn(ChatJmsAdapter messageProducer,
 			ChatSwingClient messageReceiver) {
 		super(messageProducer, messageReceiver);
 		System.out.println("State:NotLoggedin");
-		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public void gotFail(){
@@ -33,7 +28,6 @@ public abstract class NotLoggedIn extends ChatClientState {
 		try {
 			messageProducer.register(username, passwort);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -42,7 +36,6 @@ public abstract class NotLoggedIn extends ChatClientState {
 		try {
 			messageProducer.login(username, passwort);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

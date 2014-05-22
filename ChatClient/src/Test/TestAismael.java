@@ -29,13 +29,13 @@ public class TestAismael {
 
 		CJA.connectToServer(brokerUri);
 
-		CJA.register("xy", "xy");
+		//CJA.register("xy", "xy");
 		
 		//CJA.logout();
 
-		CJA.login("xy", "xy");
+		//CJA.login("xy", "xy");
 
-		CJA.logout();
+		//CJA.logout();
 
 	}
 
