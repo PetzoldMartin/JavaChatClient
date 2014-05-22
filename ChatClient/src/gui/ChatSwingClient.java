@@ -46,6 +46,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 		gui.AddLineToLog("System: sucess");
 		gui.SetStatusColor(Color.GREEN);
 		gui.toggleLoginOut();
+		gui.SetShowRegister(false);
 		// user is logged in
 	}
 
@@ -54,6 +55,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 		// login fail
 		gui.AddLineToLog("System: fail");
 		gui.SetStatusColor(Color.RED);
+		gui.SetShowRegister(true);
 	}
 
 	@Override
@@ -61,6 +63,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 		gui.AddLineToLog("System: Logout");
 		gui.SetStatusColor(Color.YELLOW);
 		gui.toggleLoginOut();
+		gui.SetShowRegister(true);
 	}
 
 	@Override

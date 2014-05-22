@@ -155,5 +155,9 @@ public class SwingWindow {
 		}
 		toggleLoginOut = !toggleLoginOut; 
 	}
+	
+	public void SetShowRegister(boolean show) {
+		btnRegister.setVisible(show);
+	}
 
 }
