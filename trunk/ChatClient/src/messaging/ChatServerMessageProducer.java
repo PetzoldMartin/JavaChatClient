@@ -3,6 +3,8 @@
  */
 package messaging;
 
+import javax.jms.JMSException;
+
 
 /**
  * interface defines methodes for each possible message that could be sent to
@@ -47,7 +49,7 @@ public interface ChatServerMessageProducer {
 	
 	void deny();
 	void requestParticipian();
-	void startChat();
+	void startChat() throws JMSException;
 	void cancel();
 	void leave();
 	void acceptInvitation();

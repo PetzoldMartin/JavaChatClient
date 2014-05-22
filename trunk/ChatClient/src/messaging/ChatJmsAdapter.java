@@ -144,9 +144,12 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 	}
 
 	@Override
-	public void startChat() {
-		// TODO Auto-generated method stub
-		
+	public void startChat() throws JMSException {
+		TextMessage message = createMessage(chatServiceQ);
+		message.setStringProperty(MessageHeader.MsgKind.toString(),
+				MessageKind.chatterMsgStartChat.toString());
+		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
+		requestProducer.send(chatServiceQ, message);
 	}
 
 	@Override
@@ -209,12 +212,14 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 	private MessageListener msgListener = new MessageListener() {
 		@Override
 		public void onMessage(Message replyMessage) {
+			System.out.println("Client: "+replyMessage.toString());
 			try {
 				if (replyMessage instanceof TextMessage) {
 					TextMessage textMessage = (TextMessage) replyMessage;
 					String msgKind = textMessage
 							.getStringProperty(MessageHeader.MsgKind.toString());
 					MessageKind messageKind = MessageKind.valueOf(msgKind);
+					System.out.println("client2: "+messageKind);
 					switch (messageKind) {
 					case authenticated:
 						authToken = textMessage
@@ -254,9 +259,18 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 						break;
 
 					default:
+						System.out.println(messageKind.toString() );
 						break;
 					}
-				}
+				}//else{
+					//if(replyMessage instanceof Message)
+					//System.out.println("onlymessage");
+					//Message textMessage = (Message) replyMessage;
+					//String msgKind = textMessage
+					//		.getStringProperty(MessageHeader.MsgKind.toString());
+					//MessageKind messageKind = MessageKind.valueOf(msgKind);
+					//System.out.println(messageKind);
+				//}
 			} catch (JMSException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -266,6 +280,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 
 	public static ChatJmsAdapter getInstance()
 	{
+	
 		if(chatJmsAdapter==null){
 			chatJmsAdapter= new ChatJmsAdapter();
 		}
