@@ -16,12 +16,13 @@ public class TestAismael {
 		
 		AuthenticationServer.main(args);
 		ChatServer.main(args);
-		System.out.println("xx");
+		ChatSwingClient CSC=ChatSwingClient.getInstance();
+
+		System.out.println("xu");
 
 		
 				ChatJmsAdapter CJA=ChatJmsAdapter.getInstance();
 				System.out.println("xx");
-				ChatSwingClient CSC=ChatSwingClient.getInstance();
 				System.out.println("xy");
 				CJA.setMessageReceiver(CSC);
 				System.out.println("xx");
