@@ -44,7 +44,8 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	@Override
 	public void gotSuccess() {
 		gui.AddLineToLog("System: sucess");
-		gui.SetStatusColor(Color.YELLOW);
+		gui.SetStatusColor(Color.GREEN);
+		gui.toggleLoginOut();
 		// user is logged in
 	}
 
@@ -59,12 +60,13 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	public void gotLogout() {
 		gui.AddLineToLog("System: Logout");
 		gui.SetStatusColor(Color.YELLOW);
+		gui.toggleLoginOut();
 	}
 
 	@Override
 	public void gotChatClosed() {
 		gui.AddLineToLog("System: Chat closed");
-		gui.SetStatusColor(Color.YELLOW);
+		gui.SetStatusColor(Color.GREEN);
 	}
 
 	@Override
@@ -81,13 +83,13 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	@Override
 	public void gotChatStarted() {
 		// in own chat
-		gui.SetStatusColor(Color.GREEN);
+		gui.SetStatusColor(Color.PINK);
 	}
 
 	@Override
 	public void gotParticipating() {
 		// in other char
-		gui.SetStatusColor(Color.GREEN);
+		gui.SetStatusColor(Color.PINK);
 	}
 
 	@Override
