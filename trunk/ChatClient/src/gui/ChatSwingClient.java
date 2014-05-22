@@ -1,9 +1,5 @@
 package gui;
 
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import States.ChatClientState;
 import messaging.ChatJmsAdapter;
 import messaging.ChatServerMessageProducer;
@@ -14,7 +10,6 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	// Singleton instance
 	private static ChatSwingClient chatSwingClient=null;
 	private ChatServerMessageProducer messageProducer;
-
 	
 	private SwingWindow gui;
 	private ChatClientState state;
@@ -37,40 +32,32 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	
 	@Override
 	public void gotSuccess() {
-		
-		System.out.println("sucess");
-		gui.AddLineToLog("sucess");
-		
+		gui.AddLineToLog("System: sucess");
 	}
 
 	@Override
 	public void gotFail() {
-		System.out.println("fail");
-		
+		gui.AddLineToLog("System: fail");
 	}
 
 	@Override
 	public void gotLogout() {
-		System.out.println("Logout");
-		
+		gui.AddLineToLog("System: Logout");
 	}
 
 	@Override
 	public void gotChatClosed() {
-		// TODO Auto-generated method stub
-		
+		gui.AddLineToLog("System: Chat closed");
 	}
 
 	@Override
 	public void gotInvite() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void gotReject() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -82,48 +69,41 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	@Override
 	public void gotParticipating() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void gotNewChat() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void gotParticipantEntered() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void gotParticipantLeft() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void gotRequestCancelled() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void gotRequest() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void gotDenied() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void gotAccepted() {
-		System.out.println("Accepted");
+		gui.AddLineToLog("System: Accepted");
 		
 	}
 	
@@ -134,7 +114,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 		String name = gui.getName();
 		String password = gui.getPassword();
 		
-		//state.onLogin(name, password);
+		state.onLogin(name, password);
 	}
 	
 	/**
