@@ -14,12 +14,37 @@ public abstract class LoggedIn extends ChatClientState {
 	public LoggedIn(ChatJmsAdapter messageProducer,
 			ChatSwingClient messageReceiver) {
 		super(messageProducer, messageReceiver);
+		System.out.println("State:Loggedin");
 		// TODO Auto-generated constructor stub
 	}
-	public abstract void gotChatClosed();
-	public abstract void gotDenied();
-	public abstract void gotSucess();
-	public abstract void onLogout();
-	public abstract void onRequest();
-	public abstract void onStartchat();
+	public  void gotChatClosed(){
+		
+	}
+	public  void gotDenied(){
+		
+	}
+	public  void gotSucess(){
+		
+	}
+	@Override
+	public  void onLogout(){
+		try {
+			messageProducer.logout();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public  void onRequest(){
+		
+	}
+	public  void onStartchat(){
+	}	
+	
+	@Override
+	public void gotLogout(){
+		messageReceiver.gotLogout();
+		super.changeState(new NotLoggedIn(messageProducer, messageReceiver) {
+		});
+	}
 	}

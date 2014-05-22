@@ -46,7 +46,7 @@ public abstract class ChatClientState  {
 	 * LogOut this user
 	 */
 	public void onLogout() {
-		System.err.println("unexpected event");
+		System.err.println("unexpected event:onLogout");
 	};
 
 
@@ -157,8 +157,11 @@ public abstract class ChatClientState  {
 		System.err.println("unexpected event");
 	}
 	public void gotLogout() {
-		System.err.println("unexpected event");
+		System.err.println("unexpected event:gotLogout");
 		
 	};
-
+	protected void changeState(ChatClientState cCS){
+		messageProducer.setState(cCS);
+		messageReceiver.setState(cCS);
+	}
 }
