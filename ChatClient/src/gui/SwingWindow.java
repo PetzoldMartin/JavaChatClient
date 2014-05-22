@@ -93,6 +93,11 @@ public class SwingWindow {
 		txtSendmessage.setColumns(10);
 		
 		btnSend = new JButton("Send");
+		btnSend.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				chatClient.btnSendPressed();
+			}
+		});
 		panelChatter.add(btnSend);
 		
 		panelChatLog = new JPanel();
