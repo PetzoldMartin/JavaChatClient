@@ -16,6 +16,7 @@ import javax.swing.BoxLayout;
 import messaging.ChatJmsAdapter;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class SwingWindow {
 	
@@ -32,6 +33,7 @@ public class SwingWindow {
 	private JButton btnSend;
 	private JPanel panelChatLog;
 	private JTextPane textPaneLog;
+	private JPanel panelStatus;
 
 	/**
 	 * Create the application.
@@ -98,6 +100,10 @@ public class SwingWindow {
 				chatClient.btnSendPressed();
 			}
 		});
+		
+		panelStatus = new JPanel();
+		panelStatus.setBackground(Color.YELLOW);
+		panelChatter.add(panelStatus);
 		panelChatter.add(btnSend);
 		
 		panelChatLog = new JPanel();
@@ -123,6 +129,10 @@ public class SwingWindow {
 	
 	public void AddLineToLog(String text) {
 		textPaneLog.setText(textPaneLog.getText() + "\n" + text);
+	}
+	
+	public void SetStatusColor(Color color) {
+		panelStatus.setBackground(color);
 	}
 
 }
