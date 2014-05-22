@@ -3,6 +3,8 @@
  */
 package messaging;
 
+import States.ChatClientState;
+
 /**
  * interface defines methods for all messages that could be sent from chat
  * server to a chat client
@@ -38,4 +40,6 @@ public interface ChatServerMessageReceiver {
 	void gotRequest();
 	void gotDenied();
 	void gotAccepted();
+
+	void setState(ChatClientState chatClientState);
 }
