@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.Color;
+
 import States.ChatClientState;
 import States.StatesClasses.NotLoggedIn;
 import messaging.ChatJmsAdapter;
@@ -39,11 +41,13 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	@Override
 	public void gotSuccess() {
 		gui.AddLineToLog("System: sucess");
+		gui.SetStatusColor(Color.GREEN);
 	}
 
 	@Override
 	public void gotFail() {
 		gui.AddLineToLog("System: fail");
+		gui.SetStatusColor(Color.RED);
 	}
 
 	@Override
@@ -54,11 +58,13 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	@Override
 	public void gotChatClosed() {
 		gui.AddLineToLog("System: Chat closed");
+		gui.SetStatusColor(Color.YELLOW);
 	}
 
 	@Override
 	public void gotInvite() {
 		// TODO Auto-generated method stub
+		gui.SetStatusColor(Color.CYAN);
 	}
 
 	@Override
