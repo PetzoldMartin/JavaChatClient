@@ -1,6 +1,7 @@
 package gui;
 
 import States.ChatClientState;
+import States.StatesClasses.NotLoggedIn;
 import messaging.ChatJmsAdapter;
 import messaging.ChatServerMessageProducer;
 import messaging.ChatServerMessageReceiver;
@@ -26,8 +27,10 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 		String localConnection = "tcp://localhost:61616";
 		((ChatJmsAdapter) messageProducer).connectToServer(localConnection);
 		
-		state = new ChatClientState() {
+		state = new NotLoggedIn(messageProducer,this) {
 		};
+
+		
 
 
 		gui = new SwingWindow(this);

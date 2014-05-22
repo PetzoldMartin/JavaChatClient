@@ -1,7 +1,10 @@
 package States;
 
+import States.StatesClasses.NotLoggedIn;
 import gui.ChatSwingClient;
 import messaging.ChatJmsAdapter;
+import messaging.ChatServerMessageProducer;
+import messaging.ChatServerMessageReceiver;
 
 /**
  * @author Peter
@@ -11,13 +14,15 @@ import messaging.ChatJmsAdapter;
  * @author Peter
  *
  */
-public class ChatClientState  {
+public abstract class ChatClientState  {
 	
-	protected ChatJmsAdapter chatJmsAdapter;
-	protected ChatSwingClient chatSwingClient;
+	private ChatServerMessageProducer messageProducer;
+	private ChatSwingClient messageReceiver;
 	
-	public ChatClientState() {
-		chatJmsAdapter = ChatJmsAdapter.getInstance();
+	public ChatClientState(ChatServerMessageProducer messageProducer, ChatSwingClient messageReceiver) {
+		this.messageProducer=messageProducer;
+		this.messageReceiver=messageReceiver;
+		
 	}
 	/**
 	 * Try to execute a Registration on the current State 
@@ -151,4 +156,5 @@ public class ChatClientState  {
 	public void gotAccepted() {
 		System.err.println("unexpected event");
 	};
+
 }
