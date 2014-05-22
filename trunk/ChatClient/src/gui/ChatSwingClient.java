@@ -44,6 +44,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	@Override
 	public void gotSuccess() {
 		gui.AddLineToLog("System: sucess");
+		gui.SetStatusColor(Color.YELLOW);
 		// user is logged in
 	}
 
