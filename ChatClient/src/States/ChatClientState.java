@@ -18,7 +18,6 @@ public class ChatClientState  {
 	
 	public ChatClientState() {
 		chatJmsAdapter = ChatJmsAdapter.getInstance();
-		//TODO not working chatSwingClient = ChatSwingClient.getInstance();
 	}
 	/**
 	 * Try to execute a Registration on the current State 

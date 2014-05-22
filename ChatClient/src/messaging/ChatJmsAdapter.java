@@ -43,7 +43,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 	private MessageProducer requestProducer;
 	private ChatServerMessageReceiver messageReceiver;
 	
-	private ChatJmsAdapter(){
+	public ChatJmsAdapter(){
 	
 	}	
 	public void connectToServer(String brokerUri) {
