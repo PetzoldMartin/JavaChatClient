@@ -3,7 +3,9 @@ package gui;
 import java.awt.Color;
 
 import States.ChatClientState;
+import States.StatesClasses.Chatting;
 import States.StatesClasses.NotLoggedIn;
+import States.StatesClasses.Waiting;
 import messaging.ChatJmsAdapter;
 import messaging.ChatServerMessageProducer;
 import messaging.ChatServerMessageReceiver;
@@ -32,20 +34,18 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 		state = new NotLoggedIn(messageProducer,this) {
 		};
 
-		
-
-
 		gui = new SwingWindow(this);
 	}
 	
 	@Override
 	public void gotSuccess() {
 		gui.AddLineToLog("System: sucess");
-		gui.SetStatusColor(Color.GREEN);
+		// user is logged in
 	}
 
 	@Override
 	public void gotFail() {
+		// login fail
 		gui.AddLineToLog("System: fail");
 		gui.SetStatusColor(Color.RED);
 	}
@@ -53,6 +53,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	@Override
 	public void gotLogout() {
 		gui.AddLineToLog("System: Logout");
+		gui.SetStatusColor(Color.YELLOW);
 	}
 
 	@Override
@@ -74,13 +75,14 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 
 	@Override
 	public void gotChatStarted() {
-		// TODO Auto-generated method stub
-		
+		// in own chat
+		gui.SetStatusColor(Color.GREEN);
 	}
 
 	@Override
 	public void gotParticipating() {
-		// TODO Auto-generated method stub
+		// in other char
+		gui.SetStatusColor(Color.GREEN);
 	}
 
 	@Override
@@ -118,6 +120,8 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 		gui.AddLineToLog("System: Accepted");
 		
 	}
+	
+	// START BUTTON PRESSED AREA ////////////////
 	
 	/**
 	 * Button for Login is Pressed
