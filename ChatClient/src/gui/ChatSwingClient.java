@@ -12,7 +12,7 @@ import messaging.ChatServerMessageReceiver;
 public class ChatSwingClient implements ChatServerMessageReceiver{
 
 	// Singleton instance
-	private static ChatSwingClient chatSwingClient;
+	private static ChatSwingClient chatSwingClient=null;
 	private ChatServerMessageProducer messageProducer;
 
 	
@@ -28,11 +28,10 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 		String localConnection = "tcp://localhost:61616";
 		((ChatJmsAdapter) messageProducer).connectToServer(localConnection);
 		
-
 		state = new ChatClientState() {
 		};
 
-		// Create GUI and run it on a new Thread
+
 		gui = new SwingWindow(this);
 	}
 	
@@ -162,4 +161,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 		return chatSwingClient;
 	}
 
+	public void setState(ChatClientState cCS){
+		state=cCS;
+	}
 }
