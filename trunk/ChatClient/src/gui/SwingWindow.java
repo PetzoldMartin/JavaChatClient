@@ -83,6 +83,11 @@ public class SwingWindow {
 		panelAccount.add(btnLoginOut);
 		
 		btnRegister = new JButton("Register");
+		btnRegister.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				chatClient.buttonRegisterPressed();
+			}
+		});
 		panelAccount.add(btnRegister);
 		
 		panelChatter = new JPanel();
@@ -133,6 +138,10 @@ public class SwingWindow {
 	
 	public void SetStatusColor(Color color) {
 		panelStatus.setBackground(color);
+	}
+	
+	public void SetPasswordField(String password) {
+		txtPassword.setText(password);
 	}
 
 }
