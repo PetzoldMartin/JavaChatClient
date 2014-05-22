@@ -6,6 +6,8 @@ import gui.ChatSwingClient;
 
 import javax.jms.JMSException;
 
+import States.StatesClasses.WaitForChat;
+import States.StatesClasses.Waiting;
 import de.fh_zwickau.pti.jms.userservice.AuthenticationServer;
 import de.fh_zwickau.pti.jms.userservice.chat.ChatServer;
 import messaging.ChatJmsAdapter;
@@ -28,7 +30,11 @@ public class Client_with_server_Start {
 		brokerUri = localConnection;
 
 		CJA.connectToServer(brokerUri);
-
+		CJA.register("xy", "xy");
+		
+		Thread.sleep(500);
+		
+		CJA.startChat();
 		//CJA.register("xy", "xy");
 		
 		//CJA.logout();
