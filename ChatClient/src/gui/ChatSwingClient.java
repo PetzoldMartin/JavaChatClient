@@ -33,14 +33,14 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 		};
 
 		// Create GUI and run it on a new Thread
-		gui = new SwingWindow();
-		Thread threadWindow = new Thread(gui);
-		threadWindow.start();
+		gui = new SwingWindow(this);
 	}
 	
 	@Override
 	public void gotSuccess() {
+		
 		System.out.println("sucess");
+		gui.AddLineToLog("sucess");
 		
 	}
 

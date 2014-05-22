@@ -17,7 +17,7 @@ import messaging.ChatJmsAdapter;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class SwingWindow implements Runnable {
+public class SwingWindow {
 	
 	private ChatSwingClient chatClient;
 	private boolean toggleLoginOut;				// true -> login false -> logout
@@ -36,8 +36,12 @@ public class SwingWindow implements Runnable {
 	/**
 	 * Create the application.
 	 */
-	public SwingWindow() {
+	public SwingWindow(ChatSwingClient chatClient) {
 		toggleLoginOut = true;
+		initialize();	
+		frame.validate();
+		frame.setVisible(true);
+		this.chatClient = chatClient;
 	}
 
 	/**
@@ -99,21 +103,6 @@ public class SwingWindow implements Runnable {
 		panelChatLog.add(textPaneLog);
 		
 	}
-
-	/**
-	 * @wbp.parser.entryPoint
-	 */
-	@Override
-	public void run() {
-		try {
-			initialize();	
-			frame.validate();
-			frame.setVisible(true);
-			chatClient = ChatSwingClient.getInstance();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 	
 	public String getName() {
 		return txtName.getText();
@@ -125,6 +114,10 @@ public class SwingWindow implements Runnable {
 	
 	public String getMessage() {
 		return txtSendmessage.getText();
+	}
+	
+	public void AddLineToLog(String text) {
+		textPaneLog.setText(textPaneLog.getText() + "\n" + text);
 	}
 
 }
