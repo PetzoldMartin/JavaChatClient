@@ -13,7 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JTextPane;
 import javax.swing.BoxLayout;
 
+import de.fh_zwickau.pti.chatclientcommon.ChatClientState;
 import messaging.ChatJmsAdapter;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
@@ -43,6 +45,7 @@ public class SwingWindow {
 		initialize();	
 		frame.validate();
 		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.chatClient = chatClient;
 	}
 
@@ -142,6 +145,15 @@ public class SwingWindow {
 	
 	public void SetPasswordField(String password) {
 		txtPassword.setText(password);
+	}
+	
+	public void toggleLoginOut() {
+		if(toggleLoginOut) {
+			btnLoginOut.setText("Logout");
+		} else {
+			btnLoginOut.setText("Login");
+		}
+		toggleLoginOut = !toggleLoginOut; 
 	}
 
 }
