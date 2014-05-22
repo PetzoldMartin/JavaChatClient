@@ -1,6 +1,7 @@
 package States.StatesClasses.ChattingStates;
 
 import gui.ChatSwingClient;
+import messaging.ChatJmsAdapter;
 import messaging.ChatServerMessageProducer;
 import messaging.ChatServerMessageReceiver;
 import States.StatesClasses.Chatting;
@@ -9,7 +10,8 @@ public abstract class InOwnChat extends Chatting {
 
 	
 	
-	public InOwnChat(ChatServerMessageProducer messageProducer,
+
+	public InOwnChat(ChatJmsAdapter messageProducer,
 			ChatSwingClient messageReceiver) {
 		super(messageProducer, messageReceiver);
 		// TODO Auto-generated constructor stub

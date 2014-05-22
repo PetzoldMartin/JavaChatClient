@@ -28,6 +28,7 @@ import javax.swing.SwingUtilities;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
+import States.ChatClientState;
 import de.fh_zwickau.pti.mqgamecommon.MQConstantDefs;
 import de.fh_zwickau.pti.mqgamecommon.MessageHeader;
 import de.fh_zwickau.pti.mqgamecommon.MessageKind;
@@ -42,6 +43,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 	private Session session;
 	private MessageProducer requestProducer;
 	private ChatServerMessageReceiver messageReceiver;
+	private ChatClientState state;
 	
 	public ChatJmsAdapter(){
 	
@@ -219,32 +221,33 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 								.getStringProperty(MessageHeader.AuthToken
 										.toString());
 						chatServiceQ = textMessage.getJMSReplyTo();
-						if(messageReceiver != null)
+						if(state != null)
 							SwingUtilities.invokeLater(new Runnable() {
 								
 								@Override
 								public void run() {
-									messageReceiver.gotSuccess();
+									state.gotSucess();;
 								}
 							});
 						break;
 					case failed:
-						if(messageReceiver != null)
+						if(state != null)
 							SwingUtilities.invokeLater(new Runnable() {
 								
 								@Override
 								public void run() {
-									messageReceiver.gotFail();
+									
+									state.gotFail();
 								}
 							});
 						break;
 					case loggedOut:
-						if(messageReceiver != null)
+						if(state != null)
 							SwingUtilities.invokeLater(new Runnable() {
 								
 								@Override
 								public void run() {
-									messageReceiver.gotLogout();
+									state.gotLogout();
 								}
 							});
 						break;
@@ -266,5 +269,9 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 			chatJmsAdapter= new ChatJmsAdapter();
 		}
 		return chatJmsAdapter;
+	}
+	public void setState(States.ChatClientState state) {
+		this.state=state;
+		
 	}
 }
