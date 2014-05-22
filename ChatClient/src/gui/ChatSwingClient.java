@@ -126,6 +126,20 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	
 	// START BUTTON PRESSED AREA ////////////////
 	
+	
+	public void buttonRegisterPressed() {
+		userName = gui.getName();
+		
+		// get password
+		String password = gui.getPassword();
+		
+		// call register on state
+		state.onRegister(userName, password);
+		
+		// clear password for safety
+		gui.SetPasswordField("");
+	}
+	
 	/**
 	 * Button for Login is Pressed
 	 */
