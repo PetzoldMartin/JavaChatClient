@@ -36,8 +36,6 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 		String localConnection = "tcp://localhost:61616";
 		((ChatJmsAdapter) messageProducer).connectToServer(localConnection);
 		
-
-
 		gui = new SwingWindow(this);
 	}
 	
@@ -47,6 +45,9 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 		gui.SetStatusColor(Color.GREEN);
 		gui.toggleLoginOut();
 		gui.SetShowRegister(false);
+		gui.SetShowCreate(true);
+		gui.SetShowJoin(true);
+		gui.SetShowPartyUser(true);
 		// user is logged in
 	}
 
@@ -64,18 +65,26 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 		gui.SetStatusColor(Color.YELLOW);
 		gui.toggleLoginOut();
 		gui.SetShowRegister(true);
+		gui.SetShowJoin(false);
+		gui.SetShowInvite(false);
+		gui.SetShowCreate(false);
+		gui.SetShowPartyUser(false);
 	}
 
 	@Override
 	public void gotChatClosed() {
 		gui.AddLineToLog("System: Chat closed");
 		gui.SetStatusColor(Color.GREEN);
+		gui.SetShowJoin(true);
+		gui.SetShowCreate(true);
+		gui.SetShowInvite(false);
 	}
 
 	@Override
 	public void gotInvite() {
 		// TODO Auto-generated method stub
 		gui.SetStatusColor(Color.CYAN);
+		// TODO: popup
 	}
 
 	@Override
@@ -87,6 +96,9 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	public void gotChatStarted() {
 		// in own chat
 		gui.SetStatusColor(Color.PINK);
+		gui.SetShowJoin(false);
+		gui.SetShowInvite(true);
+		gui.SetShowCreate(false);
 	}
 
 	@Override
@@ -158,6 +170,20 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	}
 	
 	/**
+	 * User is logged in and want to join to an chatroom
+	 */
+	public void buttonJoinPressed() {
+		state.onRequest(gui.getPartyUser());
+	}
+	
+	/**
+	 * User is in his own chat an want to invite a user 
+	 */
+	public void buttonInvitePressed() {
+		state.onInvite(gui.getPartyUser());
+	}
+	
+	/**
 	 * Button for Logout is Pressed
 	 */
 	public void buttonLogoutPressed() {
@@ -174,6 +200,10 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 		gui.AddLineToLog(userName + ": " + message);
 		
 		//state.onChat(message);
+	}
+	
+	public void buttonCreateChatPressed() {
+		state.onStartChat();
 	}
 	
 	public static ChatSwingClient getInstance()
