@@ -36,10 +36,10 @@ public class Client_with_server_Start {
 		//CJA.register("xy", "xy");
 		//Thread.sleep(500);
 		
-		CJA.startChat();
+		
+		//CJA.close();
 		Thread.sleep(500);
-		CJA.chat("Hello");
-		//Thread.sleep(500);
+		
 		//CJA.close();
 		//TODO Later CJA.requestParticipian("xy");
 		//CJA.register("xy", "xy");

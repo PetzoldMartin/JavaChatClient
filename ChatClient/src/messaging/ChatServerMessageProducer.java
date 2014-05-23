@@ -47,16 +47,24 @@ public interface ChatServerMessageProducer {
 	 */
 	void setMessageReceiver(ChatServerMessageReceiver messageReceiver);
 	
-	void deny();
+	void deny() throws JMSException;
 	void startChat() throws JMSException;
-	void cancel();
-	void leave();
-	void acceptInvitation();
+	void cancel() throws JMSException;
+	void leave() throws JMSException;
+	void acceptInvitation() throws JMSException;
 	void close() throws JMSException;
 	void chat(String messageText) throws JMSException;
-	void invite();
-	void reject();
-	void accept();
+	void reject() throws JMSException;
+	void accept() throws JMSException;
 
-	void requestParticipian(String ParticipianName) throws JMSException;
+
+	void connectToServer(String brokerUri);
+
+	void askForChats() throws JMSException;
+
+	void requestParticipian(String cID, String refID) throws JMSException;
+
+	void askForChatters() throws JMSException;
+
+	void invite(String CNN) throws JMSException;
 }
