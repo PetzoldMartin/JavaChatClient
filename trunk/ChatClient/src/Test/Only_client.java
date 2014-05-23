@@ -29,9 +29,9 @@ public class Only_client {
 
 		CJA.connectToServer(brokerUri);
 
-		CJA.login("xy", "xy");
-		Thread.sleep(500);
-		CJA.startChat();
+		CJA.register("xy", "xy");
+		//Thread.sleep(500);
+		//CJA.startChat();
 		Thread.sleep(500);
 		CJA.requestParticipian("xx");
 		//CJA.logout();
