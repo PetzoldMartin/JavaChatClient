@@ -19,6 +19,14 @@ import messaging.ChatJmsAdapter;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.Component;
+import net.miginfocom.swing.MigLayout;
+import java.awt.GridLayout;
+import javax.swing.JSpinner;
+import javax.swing.SwingConstants;
 
 public class SwingWindow {
 	
@@ -36,6 +44,10 @@ public class SwingWindow {
 	private JPanel panelChatLog;
 	private JTextPane textPaneLog;
 	private JPanel panelStatus;
+	private JPanel panelChannel;
+	private JPanel panelChannelAdmin;
+	private JButton btnCreate;
+	private JButton btnJoin;
 
 	/**
 	 * Create the application.
@@ -120,6 +132,20 @@ public class SwingWindow {
 		
 		textPaneLog = new JTextPane();
 		panelChatLog.add(textPaneLog);
+		
+		panelChannel = new JPanel();
+		panelChatLog.add(panelChannel);
+		panelChannel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+		
+		panelChannelAdmin = new JPanel();
+		panelChannel.add(panelChannelAdmin);
+		panelChannelAdmin.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		btnCreate = new JButton("Create");
+		panelChannelAdmin.add(btnCreate);
+		
+		btnJoin = new JButton("Join");
+		panelChannelAdmin.add(btnJoin);
 		
 	}
 	
