@@ -50,6 +50,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 	public ChatJmsAdapter(){
 	
 	}	
+	@Override
 	public void connectToServer(String brokerUri) {
 		try {
 			// Factory für Verbindungen zu einem JMS Server
@@ -94,6 +95,8 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 		message.setStringProperty(
 				MessageHeader.ChatterNickname.toString(), uname);
 		message.setStringProperty(
+				MessageHeader.RefID.toString(), uname);
+		message.setStringProperty(
 				MessageHeader.LoginPassword.toString(), pword);
 		requestProducer.send(loginQ, message);
 		
@@ -134,58 +137,49 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 	}
 
 	@Override
-	public void deny() {
-		// TODO Auto-generated method stub
-		
+	public void deny() throws JMSException {
+		sendParameterLessSimpleRequest(MessageKind.chatterMsgDeny.toString());
 	}
 
 	@Override
-	public void requestParticipian(String cID) throws JMSException {
+	public void requestParticipian(String cID,String refID) throws JMSException {
 		TextMessage message = createMessage(chatServiceQ);
 		message.setStringProperty(MessageHeader.MsgKind.toString(),
 				MessageKind.chatterMsgRequestParticipation.toString());
 		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
 
 		message.setStringProperty(MessageHeader.ChatroomID.toString(), cID);
+		message.setStringProperty(MessageHeader.ChatterNickname.toString(), refID);
 		requestProducer.send(chatServiceQ, message);
 		
 	}
 
 	@Override
 	public void startChat() throws JMSException {
-		TextMessage message = createMessage(chatServiceQ);
-		message.setStringProperty(MessageHeader.MsgKind.toString(),
-				MessageKind.chatterMsgStartChat.toString());
-		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
-		requestProducer.send(chatServiceQ, message);
+		sendParameterLessSimpleRequest(MessageKind.chatterMsgStartChat.toString());
 	}
 
 	@Override
-	public void cancel() {
-		// TODO Auto-generated method stub
+	public void cancel() throws JMSException {
+		sendParameterLessSimpleRequest(MessageKind.chatterMsgCancel.toString());
 		
 	}
 
 	@Override
-	public void leave() {
-		// TODO Auto-generated method stub
+	public void leave() throws JMSException {
+		sendParameterLessSimpleRequest(MessageKind.chatterMsgLeave.toString());
 		
 	}
 
 	@Override
-	public void acceptInvitation() {
-		// TODO Auto-generated method stub
+	public void acceptInvitation() throws JMSException {
+		sendParameterLessSimpleRequest(MessageKind.chatterMsgAcceptInvitation.toString());
 		
 	}
 
 	@Override
 	public void close() throws JMSException {
-		TextMessage message = createMessage(chatServiceQ);
-		message.setStringProperty(MessageHeader.MsgKind.toString(),
-				MessageKind.chatterMsgClose.toString());
-		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
-		requestProducer.send(chatServiceQ, message);
-		
+		sendParameterLessSimpleRequest(MessageKind.chatterMsgClose.toString());	
 	}
 
 	@Override
@@ -199,23 +193,37 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 	}
 
 	@Override
-	public void invite() {
-		// TODO Auto-generated method stub
+	public void invite(String CNN) throws JMSException {
+		TextMessage message = createMessage(chatServiceQ);
+		message.setStringProperty(MessageHeader.MsgKind.toString(),
+				MessageKind.chatterMsgChat.toString());
+		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
+		message.setStringProperty(MessageHeader.ChatterNickname.toString(), CNN);
+		requestProducer.send(chatServiceQ, message);
 		
 	}
 
 	@Override
-	public void reject() {
-		// TODO Auto-generated method stub
+	public void reject() throws JMSException {
+		sendParameterLessSimpleRequest(MessageKind.chatterMsgReject.toString());
 		
 	}
 
 	@Override
-	public void accept() {
-		// TODO Auto-generated method stub
+	public void accept() throws JMSException {
+		sendParameterLessSimpleRequest(MessageKind.chatterAccepted.toString());
 		
 	}
-
+	@Override
+	public void askForChats() throws JMSException{
+		sendParameterLessSimpleRequest(MessageKind.chatterMsgChats.toString());
+	}
+	
+	@Override
+	public void askForChatters() throws JMSException{
+		sendParameterLessSimpleRequest(MessageKind.chatterMsgChatters.toString());
+	}
+	
 	private TextMessage createMessage(Destination destination) throws JMSException {
 		TextMessage textMessage = session
 				.createTextMessage();
@@ -339,5 +347,13 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 	public void setState(States.ChatClientState state) {
 		this.state=state;
 		
+	}
+	
+	private void sendParameterLessSimpleRequest(String Msgkind) throws JMSException{
+		TextMessage message = createMessage(chatServiceQ);
+		message.setStringProperty(MessageHeader.MsgKind.toString(),
+				Msgkind);
+		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
+		requestProducer.send(chatServiceQ, message);
 	}
 }

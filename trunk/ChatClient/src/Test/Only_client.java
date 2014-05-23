@@ -33,7 +33,17 @@ public class Only_client {
 		//Thread.sleep(500);
 		//CJA.startChat();
 		Thread.sleep(500);
-		CJA.requestParticipian("xx");
+		CJA.askForChats();
+		Thread.sleep(500);
+		CJA.askForChatters();
+		Thread.sleep(500);
+		CJA.startChat();
+		Thread.sleep(500);
+		CJA.chat("Hello");
+		Thread.sleep(1500);
+		System.out.println("attention");
+		CJA.invite("xx");
+		//CJA.requestParticipian("c282dbfc-d529-4b50-9cdd-8cec951bd128","xx");
 		//CJA.logout();
 
 		//CJA.login("xy", "xy");
