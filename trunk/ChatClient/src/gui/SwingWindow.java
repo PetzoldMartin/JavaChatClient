@@ -48,6 +48,8 @@ public class SwingWindow {
 	private JPanel panelChannelAdmin;
 	private JButton btnCreate;
 	private JButton btnJoin;
+	private JButton btnInvite;
+	private JTextField txtUser;
 
 	/**
 	 * Create the application.
@@ -142,10 +144,38 @@ public class SwingWindow {
 		panelChannelAdmin.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		btnCreate = new JButton("Create");
+		btnCreate.setVisible(false);
+		btnCreate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// Create new chat
+				chatClient.buttonCreateChatPressed();
+			}
+		});
 		panelChannelAdmin.add(btnCreate);
 		
 		btnJoin = new JButton("Join");
+		btnJoin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				chatClient.buttonJoinPressed();
+			}
+		});
+		btnJoin.setVisible(false);
 		panelChannelAdmin.add(btnJoin);
+		
+		btnInvite = new JButton("Invite");
+		btnInvite.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				chatClient.buttonInvitePressed();
+			}
+		});
+		btnInvite.setVisible(false);
+		panelChannelAdmin.add(btnInvite);
+		
+		txtUser = new JTextField();
+		txtUser.setText("User");
+		txtUser.setVisible(false);
+		panelChannelAdmin.add(txtUser);
+		txtUser.setColumns(10);
 		
 	}
 	
@@ -159,6 +189,10 @@ public class SwingWindow {
 	
 	public String getMessage() {
 		return txtSendmessage.getText();
+	}
+	
+	public String getPartyUser() {
+		return txtUser.getText();
 	}
 	
 	public void AddLineToLog(String text) {
@@ -182,8 +216,24 @@ public class SwingWindow {
 		toggleLoginOut = !toggleLoginOut; 
 	}
 	
+	public void SetShowInvite(boolean show) {
+		btnInvite.setVisible(show);
+	}
+	
+	public void SetShowJoin(boolean show) {
+		btnJoin.setVisible(show);
+	}
+	
+	public void SetShowCreate(boolean show) {
+		btnCreate.setVisible(show);
+	}
+	
 	public void SetShowRegister(boolean show) {
 		btnRegister.setVisible(show);
+	}
+	
+	public void SetShowPartyUser(boolean show) {
+		txtUser.setVisible(show);
 	}
 
 }
