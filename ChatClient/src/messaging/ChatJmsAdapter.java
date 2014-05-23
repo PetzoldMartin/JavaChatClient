@@ -140,13 +140,13 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 	}
 
 	@Override
-	public void requestParticipian(String ParticipianName) throws JMSException {
+	public void requestParticipian(String cID) throws JMSException {
 		TextMessage message = createMessage(chatServiceQ);
 		message.setStringProperty(MessageHeader.MsgKind.toString(),
 				MessageKind.chatterMsgRequestParticipation.toString());
 		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
 
-		message.setStringProperty(MessageHeader.ChatterNickname.toString(), ParticipianName);
+		message.setStringProperty(MessageHeader.ChatroomID.toString(), cID);
 		requestProducer.send(chatServiceQ, message);
 		
 	}
@@ -226,7 +226,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 	}
 	
 	private MessageListener msgListener = new MessageListener() {
-		private String messageText;
+		private String messageText,messageCID;
 
 		@Override
 		public void onMessage(Message replyMessage) {
@@ -237,10 +237,13 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 					String msgKind = textMessage
 							.getStringProperty(MessageHeader.MsgKind.toString());
 					MessageKind messageKind = MessageKind.valueOf(msgKind);
+					messageCID=replyMessage.getStringProperty(MessageHeader.ChatroomID.toString());
+
 					//get Text if we had Some
 					if (replyMessage instanceof TextMessage) {
 					TextMessage messageIn=(TextMessage)replyMessage;
 					messageText = messageIn.getText();
+
 					}
 					//System.out.println("client2: "+messageKind);
 					switch (messageKind) {
@@ -287,6 +290,8 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 								@Override
 								public void run() {
 									state.gotChatStarted();
+									System.out.println("CID: "+messageCID);
+
 								}
 							});
 						break;
