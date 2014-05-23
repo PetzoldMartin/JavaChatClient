@@ -21,6 +21,7 @@ import javax.jms.ObjectMessage;
 import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TemporaryQueue;
+import javax.jms.TextMessage;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.log4j.Level;
@@ -52,16 +53,21 @@ public class ChatterTest {
 	private static Connection connection;
 	private static TemporaryQueue participatorTQ;
 	private static TemporaryQueue initiatorTQ;
+	private static TemporaryQueue inviteTQ;
 	private static MessageConsumer participatorConsumer;
 	private static MessageConsumer initiatorConsumer;
+	private static MessageConsumer inviteConsumer;
 	private static MessageConsumer tracingConsumer;
 	private static ArrayList<Message> initMessages = new ArrayList<Message>();
 	private static ArrayList<Message> ptcpMessages = new ArrayList<Message>();
+	private static ArrayList<Message> inviteMessages = new ArrayList<Message>();
 	private static ArrayList<String> initStates = new ArrayList<>();
 	private static ArrayList<String> ptcpStates = new ArrayList<>();
+	private static ArrayList<String> inviteStates = new ArrayList<>();
 	private static ArrayList<String> chatroomStates = new ArrayList<>();
 	private static MsgSender initSender;
 	private static MsgSender ptcpSender;
+	private static MsgSender inviteSender;
 	private static boolean printTrace = false;
 
 	/**
@@ -85,6 +91,7 @@ public class ChatterTest {
 			authDestination = session.createQueue(AuthenticationServer.LOGINQ);
 			initiatorTQ = session.createTemporaryQueue();
 			participatorTQ = session.createTemporaryQueue();
+			inviteTQ = session.createTemporaryQueue();
 			// producer anlegen, der nicht an eine bestimmte logInOutDestination
 			// gebunden ist
 			unboundProducer = session.createProducer(null);
@@ -97,8 +104,12 @@ public class ChatterTest {
 			participatorConsumer = session.createConsumer(participatorTQ);
 			participatorConsumer.setMessageListener(ptcpListener);
 
+			inviteConsumer = session.createConsumer(inviteTQ);
+			inviteConsumer.setMessageListener(inviteListener);
+
 			initSender = new MsgSender(initiatorTQ);
 			ptcpSender = new MsgSender(participatorTQ);
+			inviteSender = new MsgSender(inviteTQ);
 
 		} catch (Exception e) {
 			Logger.getRootLogger().log(Level.ERROR,
@@ -248,6 +259,12 @@ public class ChatterTest {
 							ptcpStates.add(traceRecord.getFromState());
 						ptcpStates.add(traceRecord.getEvent());
 						ptcpStates.add(traceRecord.getToState());
+					} else if (traceRecord.getClazz().equals("Chatter")
+							&& traceRecord.getObjId().startsWith("Micky")) {
+						if (inviteStates.size() == 0)
+							inviteStates.add(traceRecord.getFromState());
+						inviteStates.add(traceRecord.getEvent());
+						inviteStates.add(traceRecord.getToState());
 					} else if (traceRecord.getClazz().equals("Chatroom")) {
 						if (chatroomStates.size() == 0)
 							chatroomStates.add(traceRecord.getFromState());
@@ -282,10 +299,21 @@ public class ChatterTest {
 		}
 	};
 
+	private static MessageListener inviteListener = new MessageListener() {
+
+		@Override
+		public void onMessage(Message msg) {
+			synchronized (inviteMessages) {
+				inviteMessages.add(msg);
+			}
+		}
+	};
+
 	private static class MsgSender {
 		private Destination replyDestination;
 		private String token;
 		private String chatroomId = "";
+		private String nickname;
 
 		public MsgSender(Destination reply) {
 			replyDestination = reply;
@@ -308,13 +336,14 @@ public class ChatterTest {
 			if (token != null) {
 				m.setStringProperty(MessageHeader.AuthToken.toString(), token);
 			}
-			if (refID.length() > 0)
+			if (refID != null && refID.length() > 0)
 				m.setStringProperty(MessageHeader.RefID.toString(), refID);
 			if (chatroomId.length() > 0) {
 				m.setStringProperty(MessageHeader.ChatroomID.toString(),
 						chatroomId);
 				chatroomId = "";
 			}
+			m.setStringProperty(MessageHeader.ChatterNickname.toString(), nickname);
 			m.setJMSReplyTo(replyDestination);
 			m.setJMSDestination(destination);
 			m.setStringProperty(MessageHeader.MsgKind.toString(),
@@ -337,6 +366,14 @@ public class ChatterTest {
 		public void setChatroomId(String chatroomId) {
 			this.chatroomId = chatroomId;
 		}
+
+		public String getNickname() {
+			return nickname;
+		}
+
+		public void setNickname(String nickname) {
+			this.nickname = nickname;
+		}
 	}
 
 	/**
@@ -349,11 +386,13 @@ public class ChatterTest {
 	public void runTests() throws JMSException,
 			InterruptedException {
 		testCreateOrRegister();
-		testOpenCloseChat();
-		testOpenRequestEnterChat();
-		testRequestRejectCancelChat();
-		testInviteDenyAcceptLeaveChat();
-		testCloseInWait();
+//		 testOpenCloseChat();
+//		testOpenRequestEnterChat();
+//		testOpenRequestEnterChatListChats();
+//		 testRequestRejectCancelChat();
+		 testInviteDenyAcceptLeaveChat();
+		 testCloseInWait();
+		testLogout();
 	}
 
 	public void testCreateOrRegister() throws JMSException,
@@ -361,12 +400,18 @@ public class ChatterTest {
 		System.out.println("testCreateOrRegister");
 		initStates.clear();
 		ptcpStates.clear();
-		int initLast = 1, ptcpLast = 1;
+		inviteStates.clear();
+		int initLast = 1, ptcpLast = 1, inviteLast = 1;
 		String x = "" + System.currentTimeMillis() % 1000;
+		initSender.setNickname( "Ede" + x);
 		initSender.sendMessage(authDestination, MessageKind.login, "",
 				new String[] { "Ede" + x, "Wolf" });
+		ptcpSender.setNickname("Paulchen" + x);
 		ptcpSender.sendMessage(authDestination, MessageKind.login, "",
 				new String[] { "Paulchen" + x, "Panther" });
+		inviteSender.setNickname("Micky" + x);
+		inviteSender.sendMessage(authDestination, MessageKind.login, "",
+				new String[] { "Micky" + x, "Maus" });
 		int lastIndex = waitIndexForReplies(initMessages, initLast);
 		if (lastIndex >= 0
 				&& getMsgKind(initMessages.get(lastIndex)).equals("failed")) {
@@ -381,10 +426,17 @@ public class ChatterTest {
 					"", new String[] { "Paulchen" + x, "Panther" });
 			ptcpLast++;
 		}
-		lastIndex = waitIndexForReplies(initMessages, initLast);
+		lastIndex = waitIndexForReplies(inviteMessages, ptcpLast);
+		if (lastIndex >= 0
+				&& getMsgKind(inviteMessages.get(lastIndex)).equals("failed")) {
+			inviteSender.sendMessage(authDestination, MessageKind.register,
+					"", new String[] { "Micky" + x, "Maus" });
+			inviteLast++;
+		}
+		lastIndex = waitIndexForReplies(inviteMessages, inviteLast);
 		assertEquals("login/register failed for initiator",
 				MessageKind.authenticated.toString(),
-				getMsgKind(initMessages.get(lastIndex)));
+				getMsgKind(inviteMessages.get(lastIndex)));
 		String token = getMsgToken(initMessages.get(lastIndex));
 		initSender.setToken(token);
 		lastIndex = waitIndexForReplies(ptcpMessages, ptcpLast);
@@ -393,8 +445,14 @@ public class ChatterTest {
 				getMsgKind(ptcpMessages.get(lastIndex)));
 		token = getMsgToken(ptcpMessages.get(lastIndex));
 		ptcpSender.setToken(token);
+		assertEquals("login/register failed for invitor",
+				MessageKind.authenticated.toString(),
+				getMsgKind(inviteMessages.get(lastIndex)));
+		token = getMsgToken(inviteMessages.get(lastIndex));
+		inviteSender.setToken(token);
 		printStateTrace("init: ", initStates);
 		printStateTrace("ptcp: ", ptcpStates);
+		printStateTrace("invite: ", inviteStates);
 	}
 
 	public void testOpenCloseChat() throws JMSException, InterruptedException {
@@ -413,9 +471,10 @@ public class ChatterTest {
 
 	public void testOpenRequestEnterChat() throws JMSException,
 			InterruptedException {
-		System.out.println("testOpenRequestEnterChat");
+		System.out.println("\ntestOpenRequestEnterChat");
 		initStates.clear();
 		ptcpStates.clear();
+		inviteStates.clear();
 		chatroomStates.clear();
 		initSender.sendMessage(chatterDestination,
 				MessageKind.chatterMsgStartChat, "");
@@ -444,9 +503,55 @@ public class ChatterTest {
 		printStateTrace("chat: ", chatroomStates);
 	}
 
+	public void testOpenRequestEnterChatListChats() throws JMSException,
+			InterruptedException {
+		System.out.println("\ntestOpenRequestEnterChatListChats");
+		initStates.clear();
+		ptcpStates.clear();
+		inviteStates.clear();
+		chatroomStates.clear();
+		initSender.sendMessage(chatterDestination,
+				MessageKind.chatterMsgStartChat, "");
+		Thread.sleep(sleeptime);
+		String activeChatId = getChatroomID(getLastMsg(initMessages));
+		ptcpSender.sendMessage(chatterDestination,
+				MessageKind.chatterMsgStartChat, activeChatId);
+		Thread.sleep(sleeptime);
+//		String rqId = getRefID(getLastMsg(initMessages));
+//		// sende an den Requestor
+//		initSender.sendMessage(chatterDestination,
+//				MessageKind.chatterMsgAccept, rqId);
+//		Thread.sleep(sleeptime);
+//		ptcpSender.sendMessage(chatterDestination,
+//				MessageKind.chatterMsgChat, "",
+//				new String[] { "Hallo zusammen!" });
+//		Thread.sleep(sleeptime);
+//		initSender.sendMessage(chatterDestination,
+//				MessageKind.chatterMsgChat, "", new String[] { "Hi" });
+//		Thread.sleep(sleeptime);
+//		rqId = getRefID(getLastMsg(inviteMessages));
+		inviteSender.sendMessage(chatterDestination, MessageKind.chatterMsgChats, "");
+		Thread.sleep(sleeptime);
+		TextMessage m = (TextMessage) getLastMsg(inviteMessages);
+		System.out.println(m.getText());
+		inviteSender.sendMessage(chatterDestination, MessageKind.chatterMsgChatters, "");
+		Thread.sleep(sleeptime);
+		m = (TextMessage) getLastMsg(inviteMessages);
+		System.out.println(m.getText());
+		initSender.sendMessage(chatterDestination,
+				MessageKind.chatterMsgClose, "");
+		ptcpSender.sendMessage(chatterDestination,
+				MessageKind.chatterMsgClose, "");
+		Thread.sleep(sleeptime);
+		printStateTrace("init: ", initStates);
+		printStateTrace("ptcp: ", ptcpStates);
+		printStateTrace("invite: ", inviteStates);
+		printStateTrace("chat: ", chatroomStates);
+	}
+
 	public void testRequestRejectCancelChat() throws JMSException,
 			InterruptedException {
-		System.out.println("testRequestRejectCancelChat");
+		System.out.println("\ntestRequestRejectCancelChat");
 		initStates.clear();
 		ptcpStates.clear();
 		chatroomStates.clear();
@@ -478,12 +583,13 @@ public class ChatterTest {
 
 	public void testInviteDenyAcceptLeaveChat() throws JMSException,
 			InterruptedException {
-		System.out.println("testInviteDenyAcceptLeaveChat");
+		System.out.println("\ntestInviteDenyAcceptLeaveChat");
 		initStates.clear();
 		ptcpStates.clear();
+		inviteStates.clear();
 		chatroomStates.clear();
-		String ede = initSender.getToken();
-		String paulchen = ptcpSender.getToken();
+		String ede = initSender.getNickname();
+		String paulchen = ptcpSender.getNickname();
 		// printTrace = true;
 		initSender.sendMessage(chatterDestination,
 				MessageKind.chatterMsgStartChat, "");
@@ -499,7 +605,7 @@ public class ChatterTest {
 		Thread.sleep(sleeptime);
 		initSender.setChatroomId(activeChatId);
 		initSender.sendMessage(chatterDestination,
-				MessageKind.chatterMsgInvite, ptcpSender.getToken());
+				MessageKind.chatterMsgInvite, ptcpSender.getNickname());
 		Thread.sleep(sleeptime);
 		peerId = getRefID(getLastMsg(ptcpMessages));
 		ptcpSender.sendMessage(chatterDestination,
@@ -510,10 +616,14 @@ public class ChatterTest {
 		Thread.sleep(sleeptime);
 		initSender.setChatroomId(activeChatId);
 		initSender.sendMessage(chatterDestination,
-				MessageKind.chatterMsgInvite, ptcpSender.getToken());
+				MessageKind.chatterMsgInvite, ptcpSender.getNickname());
 		Thread.sleep(sleeptime);
 		initSender.sendMessage(chatterDestination,
 				MessageKind.chatterMsgClose, "");
+		Thread.sleep(sleeptime);
+		// steht hier nur wegen fehler im state model (rote transition)
+		ptcpSender.sendMessage(chatterDestination,
+				MessageKind.chatterMsgDeny, peerId);
 		Thread.sleep(sleeptime);
 		printStateTrace("init: ", initStates);
 		printStateTrace("ptcp: ", ptcpStates);
@@ -522,12 +632,12 @@ public class ChatterTest {
 
 	public void testCloseInWait() throws JMSException,
 			InterruptedException {
-		System.out.println("testCloseInWait");
+		System.out.println("\ntestCloseInWait");
 		initStates.clear();
 		ptcpStates.clear();
 		chatroomStates.clear();
-		String ede = initSender.getToken();
-		String paulchen = ptcpSender.getToken();
+		String ede = initSender.getNickname();
+		String paulchen = ptcpSender.getNickname();
 		// printTrace = true;
 		initSender.sendMessage(chatterDestination,
 				MessageKind.chatterMsgStartChat, "");
@@ -544,5 +654,23 @@ public class ChatterTest {
 		printStateTrace("ptcp: ", ptcpStates);
 		printStateTrace("chat: ", chatroomStates);
 	}
-
+	public void testLogout() throws JMSException, InterruptedException {
+		System.out.println("\ntestLogout");
+		initStates.clear();
+		ptcpStates.clear();
+		inviteStates.clear();
+		chatroomStates.clear();
+		initSender.sendMessage(authDestination,
+				MessageKind.logout, "");
+		inviteSender.sendMessage(authDestination,
+				MessageKind.logout, "");
+		ptcpSender.sendMessage(authDestination,
+				MessageKind.logout, "");
+		Thread.sleep(sleeptime);
+		printStateTrace("init: ", initStates);
+		printStateTrace("ptcp: ", ptcpStates);
+		printStateTrace("invite: ", inviteStates);
+		printStateTrace("chat: ", chatroomStates);
+		
+	}
 }

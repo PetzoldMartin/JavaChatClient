@@ -84,6 +84,10 @@ public abstract class ChatterState extends StateBase {
 			return msgRequestParticipation(message);
 		case chatterMsgStartChat:
 			return msgStartChat(message);
+		case chatterMsgChats:
+			return msgQueryChats(message);
+		case chatterMsgChatters:
+			return msgQueryChatters(message);
 		default:
 			logUnexpectedMethod(message);
 			throw new IllegalArgumentException();
@@ -355,6 +359,24 @@ public abstract class ChatterState extends StateBase {
 	 * @throws JMSException 
 	 */
 	protected boolean msgStartChat(Message message) throws JMSException {
+		logUnexpectedMethod(message);
+		return true;
+	}
+
+	/**
+	 *  handle incoming jms messages from client
+	 * @throws JMSException 
+	 */
+	protected boolean msgQueryChats(Message message) throws JMSException {
+		logUnexpectedMethod(message);
+		return true;
+	}
+
+	/**
+	 *  handle incoming jms messages from client
+	 * @throws JMSException 
+	 */
+	protected boolean msgQueryChatters(Message message) throws JMSException {
 		logUnexpectedMethod(message);
 		return true;
 	}

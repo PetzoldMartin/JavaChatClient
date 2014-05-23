@@ -47,6 +47,8 @@ public enum MessageKind {
 	chatterMsgInvite,
 	chatterMsgAccept,
 	chatterMsgReject,
+	chatterMsgChats,
+	chatterMsgChatters,
 	// messages from chatter to client
 	clientChatStarted,
 	clientChatClosed, 
@@ -59,4 +61,6 @@ public enum MessageKind {
 	clientRejected,
 	clientRequest, 
 	clientRequestCancelled,
+	clientAnswerChats,
+	clientAnswerChatters,
 }

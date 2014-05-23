@@ -3,7 +3,10 @@
  */
 package de.fh_zwickau.pti.jms.userservice.chat;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.jms.Destination;
 import javax.jms.JMSException;
@@ -30,7 +33,7 @@ public class Chatroom {
 	 * for debugging, trace messages can be swiched on
 	 */
 	private static final boolean trace = true;
-
+	
 	private String roomId;
 
 	/**
@@ -93,6 +96,29 @@ public class Chatroom {
 	public void setTraceGenerator(TraceGenerator traceGen) {
 		traceGenerator = traceGen;
 		traceGenerator.setObjId(roomId);
+	}
+
+	/**
+	 * get a list of nicknames of all participants of this chat with the
+	 * initiator a first element
+	 * 
+	 * @return that list
+	 */
+	public List<String> getChatters() {
+		List<String> res = new ArrayList<>();
+		res.add(initiator.nickname);
+		for (ChatterReference chp : participants.values()) {
+			if (!chp.nickname.equals(initiator.nickname))
+				res.add(chp.nickname);
+		}
+		return res;
+	}
+	
+	/**
+	 * get nickname of chat initiator
+	 */
+	public String getInitiator() {
+		return initiator.nickname;
 	}
 
 	/**

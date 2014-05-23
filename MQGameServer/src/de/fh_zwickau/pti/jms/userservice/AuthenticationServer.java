@@ -242,8 +242,8 @@ public class AuthenticationServer {
 					invalidateMessage.setStringProperty(
 							MessageHeader.MsgKind.toString(),
 							MessageKind.loggedOut.toString());
-
 					invalidateMessage.setJMSDestination(userDestination);
+					replyProducer.send(userDestination, invalidateMessage);
 					break;
 				default:
 					break;
