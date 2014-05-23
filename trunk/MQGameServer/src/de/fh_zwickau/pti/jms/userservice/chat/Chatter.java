@@ -4,6 +4,9 @@
 package de.fh_zwickau.pti.jms.userservice.chat;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.jms.Destination;
 import javax.jms.JMSException;
@@ -45,6 +48,10 @@ public class Chatter extends User implements Serializable {
 	 * for debugging, trace messages can be swiched in
 	 */
 	private static final boolean trace = true;
+
+	private static Map<String, String> chatterNicknames;
+	private static Map<String, Chatter> activeChatters;
+	private static Map<String, Chatroom> activeChatrooms;
 
 	/**
 	 * The current state of a Chatter object is represented by an appropriate
@@ -117,6 +124,44 @@ public class Chatter extends User implements Serializable {
 	}
 
 	/**
+	 * is this chatter idle?
+	 */
+	public boolean isIdle() {
+		return state == idle;
+	}
+
+	/**
+	 * is this chatter owning a chat?
+	 */
+	public boolean isOwningChat() {
+		return state == owningChat;
+	}
+
+	/**
+	 * get reference of chat
+	 * 
+	 * @return id string of chat
+	 */
+	public String getChatId() {
+		if (chatID != null)
+			return chatID.id;
+		else
+			return "";
+	}
+
+	public static void setChatterNicknames(Map<String, String> chatterNicknames) {
+		Chatter.chatterNicknames = chatterNicknames;
+	}
+
+	public static void setActiveChatters(Map<String, Chatter> activeChatters) {
+		Chatter.activeChatters = activeChatters;
+	}
+
+	public static void setActiveChatrooms(Map<String, Chatroom> rooms) {
+		activeChatrooms = rooms;
+	}
+
+	/**
 	 * should be used by external transitions to change the state
 	 * 
 	 * @param s
@@ -147,15 +192,17 @@ public class Chatter extends User implements Serializable {
 	private void sendClient(Message inMsg, Message outMsg, MessageKind kind)
 			throws JMSException {
 		String id = inMsg.getStringProperty(MessageHeader.RefID.toString());
-		if (id != null)
+		if (id != null && activeChatters.keySet().contains(id))
+			outMsg.setStringProperty(MessageHeader.RefID.toString(), activeChatters.get(id).getUsername());
+		else 
 			outMsg.setStringProperty(MessageHeader.RefID.toString(), id);
 		id = inMsg.getStringProperty(MessageHeader.ChatroomID.toString());
 		if (id != null)
 			outMsg.setStringProperty(MessageHeader.ChatroomID.toString(), id);
 		outMsg.setJMSReplyTo(getReplyDestination());
 		outMsg.setJMSDestination(getClientDestination());
-		outMsg.setStringProperty(MessageHeader.AuthToken.toString(), inMsg
-				.getStringProperty(MessageHeader.AuthToken.toString()));
+//		outMsg.setStringProperty(MessageHeader.AuthToken.toString(), inMsg
+//				.getStringProperty(MessageHeader.AuthToken.toString()));
 		outMsg.setStringProperty(MessageHeader.MsgKind.toString(),
 				kind.toString());
 		messageProducer.send(getClientDestination(), outMsg);
@@ -180,6 +227,8 @@ public class Chatter extends User implements Serializable {
 			throws JMSException {
 		outMsg.setJMSDestination(chatroomDestination);
 		outMsg.setJMSReplyTo(getReplyDestination());
+		outMsg.setStringProperty(MessageHeader.ChatterNickname.toString(),
+				getUsername());
 		outMsg.setStringProperty(MessageHeader.AuthToken.toString(),
 				inMsg.getStringProperty(MessageHeader.AuthToken
 						.toString()));
@@ -200,27 +249,39 @@ public class Chatter extends User implements Serializable {
 	 */
 	private void sendPeer(Message inMsg, Message outMsg, MessageKind kind)
 			throws JMSException {
+//		String requestorId = inMsg.getStringProperty(MessageHeader.RefID
+//				.toString());
 		String requestorId = inMsg.getStringProperty(MessageHeader.RefID
 				.toString());
-		if (requestorId != null && requestorId.length() > 0) {
-			String chatId = inMsg.getStringProperty(MessageHeader.ChatroomID
-					.toString());
-			if (chatId != null)
-				outMsg.setStringProperty(MessageHeader.ChatroomID.toString(),
-						chatId);
-			outMsg.setJMSDestination(inMsg.getJMSReplyTo());
-			outMsg.setJMSReplyTo(getReplyDestination());
-			outMsg.setStringProperty(MessageHeader.AuthToken.toString(),
-					requestorId);
-			outMsg.setStringProperty(MessageHeader.MsgKind.toString(),
-					kind.toString());
-			outMsg.setStringProperty(MessageHeader.RefID.toString(),
-					inMsg.getStringProperty(MessageHeader.AuthToken.toString()));
-			messageProducer.send(inMsg.getJMSDestination(), outMsg);
+		String token;
+		if (requestorId != null) {
+			token = chatterNicknames.get(requestorId);
+			if (token != null) {
+				String chatId = inMsg
+						.getStringProperty(MessageHeader.ChatroomID
+								.toString());
+				if (chatId != null)
+					outMsg.setStringProperty(
+							MessageHeader.ChatroomID.toString(),
+							chatId);
+				outMsg.setJMSDestination(inMsg.getJMSReplyTo());
+				outMsg.setJMSReplyTo(getReplyDestination());
+				outMsg.setStringProperty(MessageHeader.AuthToken.toString(),
+						token);
+				outMsg.setStringProperty(MessageHeader.MsgKind.toString(),
+						kind.toString());
+				outMsg.setStringProperty(
+						MessageHeader.ChatterNickname.toString(),
+						getUsername());
+				// outMsg.setStringProperty(MessageHeader.RefID.toString(),
+				// inMsg.getStringProperty(MessageHeader.AuthToken.toString()));
+				outMsg.setStringProperty(MessageHeader.RefID.toString(), getUsername());
+				messageProducer.send(inMsg.getJMSDestination(), outMsg);
+			}
 		}
 	}
 
-	private ChatterState create = new ChatterState("create") {
+	private ChatterState create = new ChatterState("create@"+getUsername()) {
 
 		protected boolean authenticated(Message message)
 				throws javax.jms.JMSException {
@@ -242,7 +303,7 @@ public class Chatter extends User implements Serializable {
 	/*
 	 * Implementierung des Objects for States Patterns für die State Chart
 	 */
-	private ChatterState idle = new ChatterState("idle") {
+	private ChatterState idle = new ChatterState("idle@"+getUsername()) {
 
 		protected boolean chatCreated(Message message)
 				throws javax.jms.JMSException {
@@ -293,10 +354,53 @@ public class Chatter extends User implements Serializable {
 			sendChatroom(message, outMsg, "", MessageKind.chatCreate);
 			return true;
 		}
+		
+		protected boolean msgDeny(Message message) throws JMSException {
+			// ignore this
+			return true;
+		};
+
+		protected boolean msgQueryChats(Message message) throws JMSException {
+			TextMessage outMsg = new ActiveMQTextMessage();
+			StringBuilder body = new StringBuilder();
+			for (String key : activeChatrooms.keySet()) {
+				Chatroom chatroom = activeChatrooms.get(key);
+				if (chatroom != null)
+					body.append(key).append(": ")
+							.append(chatroom.getInitiator())
+							.append('\n');
+			}
+			if (body.length() > 0)
+				outMsg.setText(body.toString());
+			else
+				outMsg.setText("no active chatroom found");
+			sendClient(message, outMsg, MessageKind.clientAnswerChats);
+			return true;
+		};
+
+		protected boolean msgQueryChatters(Message message) throws JMSException {
+			TextMessage outMsg = new ActiveMQTextMessage();
+
+			StringBuilder body = new StringBuilder();
+			for (String cKey : activeChatters.keySet()) {
+				Chatter ch;
+				if ((ch = activeChatters.get(cKey)) != null
+						&& ch.isIdle()) {
+					body.append(ch.getUsername()).append('\n');
+				}
+			}
+			if (body.length() > 0) {
+				outMsg.setText(body.toString());
+			} else {
+				outMsg.setText("no idle chatter found");
+			}
+			sendClient(message, outMsg, MessageKind.clientAnswerChatters);
+			return true;
+		};
 	};
 
 	private ChatterState invitedToParticipate = new ChatterState(
-			"invitedToParticipate") {
+			"invitedToParticipate@"+getUsername()) {
 
 		protected boolean closed(Message message) throws JMSException {
 			Message outMsg = new ActiveMQMessage();
@@ -324,7 +428,7 @@ public class Chatter extends User implements Serializable {
 	};
 
 	private ChatterState requestingParticipation = new ChatterState(
-			"requestingParticipation") {
+			"requestingParticipation@"+getUsername()) {
 
 		protected boolean closed(Message message) throws JMSException {
 			Message outMsg = new ActiveMQMessage();
@@ -364,7 +468,7 @@ public class Chatter extends User implements Serializable {
 		}
 	};
 
-	private ChatterState owningChat = new Chatting("owningChat") {
+	private ChatterState owningChat = new Chatting("owningChat@"+getUsername()) {
 
 		protected boolean denied(Message message) throws JMSException {
 			return true;
@@ -423,7 +527,7 @@ public class Chatter extends User implements Serializable {
 	};
 
 	private ChatterState participatingInChat = new Chatting(
-			"participatingInChat") {
+			"participatingInChat@"+getUsername()) {
 
 		protected void onEntry(Message message) throws JMSException {
 			Message outMsg = new ActiveMQMessage();

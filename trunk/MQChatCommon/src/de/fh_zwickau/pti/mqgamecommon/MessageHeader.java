@@ -14,5 +14,7 @@ public enum MessageHeader {
 	AuthToken,
 	RefID,
 	ChatroomID,
-	ChatterNickname
+	ChatterNickname, 
+	ActiveChats,
+	ActiveChatters,
 }

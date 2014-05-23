@@ -44,6 +44,7 @@ public class ChatServer {
 	private String brokerUri;
 	protected ConcurrentHashMap<String, Chatroom> activeChatRooms = new ConcurrentHashMap<>();
 	protected ConcurrentHashMap<String, Chatter> activeChatters = new ConcurrentHashMap<>();
+	protected ConcurrentHashMap<String, String> chatterNicknames = new ConcurrentHashMap<>();
 	private Queue tracingDestination;
 	private MessageProducer traceProducer;
 
@@ -55,6 +56,9 @@ public class ChatServer {
 	 */
 	public ChatServer(String brUri) {
 		brokerUri = brUri;
+		Chatter.setActiveChatters(activeChatters);
+		Chatter.setChatterNicknames(chatterNicknames);
+		Chatter.setActiveChatrooms(activeChatRooms);
 	}
 
 	/**
@@ -138,7 +142,7 @@ public class ChatServer {
 			try {
 				token = message.getStringProperty(MessageHeader.ChatroomID
 						.toString());
-				
+
 				if (token != null && activeChatRooms.containsKey(token)) {
 					if (!(activeChatRooms.get(token).processMessage(message))) {
 						activeChatRooms.remove(token);
@@ -153,9 +157,9 @@ public class ChatServer {
 							String uid = UUID.randomUUID().toString();
 							Chatroom chatroom = new Chatroom(replyProducer, uid);
 							chatroom.setTraceGenerator(new TraceGenerator(
-										new JmsTraceSender(traceProducer,
-												session), Chatroom.class
-												.getSimpleName()));
+									new JmsTraceSender(traceProducer,
+											session), Chatroom.class
+											.getSimpleName()));
 							activeChatRooms.put(uid, chatroom);
 							chatroom.processMessage(message);
 						} else {
@@ -201,8 +205,12 @@ public class ChatServer {
 						.getStringProperty(MessageHeader.MsgKind
 								.toString());
 				MessageKind kind = MessageKind.valueOf(msgKind);
-				if (activeChatters.containsKey(token)) {
-					if (kind == MessageKind.loggedOut || !(activeChatters.get(token).processMessage(message))) {
+				
+				if (token != null && activeChatters.containsKey(token)) {
+					Chatter c = activeChatters.get(token);
+					if (kind == MessageKind.loggedOut
+							|| !(c.processMessage(message))) {
+						chatterNicknames.remove(c.getUsername());
 						activeChatters.remove(token);
 					}
 				} else {
@@ -220,6 +228,7 @@ public class ChatServer {
 								c.setReplyDestination(chatterDestination);
 								c.setChatroomDestination(chatroomDestination);
 								activeChatters.put(token, c);
+								chatterNicknames.put(c.getUsername(), token);
 								c.processMessage(message);
 							}
 						}
