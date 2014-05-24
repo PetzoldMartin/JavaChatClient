@@ -201,6 +201,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 		message.setStringProperty(MessageHeader.ChatterNickname.toString(), CNN);
 		requestProducer.send(chatServiceQ, message);
 		
+		
 	}
 
 	@Override
@@ -242,6 +243,8 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 			try {
 				if (replyMessage instanceof Message) {
 					Message textMessage = (Message) replyMessage;
+					//System.out.println("Client: "+textMessage.toString());
+
 					String msgKind = textMessage
 							.getStringProperty(MessageHeader.MsgKind.toString());
 					MessageKind messageKind = MessageKind.valueOf(msgKind);
@@ -251,6 +254,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 					if (replyMessage instanceof TextMessage) {
 					TextMessage messageIn=(TextMessage)replyMessage;
 					messageText = messageIn.getText();
+					//System.out.println("Client: "+messageIn.toString());
 
 					}
 					//System.out.println("client2: "+messageKind);
