@@ -43,6 +43,7 @@ public class Only_client {
 		Thread.sleep(1500);
 		System.out.println("attention");
 		CJA.invite("xx");
+		CJA.invite("xy");
 		//CJA.requestParticipian("c282dbfc-d529-4b50-9cdd-8cec951bd128","xx");
 		//CJA.logout();
 
