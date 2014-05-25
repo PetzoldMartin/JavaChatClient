@@ -62,9 +62,10 @@ public interface ChatServerMessageProducer {
 
 	void askForChats() throws JMSException;
 
-	void requestParticipian(String cID, String refID) throws JMSException;
 
 	void askForChatters() throws JMSException;
 
 	void invite(String CNN) throws JMSException;
+
+	void requestParticipian(String cID) throws JMSException;
 }

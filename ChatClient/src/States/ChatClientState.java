@@ -1,7 +1,10 @@
 package States;
 
+import java.util.ArrayList;
+
 import States.StatesClasses.NotLoggedIn;
 import gui.ChatSwingClient;
+import messaging.ChatChatterRelationship;
 import messaging.ChatJmsAdapter;
 import messaging.ChatServerMessageProducer;
 import messaging.ChatServerMessageReceiver;
@@ -151,8 +154,9 @@ public abstract class ChatClientState  {
 	 * spezifiziert, vermute username, sonst macht es keinen sinn
 	 * will ja wissen wer mich einlädt
 	 * @param username
+	 * @param cID 
 	 */
-	public void gotInvite(String username) {
+	public void gotInvite(String CNN, String cID) {
 		System.err.println("unexpected event");
 	};
 
@@ -177,8 +181,9 @@ public abstract class ChatClientState  {
 
 	/**
 	 * the owned chatRoom is now open, switch from state "waitingForChat" to "inOwnedChat"
+	 * @param cID 
 	 */
-	public void gotChatStarted() {
+	public void gotChatStarted(String cID) {
 		System.err.println("unexpected event");
 	};
 
@@ -193,8 +198,9 @@ public abstract class ChatClientState  {
 	/**
 	 * a new chat, the chatRoom, appeared
 	 * @param chatRoom
+	 * @param messageText 
 	 */
-	public void gotNewChat(String chatRoom) {
+	public void gotNewChat(String Chatter, String messageText) {
 		System.err.println("unexpected event");
 	};
 
@@ -224,16 +230,18 @@ public abstract class ChatClientState  {
 
 	/**
 	 * TODO , ist das gleich wie request deny ?
+	 * @param CNN 
 	 * 
 	 */
-	public void gotRequestCancelled() {
+	public void gotRequestCancelled(String CNN) {
 		System.err.println("unexpected event");
 	};
 
 	/**
 	 * return from invited to loggedIn, cause a invitation was denied
+	 * @param CNN 
 	 */
-	public void gotDenied() {
+	public void gotDenied(String CNN) {
 		System.err.println("unexpected event");
 	};
 
@@ -242,8 +250,9 @@ public abstract class ChatClientState  {
 	 * chatting state bekommt man einen neuen participant hinzu
 	 * im waiting state wird ein chatraum geöffnent .. oder existiert
 	 * der chatraum schon auch ohne das mehr als 1 anwesend sind ? 
+	 * @param CNN 
 	 */
-	public void gotAccepted() {
+	public void gotAccepted(String CNN) {
 		System.err.println("unexpected event");
 	}
 	public void gotLogout() {
@@ -253,5 +262,22 @@ public abstract class ChatClientState  {
 	protected void changeState(ChatClientState cCS){
 		messageProducer.setState(cCS);
 		messageReceiver.setState(cCS);
+	}
+	public void gotRequest(String CNN) {
+		System.err.println("unexpected event");
+		
+	}
+	public void gotRejected() {
+		System.err.println("unexpected event");
+		
+	}
+	
+	public void gotChatters(ArrayList<String> chatters) {
+		System.err.println("unexpected event");
+		
+	}
+	public void gotChats(ArrayList<ChatChatterRelationship> chatsAndChatters) {
+		System.err.println("unexpected event");
+		
 	}
 }

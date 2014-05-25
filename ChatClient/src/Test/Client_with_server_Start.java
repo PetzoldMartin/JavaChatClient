@@ -38,28 +38,19 @@ public class Client_with_server_Start {
 		brokerUri = localConnection;
 
 		CJA.connectToServer(brokerUri);
-		CJA.register("xx", "xx");
-		Thread.sleep(500);
-		//CJA.logout();
-		//CJA.register("xy", "xy");
-		//Thread.sleep(500);
+		CJA.login("xx", "xx");
+		
+		Thread.sleep(50);
+		
+		CJA.askForChats();
+		Thread.sleep(50);
+		CJA.askForChatters();
 		
 		
-		//CJA.close();
-		Thread.sleep(500);
-		CJA.startChat();
-		Thread.sleep(500);
-		//CJA.leave();
-		//CJA.close();
-		//TODO Later CJA.requestParticipian("xy");
-		//CJA.register("xy", "xy");
 		
-		//CJA.logout();
-
-		//CJA.login("xy", "xy");
-
-		//CJA.logout();
-
+		
+		
+		
 	}
 	
 
