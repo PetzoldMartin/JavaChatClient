@@ -11,7 +11,7 @@ import de.fh_zwickau.pti.jms.userservice.AuthenticationServer;
 import de.fh_zwickau.pti.jms.userservice.chat.ChatServer;
 import messaging.ChatJmsAdapter;
 
-public class Only_client {
+public class CopyOfOnly_client {
 
 	public static void main(String[] args) throws Exception {
 
@@ -32,7 +32,7 @@ public class Only_client {
 		Thread.sleep(50);
 		CJA.register( Double.toString(Math.random()), "xy");
 		Thread.sleep(50);
-		CJA.startChat();
+		//CJA.startChat();
 
 
 	}

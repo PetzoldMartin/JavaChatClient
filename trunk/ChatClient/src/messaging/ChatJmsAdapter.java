@@ -1,6 +1,10 @@
 package messaging;
 
 import java.awt.TrayIcon.MessageType;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.regex.Pattern;
 
 import javax.jms.Connection;
 import javax.jms.DeliveryMode;
@@ -35,8 +39,7 @@ import de.fh_zwickau.pti.mqgamecommon.MQConstantDefs;
 import de.fh_zwickau.pti.mqgamecommon.MessageHeader;
 import de.fh_zwickau.pti.mqgamecommon.MessageKind;
 
-
-public class ChatJmsAdapter implements ChatServerMessageProducer{
+public class ChatJmsAdapter implements ChatServerMessageProducer {
 
 	private static ChatJmsAdapter chatJmsAdapter = null;
 	private String authToken = "";
@@ -46,17 +49,29 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 	private MessageProducer requestProducer;
 	private ChatServerMessageReceiver messageReceiver;
 	private ChatClientState state;
-	
-	public ChatJmsAdapter(){
-	
-	}	
+	private String CID, RefID, messageText;
+	private ArrayList<String> chatters;
+
+	private ArrayList<ChatChatterRelationship> chatsAndChatters;
+
+	public String getCID() {
+		return CID;
+	}
+
+	public String getRefID() {
+		return RefID;
+	}
+
+	public ChatJmsAdapter() {
+
+	}
+
 	@Override
 	public void connectToServer(String brokerUri) {
 		try {
 			// Factory für Verbindungen zu einem JMS Server
-			ActiveMQConnectionFactory connectionFactory =
-					new ActiveMQConnectionFactory("sys", "man",
-							brokerUri);
+			ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(
+					"sys", "man", brokerUri);
 			// connection aufbauen, konfigurieren und starten
 			Connection connection = connectionFactory.createConnection();
 			connection.setExceptionListener(excListener);
@@ -71,119 +86,124 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 			// consumer für die reply (temporary) queue anlegen und mit einem
 			// MessageListener verbinden
 			MessageConsumer consumer = session.createConsumer(reply);
-		consumer.setMessageListener(msgListener);
+			consumer.setMessageListener(msgListener);
 		} catch (Exception e) {
 			System.out.println("[EchoRequestQ] Caught: " + e);
 			e.printStackTrace();
 		}
 
 	}
-	
+
 	private ExceptionListener excListener = new ExceptionListener() {
 		@Override
 		public void onException(JMSException arg0) {
 			arg0.printStackTrace();
 		}
 	};
+
 	@Override
 	public void register(String uname, String pword) throws JMSException {
+		// TODO commit
 		Message message = createMessage(loginQ);
 		message.setStringProperty(MessageHeader.MsgKind.toString(),
 				MessageKind.register.toString());
-		message.setStringProperty(
-				MessageHeader.LoginUser.toString(), uname);
-		message.setStringProperty(
-				MessageHeader.ChatterNickname.toString(), uname);
-		message.setStringProperty(
-				MessageHeader.RefID.toString(), uname);
-		message.setStringProperty(
-				MessageHeader.LoginPassword.toString(), pword);
+		message.setStringProperty(MessageHeader.LoginUser.toString(), uname);
+		message.setStringProperty(MessageHeader.ChatterNickname.toString(),
+				uname);
+		message.setStringProperty(MessageHeader.RefID.toString(), uname);
+		message.setStringProperty(MessageHeader.LoginPassword.toString(), pword);
 		requestProducer.send(loginQ, message);
-		
-		
+
 	}
 
 	@Override
 	public void login(String uname, String pword) throws JMSException {
-		
+		// TODO commit
 		Message message = createMessage(loginQ);
 		message.setStringProperty(MessageHeader.MsgKind.toString(),
 				MessageKind.login.toString());
-		message.setStringProperty(
-				MessageHeader.LoginUser.toString(), uname);
-		message.setStringProperty(
-				MessageHeader.ChatterNickname.toString(), uname);
-		message.setStringProperty(
-				MessageHeader.LoginPassword.toString(), pword);
+		message.setStringProperty(MessageHeader.LoginUser.toString(), uname);
+		message.setStringProperty(MessageHeader.ChatterNickname.toString(),
+				uname);
+		message.setStringProperty(MessageHeader.LoginPassword.toString(), pword);
 		requestProducer.send(loginQ, message);
-		
-		
+
 	}
 
 	@Override
 	public void logout() throws JMSException {
+		// TODO commit
 		TextMessage message = createMessage(chatServiceQ);
 		message.setStringProperty(MessageHeader.MsgKind.toString(),
 				MessageKind.logout.toString());
 		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
 		requestProducer.send(loginQ, message);
-		
+
 	}
 
 	@Override
 	public void setMessageReceiver(ChatServerMessageReceiver messageReceiver) {
 		this.messageReceiver = messageReceiver;
-		
+
 	}
 
 	@Override
 	public void deny() throws JMSException {
+		// TODO commit
 		sendParameterLessSimpleRequest(MessageKind.chatterMsgDeny.toString());
 	}
 
 	@Override
-	public void requestParticipian(String cID,String refID) throws JMSException {
+	public void requestParticipian(String cID) throws JMSException {
+
+		// TODO commit
 		TextMessage message = createMessage(chatServiceQ);
 		message.setStringProperty(MessageHeader.MsgKind.toString(),
 				MessageKind.chatterMsgRequestParticipation.toString());
 		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
-
-		message.setStringProperty(MessageHeader.ChatroomID.toString(), cID);
-		message.setStringProperty(MessageHeader.ChatterNickname.toString(), refID);
+		message.setStringProperty(MessageHeader.RefID.toString(), cID);
 		requestProducer.send(chatServiceQ, message);
-		
+
 	}
 
 	@Override
 	public void startChat() throws JMSException {
-		sendParameterLessSimpleRequest(MessageKind.chatterMsgStartChat.toString());
+		// TODO commit
+		sendParameterLessSimpleRequest(MessageKind.chatterMsgStartChat
+				.toString());
 	}
 
 	@Override
 	public void cancel() throws JMSException {
+		// TODO commit
 		sendParameterLessSimpleRequest(MessageKind.chatterMsgCancel.toString());
-		
+
 	}
 
 	@Override
 	public void leave() throws JMSException {
+		// TODO commit
 		sendParameterLessSimpleRequest(MessageKind.chatterMsgLeave.toString());
-		
+
 	}
 
 	@Override
 	public void acceptInvitation() throws JMSException {
-		sendParameterLessSimpleRequest(MessageKind.chatterMsgAcceptInvitation.toString());
-		
+		// TODO commit
+		sendParameterLessSimpleRequest(MessageKind.chatterMsgAcceptInvitation
+				.toString());
+
 	}
 
 	@Override
 	public void close() throws JMSException {
-		sendParameterLessSimpleRequest(MessageKind.chatterMsgClose.toString());	
+		// TODO commit
+		sendParameterLessSimpleRequest(MessageKind.chatterMsgClose.toString());
 	}
 
 	@Override
 	public void chat(String messageText) throws JMSException {
+		// TODO commit
 		TextMessage message = createMessage(chatServiceQ);
 		message.setStringProperty(MessageHeader.MsgKind.toString(),
 				MessageKind.chatterMsgChat.toString());
@@ -194,101 +214,113 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 
 	@Override
 	public void invite(String CNN) throws JMSException {
+		// TODO commit
 		TextMessage message = createMessage(chatServiceQ);
 		message.setStringProperty(MessageHeader.MsgKind.toString(),
-				MessageKind.chatterMsgChat.toString());
+				MessageKind.chatterMsgInvite.toString());
 		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
-		message.setStringProperty(MessageHeader.ChatterNickname.toString(), CNN);
+		message.setStringProperty(MessageHeader.RefID.toString(), CNN);
+		message.setStringProperty(MessageHeader.ChatroomID.toString(), CID);
 		requestProducer.send(chatServiceQ, message);
-		
-		
+
 	}
 
 	@Override
 	public void reject() throws JMSException {
+		// TODO commit
 		sendParameterLessSimpleRequest(MessageKind.chatterMsgReject.toString());
-		
+
 	}
 
 	@Override
 	public void accept() throws JMSException {
-		sendParameterLessSimpleRequest(MessageKind.chatterAccepted.toString());
-		
+		// TODO commit
+		sendParameterLessSimpleRequest(MessageKind.chatterMsgAccept.toString());
+
 	}
+
 	@Override
-	public void askForChats() throws JMSException{
+	public void askForChats() throws JMSException {
+		// TODO commit
 		sendParameterLessSimpleRequest(MessageKind.chatterMsgChats.toString());
 	}
-	
+
 	@Override
-	public void askForChatters() throws JMSException{
-		sendParameterLessSimpleRequest(MessageKind.chatterMsgChatters.toString());
+	public void askForChatters() throws JMSException {
+		// TODO commit
+		sendParameterLessSimpleRequest(MessageKind.chatterMsgChatters
+				.toString());
 	}
-	
-	private TextMessage createMessage(Destination destination) throws JMSException {
-		TextMessage textMessage = session
-				.createTextMessage();
+
+	private TextMessage createMessage(Destination destination)
+			throws JMSException {
+		// TODO commit
+		TextMessage textMessage = session.createTextMessage();
 		// eine Message besitzt optional verschiedene Properties
 		textMessage.setJMSReplyTo(reply);
 		textMessage.setJMSDestination(destination);
 		return textMessage;
 	}
-	
-	private MessageListener msgListener = new MessageListener() {
-		private String messageText,messageCID;
 
+	private MessageListener msgListener = new MessageListener() {
+
+		// TODO commit
 		@Override
 		public void onMessage(Message replyMessage) {
-			System.out.println("Client: "+replyMessage.toString());
+			System.out.println("Client: " + replyMessage.toString());
 			try {
 				if (replyMessage instanceof Message) {
 					Message textMessage = (Message) replyMessage;
-					//System.out.println("Client: "+textMessage.toString());
+					// System.out.println("Client: "+textMessage.toString());
 
 					String msgKind = textMessage
 							.getStringProperty(MessageHeader.MsgKind.toString());
+					RefID = textMessage.getStringProperty(MessageHeader.RefID
+							.toString());
+					CID = textMessage
+							.getStringProperty(MessageHeader.ChatroomID
+									.toString());
 					MessageKind messageKind = MessageKind.valueOf(msgKind);
-					messageCID=replyMessage.getStringProperty(MessageHeader.ChatroomID.toString());
 
-					//get Text if we had Some
+					// get Text if we had Some
 					if (replyMessage instanceof TextMessage) {
-					TextMessage messageIn=(TextMessage)replyMessage;
-					messageText = messageIn.getText();
-					//System.out.println("Client: "+messageIn.toString());
+						TextMessage messageIn = (TextMessage) replyMessage;
+						messageText = messageIn.getText();
+						// System.out.println("Client: "+messageIn.toString());
 
 					}
-					//System.out.println("client2: "+messageKind);
+					// System.out.println("client2: "+messageKind);
 					switch (messageKind) {
 					case authenticated:
 						authToken = textMessage
 								.getStringProperty(MessageHeader.AuthToken
 										.toString());
 						chatServiceQ = textMessage.getJMSReplyTo();
-						if(state != null)
+						if (state != null)
 							SwingUtilities.invokeLater(new Runnable() {
-								
+
 								@Override
 								public void run() {
 									state.gotSucess();
-									
+
 								}
 							});
 						break;
 					case failed:
-						if(state != null)
+						if (state != null)
 							SwingUtilities.invokeLater(new Runnable() {
-								
+
 								@Override
 								public void run() {
-									
+
 									state.gotFail();
 								}
 							});
 						break;
 					case loggedOut:
-						if(state != null)
+						if (state != null)
 							SwingUtilities.invokeLater(new Runnable() {
-								
+
 								@Override
 								public void run() {
 									state.gotLogout();
@@ -296,68 +328,208 @@ public class ChatJmsAdapter implements ChatServerMessageProducer{
 							});
 						break;
 					case clientChatStarted:
-						if(state != null)
+						if (state != null)
 							SwingUtilities.invokeLater(new Runnable() {
-								
+
 								@Override
 								public void run() {
-									state.gotChatStarted();
-									System.out.println("CID: "+messageCID);
+									state.gotChatStarted(CID);
 
 								}
 							});
 						break;
 					case clientNewChat:
-						if(state != null)
+						if (state != null)
 							SwingUtilities.invokeLater(new Runnable() {
-								
+
 								@Override
 								public void run() {
-									state.gotNewChat(messageText);
+									state.gotNewChat(RefID, messageText);
+								}
+							});
+						break;
+					case clientChatClosed:
+						if (state != null)
+							SwingUtilities.invokeLater(new Runnable() {
+
+								@Override
+								public void run() {
+									state.gotChatClosed();
+								}
+							});
+						break;
+					case clientRequest:
+						if (state != null)
+							SwingUtilities.invokeLater(new Runnable() {
+
+								@Override
+								public void run() {
+									state.gotRequest(RefID);
+								}
+							});
+						break;
+					case clientParticipating:
+						if (state != null)
+							SwingUtilities.invokeLater(new Runnable() {
+
+								@Override
+								public void run() {
+									state.gotParticipating();
+								}
+							});
+						break;
+					case clientRejected:
+						if (state != null)
+							SwingUtilities.invokeLater(new Runnable() {
+
+								@Override
+								public void run() {
+									state.gotRejected();
+								}
+							});
+						break;
+					case clientRequestCancelled:
+						if (state != null)
+							SwingUtilities.invokeLater(new Runnable() {
+
+								@Override
+								public void run() {
+									state.gotRequestCancelled(RefID);
+								}
+							});
+						break;
+					case clientInvitation:
+						if (state != null)
+							SwingUtilities.invokeLater(new Runnable() {
+
+								@Override
+								public void run() {
+									state.gotInvite(RefID, CID);
+								}
+							});
+						break;
+					case clientAccepted:
+						if (state != null)
+							SwingUtilities.invokeLater(new Runnable() {
+
+								@Override
+								public void run() {
+									state.gotAccepted(RefID);
+								}
+							});
+						break;
+					case clientDenied:
+						if (state != null)
+							SwingUtilities.invokeLater(new Runnable() {
+
+								@Override
+								public void run() {
+									state.gotDenied(RefID);
+								}
+							});
+						break;
+					case clientParticipantEntered:
+						if (state != null)
+							SwingUtilities.invokeLater(new Runnable() {
+
+								@Override
+								public void run() {
+									state.gotParticipantEntered(RefID);
+								}
+							});
+						break;
+					case clientParticipantLeft:
+						if (state != null)
+							SwingUtilities.invokeLater(new Runnable() {
+
+								@Override
+								public void run() {
+									state.gotParticipantLeft(RefID);
+								}
+							});
+						break;
+					case clientAnswerChats:
+						if (state != null)
+							SwingUtilities.invokeLater(new Runnable() {
+
+								@Override
+								public void run() {
+									setChatsAndChatters(messageText);
+									state.gotChats(chatsAndChatters);
+								}
+							});
+						break;
+					case clientAnswerChatters:
+						if (state != null)
+							SwingUtilities.invokeLater(new Runnable() {
+
+								@Override
+								public void run() {
+									setChatters(messageText);
+									state.gotChatters(chatters);
 								}
 							});
 						break;
 					default:
-						
-						System.out.println(" Kind: "+messageKind.toString() +" Text: "+ messageText);
+
+						System.out.println(" Kind: " + messageKind.toString()
+								+ " Text: " + messageText);
 						break;
-						
+
 					}
-				}//else{
-					//if(replyMessage instanceof Message)
-					//System.out.println("onlymessage");
-					//Message textMessage = (Message) replyMessage;
-					//String msgKind = textMessage
-					//		.getStringProperty(MessageHeader.MsgKind.toString());
-					//MessageKind messageKind = MessageKind.valueOf(msgKind);
-					//System.out.println(messageKind);
-				//}
+				}
 			} catch (JMSException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		}
 	};
 
-	public static ChatJmsAdapter getInstance()
-	{
-	
-		if(chatJmsAdapter==null){
-			chatJmsAdapter= new ChatJmsAdapter();
+	public static ChatJmsAdapter getInstance() {
+		// TODO commit
+		if (chatJmsAdapter == null) {
+			chatJmsAdapter = new ChatJmsAdapter();
 		}
 		return chatJmsAdapter;
 	}
+
 	public void setState(States.ChatClientState state) {
-		this.state=state;
-		
+		this.state = state;
+
 	}
-	
-	private void sendParameterLessSimpleRequest(String Msgkind) throws JMSException{
+
+	private void sendParameterLessSimpleRequest(String Msgkind)
+			throws JMSException {
+		// TODO commit
 		TextMessage message = createMessage(chatServiceQ);
-		message.setStringProperty(MessageHeader.MsgKind.toString(),
-				Msgkind);
+		message.setStringProperty(MessageHeader.MsgKind.toString(), Msgkind);
 		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
+		message.setStringProperty(MessageHeader.ChatroomID.toString(), CID);
+		message.setStringProperty(MessageHeader.RefID.toString(), RefID);
+
 		requestProducer.send(chatServiceQ, message);
+	}
+
+	private void setChatters(String chatters) {
+		// TODO commit
+		this.chatters = new ArrayList<String>();
+		Scanner scanner = new Scanner(chatters);
+		while (scanner.hasNextLine())
+			this.chatters.add(scanner.nextLine());
+		scanner.close();
+
+	}
+
+	private void setChatsAndChatters(String chatsAndChatters) {
+		// TODO commit
+		this.chatsAndChatters = new ArrayList<ChatChatterRelationship>();
+		Scanner scanner = new Scanner(chatsAndChatters);
+		while (scanner.hasNextLine()) {
+			String[] segs = scanner.nextLine().split(Pattern.quote(":"));
+			this.chatsAndChatters.add(new ChatChatterRelationship(segs[0],
+					segs[1]));
+		}
+		scanner.close();
 	}
 }
