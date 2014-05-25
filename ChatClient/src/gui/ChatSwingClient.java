@@ -133,7 +133,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver{
 	}
 
 	@Override
-	public void gotDenied() {
+	public void gotDenied(String cNN) {
 		// TODO Auto-generated method stub
 	}
 

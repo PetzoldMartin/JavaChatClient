@@ -38,8 +38,9 @@ public interface ChatServerMessageReceiver {
 	void gotParticipantLeft();
 	void gotRequestCancelled();
 	void gotRequest();
-	void gotDenied();
 	void gotAccepted();
 
 	void setState(ChatClientState chatClientState);
+
+	void gotDenied(String cNN);
 }

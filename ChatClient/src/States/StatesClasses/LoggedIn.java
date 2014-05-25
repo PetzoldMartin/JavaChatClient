@@ -1,6 +1,9 @@
 package States.StatesClasses;
 
+import java.util.ArrayList;
+
 import gui.ChatSwingClient;
+import messaging.ChatChatterRelationship;
 import messaging.ChatJmsAdapter;
 import messaging.ChatServerMessageProducer;
 import messaging.ChatServerMessageReceiver;
@@ -17,13 +20,20 @@ public abstract class LoggedIn extends ChatClientState {
 		System.out.println("State:Loggedin");
 		// TODO Auto-generated constructor stub
 	}
+	@Override
 	public  void gotChatClosed(){
+		messageReceiver.gotChatClosed();
+	}
+	@Override
+	public  void gotDenied(String CNN){
+		messageReceiver.gotDenied(CNN);
+	}
+	@Override
+	public  void gotChatters(ArrayList<String> chatters){
 		
 	}
-	public  void gotDenied(){
-		
-	}
-	public  void gotSucess(){
+	@Override
+	public  void gotChats(ArrayList<ChatChatterRelationship> chatsAndChatters){
 		
 	}
 	@Override
@@ -35,10 +45,12 @@ public abstract class LoggedIn extends ChatClientState {
 			e.printStackTrace();
 		}
 	}
-	public  void onRequest(){
+	@Override
+	public  void onRequest(String theParticipant){
 		
 	}
-	public  void onStartchat(){
+	@Override
+	public  void onStartChat(){
 	}	
 	
 	@Override
