@@ -469,7 +469,6 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
 		message.setStringProperty(MessageHeader.ChatroomID.toString(), CID);
 		message.setStringProperty(MessageHeader.RefID.toString(), RefID);
-
 		requestProducer.send(chatServiceQ, message);
 	}
 	
