@@ -2,12 +2,16 @@ package States.StatesClasses;
 
 import States.ChatClientState;
 
-public abstract class WaitForChat extends ChatClientState {
+public class WaitForChat extends ChatClientState {
 
 	public WaitForChat(ChatClientState oldState) {
 		super(oldState);
 		// TODO Auto-generated constructor stub
 	}
 
-	public abstract void gotChatStarted();
+	@Override
+	public void gotChatStarted(String chatID) {
+		unexpectedEvent();
+		System.out.println(chatID);
+	}
 }

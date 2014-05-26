@@ -317,14 +317,8 @@ public abstract class ChatClientState {
 	public void gotChatters(ArrayList<String> chatters) {
 		unexpectedEvent();
 	}
-	/**
-	//public void gotChats(ArrayList<ChatChatterRelationship> chatsAndChatters) {
-	//	System.err.println("unexpected event");
-
-<<<<<<< .mine
-	//}
-	 */
 	
+
 	/**
 	 * 
 	 * @param chatsWithOwners
