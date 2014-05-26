@@ -26,8 +26,7 @@ public class ListBrowser extends JFrame {
 	 * Create the frame.
 	 */
 	public ListBrowser(final ChatSwingClient chatClient,
-			ArrayList<String> items,
- final String buttonName) {
+			ArrayList<String> items, final String buttonName) {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

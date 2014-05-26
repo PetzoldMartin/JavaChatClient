@@ -1,9 +1,8 @@
 package States.StatesClasses.ChattingStates;
 
 import States.ChatClientState;
-import States.StatesClasses.Chatting;
 
-public abstract class InOtherChat extends Chatting {
+public class InOtherChat extends AbstractChatting {
 
 	public InOtherChat(ChatClientState oldState) {
 		super(oldState);
@@ -11,8 +10,12 @@ public abstract class InOtherChat extends Chatting {
 	}
 
 	@Override
-	public abstract void onLeave();
+	public void onLeave() {
+		unexpectedEvent();
+	}
 
 	@Override
-	public abstract void gotChatClosed();
+	public void gotChatClosed() {
+		unexpectedEvent();
+	}
 }

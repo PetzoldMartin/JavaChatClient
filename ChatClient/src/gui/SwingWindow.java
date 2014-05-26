@@ -85,9 +85,9 @@ public class SwingWindow {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// Log in/out Button pressed
-				if(arg0.getActionCommand().equals("Login")) {
+				if (arg0.getActionCommand().equals("Login")) {
 					chatClient.buttonLoginPressed();
-				} else if(arg0.getActionCommand().equals("Logout")) {
+				} else if (arg0.getActionCommand().equals("Logout")) {
 					chatClient.buttonLogoutPressed();
 				} else if (arg0.getActionCommand().equals("Leave")) {
 					chatClient.buttonLeavePressed();

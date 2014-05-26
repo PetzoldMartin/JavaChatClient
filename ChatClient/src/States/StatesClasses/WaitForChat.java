@@ -1,6 +1,7 @@
 package States.StatesClasses;
 
 import States.ChatClientState;
+import States.StatesClasses.ChattingStates.InOwnChat;
 
 public class WaitForChat extends ChatClientState {
 
@@ -11,7 +12,7 @@ public class WaitForChat extends ChatClientState {
 
 	@Override
 	public void gotChatStarted(String chatID) {
-		unexpectedEvent();
-		System.out.println(chatID);
+		messageReceiver.gotChatStarted(chatID);
+		new InOwnChat(this);
 	}
 }

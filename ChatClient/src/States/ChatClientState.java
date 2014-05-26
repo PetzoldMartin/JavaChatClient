@@ -164,6 +164,7 @@ public abstract class ChatClientState {
 	public void onAskForChatters() {
 		unexpectedEvent();
 	}
+
 	/**
 	 * logIn / register request got a fail from Server, stay in "notloggedIn"
 	 */
@@ -240,8 +241,8 @@ public abstract class ChatClientState {
 
 	/**
 	 * TODO entweder der chatraum hat ne liste der mitglieder, ODER die clients
-	 * haben die infos �ber jeden teilgenommenen chat was zur folge hat das hier
-	 * auch ein array vom server kommen k�nnte.... do not switch states
+	 * haben die infos �ber jeden teilgenommenen chat was zur folge hat das
+	 * hier auch ein array vom server kommen k�nnte.... do not switch states
 	 * 
 	 * @param theNewPartizipant
 	 */
@@ -251,9 +252,9 @@ public abstract class ChatClientState {
 
 	/**
 	 * TODO entweder der chatraum hat ne liste der mitglieder, ODER die clients
-	 * haben die infos �ber jeden teilgenommenen chat was zur folge hat das hier
-	 * auch ein array vom server kommen k�nnte.... sonst hab ich st�ndig solche
-	 * anfragen. do not switch states
+	 * haben die infos �ber jeden teilgenommenen chat was zur folge hat das
+	 * hier auch ein array vom server kommen k�nnte.... sonst hab ich
+	 * st�ndig solche anfragen. do not switch states
 	 * 
 	 * @param leftPartizipant
 	 */
@@ -317,16 +318,14 @@ public abstract class ChatClientState {
 	public void gotChatters(ArrayList<String> chatters) {
 		unexpectedEvent();
 	}
-	
 
 	/**
 	 * 
 	 * @param chatsWithOwners
 	 */
 
-
 	public void gotChats(ArrayList<String> chatsWithOwners) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

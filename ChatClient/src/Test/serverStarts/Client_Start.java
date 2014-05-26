@@ -26,10 +26,10 @@ public class Client_Start {
 
 				CJA.connectToServer(brokerUri);
 
-//				try {
+				// try {
 				// CJA.register("xx", "xx");
-//				} catch (JMSException e) {
-//					// TODO Auto-generated catch block
+				// } catch (JMSException e) {
+				// // TODO Auto-generated catch block
 				// }
 				//
 				// try {
@@ -54,8 +54,8 @@ public class Client_Start {
 				// Thread.sleep(50);
 				// } catch (InterruptedException e) {
 				// // TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
+				// e.printStackTrace();
+				// }
 				// // try {
 				// // CJA.askForChatters();
 				// // } catch (JMSException e) {

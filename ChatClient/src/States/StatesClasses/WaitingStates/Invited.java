@@ -1,9 +1,8 @@
 package States.StatesClasses.WaitingStates;
 
 import States.ChatClientState;
-import States.StatesClasses.Waiting;
 
-public abstract class Invited extends Waiting {
+public abstract class Invited extends AbstractWaiting {
 
 	public Invited(ChatClientState oldState) {
 		super(oldState);
