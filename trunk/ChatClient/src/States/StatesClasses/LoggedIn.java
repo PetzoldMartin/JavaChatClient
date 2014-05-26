@@ -2,6 +2,8 @@ package States.StatesClasses;
 
 import java.util.ArrayList;
 
+import javax.jms.JMSException;
+
 import States.ChatClientState;
 
 public class LoggedIn extends ChatClientState {
@@ -11,8 +13,10 @@ public class LoggedIn extends ChatClientState {
 		// TODO Auto-generated constructor stub
 	}
 
+
 	@Override
 	public void gotChatClosed() {
+		// TODO Sinnlos in diesem State da kein chat offen
 		messageReceiver.gotChatClosed();
 	}
 
@@ -48,6 +52,14 @@ public class LoggedIn extends ChatClientState {
 
 	@Override
 	public void onStartChat() {
+		try {
+			messageProducer.startChat();
+			new WaitForChat(this);
+		} catch (JMSException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override
