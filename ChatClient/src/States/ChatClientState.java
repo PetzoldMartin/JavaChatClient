@@ -237,25 +237,20 @@ public abstract class ChatClientState {
 	};
 
 	/**
-	 * TODO entweder der chatraum hat ne liste der mitglieder, ODER die clients
-	 * haben die infos �ber jeden teilgenommenen chat was zur folge hat das
-	 * hier auch ein array vom server kommen k�nnte.... do not switch states
+	 * a new Participant entered the chattroom.
 	 * 
-	 * @param theNewPartizipant
+	 * @param chatterID, the new participants ID
 	 */
-	public void gotParticipantEntered(String theNewPartizipant) {
+	public void gotParticipantEntered(String chatterID) {
 		unexpectedEvent();
 	};
 
 	/**
-	 * TODO entweder der chatraum hat ne liste der mitglieder, ODER die clients
-	 * haben die infos �ber jeden teilgenommenen chat was zur folge hat das
-	 * hier auch ein array vom server kommen k�nnte.... sonst hab ich
-	 * st�ndig solche anfragen. do not switch states
+	 * a participant leave the chatroom.
 	 * 
-	 * @param leftPartizipant
+	 * @param chatterID, the participant who left
 	 */
-	public void gotParticipantLeft(String leftPartizipant) {
+	public void gotParticipantLeft(String chatterID) {
 		unexpectedEvent();
 	};
 
