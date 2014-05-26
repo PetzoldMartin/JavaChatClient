@@ -24,9 +24,6 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	private SwingWindow gui;
 	private ChatClientState state;
 
-	private ArrayList<String> chatRooms;
-	private ArrayList<String> chatClients;
-
 	public ChatGUIAdapter() {
 		myInit();
 	}
@@ -175,9 +172,9 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	 * User has selected an item from a ListBrowser
 	 */
 	public void buttonFromListBrowserPressed(String item, String listType) {
-		if (listType.endsWith("Join")) {
+		if (listType.equals("Join")) {
 			state.onRequest(item);
-		} else if (listType.endsWith("Invite")) {
+		} else if (listType.equals("Invite")) {
 			state.onInvite(item);
 		}
 	}
@@ -248,6 +245,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 		gui.SetShowCreate(true);
 		gui.SetShowInvite(false);
 		gui.SetShowLogout(true);
+		gui.SetShowRegister(false);
 	}
 
 	private void setNotLoggedin() {
