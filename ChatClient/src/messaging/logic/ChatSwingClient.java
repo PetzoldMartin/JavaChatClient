@@ -180,6 +180,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 	 * channel list
 	 */
 	public void buttonJoinPressed() {
+		state.onAskForChats();
 		new ChannelBrowser(this, chatRooms);
 	}
 
