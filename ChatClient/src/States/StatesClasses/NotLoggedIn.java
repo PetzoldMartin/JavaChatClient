@@ -4,7 +4,7 @@ import messaging.interfaces.ChatServerMessageProducer;
 import messaging.interfaces.ChatServerMessageReceiver;
 import States.ChatClientState;
 
-public abstract class NotLoggedIn extends ChatClientState {
+public class NotLoggedIn extends ChatClientState {
 
 	public NotLoggedIn(ChatClientState oldState) {
 		super(oldState);
@@ -24,8 +24,7 @@ public abstract class NotLoggedIn extends ChatClientState {
 	@Override
 	public void gotSucess() {
 		messageReceiver.gotSuccess();
-		new LoggedIn(this) {
-		};
+		new LoggedIn(this);
 	}
 
 	@Override
