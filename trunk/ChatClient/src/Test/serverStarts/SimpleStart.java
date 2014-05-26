@@ -2,35 +2,37 @@ package Test.serverStarts;
 
 import messaging.logic.ChatJmsAdapter;
 import messaging.logic.ChatSwingClient;
+import de.fh_zwickau.pti.jms.userservice.chat.ChatServer;
 
 public class SimpleStart {
 
 	public static void main(String[] args) throws Exception {
 
-		// AuthenticationServer.main(args);
-		// Thread.sleep(1000);
-		// ChatServer.main(args);
-		// Thread.sleep(1000);
-		ChatSwingClient CSC = ChatSwingClient.getInstance();
+		// FIXME autostart AuthenticationServer.main(args);
+		ChatServer.main(args);
+
+		// SwingWindow window = new SwingWindow();
+
+		ChatSwingClient csc = ChatSwingClient.getInstance();
 
 		ChatJmsAdapter CJA = ChatJmsAdapter.getInstance();
-
-		// CJA.setMessageReceiver(CSC);
-
-		String brokerUri;
-
-		String localConnection = "tcp://localhost:61616";
-		brokerUri = localConnection;
-
-		CJA.connectToServer(brokerUri);
-		// TODO Later CJA.requestParticipian("xy");
-		CJA.register("Name", "password");
-
-		// CJA.logout();
-
-		// CJA.login("xy", "xy");
-
-		// CJA.logout();
+		//
+		// // CJA.setMessageReceiver(CSC);
+		//
+		// String brokerUri;
+		//
+		// String localConnection = "tcp://localhost:61616";
+		// brokerUri = localConnection;
+		//
+		// CJA.connectToServer(brokerUri);
+		// // TODO Later CJA.requestParticipian("xy");
+		// CJA.register("name", "password");
+		//
+		// // CJA.logout();
+		//
+		// // CJA.login("xy", "xy");
+		//
+		// // CJA.logout();
 
 	}
 
