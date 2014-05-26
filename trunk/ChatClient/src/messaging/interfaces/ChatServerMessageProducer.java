@@ -150,4 +150,11 @@ public interface ChatServerMessageProducer {
 	void requestParticipian(String cID) throws JMSException;
 
 	void setState(ChatClientState chatClientState);
+
+	/**
+	 * a requested invitation was rejected from the target 
+	 * @param username, the target
+	 * @throws JMSException
+	 */
+	void gotRejected(String username) throws JMSException;
 }

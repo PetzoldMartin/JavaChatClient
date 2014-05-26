@@ -201,14 +201,11 @@ public abstract class ChatClientState {
 	};
 
 	/**
-	 * the given invitation was rejected from the target username TODO gibt es
-	 * mehrfache invitations / chatrooms , kann ich mehrfache rooms besitzen ?
-	 * kann ich mehrfach eingeladen werden ? switch
+	 * the given invitation was rejected from the target username
 	 * 
-	 * @param the
-	 *            rejected username
+	 * @param username, who reject the invitation
 	 */
-	public void gotReject(String username) {
+	public void gotRejected(String username) {
 		unexpectedEvent();
 	};
 
