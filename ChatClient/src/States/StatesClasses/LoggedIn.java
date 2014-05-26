@@ -28,7 +28,7 @@ public abstract class LoggedIn extends ChatClientState {
 	}
 
 	@Override
-	public void gotChats(ArrayList<ChatChatterRelationship> chatsAndChatters) {
+	public void gotChats(ArrayList<String> chatsWithOwner) {
 
 	}
 
