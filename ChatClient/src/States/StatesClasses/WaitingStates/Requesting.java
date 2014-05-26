@@ -13,9 +13,19 @@ public class Requesting extends AbstractWaiting {
 		// TODO Auto-generated constructor stub
 	}
 
+	/* (non-Javadoc)
+	 * @see States.ChatClientState#gotRejected()
+	 */
 	@Override
-	public void gotRejected() {
-		unexpectedEvent();
+	public void gotRejected(String username) {
+		try {
+			messageProducer.gotRejected(username);
+			new LoggedIn(this);
+		} catch (JMSException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// unexpectedEvent();
 	}
 
 	@Override
