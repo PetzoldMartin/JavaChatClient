@@ -1,24 +1,17 @@
 package States.StatesClasses;
 
-import gui.ChatSwingClient;
-import messaging.ChatJmsAdapter;
-import messaging.ChatServerMessageProducer;
-import messaging.ChatServerMessageReceiver;
+import messaging.logic.ChatJmsAdapter;
+import messaging.logic.ChatSwingClient;
 import States.ChatClientState;
 
 public abstract class Waiting extends ChatClientState {
-	
- 
 
-
-
-
-
-public Waiting(ChatJmsAdapter messageProducer,
+	public Waiting(ChatJmsAdapter messageProducer,
 			ChatSwingClient messageReceiver) {
 		super(messageProducer, messageReceiver);
 		// TODO Auto-generated constructor stub
 	}
 
-public abstract void gotChatClosed();
+	@Override
+	public abstract void gotChatClosed();
 }

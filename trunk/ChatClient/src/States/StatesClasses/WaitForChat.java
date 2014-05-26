@@ -1,18 +1,10 @@
 package States.StatesClasses;
 
-import gui.ChatSwingClient;
-import messaging.ChatJmsAdapter;
-import messaging.ChatServerMessageProducer;
-import messaging.ChatServerMessageReceiver;
+import messaging.logic.ChatJmsAdapter;
+import messaging.logic.ChatSwingClient;
 import States.ChatClientState;
 
 public abstract class WaitForChat extends ChatClientState {
-
-	
-
-	
-
-	
 
 	public WaitForChat(ChatJmsAdapter messageProducer,
 			ChatSwingClient messageReceiver) {

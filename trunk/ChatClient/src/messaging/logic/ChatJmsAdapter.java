@@ -1,23 +1,8 @@
-package messaging;
+package messaging.logic;
 
-import java.awt.TrayIcon.MessageType;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.regex.Pattern;
-
-import javax.jms.Connection;
-import javax.jms.DeliveryMode;
-import javax.jms.Destination;
-import javax.jms.JMSException;
-import javax.jms.MessageConsumer;
-import javax.jms.Session;
-import javax.jms.TextMessage;
-
-import org.apache.activemq.ActiveMQConnectionFactory;
-
-import messaging.ChatServerMessageProducer;
-import messaging.ChatServerMessageReceiver;
 
 import javax.jms.Connection;
 import javax.jms.DeliveryMode;
@@ -31,6 +16,9 @@ import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.swing.SwingUtilities;
+
+import messaging.interfaces.ChatServerMessageProducer;
+import messaging.interfaces.ChatServerMessageReceiver;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
@@ -248,7 +236,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 			System.out.println("Client: " + replyMessage.toString());
 			try {
 				if (replyMessage instanceof Message) {
-					Message textMessage = (Message) replyMessage;
+					Message textMessage = replyMessage;
 					// System.out.println("Client: "+textMessage.toString());
 
 					String msgKind = textMessage
@@ -441,6 +429,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 
 	/**
 	 * get instance of {@link ChatJmsAdapter}
+	 * 
 	 * @return instance of {@link ChatJmsAdapter}
 	 */
 	public static ChatJmsAdapter getInstance() {
@@ -449,6 +438,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 		}
 		return chatJmsAdapter;
 	}
+
 	/**
 	 * 
 	 * @param state
@@ -456,8 +446,10 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 	public void setState(States.ChatClientState state) {
 		this.state = state;
 	}
+
 	/**
 	 * method for an parameterless Msg
+	 * 
 	 * @param Msgkind
 	 * @throws JMSException
 	 */
@@ -471,9 +463,10 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 		message.setStringProperty(MessageHeader.RefID.toString(), RefID);
 		requestProducer.send(chatServiceQ, message);
 	}
-	
+
 	/**
 	 * read chatters out of a string
+	 * 
 	 * @param chatters
 	 */
 	private void setChatters(String chatters) {
@@ -484,8 +477,10 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 		scanner.close();
 
 	}
+
 	/**
-	 *  read chatrooms with his owners out of a string
+	 * read chatrooms with his owners out of a string
+	 * 
 	 * @param chatsAndChatters
 	 */
 	private void setChatsAndChatters(String chatsAndChatters) {
@@ -493,11 +488,12 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 		Scanner scanner = new Scanner(chatsAndChatters);
 		while (scanner.hasNextLine()) {
 			String[] segs = scanner.nextLine().split(Pattern.quote(":"));
-			if(segs.length>1)
-			this.chatsAndChatters.add(new ChatChatterRelationship(segs[0],
-					segs[1]));
-			else this.chatsAndChatters.add(new ChatChatterRelationship(segs[0],
-				""));
+			if (segs.length > 1)
+				this.chatsAndChatters.add(new ChatChatterRelationship(segs[0],
+						segs[1]));
+			else
+				this.chatsAndChatters.add(new ChatChatterRelationship(segs[0],
+						""));
 		}
 		scanner.close();
 	}
