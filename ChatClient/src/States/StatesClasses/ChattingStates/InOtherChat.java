@@ -1,6 +1,9 @@
 package States.StatesClasses.ChattingStates;
 
+import javax.jms.JMSException;
+
 import States.ChatClientState;
+import States.StatesClasses.LoggedIn;
 
 public class InOtherChat extends AbstractChatting {
 
@@ -11,11 +14,18 @@ public class InOtherChat extends AbstractChatting {
 
 	@Override
 	public void onLeave() {
-		unexpectedEvent();
+		try {
+			messageProducer.leave();
+			new LoggedIn(this);
+		} catch (JMSException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void gotChatClosed() {
-		unexpectedEvent();
+		messageReceiver.gotChatClosed();
+		new LoggedIn(this);
 	}
 }
