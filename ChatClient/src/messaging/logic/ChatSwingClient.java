@@ -21,7 +21,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 
 	private SwingWindow gui;
 	private ChatClientState state;
-	
+
 	private ArrayList<String> chatRooms;
 
 	public ChatSwingClient() {
@@ -145,7 +145,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 		gui.AddLineToLog("System: Accepted");
 
 	}
-	
+
 	public void gotChats(ArrayList<String> chatRooms) {
 		this.chatRooms = chatRooms;
 	}
@@ -176,13 +176,13 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 	}
 
 	/**
-	 * User is logged in and want to join a chat room
-	 * A new Window will show the channel list
+	 * User is logged in and want to join a chat room A new Window will show the
+	 * channel list
 	 */
 	public void buttonJoinPressed() {
 		new ChannelBrowser(this, chatRooms);
 	}
-	
+
 	/**
 	 * User has selected an chatroom to join
 	 */

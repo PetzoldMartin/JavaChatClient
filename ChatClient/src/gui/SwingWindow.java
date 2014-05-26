@@ -18,7 +18,7 @@ import messaging.logic.ChatSwingClient;
 
 public class SwingWindow {
 
-	private ChatSwingClient chatClient;
+	private final ChatSwingClient chatClient;
 	private boolean toggleLoginOut; // true -> login false -> logout
 
 	private JFrame frame;
@@ -39,8 +39,14 @@ public class SwingWindow {
 	private JButton btnInvite;
 	private JTextField txtUser;
 
+	public SwingWindow() {
+		this(ChatSwingClient.getInstance());
+	}
+
 	/**
 	 * Create the application.
+	 * 
+	 * @wbp.parser.constructor
 	 */
 	public SwingWindow(ChatSwingClient chatClient) {
 		toggleLoginOut = true;
