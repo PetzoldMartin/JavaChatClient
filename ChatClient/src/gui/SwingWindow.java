@@ -19,7 +19,7 @@ import messaging.logic.ChatSwingClient;
 public class SwingWindow {
 
 	private final ChatSwingClient chatClient;
-	private boolean toggleLoginOut; // true -> login false -> logout
+	private final boolean toggleLoginOut; // true -> login false -> logout
 
 	private JFrame frame;
 	private JTextField txtName;
@@ -85,11 +85,13 @@ public class SwingWindow {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// Log in/out Button pressed
-				if (toggleLoginOut)
+				if(arg0.getActionCommand().equals("Login")) {
 					chatClient.buttonLoginPressed();
-				else
+				} else if(arg0.getActionCommand().equals("Logout")) {
 					chatClient.buttonLogoutPressed();
-				// TODO: Maybe display some stuff
+				} else if (arg0.getActionCommand().equals("Leave")) {
+					chatClient.buttonLeavePressed();
+				}
 			}
 		});
 		panelAccount.add(btnLoginOut);
@@ -207,13 +209,8 @@ public class SwingWindow {
 		txtPassword.setText(password);
 	}
 
-	public void toggleLoginOut() {
-		if (toggleLoginOut) {
-			btnLoginOut.setText("Logout");
-		} else {
-			btnLoginOut.setText("Login");
-		}
-		toggleLoginOut = !toggleLoginOut;
+	public void setFirstButtonUsage(String usage) {
+		btnLoginOut.setText(usage);
 	}
 
 	public void SetShowInvite(boolean show) {
