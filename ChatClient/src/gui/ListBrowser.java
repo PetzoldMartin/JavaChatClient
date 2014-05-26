@@ -45,6 +45,7 @@ public class ListBrowser extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				chatClient.buttonFromListBrowserPressed(list.getSelectedValue()
 						.toString(), buttonName);
+				dispose();
 			}
 		});
 		contentPane.add(btnOk, BorderLayout.SOUTH);

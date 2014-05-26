@@ -172,6 +172,8 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	 * User has selected an item from a ListBrowser
 	 */
 	public void buttonFromListBrowserPressed(String item, String listType) {
+		if (item == null)
+			item = "null";
 		if (listType.equals("Join")) {
 			state.onRequest(item);
 		} else if (listType.equals("Invite")) {
