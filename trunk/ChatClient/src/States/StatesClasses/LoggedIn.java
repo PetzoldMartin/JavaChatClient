@@ -67,4 +67,14 @@ public class LoggedIn extends ChatClientState {
 		messageReceiver.gotLogout();
 		new NotLoggedIn(this);
 	}
+
+	@Override
+	public void onAskForChats() {
+		try {
+			messageProducer.askForChats();
+		} catch (JMSException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

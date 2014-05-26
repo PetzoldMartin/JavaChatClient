@@ -1,5 +1,7 @@
 package States.StatesClasses.ChattingStates;
 
+import javax.jms.JMSException;
+
 import States.ChatClientState;
 
 public class InOwnChat extends AbstractChatting {
@@ -41,6 +43,16 @@ public class InOwnChat extends AbstractChatting {
 	@Override
 	public void onChatClose() {
 		unexpectedEvent();
+	}
+	
+	@Override
+	public void onAskForChatters() {
+		try {
+			messageProducer.askForChatters();
+		} catch (JMSException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

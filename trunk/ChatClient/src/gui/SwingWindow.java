@@ -57,6 +57,12 @@ public class SwingWindow {
 		this.chatClient = chatClient;
 	}
 
+	public SwingWindow(String user, String password) {
+		this(ChatGUIAdapter.getInstance());
+		this.txtName.setText(user);
+		this.txtPassword.setText(password);
+	}
+
 	/**
 	 * Initialize the contents of the frame.
 	 */
