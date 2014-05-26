@@ -157,4 +157,9 @@ public interface ChatServerMessageProducer {
 	 * @throws JMSException
 	 */
 	void gotRejected(String username) throws JMSException;
+
+	/**
+	 * if a chat is closed this is called every time on every state
+	 */
+	void gotChatClosed() throws JMSException;
 }

@@ -1,6 +1,9 @@
 package States.StatesClasses.WaitingStates;
 
+import javax.jms.JMSException;
+
 import States.ChatClientState;
+import States.StatesClasses.LoggedIn;
 
 public abstract class AbstractWaiting extends ChatClientState {
 
@@ -11,6 +14,12 @@ public abstract class AbstractWaiting extends ChatClientState {
 
 	@Override
 	public void gotChatClosed() {
-		unexpectedEvent();
+		try {
+			messageProducer.gotChatClosed();
+			new LoggedIn(this);
+		} catch (JMSException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
