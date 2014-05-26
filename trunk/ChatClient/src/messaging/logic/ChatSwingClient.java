@@ -179,7 +179,6 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 	 * A new Window will show the channel list
 	 */
 	public void buttonJoinPressed() {
-		
 		new ChannelBrowser(this, chatRooms);
 	}
 	

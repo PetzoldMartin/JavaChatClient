@@ -1,13 +1,11 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JTree;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 
@@ -18,15 +16,17 @@ import java.awt.event.ActionEvent;
 
 public class ChannelBrowser extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JList list;
-	private ChatSwingClient chatClient;
+	private JList<String> list;
 	
 	/**
 	 * Create the frame.
 	 */
 	public ChannelBrowser(final ChatSwingClient chatClient, ArrayList<String> channels) {
-		this.chatClient = chatClient;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -35,8 +35,8 @@ public class ChannelBrowser extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		list = new JList();
-		list.setListData(channels.toArray());
+		list = new JList<String>();
+		list.setListData((String[]) channels.toArray());
 		contentPane.add(list);
 		
 		JButton btnOk = new JButton("Join Chat");
