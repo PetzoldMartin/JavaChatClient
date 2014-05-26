@@ -325,7 +325,10 @@ public abstract class ChatClientState {
 	 */
 
 	public void gotChats(ArrayList<String> chatsWithOwners) {
-		// TODO Auto-generated method stub
+		unexpectedEvent();
+	}
 
+	public void OnAskForChatters() {
+		unexpectedEvent();
 	}
 }

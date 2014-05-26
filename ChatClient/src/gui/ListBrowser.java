@@ -25,6 +25,7 @@ public class ListBrowser extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ListBrowser(final ChatGUIAdapter chatClient,
 			ArrayList<String> items, final String buttonName) {
 
@@ -34,11 +35,8 @@ public class ListBrowser extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-
-		list = new JList<String>();
-		list.setListData((String[]) items.toArray());
+		list = new JList(items.toArray());
 		contentPane.add(list);
-
 		JButton btnOk = new JButton(buttonName);
 		btnOk.addActionListener(new ActionListener() {
 			@Override

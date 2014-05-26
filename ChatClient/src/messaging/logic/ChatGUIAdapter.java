@@ -20,6 +20,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 
 	// client info
 	private String userName;
+	// TODO remove userName
 
 	private SwingWindow gui;
 	private ChatClientState state;
