@@ -236,4 +236,8 @@ public class SwingWindow {
 		txtUser.setVisible(show);
 	}
 
+	public void SetShowLogout(boolean show) {
+		btnLoginOut.setVisible(show);
+	}
+
 }
