@@ -1,14 +1,12 @@
 package States.StatesClasses.WaitingStates;
 
-import messaging.logic.ChatJmsAdapter;
-import messaging.logic.ChatSwingClient;
+import States.ChatClientState;
 import States.StatesClasses.Waiting;
 
 public abstract class Requesting extends Waiting {
 
-	public Requesting(ChatJmsAdapter messageProducer,
-			ChatSwingClient messageReceiver) {
-		super(messageProducer, messageReceiver);
+	public Requesting(ChatClientState oldState) {
+		super(oldState);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -19,7 +19,7 @@ public class Client_Start {
 
 				ChatJmsAdapter CJA = ChatJmsAdapter.getInstance();
 
-				CJA.setMessageReceiver(CSC);
+				// CJA.setMessageReceiver(CSC);
 
 				String brokerUri;
 

@@ -1,15 +1,19 @@
 package States.StatesClasses;
 
-import messaging.logic.ChatJmsAdapter;
-import messaging.logic.ChatSwingClient;
+import messaging.interfaces.ChatServerMessageProducer;
+import messaging.interfaces.ChatServerMessageReceiver;
 import States.ChatClientState;
 
 public abstract class NotLoggedIn extends ChatClientState {
 
-	public NotLoggedIn(ChatJmsAdapter messageProducer,
-			ChatSwingClient messageReceiver) {
+	public NotLoggedIn(ChatClientState oldState) {
+		super(oldState);
+		// TODO Auto-generated constructor stub
+	}
+
+	public NotLoggedIn(ChatServerMessageProducer messageProducer,
+			ChatServerMessageReceiver messageReceiver) {
 		super(messageProducer, messageReceiver);
-		System.out.println("State:NotLoggedin");
 	}
 
 	@Override
@@ -20,8 +24,8 @@ public abstract class NotLoggedIn extends ChatClientState {
 	@Override
 	public void gotSucess() {
 		messageReceiver.gotSuccess();
-		super.changeState(new LoggedIn(messageProducer, messageReceiver) {
-		});
+		new LoggedIn(this) {
+		};
 	}
 
 	@Override

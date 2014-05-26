@@ -18,7 +18,6 @@ import javax.jms.TextMessage;
 import javax.swing.SwingUtilities;
 
 import messaging.interfaces.ChatServerMessageProducer;
-import messaging.interfaces.ChatServerMessageReceiver;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
@@ -29,14 +28,15 @@ import de.fh_zwickau.pti.mqgamecommon.MessageKind;
 
 public class ChatJmsAdapter implements ChatServerMessageProducer {
 
+	private ChatClientState state;
+
 	private static ChatJmsAdapter chatJmsAdapter = null;
 	private String authToken = "";
 	private Destination chatServiceQ;
 	private Destination loginQ, reply;
 	private Session session;
 	private MessageProducer requestProducer;
-	private ChatServerMessageReceiver messageReceiver;
-	private ChatClientState state;
+
 	private String CID, RefID, messageText;
 	private ArrayList<String> chatters;
 
@@ -123,12 +123,6 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 				MessageKind.logout.toString());
 		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
 		requestProducer.send(loginQ, message);
-
-	}
-
-	@Override
-	public void setMessageReceiver(ChatServerMessageReceiver messageReceiver) {
-		this.messageReceiver = messageReceiver;
 
 	}
 
@@ -443,7 +437,8 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 	 * 
 	 * @param state
 	 */
-	public void setState(States.ChatClientState state) {
+	@Override
+	public void setState(ChatClientState state) {
 		this.state = state;
 	}
 

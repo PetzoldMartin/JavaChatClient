@@ -5,6 +5,8 @@ package messaging.interfaces;
 
 import javax.jms.JMSException;
 
+import States.ChatClientState;
+
 /**
  * interface defines methodes for each possible message that could be sent to
  * the chat server
@@ -42,10 +44,10 @@ public interface ChatServerMessageProducer {
 	 */
 	void logout() throws Exception;
 
-	/**
-	 * @param chatSwingClient
-	 */
-	void setMessageReceiver(ChatServerMessageReceiver messageReceiver);
+	// /**
+	// * @param chatSwingClient
+	// */
+	// void setMessageReceiver(ChatServerMessageReceiver messageReceiver);
 
 	/**
 	 * deny an request
@@ -146,4 +148,6 @@ public interface ChatServerMessageProducer {
 	 * @throws JMSException
 	 */
 	void requestParticipian(String cID) throws JMSException;
+
+	void setState(ChatClientState chatClientState);
 }
