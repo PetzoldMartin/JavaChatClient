@@ -55,8 +55,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 	public void gotFail() {
 		// login fail
 		gui.AddLineToLog("System: fail");
-		gui.SetStatusColor(Color.RED);
-		gui.SetShowRegister(true);
+		setNotLoggedin();
 	}
 
 	@Override
@@ -83,7 +82,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 
 	@Override
 	public void gotReject() {
-		// TODO Auto-generated method stub
+		gui.AddLineToLog("System: Your Join Request was rejected by the Room Owner");
 	}
 
 	@Override
@@ -264,7 +263,8 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 		gui.SetShowJoin(false);
 		gui.SetShowInvite(false);
 		gui.SetShowCreate(false);
-		gui.SetShowLogout(false);
+		gui.SetShowLogout(true);
+		gui.SetShowRegister(false);
 	}
 
 	private void setInOwnChat() {
@@ -273,6 +273,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 		gui.SetShowJoin(false);
 		gui.SetShowInvite(true);
 		gui.SetShowCreate(false);
-		gui.SetShowLogout(false);
+		gui.SetShowLogout(true);
+		gui.SetShowRegister(false);
 	}
 }
