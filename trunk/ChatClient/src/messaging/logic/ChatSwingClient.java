@@ -23,6 +23,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 	private ChatClientState state;
 
 	private ArrayList<String> chatRooms;
+	private ArrayList<String> chatClients;
 
 	public ChatSwingClient() {
 		myInit();
@@ -181,22 +182,29 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 	 */
 	public void buttonJoinPressed() {
 		state.onAskForChats();
-		new ChannelBrowser(this, chatRooms);
+		new ChannelBrowser(this, chatRooms, "Join");
 	}
 
 	/**
-	 * User has selected an chatroom to join
-	 */
-	public void buttonJoinChatPressed(String name) {
-		state.onRequest(name);
-	}
-
-	/**
-	 * User is in his own chat an want to invite a user
+	 * User is in his own chat an want to invite a user A new ListBrowser will
+	 * show clients
 	 */
 	public void buttonInvitePressed() {
-		state.onInvite(gui.getPartyUser());
+		state.onAskForChatters();
+		new ChannelBrowser(this, chatClients, "Invite");
 	}
+
+	/**
+	 * User has selected an item from a ListBrowser
+	 */
+	public void buttonFromListBrowserPressed(String item, String listType) {
+		if (listType.endsWith("Join")) {
+			state.onRequest(item);
+		} else if (listType.endsWith("Invite")) {
+			state.onInvite(item);
+		}
+	}
+
 
 	/**
 	 * Button for Logout is Pressed

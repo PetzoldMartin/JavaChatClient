@@ -19,14 +19,15 @@ public class ChannelBrowser extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JList<String> list;
+	private final JPanel contentPane;
+	private final JList<String> list;
 
 	/**
 	 * Create the frame.
 	 */
 	public ChannelBrowser(final ChatSwingClient chatClient,
-			ArrayList<String> channels) {
+			ArrayList<String> items,
+ final String buttonName) {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -36,15 +37,15 @@ public class ChannelBrowser extends JFrame {
 		setContentPane(contentPane);
 
 		list = new JList<String>();
-		list.setListData((String[]) channels.toArray());
+		list.setListData((String[]) items.toArray());
 		contentPane.add(list);
 
-		JButton btnOk = new JButton("Join Chat");
+		JButton btnOk = new JButton(buttonName);
 		btnOk.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				chatClient.buttonJoinChatPressed(list.getSelectedValue()
-						.toString());
+				chatClient.buttonFromListBrowserPressed(list.getSelectedValue()
+						.toString(), buttonName);
 			}
 		});
 		contentPane.add(btnOk, BorderLayout.SOUTH);
