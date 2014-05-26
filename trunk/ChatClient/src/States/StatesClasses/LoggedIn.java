@@ -2,10 +2,9 @@ package States.StatesClasses;
 
 import java.util.ArrayList;
 
-import messaging.logic.ChatChatterRelationship;
 import States.ChatClientState;
 
-public abstract class LoggedIn extends ChatClientState {
+public class LoggedIn extends ChatClientState {
 
 	public LoggedIn(ChatClientState oldState) {
 		super(oldState);
@@ -54,7 +53,6 @@ public abstract class LoggedIn extends ChatClientState {
 	@Override
 	public void gotLogout() {
 		messageReceiver.gotLogout();
-		new NotLoggedIn(this) {
-		};
+		new NotLoggedIn(this);
 	}
 }

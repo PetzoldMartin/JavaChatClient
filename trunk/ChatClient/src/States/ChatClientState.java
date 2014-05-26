@@ -23,7 +23,7 @@ public abstract class ChatClientState {
 		this.messageReceiver = messageReceiver;
 		messageReceiver.setState(this);
 		messageProducer.setState(this);
-		System.out.println(getName());
+		System.out.println("change state to " + getName());
 	}
 
 	public ChatServerMessageProducer getProducer() {
@@ -298,7 +298,7 @@ public abstract class ChatClientState {
 
 	protected void unexpectedEvent() {
 		Exception exp = new Exception();
-		System.err.println("unexpected event: "
+		System.err.println("unexpected event: " + getName() + "->"
 				+ (exp.getStackTrace())[1].getMethodName());
 	}
 

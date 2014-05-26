@@ -34,8 +34,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 				.getInstance();
 		// messageProducer.setMessageReceiver(this);
 
-		state = new NotLoggedIn(messageProducer, this) {
-		};
+		state = new NotLoggedIn(messageProducer, this);
 		messageProducer.setState(state);
 		String localConnection = "tcp://localhost:61616";
 		messageProducer.connectToServer(localConnection);
