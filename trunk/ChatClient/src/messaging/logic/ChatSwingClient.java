@@ -115,7 +115,12 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 
 	@Override
 	public void gotChats(ArrayList<String> chatRooms) {
-		this.chatRooms = chatRooms;
+		new ListBrowser(this, chatRooms, "Join");
+	}
+
+	@Override
+	public void gotChatters(ArrayList<String> chatters) {
+		new ListBrowser(this, chatters, "Invite");
 	}
 
 	// START BUTTON PRESSED AREA ////////////////
@@ -149,7 +154,6 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 	 */
 	public void buttonJoinPressed() {
 		state.onAskForChats();
-		new ListBrowser(this, chatRooms, "Join");
 	}
 
 	/**
@@ -158,7 +162,6 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 	 */
 	public void buttonInvitePressed() {
 		state.onAskForChatters();
-		new ListBrowser(this, chatClients, "Invite");
 	}
 
 	/**

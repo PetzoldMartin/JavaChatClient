@@ -82,7 +82,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 
 	}
 
-	private ExceptionListener excListener = new ExceptionListener() {
+	private final ExceptionListener excListener = new ExceptionListener() {
 		@Override
 		public void onException(JMSException arg0) {
 			arg0.printStackTrace();
@@ -223,7 +223,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 		return textMessage;
 	}
 
-	private MessageListener msgListener = new MessageListener() {
+	private final MessageListener msgListener = new MessageListener() {
 
 		@Override
 		public void onMessage(Message replyMessage) {
@@ -509,9 +509,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 		Scanner scanner = new Scanner(chatsAndChatters);
 		while (scanner.hasNextLine()) {
 			String[] segs = scanner.nextLine().split(Pattern.quote(":"));
-			if (segs.length > 1)
-				this.chatsWithOwners.add(segs[0]);
-
+			this.chatsWithOwners.add(segs[0]);
 		}
 		scanner.close();
 	}
