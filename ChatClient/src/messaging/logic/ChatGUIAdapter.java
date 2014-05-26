@@ -13,10 +13,10 @@ import messaging.interfaces.ChatServerMessageReceiver;
 import States.ChatClientState;
 import States.StatesClasses.NotLoggedIn;
 
-public class ChatSwingClient implements ChatServerMessageReceiver {
+public class ChatGUIAdapter implements ChatServerMessageReceiver {
 
 	// Singleton instance
-	private static ChatSwingClient chatSwingClient = null;
+	private static ChatGUIAdapter chatSwingClient = null;
 
 	// client info
 	private String userName;
@@ -27,7 +27,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 	private ArrayList<String> chatRooms;
 	private ArrayList<String> chatClients;
 
-	public ChatSwingClient() {
+	public ChatGUIAdapter() {
 		myInit();
 	}
 
@@ -205,9 +205,9 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 		state.onStartChat();
 	}
 
-	public static ChatSwingClient getInstance() {
+	public static ChatGUIAdapter getInstance() {
 		if (chatSwingClient == null) {
-			chatSwingClient = new ChatSwingClient();
+			chatSwingClient = new ChatGUIAdapter();
 		}
 		return chatSwingClient;
 	}

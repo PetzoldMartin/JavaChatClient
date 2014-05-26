@@ -14,11 +14,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
-import messaging.logic.ChatSwingClient;
+import messaging.logic.ChatGUIAdapter;
 
 public class SwingWindow {
 
-	private final ChatSwingClient chatClient;
+	private final ChatGUIAdapter chatClient;
 	private final boolean toggleLoginOut; // true -> login false -> logout
 
 	private JFrame frame;
@@ -40,7 +40,7 @@ public class SwingWindow {
 	private JTextField txtUser;
 
 	public SwingWindow() {
-		this(ChatSwingClient.getInstance());
+		this(ChatGUIAdapter.getInstance());
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class SwingWindow {
 	 * 
 	 * @wbp.parser.constructor
 	 */
-	public SwingWindow(ChatSwingClient chatClient) {
+	public SwingWindow(ChatGUIAdapter chatClient) {
 		toggleLoginOut = true;
 		initialize();
 		frame.validate();

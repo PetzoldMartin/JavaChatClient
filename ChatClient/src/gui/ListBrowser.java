@@ -11,7 +11,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import messaging.logic.ChatSwingClient;
+import messaging.logic.ChatGUIAdapter;
 
 public class ListBrowser extends JFrame {
 
@@ -25,7 +25,7 @@ public class ListBrowser extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ListBrowser(final ChatSwingClient chatClient,
+	public ListBrowser(final ChatGUIAdapter chatClient,
 			ArrayList<String> items, final String buttonName) {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
