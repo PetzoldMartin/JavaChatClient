@@ -1,7 +1,7 @@
 /**
  * 
  */
-package messaging;
+package messaging.interfaces;
 
 import States.ChatClientState;
 
@@ -29,15 +29,25 @@ public interface ChatServerMessageReceiver {
 	void gotLogout();
 
 	void gotChatClosed();
+
 	void gotInvite();
+
 	void gotReject();
+
 	void gotChatStarted();
+
 	void gotParticipating();
+
 	void gotNewChat();
+
 	void gotParticipantEntered();
+
 	void gotParticipantLeft();
+
 	void gotRequestCancelled();
+
 	void gotRequest();
+
 	void gotAccepted();
 
 	void setState(ChatClientState chatClientState);

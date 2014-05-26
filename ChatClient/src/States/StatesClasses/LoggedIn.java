@@ -2,42 +2,42 @@ package States.StatesClasses;
 
 import java.util.ArrayList;
 
-import gui.ChatSwingClient;
-import messaging.ChatChatterRelationship;
-import messaging.ChatJmsAdapter;
-import messaging.ChatServerMessageProducer;
-import messaging.ChatServerMessageReceiver;
+import messaging.logic.ChatChatterRelationship;
+import messaging.logic.ChatJmsAdapter;
+import messaging.logic.ChatSwingClient;
 import States.ChatClientState;
 
 public abstract class LoggedIn extends ChatClientState {
 
-	
-	
-	
 	public LoggedIn(ChatJmsAdapter messageProducer,
 			ChatSwingClient messageReceiver) {
 		super(messageProducer, messageReceiver);
 		System.out.println("State:Loggedin");
 		// TODO Auto-generated constructor stub
 	}
+
 	@Override
-	public  void gotChatClosed(){
+	public void gotChatClosed() {
 		messageReceiver.gotChatClosed();
 	}
+
 	@Override
-	public  void gotDenied(String CNN){
+	public void gotDenied(String CNN) {
 		messageReceiver.gotDenied(CNN);
 	}
+
 	@Override
-	public  void gotChatters(ArrayList<String> chatters){
-		
+	public void gotChatters(ArrayList<String> chatters) {
+
 	}
+
 	@Override
-	public  void gotChats(ArrayList<ChatChatterRelationship> chatsAndChatters){
-		
+	public void gotChats(ArrayList<ChatChatterRelationship> chatsAndChatters) {
+
 	}
+
 	@Override
-	public  void onLogout(){
+	public void onLogout() {
 		try {
 			messageProducer.logout();
 		} catch (Exception e) {
@@ -45,18 +45,20 @@ public abstract class LoggedIn extends ChatClientState {
 			e.printStackTrace();
 		}
 	}
+
 	@Override
-	public  void onRequest(String theParticipant){
-		
+	public void onRequest(String theParticipant) {
+
 	}
+
 	@Override
-	public  void onStartChat(){
-	}	
-	
+	public void onStartChat() {
+	}
+
 	@Override
-	public void gotLogout(){
+	public void gotLogout() {
 		messageReceiver.gotLogout();
 		super.changeState(new NotLoggedIn(messageProducer, messageReceiver) {
 		});
 	}
-	}
+}
