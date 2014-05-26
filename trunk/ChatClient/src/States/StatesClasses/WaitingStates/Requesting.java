@@ -1,9 +1,12 @@
 package States.StatesClasses.WaitingStates;
 
-import States.ChatClientState;
-import States.StatesClasses.Waiting;
+import javax.jms.JMSException;
 
-public abstract class Requesting extends Waiting {
+import States.ChatClientState;
+import States.StatesClasses.LoggedIn;
+import States.StatesClasses.ChattingStates.InOtherChat;
+
+public class Requesting extends AbstractWaiting {
 
 	public Requesting(ChatClientState oldState) {
 		super(oldState);
@@ -11,10 +14,24 @@ public abstract class Requesting extends Waiting {
 	}
 
 	@Override
-	public abstract void gotRejected();
+	public void gotRejected() {
+		unexpectedEvent();
+	}
 
 	@Override
-	public abstract void gotParticipating();
+	public void gotParticipating() {
+		messageReceiver.gotParticipating();
+		new InOtherChat(this);
+	}
 
-	public abstract void onCancel();
+	public void onCancel() {
+		try {
+			messageProducer.cancel();
+			new LoggedIn(this);
+		} catch (JMSException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// unexpectedEvent();
+	}
 }

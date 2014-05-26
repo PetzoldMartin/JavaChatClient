@@ -1,31 +1,46 @@
 package States.StatesClasses.ChattingStates;
 
 import States.ChatClientState;
-import States.StatesClasses.Chatting;
 
-public abstract class InOwnChat extends Chatting {
+public class InOwnChat extends AbstractChatting {
 
 	public InOwnChat(ChatClientState oldState) {
 		super(oldState);
 		// TODO Auto-generated constructor stub
 	}
 
-	public abstract void gotRequestCancelled();
+	public void gotRequestCancelled() {
+		unexpectedEvent();
+	}
 
-	public abstract void gotRequest();
+	public void gotRequest() {
+		unexpectedEvent();
+	}
 
-	public abstract void gotAccepted();
+	public void gotAccepted() {
+		unexpectedEvent();
+	}
 
-	public abstract void gotDenied();
+	public void gotDenied() {
+		unexpectedEvent();
+	}
 
 	@Override
-	public abstract void onAccept();
+	public void onAccept() {
+		unexpectedEvent();
+	}
 
-	public abstract void onReject();
+	public void onReject() {
+		unexpectedEvent();
+	}
 
-	public abstract void onInvite();
+	public void onInvite() {
+		unexpectedEvent();
+	}
 
 	@Override
-	public abstract void onChatClose();
+	public void onChatClose() {
+		unexpectedEvent();
+	}
 
 }
