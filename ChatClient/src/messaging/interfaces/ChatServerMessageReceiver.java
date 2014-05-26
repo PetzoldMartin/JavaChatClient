@@ -57,4 +57,6 @@ public interface ChatServerMessageReceiver {
 	void gotChats(ArrayList<String> chatsWithOwner);
 
 	void setState(ChatClientState chatClientState);
+
+	void gotChatters(ArrayList<String> chatters);
 }
