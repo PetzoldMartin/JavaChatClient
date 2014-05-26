@@ -72,9 +72,8 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 	}
 
 	@Override
-	public void gotInvite() {
-
-		// Popup Window
+	public void gotInvite(String chatter, String chatID) {
+		// TODO implement parameters
 		if (JOptionPane.showConfirmDialog(null, "Want to join the chatroom?",
 				"Got Chat Invite", JOptionPane.YES_NO_OPTION) == 0) {
 			// User accept Invite
@@ -88,7 +87,8 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 	}
 
 	@Override
-	public void gotChatStarted() {
+	public void gotChatStarted(String chatId) {
+		// TODO implement chat id
 		setInOwnChat();
 	}
 
@@ -98,28 +98,8 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 	}
 
 	@Override
-	public void gotNewChat() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void gotParticipantEntered() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void gotParticipantLeft() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void gotRequestCancelled() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void gotRequest() {
-		// TODO Auto-generated method stub
+	public void gotNewChat(String Chatter, String messageText) {
+		// TODO display chat msg
 	}
 
 	@Override
@@ -128,11 +108,13 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 	}
 
 	@Override
-	public void gotAccepted() {
+	public void gotAccepted(String chatterID) {
+		// TODO implement chatterID
 		gui.AddLineToLog("System: Accepted");
 
 	}
 
+	@Override
 	public void gotChats(ArrayList<String> chatRooms) {
 		this.chatRooms = chatRooms;
 	}
@@ -198,7 +180,6 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 		}
 	}
 
-
 	/**
 	 * Button for Logout is Pressed
 	 */
@@ -232,6 +213,30 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 	@Override
 	public void setState(ChatClientState state) {
 		this.state = state;
+	}
+
+	@Override
+	public void gotParticipantEntered(String chatterID) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void gotParticipantLeft(String chatterID) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void gotRequestCancelled(String chatterID) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void gotRequest(String chatterID) {
+		// TODO Auto-generated method stub
+
 	}
 
 	private void setLogedin() {

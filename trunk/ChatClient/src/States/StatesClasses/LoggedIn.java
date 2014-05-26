@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.jms.JMSException;
 
 import States.ChatClientState;
+import States.StatesClasses.WaitingStates.Requesting;
 
 public class LoggedIn extends ChatClientState {
 
@@ -13,26 +14,19 @@ public class LoggedIn extends ChatClientState {
 		// TODO Auto-generated constructor stub
 	}
 
+	// @Override TODO needed?
+	// public void gotChatClosed() {
+	// messageReceiver.gotChatClosed();
+	// }
 
-	@Override
-	public void gotChatClosed() {
-		// TODO Sinnlos in diesem State da kein chat offen
-		messageReceiver.gotChatClosed();
-	}
-
-	@Override
-	public void gotDenied(String CNN) {
-		messageReceiver.gotDenied(CNN);
-	}
-
-	@Override
-	public void gotChatters(ArrayList<String> chatters) {
-
-	}
+	// @Override TODO needed?
+	// public void gotDenied(String CNN) {
+	// messageReceiver.gotDenied(CNN);
+	// }
 
 	@Override
 	public void gotChats(ArrayList<String> chatsWithOwner) {
-
+		messageReceiver.gotChats(chatsWithOwner);
 	}
 
 	@Override
@@ -47,7 +41,13 @@ public class LoggedIn extends ChatClientState {
 
 	@Override
 	public void onRequest(String theParticipant) {
-
+		try {
+			messageProducer.requestParticipian(theParticipant);
+			new Requesting(this);
+		} catch (JMSException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
