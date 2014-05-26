@@ -1,8 +1,10 @@
 package messaging.logic;
 
+import gui.ChannelBrowser;
 import gui.SwingWindow;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 import messaging.interfaces.ChatServerMessageReceiver;
 import States.ChatClientState;
@@ -19,6 +21,8 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 
 	private SwingWindow gui;
 	private ChatClientState state;
+	
+	private ArrayList<String> chatRooms;
 
 	public ChatSwingClient() {
 		myInit();
@@ -140,6 +144,10 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 		gui.AddLineToLog("System: Accepted");
 
 	}
+	
+	public void gotChats(ArrayList<String> chatRooms) {
+		this.chatRooms = chatRooms;
+	}
 
 	// START BUTTON PRESSED AREA ////////////////
 
@@ -167,10 +175,19 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 	}
 
 	/**
-	 * User is logged in and want to join to an chatroom
+	 * User is logged in and want to join a chat room
+	 * A new Window will show the channel list
 	 */
 	public void buttonJoinPressed() {
-		state.onRequest(gui.getPartyUser());
+		
+		new ChannelBrowser(this, chatRooms);
+	}
+	
+	/**
+	 * User has selected an chatroom to join
+	 */
+	public void buttonJoinChatPressed(String name) {
+		state.onRequest(name);
 	}
 
 	/**
