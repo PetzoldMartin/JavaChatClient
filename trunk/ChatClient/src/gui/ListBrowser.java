@@ -13,7 +13,7 @@ import javax.swing.border.EmptyBorder;
 
 import messaging.logic.ChatSwingClient;
 
-public class ChannelBrowser extends JFrame {
+public class ListBrowser extends JFrame {
 
 	/**
 	 * 
@@ -25,7 +25,7 @@ public class ChannelBrowser extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ChannelBrowser(final ChatSwingClient chatClient,
+	public ListBrowser(final ChatSwingClient chatClient,
 			ArrayList<String> items,
  final String buttonName) {
 

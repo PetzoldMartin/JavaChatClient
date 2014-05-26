@@ -1,6 +1,6 @@
 package messaging.logic;
 
-import gui.ChannelBrowser;
+import gui.ListBrowser;
 import gui.SwingWindow;
 
 import java.awt.Color;
@@ -182,7 +182,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 	 */
 	public void buttonJoinPressed() {
 		state.onAskForChats();
-		new ChannelBrowser(this, chatRooms, "Join");
+		new ListBrowser(this, chatRooms, "Join");
 	}
 
 	/**
@@ -191,7 +191,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 	 */
 	public void buttonInvitePressed() {
 		state.onAskForChatters();
-		new ChannelBrowser(this, chatClients, "Invite");
+		new ListBrowser(this, chatClients, "Invite");
 	}
 
 	/**
