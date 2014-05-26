@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import messaging.interfaces.ChatServerMessageProducer;
 import messaging.interfaces.ChatServerMessageReceiver;
-import messaging.logic.ChatChatterRelationship;
 
 /**
  * @author Peter 33141 aufgetretene fragen: s.h. TODO
@@ -158,6 +157,13 @@ public abstract class ChatClientState {
 		unexpectedEvent();
 	};
 
+	public void onAskForChats() {
+		unexpectedEvent();
+	};
+
+	public void onAskForChatters() {
+		unexpectedEvent();
+	}
 	/**
 	 * logIn / register request got a fail from Server, stay in "notloggedIn"
 	 */
