@@ -70,8 +70,9 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	@Override
 	public void gotInvite(String chatter, String chatID) {
 		// TODO implement parameters
-		if (JOptionPane.showConfirmDialog(null, "Want to join the chatroom?",
-				"Got Chat Invite", JOptionPane.YES_NO_OPTION) == 0) {
+		if (JOptionPane.showConfirmDialog(null, chatter
+				+ " Do you want to join?", "Got Invite from " + chatter,
+				JOptionPane.YES_NO_OPTION) == 0) {
 			// User accept Invite
 			state.onAcceptInvitation("todo");
 		}
