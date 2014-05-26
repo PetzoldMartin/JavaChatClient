@@ -81,6 +81,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 		gui.SetShowJoin(true);
 		gui.SetShowCreate(true);
 		gui.SetShowInvite(false);
+		gui.SetShowLogout(true);
 	}
 
 	@Override
@@ -102,6 +103,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 		gui.SetShowJoin(false);
 		gui.SetShowInvite(true);
 		gui.SetShowCreate(false);
+		gui.SetShowLogout(false);
 	}
 
 	@Override
