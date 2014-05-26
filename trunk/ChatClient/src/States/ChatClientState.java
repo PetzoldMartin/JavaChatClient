@@ -176,7 +176,7 @@ public abstract class ChatClientState {
 
 	/**
 	 * got invitation from??? TODO kein parameter im UML spezifiziert, vermute
-	 * username, sonst macht es keinen sinn will ja wissen wer mich einlädt
+	 * username, sonst macht es keinen sinn will ja wissen wer mich einlï¿½dt
 	 * 
 	 * @param username
 	 * @param cID
@@ -234,8 +234,8 @@ public abstract class ChatClientState {
 
 	/**
 	 * TODO entweder der chatraum hat ne liste der mitglieder, ODER die clients
-	 * haben die infos über jeden teilgenommenen chat was zur folge hat das hier
-	 * auch ein array vom server kommen könnte.... do not switch states
+	 * haben die infos ï¿½ber jeden teilgenommenen chat was zur folge hat das hier
+	 * auch ein array vom server kommen kï¿½nnte.... do not switch states
 	 * 
 	 * @param theNewPartizipant
 	 */
@@ -245,8 +245,8 @@ public abstract class ChatClientState {
 
 	/**
 	 * TODO entweder der chatraum hat ne liste der mitglieder, ODER die clients
-	 * haben die infos über jeden teilgenommenen chat was zur folge hat das hier
-	 * auch ein array vom server kommen könnte.... sonst hab ich ständig solche
+	 * haben die infos ï¿½ber jeden teilgenommenen chat was zur folge hat das hier
+	 * auch ein array vom server kommen kï¿½nnte.... sonst hab ich stï¿½ndig solche
 	 * anfragen. do not switch states
 	 * 
 	 * @param leftPartizipant
@@ -277,7 +277,7 @@ public abstract class ChatClientState {
 	/**
 	 * a invite was accepted, TODO hier muss man entscheiden, im chatting state
 	 * bekommt man einen neuen participant hinzu im waiting state wird ein
-	 * chatraum geöffnent .. oder existiert der chatraum schon auch ohne das
+	 * chatraum geï¿½ffnent .. oder existiert der chatraum schon auch ohne das
 	 * mehr als 1 anwesend sind ?
 	 * 
 	 * @param CNN
@@ -311,8 +311,22 @@ public abstract class ChatClientState {
 	public void gotChatters(ArrayList<String> chatters) {
 		unexpectedEvent();
 	}
+	/**
+	//public void gotChats(ArrayList<ChatChatterRelationship> chatsAndChatters) {
+	//	System.err.println("unexpected event");
 
-	public void gotChats(ArrayList<ChatChatterRelationship> chatsAndChatters) {
-		unexpectedEvent();
+<<<<<<< .mine
+	//}
+	 */
+	
+	/**
+	 * 
+	 * @param chatsWithOwners
+	 */
+
+
+	public void gotChats(ArrayList<String> chatsWithOwners) {
+		// TODO Auto-generated method stub
+		
 	}
 }

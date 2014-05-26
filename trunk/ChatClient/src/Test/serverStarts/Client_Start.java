@@ -46,12 +46,12 @@ public class Client_Start {
 					e.printStackTrace();
 				}
 
-				try {
-					CJA.askForChats();
-				} catch (JMSException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+//				try {
+//					CJA.askForChats();
+//				} catch (JMSException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
 				try {
 					Thread.sleep(50);
 				} catch (InterruptedException e) {

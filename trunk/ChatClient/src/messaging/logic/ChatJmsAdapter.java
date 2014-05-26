@@ -38,7 +38,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 	private MessageProducer requestProducer;
 
 	private String CID, RefID, messageText;
-	private ArrayList<String> chatters;
+	private ArrayList<String> chatters,chatsWithOwners;
 
 	private ArrayList<ChatChatterRelationship> chatsAndChatters;
 
@@ -393,8 +393,12 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 							SwingUtilities.invokeLater(new Runnable() {
 								@Override
 								public void run() {
-									setChatsAndChatters(messageText);
-									state.gotChats(chatsAndChatters);
+									
+									/**setChatsAndChatters(messageText);
+									 * for future
+									 */
+									setChatsWithOwner(messageText);
+									state.gotChats(chatsWithOwners);
 								}
 							});
 						break;
@@ -475,7 +479,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 
 	/**
 	 * read chatrooms with his owners out of a string
-	 * 
+	 * depreced for fuur implementation
 	 * @param chatsAndChatters
 	 */
 	private void setChatsAndChatters(String chatsAndChatters) {
@@ -489,6 +493,23 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 			else
 				this.chatsAndChatters.add(new ChatChatterRelationship(segs[0],
 						""));
+		}
+		scanner.close();
+	}
+	
+	/**
+	 * read chatrooms with his owners out of a string
+	 * 
+	 * @param chatsAndChatters
+	 */
+	private void setChatsWithOwner(String chatsAndChatters) {
+		this.chatsWithOwners = new ArrayList<String>();
+		Scanner scanner = new Scanner(chatsAndChatters);
+		while (scanner.hasNextLine()) {
+			String[] segs = scanner.nextLine().split(Pattern.quote(":"));
+			if (segs.length > 1)
+				this.chatsWithOwners.add(segs[0]);
+						
 		}
 		scanner.close();
 	}
