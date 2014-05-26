@@ -2,23 +2,41 @@ package States;
 
 import java.util.ArrayList;
 
+import messaging.interfaces.ChatServerMessageProducer;
+import messaging.interfaces.ChatServerMessageReceiver;
 import messaging.logic.ChatChatterRelationship;
-import messaging.logic.ChatJmsAdapter;
-import messaging.logic.ChatSwingClient;
 
 /**
  * @author Peter 33141 aufgetretene fragen: s.h. TODO
  */
 public abstract class ChatClientState {
 
-	protected ChatJmsAdapter messageProducer;
-	protected ChatSwingClient messageReceiver;
+	protected ChatServerMessageProducer messageProducer;
+	protected ChatServerMessageReceiver messageReceiver;
 
-	public ChatClientState(ChatJmsAdapter messageProducer,
-			ChatSwingClient messageReceiver) {
+	public ChatClientState(ChatClientState oldState) {
+		this(oldState.messageProducer, oldState.messageReceiver);
+	}
+
+	protected ChatClientState(ChatServerMessageProducer messageProducer,
+			ChatServerMessageReceiver messageReceiver) {
 		this.messageProducer = messageProducer;
 		this.messageReceiver = messageReceiver;
+		messageReceiver.setState(this);
+		messageProducer.setState(this);
+		System.out.println(getName());
+	}
 
+	public ChatServerMessageProducer getProducer() {
+		return messageProducer;
+	}
+
+	public ChatServerMessageReceiver getReceiver() {
+		return messageReceiver;
+	}
+
+	public String getName() {
+		return this.getClass().getName();
 	}
 
 	/**
@@ -28,7 +46,7 @@ public abstract class ChatClientState {
 	 * @param passwort
 	 */
 	public void onRegister(String username, String passwort) {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
@@ -38,15 +56,14 @@ public abstract class ChatClientState {
 	 * @param passwort
 	 */
 	public void onLogin(String username, String passwort) {
-
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
 	 * LogOut this user
 	 */
 	public void onLogout() {
-		System.err.println("unexpected event:onLogout");
+		unexpectedEvent();
 	};
 
 	/**
@@ -55,14 +72,14 @@ public abstract class ChatClientState {
 	 * @param theParticipant
 	 */
 	public void onRequest(String theParticipant) {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
 	 * Start to Chat, waiting for a ChatRoom
 	 */
 	public void onStartChat() {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
@@ -71,7 +88,7 @@ public abstract class ChatClientState {
 	 * @param request
 	 */
 	public void onDeny(String request) {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
@@ -80,21 +97,21 @@ public abstract class ChatClientState {
 	 * @param request
 	 */
 	public void onCancel(String request) {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
 	 * Leave and close the owned chatroom, go to state loggedIn
 	 */
 	public void onChatClose() {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
 	 * Leave the foreign chatroom, go to state loggedIn
 	 */
 	public void onLeave() {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
@@ -103,7 +120,7 @@ public abstract class ChatClientState {
 	 * @param request
 	 */
 	public void onAcceptInvitation(String request) {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
@@ -112,7 +129,7 @@ public abstract class ChatClientState {
 	 * @param textMessage
 	 */
 	public void onChat(String textMessage) {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
@@ -121,14 +138,14 @@ public abstract class ChatClientState {
 	 * @param username
 	 */
 	public void onInvite(String username) {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
 	 * accept an invitation from a username, go from state waiting to chatting
 	 */
 	public void onAccept() {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
@@ -138,14 +155,14 @@ public abstract class ChatClientState {
 	 * @param username
 	 */
 	public void onReject(String username) {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
 	 * logIn / register request got a fail from Server, stay in "notloggedIn"
 	 */
 	public void gotFail() {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
@@ -154,7 +171,7 @@ public abstract class ChatClientState {
 	 * @param chatRoomName
 	 */
 	public void gotChatClosed() {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
@@ -165,7 +182,7 @@ public abstract class ChatClientState {
 	 * @param cID
 	 */
 	public void gotInvite(String CNN, String cID) {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
@@ -173,7 +190,7 @@ public abstract class ChatClientState {
 	 * before, registered switch state "notloggedIn" to "loggedIn"
 	 */
 	public void gotSucess() {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
@@ -185,7 +202,7 @@ public abstract class ChatClientState {
 	 *            rejected username
 	 */
 	public void gotReject(String username) {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
@@ -195,15 +212,15 @@ public abstract class ChatClientState {
 	 * @param cID
 	 */
 	public void gotChatStarted(String cID) {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
 	 * a request was accepted switch from "requesting" state to in "otherChat"
 	 */
 	public void gotParticipating() {
-		System.err.println("unexpected event");
-	};
+		unexpectedEvent();
+	}
 
 	/**
 	 * a new chat, the chatRoom, appeared
@@ -212,7 +229,7 @@ public abstract class ChatClientState {
 	 * @param messageText
 	 */
 	public void gotNewChat(String Chatter, String messageText) {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
@@ -223,7 +240,7 @@ public abstract class ChatClientState {
 	 * @param theNewPartizipant
 	 */
 	public void gotParticipantEntered(String theNewPartizipant) {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
@@ -235,7 +252,7 @@ public abstract class ChatClientState {
 	 * @param leftPartizipant
 	 */
 	public void gotParticipantLeft(String leftPartizipant) {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
@@ -245,7 +262,7 @@ public abstract class ChatClientState {
 	 * 
 	 */
 	public void gotRequestCancelled(String CNN) {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
@@ -254,7 +271,7 @@ public abstract class ChatClientState {
 	 * @param CNN
 	 */
 	public void gotDenied(String CNN) {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	};
 
 	/**
@@ -266,36 +283,36 @@ public abstract class ChatClientState {
 	 * @param CNN
 	 */
 	public void gotAccepted(String CNN) {
-		System.err.println("unexpected event");
+		unexpectedEvent();
 	}
 
 	public void gotLogout() {
-		System.err.println("unexpected event:gotLogout");
-
+		unexpectedEvent();
 	};
 
-	protected void changeState(ChatClientState cCS) {
-		messageProducer.setState(cCS);
-		messageReceiver.setState(cCS);
+	protected void unexpectedEvent() {
+		Exception exp = new Exception();
+		System.err.println("unexpected event: "
+				+ (exp.getStackTrace())[1].getMethodName());
+	}
+
+	protected void handleExpeption(Exception e) {
+		e.printStackTrace();
 	}
 
 	public void gotRequest(String CNN) {
-		System.err.println("unexpected event");
-
+		unexpectedEvent();
 	}
 
 	public void gotRejected() {
-		System.err.println("unexpected event");
-
+		unexpectedEvent();
 	}
 
 	public void gotChatters(ArrayList<String> chatters) {
-		System.err.println("unexpected event");
-
+		unexpectedEvent();
 	}
 
 	public void gotChats(ArrayList<ChatChatterRelationship> chatsAndChatters) {
-		System.err.println("unexpected event");
-
+		unexpectedEvent();
 	}
 }

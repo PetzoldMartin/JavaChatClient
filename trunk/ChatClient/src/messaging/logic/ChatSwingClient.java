@@ -6,6 +6,7 @@ import gui.SwingWindow;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import messaging.interfaces.ChatServerMessageProducer;
 import messaging.interfaces.ChatServerMessageReceiver;
 import States.ChatClientState;
 import States.StatesClasses.NotLoggedIn;
@@ -14,7 +15,6 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 
 	// Singleton instance
 	private static ChatSwingClient chatSwingClient = null;
-	private ChatJmsAdapter messageProducer;
 
 	// client info
 	private String userName;
@@ -29,8 +29,9 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 	}
 
 	private void myInit() {
-		messageProducer = ChatJmsAdapter.getInstance();
-		messageProducer.setMessageReceiver(this);
+		ChatServerMessageProducer messageProducer = ChatJmsAdapter
+				.getInstance();
+		// messageProducer.setMessageReceiver(this);
 
 		state = new NotLoggedIn(messageProducer, this) {
 		};
@@ -227,7 +228,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 	}
 
 	@Override
-	public void setState(ChatClientState cCS) {
-		state = cCS;
+	public void setState(ChatClientState state) {
+		this.state = state;
 	}
 }

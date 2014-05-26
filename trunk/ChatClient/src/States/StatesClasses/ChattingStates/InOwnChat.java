@@ -1,14 +1,12 @@
 package States.StatesClasses.ChattingStates;
 
-import messaging.logic.ChatJmsAdapter;
-import messaging.logic.ChatSwingClient;
+import States.ChatClientState;
 import States.StatesClasses.Chatting;
 
 public abstract class InOwnChat extends Chatting {
 
-	public InOwnChat(ChatJmsAdapter messageProducer,
-			ChatSwingClient messageReceiver) {
-		super(messageProducer, messageReceiver);
+	public InOwnChat(ChatClientState oldState) {
+		super(oldState);
 		// TODO Auto-generated constructor stub
 	}
 

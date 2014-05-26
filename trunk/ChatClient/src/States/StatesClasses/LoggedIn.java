@@ -3,16 +3,12 @@ package States.StatesClasses;
 import java.util.ArrayList;
 
 import messaging.logic.ChatChatterRelationship;
-import messaging.logic.ChatJmsAdapter;
-import messaging.logic.ChatSwingClient;
 import States.ChatClientState;
 
 public abstract class LoggedIn extends ChatClientState {
 
-	public LoggedIn(ChatJmsAdapter messageProducer,
-			ChatSwingClient messageReceiver) {
-		super(messageProducer, messageReceiver);
-		System.out.println("State:Loggedin");
+	public LoggedIn(ChatClientState oldState) {
+		super(oldState);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -58,7 +54,7 @@ public abstract class LoggedIn extends ChatClientState {
 	@Override
 	public void gotLogout() {
 		messageReceiver.gotLogout();
-		super.changeState(new NotLoggedIn(messageProducer, messageReceiver) {
-		});
+		new NotLoggedIn(this) {
+		};
 	}
 }
