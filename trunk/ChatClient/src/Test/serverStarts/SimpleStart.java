@@ -1,7 +1,7 @@
 package Test.serverStarts;
 
 import messaging.logic.ChatJmsAdapter;
-import messaging.logic.ChatSwingClient;
+import messaging.logic.ChatGUIAdapter;
 import de.fh_zwickau.pti.jms.userservice.chat.ChatServer;
 
 public class SimpleStart {
@@ -13,7 +13,7 @@ public class SimpleStart {
 
 		// SwingWindow window = new SwingWindow();
 
-		ChatSwingClient csc = ChatSwingClient.getInstance();
+		ChatGUIAdapter csc = ChatGUIAdapter.getInstance();
 
 		ChatJmsAdapter CJA = ChatJmsAdapter.getInstance();
 		//

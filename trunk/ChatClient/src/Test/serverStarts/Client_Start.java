@@ -1,7 +1,7 @@
 package Test.serverStarts;
 
 import messaging.logic.ChatJmsAdapter;
-import messaging.logic.ChatSwingClient;
+import messaging.logic.ChatGUIAdapter;
 
 public class Client_Start {
 
@@ -13,7 +13,7 @@ public class Client_Start {
 			@Override
 			public void run() {
 
-				ChatSwingClient CSC = ChatSwingClient.getInstance();
+				ChatGUIAdapter CSC = ChatGUIAdapter.getInstance();
 
 				ChatJmsAdapter CJA = ChatJmsAdapter.getInstance();
 
