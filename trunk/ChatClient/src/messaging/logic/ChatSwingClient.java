@@ -40,18 +40,13 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 		messageProducer.connectToServer(localConnection);
 
 		gui = new SwingWindow(this);
+		setNotLoggedin();
 	}
 
 	@Override
 	public void gotSuccess() {
 		gui.AddLineToLog("System: sucess");
-		gui.SetStatusColor(Color.GREEN);
-		gui.toggleLoginOut();
-		gui.SetShowRegister(false);
-		gui.SetShowCreate(true);
-		gui.SetShowJoin(true);
-		gui.SetShowPartyUser(true);
-		// user is logged in
+		setLogedin();
 	}
 
 	@Override
@@ -65,23 +60,13 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 	@Override
 	public void gotLogout() {
 		gui.AddLineToLog("System: Logout");
-		gui.SetStatusColor(Color.YELLOW);
-		gui.toggleLoginOut();
-		gui.SetShowRegister(true);
-		gui.SetShowJoin(false);
-		gui.SetShowInvite(false);
-		gui.SetShowCreate(false);
-		gui.SetShowPartyUser(false);
+		setNotLoggedin();
 	}
 
 	@Override
 	public void gotChatClosed() {
 		gui.AddLineToLog("System: Chat closed");
-		gui.SetStatusColor(Color.GREEN);
-		gui.SetShowJoin(true);
-		gui.SetShowCreate(true);
-		gui.SetShowInvite(false);
-		gui.SetShowLogout(true);
+		setLogedin();
 	}
 
 	@Override
@@ -98,18 +83,12 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 
 	@Override
 	public void gotChatStarted() {
-		// in own chat
-		gui.SetStatusColor(Color.PINK);
-		gui.SetShowJoin(false);
-		gui.SetShowInvite(true);
-		gui.SetShowCreate(false);
-		gui.SetShowLogout(false);
+		setInOwnChat();
 	}
 
 	@Override
 	public void gotParticipating() {
-		// in other char
-		gui.SetStatusColor(Color.PINK);
+		setInOtherChat();
 	}
 
 	@Override
@@ -139,7 +118,7 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 
 	@Override
 	public void gotDenied(String cNN) {
-		// TODO Auto-generated method stub
+		setLogedin();
 	}
 
 	@Override
@@ -196,6 +175,13 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 	}
 
 	/**
+	 * User is in a chatroom and want to leave it
+	 */
+	public void buttonLeavePressed() {
+		state.onLeave();
+	}
+
+	/**
 	 * User has selected an item from a ListBrowser
 	 */
 	public void buttonFromListBrowserPressed(String item, String listType) {
@@ -240,5 +226,42 @@ public class ChatSwingClient implements ChatServerMessageReceiver {
 	@Override
 	public void setState(ChatClientState state) {
 		this.state = state;
+	}
+
+	private void setLogedin() {
+		gui.SetStatusColor(Color.GREEN);
+		gui.setFirstButtonUsage("Logout");
+		gui.SetShowJoin(true);
+		gui.SetShowCreate(true);
+		gui.SetShowInvite(false);
+		gui.SetShowLogout(true);
+	}
+
+	private void setNotLoggedin() {
+		gui.SetStatusColor(Color.YELLOW);
+		gui.setFirstButtonUsage("Login");
+		gui.SetShowRegister(true);
+		gui.SetShowJoin(false);
+		gui.SetShowInvite(false);
+		gui.SetShowCreate(false);
+		gui.SetShowPartyUser(false);
+	}
+
+	private void setInOtherChat() {
+		gui.SetStatusColor(Color.PINK);
+		gui.setFirstButtonUsage("Leave");
+		gui.SetShowJoin(false);
+		gui.SetShowInvite(false);
+		gui.SetShowCreate(false);
+		gui.SetShowLogout(false);
+	}
+
+	private void setInOwnChat() {
+		gui.SetStatusColor(Color.PINK);
+		gui.setFirstButtonUsage("Leave");
+		gui.SetShowJoin(false);
+		gui.SetShowInvite(true);
+		gui.SetShowCreate(false);
+		gui.SetShowLogout(false);
 	}
 }
