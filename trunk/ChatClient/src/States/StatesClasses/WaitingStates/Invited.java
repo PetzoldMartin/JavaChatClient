@@ -4,6 +4,7 @@ import javax.jms.JMSException;
 
 import States.ChatClientState;
 import States.StatesClasses.LoggedIn;
+import States.StatesClasses.ChattingStates.InOtherChat;
 
 public class Invited extends AbstractWaiting {
 
@@ -31,7 +32,7 @@ public class Invited extends AbstractWaiting {
 	public void onAcceptInvitataion() {
 		try {
 			messageProducer.acceptInvitation();
-			new LoggedIn(this);
+			new InOtherChat(this);
 		} catch (JMSException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

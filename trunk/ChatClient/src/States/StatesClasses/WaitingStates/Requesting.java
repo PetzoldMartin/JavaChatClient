@@ -28,6 +28,7 @@ public class Requesting extends AbstractWaiting {
 		new InOtherChat(this);
 	}
 
+	@Override
 	public void onCancel() {
 		try {
 			messageProducer.cancel();

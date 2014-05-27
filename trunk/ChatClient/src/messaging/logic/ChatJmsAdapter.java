@@ -50,7 +50,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 		return RefID;
 	}
 
-	private ChatJmsAdapter() {
+	public ChatJmsAdapter() {
 
 	}
 
@@ -180,26 +180,38 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 	}
 
 	@Override
-	public void invite(String CNN) throws JMSException {
+	public void invite(String chatterID) throws JMSException {
 		TextMessage message = createMessage(chatServiceQ);
 		message.setStringProperty(MessageHeader.MsgKind.toString(),
 				MessageKind.chatterMsgInvite.toString());
 		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
-		message.setStringProperty(MessageHeader.RefID.toString(), CNN);
+		message.setStringProperty(MessageHeader.RefID.toString(), chatterID);
 		message.setStringProperty(MessageHeader.ChatroomID.toString(), CID);
 		requestProducer.send(chatServiceQ, message);
 
 	}
 
 	@Override
-	public void reject() throws JMSException {
-		sendParameterLessSimpleRequest(MessageKind.chatterMsgReject.toString());
+	public void reject(String chatterID) throws JMSException {
+		TextMessage message = createMessage(chatServiceQ);
+		message.setStringProperty(MessageHeader.MsgKind.toString(),
+				MessageKind.chatterMsgReject.toString());
+		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
+		message.setStringProperty(MessageHeader.RefID.toString(), chatterID);
+		message.setStringProperty(MessageHeader.ChatroomID.toString(), CID);
+		requestProducer.send(chatServiceQ, message);
 
 	}
 
 	@Override
-	public void accept() throws JMSException {
-		sendParameterLessSimpleRequest(MessageKind.chatterMsgAccept.toString());
+	public void accept(String chatterID) throws JMSException {
+		TextMessage message = createMessage(chatServiceQ);
+		message.setStringProperty(MessageHeader.MsgKind.toString(),
+				MessageKind.chatterMsgAccept.toString());
+		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
+		message.setStringProperty(MessageHeader.RefID.toString(), chatterID);
+		message.setStringProperty(MessageHeader.ChatroomID.toString(), CID);
+		requestProducer.send(chatServiceQ, message);
 
 	}
 

@@ -102,16 +102,20 @@ public interface ChatServerMessageProducer {
 	/**
 	 * reject an Invitation
 	 * 
+	 * @param chatterID
+	 * 
 	 * @throws JMSException
 	 */
-	void reject() throws JMSException;
+	void reject(String chatterID) throws JMSException;
 
 	/**
 	 * accept an request
 	 * 
+	 * @param chatterID
+	 * 
 	 * @throws JMSException
 	 */
-	void accept() throws JMSException;
+	void accept(String chatterID) throws JMSException;
 
 	/**
 	 * 

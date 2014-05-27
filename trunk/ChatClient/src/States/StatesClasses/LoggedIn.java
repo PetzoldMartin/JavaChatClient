@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.jms.JMSException;
 
 import States.ChatClientState;
+import States.StatesClasses.WaitingStates.Invited;
 import States.StatesClasses.WaitingStates.Requesting;
 
 public class LoggedIn extends ChatClientState {
@@ -42,9 +43,9 @@ public class LoggedIn extends ChatClientState {
 	}
 
 	@Override
-	public void onRequest(String theParticipant) {
+	public void onRequest(String chatRoomID) {
 		try {
-			messageProducer.requestParticipian(theParticipant);
+			messageProducer.requestParticipian(chatRoomID);
 			new Requesting(this);
 		} catch (JMSException e) {
 			// TODO Auto-generated catch block
@@ -79,4 +80,11 @@ public class LoggedIn extends ChatClientState {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public void gotInvite(String chatterID, String chatRoomID) {
+		messageReceiver.gotInvite(chatterID, chatRoomID);
+		new Invited(this);
+	}
+
 }

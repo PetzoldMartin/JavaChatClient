@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.jms.JMSException;
 
 import States.ChatClientState;
+import States.StatesClasses.LoggedIn;
 
 public class InOwnChat extends AbstractChatting {
 
@@ -17,40 +18,64 @@ public class InOwnChat extends AbstractChatting {
 	public void gotChatters(ArrayList<String> chatters) {
 		messageReceiver.gotChatters(chatters);
 	}
-	public void gotRequestCancelled() {
-		unexpectedEvent();
-	}
 
-	public void gotRequest() {
-		unexpectedEvent();
-	}
-
-	public void gotAccepted() {
-		unexpectedEvent();
-	}
-
-	public void gotDenied() {
-		unexpectedEvent();
+	@Override
+	public void gotRequestCancelled(String chatterID) {
+		messageReceiver.gotRequestCancelled(chatterID);
 	}
 
 	@Override
-	public void onAccept() {
-		unexpectedEvent();
+	public void gotRequest(String chatterID) {
+		messageReceiver.gotRequest(chatterID);
 	}
 
-	public void onReject() {
-		unexpectedEvent();
+	@Override
+	public void gotAccepted(String chatterID) {
+		messageReceiver.gotAccepted(chatterID);
 	}
 
-	public void onInvite() {
-		unexpectedEvent();
+	@Override
+	public void gotDenied(String chatterID) {
+		messageReceiver.gotDenied(chatterID);
+	}
+
+	@Override
+	public void onAccept(String chatterID) {
+		try {
+			messageProducer.accept(chatterID);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	@Override
+	public void onReject(String chatterID) {
+		try {
+			messageProducer.reject(chatterID);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	@Override
+	public void onInvite(String chatterID) {
+		try {
+			messageProducer.invite(chatterID);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 	@Override
 	public void onChatClose() {
-		unexpectedEvent();
+		try {
+			messageProducer.close();
+			new LoggedIn(this);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
-	
+
 	@Override
 	public void onAskForChatters() {
 		try {
