@@ -33,10 +33,7 @@ public class main_Test {
 						+ "requestParticipian( parameter: " + chatterID + ")");
 			}
 
-			@Override
-			public void reject() throws JMSException {
-				System.out.println(this.toString() + "requestParticipian() ");
-			}
+
 
 			@Override
 			public void register(String uname, String pword) throws Exception {
@@ -116,8 +113,15 @@ public class main_Test {
 
 			}
 
+
 			@Override
-			public void accept() throws JMSException {
+			public void reject(String chatterID) throws JMSException {
+				System.out.println(this.toString() + "requestParticipian() ");
+
+			}
+
+			@Override
+			public void accept(String chatterID) throws JMSException {
 				// TODO Auto-generated method stub
 
 			}

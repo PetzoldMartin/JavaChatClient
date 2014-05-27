@@ -95,7 +95,7 @@ public abstract class ChatClientState {
 	 * 
 	 * @param request
 	 */
-	public void onCancel(String request) {
+	public void onCancel() {
 		unexpectedEvent();
 	};
 
@@ -114,7 +114,7 @@ public abstract class ChatClientState {
 	};
 
 	/**
-	 * Accept a request, go to state in "other chat" a substate of "chatting"
+	 * accept an invitation from a username, go from state waiting to chatting
 	 * 
 	 * @param request
 	 */
@@ -141,9 +141,10 @@ public abstract class ChatClientState {
 	};
 
 	/**
-	 * accept an invitation from a username, go from state waiting to chatting
+	 * Accept a request, go to state in "other chat" a substate of "chatting"
+	 * 
 	 */
-	public void onAccept() {
+	public void onAccept(String chatterID) {
 		unexpectedEvent();
 	};
 
@@ -203,7 +204,8 @@ public abstract class ChatClientState {
 	/**
 	 * the given invitation was rejected from the target username
 	 * 
-	 * @param username, who reject the invitation
+	 * @param username
+	 *            , who reject the invitation
 	 */
 	public void gotRejected(String username) {
 		unexpectedEvent();
@@ -239,7 +241,8 @@ public abstract class ChatClientState {
 	/**
 	 * a new Participant entered the chattroom.
 	 * 
-	 * @param chatterID, the new participants ID
+	 * @param chatterID
+	 *            , the new participants ID
 	 */
 	public void gotParticipantEntered(String chatterID) {
 		unexpectedEvent();
@@ -248,7 +251,8 @@ public abstract class ChatClientState {
 	/**
 	 * a participant leave the chatroom.
 	 * 
-	 * @param chatterID, the participant who left
+	 * @param chatterID
+	 *            , the participant who left
 	 */
 	public void gotParticipantLeft(String chatterID) {
 		unexpectedEvent();
