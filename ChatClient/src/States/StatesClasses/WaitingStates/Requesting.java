@@ -13,7 +13,9 @@ public class Requesting extends AbstractWaiting {
 		// TODO Auto-generated constructor stub
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see States.ChatClientState#gotRejected()
 	 */
 	@Override

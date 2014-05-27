@@ -25,12 +25,12 @@ public class AbstractChatting extends ChatClientState {
 	public void gotNewChat(String chatterID, String messageText) {
 		messageReceiver.gotNewChat(chatterID, messageText);
 	}
-	
+
 	@Override
 	public void gotParticipantEntered(String chatterID) {
 		messageReceiver.gotParticipantEntered(chatterID);
 	}
-	
+
 	@Override
 	public void gotParticipantLeft(String chatterID) {
 		messageReceiver.gotParticipantLeft(chatterID);

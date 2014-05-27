@@ -33,8 +33,6 @@ public class main_Test {
 						+ "requestParticipian( parameter: " + chatterID + ")");
 			}
 
-
-
 			@Override
 			public void register(String uname, String pword) throws Exception {
 				// TODO Auto-generated method stub
@@ -107,9 +105,6 @@ public class main_Test {
 
 			}
 
-
-
-
 			@Override
 			public void reject(String chatterID) throws JMSException {
 				System.out.println(this.toString() + "requestParticipian() ");
@@ -129,27 +124,26 @@ public class main_Test {
 			}
 		};
 		messageReceiver = new ChatServerMessageReceiver() {
-			
+
 			@Override
 			public void gotSuccess() {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void gotLogout() {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void gotFail() {
 				// TODO Auto-generated method stub
-				
+
 			}
 		};
 	}
-	
 
 	// public static void main(String[] args) {
 	// NotLoggedIn notLoggedInTest = new NotLoggedIn(messageProducer,

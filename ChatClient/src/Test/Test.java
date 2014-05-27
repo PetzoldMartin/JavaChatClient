@@ -8,7 +8,7 @@ public class Test {
 	public static void main(String[] args) throws Exception {
 
 		ChatServer.main(args);
-		ClientOnly.main(new String[] { "name", "pw" });
+		ClientOnly.main(new String[] { "user1", "pw" });
 	}
 
 }
