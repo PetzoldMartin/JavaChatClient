@@ -4,7 +4,7 @@ import javax.jms.JMSException;
 
 import States.ChatClientState;
 
-public abstract class AbstractChatting extends ChatClientState {
+public class AbstractChatting extends ChatClientState {
 
 	public AbstractChatting(ChatClientState oldState) {
 		super(oldState);
