@@ -3,7 +3,7 @@ package States.StatesClasses.WaitingStates;
 import States.ChatClientState;
 import States.StatesClasses.LoggedIn;
 
-public abstract class AbstractWaiting extends ChatClientState {
+public class AbstractWaiting extends ChatClientState {
 
 	public AbstractWaiting(ChatClientState oldState) {
 		super(oldState);
