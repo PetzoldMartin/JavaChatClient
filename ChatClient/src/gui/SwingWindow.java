@@ -19,7 +19,6 @@ import messaging.logic.ChatGUIAdapter;
 public class SwingWindow {
 
 	private final ChatGUIAdapter chatClient;
-	private final boolean toggleLoginOut; // true -> login false -> logout
 
 	private JFrame frame;
 	private JTextField txtName;
@@ -39,22 +38,18 @@ public class SwingWindow {
 	private JButton btnInvite;
 	private JTextField txtUser;
 
-	public SwingWindow() {
-		this(ChatGUIAdapter.getInstance());
-	}
-
 	/**
 	 * Create the application.
 	 * 
 	 * @wbp.parser.constructor
 	 */
 	public SwingWindow(ChatGUIAdapter chatClient) {
-		toggleLoginOut = true;
 		initialize();
 		frame.validate();
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.chatClient = chatClient;
+		chatClient.setGui(this);
 	}
 
 	public SwingWindow(String user, String password) {
@@ -213,6 +208,10 @@ public class SwingWindow {
 
 	public void SetPasswordField(String password) {
 		txtPassword.setText(password);
+	}
+
+	public void setName(String name) {
+		txtName.setText(name);
 	}
 
 	public void setFirstButtonUsage(String usage) {

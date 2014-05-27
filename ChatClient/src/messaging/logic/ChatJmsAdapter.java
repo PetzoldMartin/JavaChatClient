@@ -50,7 +50,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 		return RefID;
 	}
 
-	public ChatJmsAdapter() {
+	private ChatJmsAdapter() {
 
 	}
 

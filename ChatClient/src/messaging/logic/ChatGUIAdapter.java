@@ -25,22 +25,20 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	private SwingWindow gui;
 	private ChatClientState state;
 
-	public ChatGUIAdapter() {
-		myInit();
+	public static ChatGUIAdapter getInstance() {
+		if (chatSwingClient == null) {
+			chatSwingClient = new ChatGUIAdapter();
+		}
+		return chatSwingClient;
 	}
 
-	private void myInit() {
+	private ChatGUIAdapter() {
 		ChatServerMessageProducer messageProducer = ChatJmsAdapter
 				.getInstance();
-		// messageProducer.setMessageReceiver(this);
-
 		state = new NotLoggedIn(messageProducer, this);
-		messageProducer.setState(state);
+		// messageProducer.setState(state);
 		String localConnection = "tcp://localhost:61616";
 		messageProducer.connectToServer(localConnection);
-
-		gui = new SwingWindow(this);
-		setNotLoggedin();
 	}
 
 	@Override
@@ -129,9 +127,6 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 
 		// call register on state
 		state.onRegister(userName, password);
-
-		// clear password for safety
-		gui.SetPasswordField("");
 	}
 
 	/**
@@ -201,13 +196,6 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 
 	public void buttonCreateChatPressed() {
 		state.onStartChat();
-	}
-
-	public static ChatGUIAdapter getInstance() {
-		if (chatSwingClient == null) {
-			chatSwingClient = new ChatGUIAdapter();
-		}
-		return chatSwingClient;
 	}
 
 	@Override
@@ -283,5 +271,10 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	public void gotRejected(String chatterID) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void setGui(SwingWindow gui) {
+		this.gui = gui;
+		setNotLoggedin();
 	}
 }
