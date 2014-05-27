@@ -191,7 +191,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 		// Add message to Log
 		gui.AddLineToLog(userName + ": " + message);
 
-		// state.onChat(message);
+		state.onChat(message);
 	}
 
 	public void buttonCreateChatPressed() {
