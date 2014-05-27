@@ -1,5 +1,7 @@
 package States.StatesClasses.ChattingStates;
 
+import java.util.ArrayList;
+
 import javax.jms.JMSException;
 
 import States.ChatClientState;
@@ -11,6 +13,10 @@ public class InOwnChat extends AbstractChatting {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public void gotChatters(ArrayList<String> chatters) {
+		messageReceiver.gotChatters(chatters);
+	}
 	public void gotRequestCancelled() {
 		unexpectedEvent();
 	}

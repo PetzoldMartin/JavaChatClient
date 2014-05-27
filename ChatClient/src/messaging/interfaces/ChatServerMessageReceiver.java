@@ -70,6 +70,7 @@ public interface ChatServerMessageReceiver {
 
 	void gotChatters(ArrayList<String> chatters);
 
+
 	
 
 

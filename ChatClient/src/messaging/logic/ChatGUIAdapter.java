@@ -79,10 +79,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 		}
 	}
 
-	@Override
-	public void gotReject() {
-		gui.AddLineToLog("System: Your Join Request was rejected by the Room Owner");
-	}
+
 
 	@Override
 	public void gotChatStarted(String chatId) {
@@ -280,5 +277,11 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 		gui.SetShowCreate(false);
 		gui.SetShowLogout(true);
 		gui.SetShowRegister(false);
+	}
+
+	@Override
+	public void gotRejected(String chatterID) {
+		// TODO Auto-generated method stub
+
 	}
 }
