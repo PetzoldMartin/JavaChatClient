@@ -132,12 +132,12 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 	}
 
 	@Override
-	public void requestParticipian(String cID) throws JMSException {
+	public void requestParticipian(String chatterID) throws JMSException {
 		TextMessage message = createMessage(chatServiceQ);
 		message.setStringProperty(MessageHeader.MsgKind.toString(),
 				MessageKind.chatterMsgRequestParticipation.toString());
 		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
-		message.setStringProperty(MessageHeader.RefID.toString(), cID);
+		message.setStringProperty(MessageHeader.RefID.toString(), chatterID);
 		requestProducer.send(chatServiceQ, message);
 
 	}

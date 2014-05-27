@@ -147,7 +147,7 @@ public interface ChatServerMessageProducer {
 	 * @param cID
 	 * @throws JMSException
 	 */
-	void requestParticipian(String cID) throws JMSException;
+	void requestParticipian(String chatterID) throws JMSException;
 
 	void setState(ChatClientState chatClientState);
 
