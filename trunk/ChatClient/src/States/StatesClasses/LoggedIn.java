@@ -83,8 +83,9 @@ public class LoggedIn extends ChatClientState {
 
 	@Override
 	public void gotInvite(String chatterID, String chatRoomID) {
-		messageReceiver.gotInvite(chatterID, chatRoomID);
 		new Invited(this);
+		messageReceiver.gotInvite(chatterID, chatRoomID);
+
 	}
 
 }
