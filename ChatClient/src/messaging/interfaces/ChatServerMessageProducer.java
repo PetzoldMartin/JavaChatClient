@@ -151,15 +151,5 @@ public interface ChatServerMessageProducer {
 
 	void setState(ChatClientState chatClientState);
 
-	/**
-	 * a requested invitation was rejected from the target 
-	 * @param username, the target
-	 * @throws JMSException
-	 */
-	void gotRejected(String username) throws JMSException;
 
-	/**
-	 * if a chat is closed this is called every time on every state
-	 */
-	void gotChatClosed() throws JMSException;
 }
