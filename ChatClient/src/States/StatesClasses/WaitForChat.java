@@ -12,7 +12,8 @@ public class WaitForChat extends ChatClientState {
 
 	@Override
 	public void gotChatStarted(String chatID) {
-		messageReceiver.gotChatStarted(chatID);
 		new InOwnChat(this);
+		messageReceiver.gotChatStarted(chatID);
+
 	}
 }
