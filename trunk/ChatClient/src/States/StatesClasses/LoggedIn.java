@@ -67,8 +67,9 @@ public class LoggedIn extends ChatClientState {
 
 	@Override
 	public void gotLogout() {
-		messageReceiver.gotLogout();
 		new NotLoggedIn(this);
+		messageReceiver.gotLogout();
+
 	}
 
 	@Override
