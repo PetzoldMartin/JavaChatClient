@@ -29,9 +29,10 @@ public class Invited extends AbstractWaiting {
 		}
 	}
 
-	public void onAcceptInvitataion() {
+	@Override
+	public void onAcceptInvitation(String request) {
 		try {
-			messageProducer.acceptInvitation();
+			messageProducer.acceptInvitation(request);
 			new InOtherChat(this);
 		} catch (JMSException e) {
 			// TODO Auto-generated catch block

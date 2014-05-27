@@ -159,9 +159,14 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 	}
 
 	@Override
-	public void acceptInvitation() throws JMSException {
-		sendParameterLessSimpleRequest(MessageKind.chatterMsgAcceptInvitation
-				.toString());
+	public void acceptInvitation(String request) throws JMSException {
+		TextMessage message = createMessage(chatServiceQ);
+		message.setStringProperty(MessageHeader.MsgKind.toString(),
+				MessageKind.chatterMsgAcceptInvitation.toString());
+		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
+		message.setStringProperty(MessageHeader.RefID.toString(), request);
+		message.setStringProperty(MessageHeader.ChatroomID.toString(), CID);
+		requestProducer.send(chatServiceQ, message);
 	}
 
 	@Override

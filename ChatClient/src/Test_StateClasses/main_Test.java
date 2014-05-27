@@ -107,11 +107,7 @@ public class main_Test {
 
 			}
 
-			@Override
-			public void acceptInvitation() throws JMSException {
-				// TODO Auto-generated method stub
 
-			}
 
 
 			@Override
@@ -122,6 +118,12 @@ public class main_Test {
 
 			@Override
 			public void accept(String chatterID) throws JMSException {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void acceptInvitation(String request) throws JMSException {
 				// TODO Auto-generated method stub
 
 			}

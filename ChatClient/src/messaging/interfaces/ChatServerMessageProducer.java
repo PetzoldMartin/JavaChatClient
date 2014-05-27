@@ -80,9 +80,11 @@ public interface ChatServerMessageProducer {
 	/**
 	 * accept an Invitation
 	 * 
+	 * @param request
+	 * 
 	 * @throws JMSException
 	 */
-	void acceptInvitation() throws JMSException;
+	void acceptInvitation(String request) throws JMSException;
 
 	/**
 	 * close a chat you own
