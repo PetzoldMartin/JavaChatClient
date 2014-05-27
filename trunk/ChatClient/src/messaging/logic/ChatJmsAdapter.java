@@ -443,12 +443,12 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 	 * 
 	 * @return instance of {@link ChatJmsAdapter}
 	 */
-	public static ChatJmsAdapter getInstance() {
-		if (chatJmsAdapter == null) {
-			chatJmsAdapter = new ChatJmsAdapter();
-		}
-		return chatJmsAdapter;
-	}
+	// public static ChatJmsAdapter getInstance() {
+	// if (chatJmsAdapter == null) {
+	// chatJmsAdapter = new ChatJmsAdapter();
+	// }
+	// return chatJmsAdapter;
+	// }
 
 	/**
 	 * 

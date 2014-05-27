@@ -53,7 +53,7 @@ public class SwingWindow {
 	}
 
 	public SwingWindow(String user, String password) {
-		this(ChatGUIAdapter.getInstance());
+		this(new ChatGUIAdapter());
 		this.txtName.setText(user);
 		this.txtPassword.setText(password);
 	}

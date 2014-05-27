@@ -2,14 +2,12 @@ package Test.serverStarts;
 
 import gui.SwingWindow;
 
-import javax.jms.JMSException;
-
-import messaging.logic.ChatJmsAdapter;
+import javax.swing.SwingUtilities;
 
 public class ClientOnly {
 
 	public static void main(final String[] args) throws Exception {
-		Thread thread = new Thread(new Runnable() {
+		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				String user, password;
@@ -20,16 +18,15 @@ public class ClientOnly {
 					user = "name";
 					password = "password";
 				}
-				new SwingWindow(user, password);
-				try {
-					ChatJmsAdapter jmsAdapter = ChatJmsAdapter.getInstance();
-					jmsAdapter.register(user, password);
-				} catch (JMSException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				SwingWindow window = new SwingWindow(user, password);
+				// try {
+				// ChatJmsAdapter jmsAdapter = ChatJmsAdapter.getInstance();
+				// jmsAdapter.register(user, password);
+				// } catch (JMSException e) {
+				// // TODO Auto-generated catch block
+				// e.printStackTrace();
+				// }
 			}
 		});
-		thread.start();
 	}
 }

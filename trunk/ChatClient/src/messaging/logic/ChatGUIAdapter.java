@@ -25,16 +25,15 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	private SwingWindow gui;
 	private ChatClientState state;
 
-	public static ChatGUIAdapter getInstance() {
-		if (chatSwingClient == null) {
-			chatSwingClient = new ChatGUIAdapter();
-		}
-		return chatSwingClient;
-	}
+	// public static ChatGUIAdapter getInstance() {
+	// if (chatSwingClient == null) {
+	// chatSwingClient = new ChatGUIAdapter();
+	// }
+	// return chatSwingClient;
+	// }
 
-	private ChatGUIAdapter() {
-		ChatServerMessageProducer messageProducer = ChatJmsAdapter
-				.getInstance();
+	public ChatGUIAdapter() {
+		ChatServerMessageProducer messageProducer = new ChatJmsAdapter();
 		state = new NotLoggedIn(messageProducer, this);
 		// messageProducer.setState(state);
 		String localConnection = "tcp://localhost:61616";
