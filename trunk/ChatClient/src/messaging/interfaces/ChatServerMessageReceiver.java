@@ -40,8 +40,10 @@ public interface ChatServerMessageReceiver {
 	void gotInvite(String chatter, String chatID);
 
 	/**
-	 * a requested invitation was rejected from the target 
-	 * @param chatterID, the target
+	 * a requested invitation was rejected from the target
+	 * 
+	 * @param chatterID
+	 *            , the target
 	 * @throws JMSException
 	 */
 	void gotRejected(String chatterID);
@@ -69,10 +71,5 @@ public interface ChatServerMessageReceiver {
 	void setState(ChatClientState chatClientState);
 
 	void gotChatters(ArrayList<String> chatters);
-
-
-	
-
-
 
 }

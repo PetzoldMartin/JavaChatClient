@@ -19,7 +19,7 @@ public class Invited extends AbstractWaiting {
 	/**
 	 * deny an invite
 	 */
-	public void onDeny(){
+	public void onDeny() {
 		try {
 			messageProducer.deny();
 			new LoggedIn(this);

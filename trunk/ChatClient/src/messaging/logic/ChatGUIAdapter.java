@@ -76,8 +76,6 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 		}
 	}
 
-
-
 	@Override
 	public void gotChatStarted(String chatId) {
 		// TODO implement chat id

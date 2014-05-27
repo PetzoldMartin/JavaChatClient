@@ -157,5 +157,4 @@ public interface ChatServerMessageProducer {
 
 	void setState(ChatClientState chatClientState);
 
-
 }
