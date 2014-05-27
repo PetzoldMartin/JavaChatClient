@@ -2,11 +2,9 @@ package Test_StateClasses;
 
 import javax.jms.JMSException;
 
-import de.fh_zwickau.pti.chatclientcommon.ChatServerMessageReceiver;
-
+import messaging.interfaces.ChatServerMessageProducer;
 import States.ChatClientState;
-import States.StatesClasses.*;
-import messaging.interfaces.*;
+import de.fh_zwickau.pti.chatclientcommon.ChatServerMessageReceiver;
 
 public class main_Test {
 
@@ -147,9 +145,9 @@ public class main_Test {
 	}
 	
 
-	public static void main(String[] args) {
-		NotLoggedIn notLoggedInTest = new NotLoggedIn(messageProducer,
-				messageReceiver);
-		
-	}
+	// public static void main(String[] args) {
+	// NotLoggedIn notLoggedInTest = new NotLoggedIn(messageProducer,
+	// messageReceiver);
+	//
+	// }
 }
