@@ -14,12 +14,14 @@ public class LoggedIn extends ChatClientState {
 		// TODO Auto-generated constructor stub
 	}
 
-	// @Override TODO needed?
+	// @Override TODO needed? no, because its not
+	// interesting for the user in this state
 	// public void gotChatClosed() {
 	// messageReceiver.gotChatClosed();
 	// }
 
-	// @Override TODO needed?
+	// @Override TODO needed? no, because its not
+	// interesting for the user in this state
 	// public void gotDenied(String CNN) {
 	// messageReceiver.gotDenied(CNN);
 	// }

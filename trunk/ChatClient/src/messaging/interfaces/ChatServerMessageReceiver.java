@@ -5,6 +5,8 @@ package messaging.interfaces;
 
 import java.util.ArrayList;
 
+import javax.jms.JMSException;
+
 import States.ChatClientState;
 
 /**
@@ -30,11 +32,19 @@ public interface ChatServerMessageReceiver {
 	 */
 	void gotLogout();
 
+	/**
+	 * if a chat is closed this is called every time on every state
+	 */
 	void gotChatClosed();
 
 	void gotInvite(String chatter, String chatID);
 
-	void gotReject();
+	/**
+	 * a requested invitation was rejected from the target 
+	 * @param chatterID, the target
+	 * @throws JMSException
+	 */
+	void gotRejected(String chatterID);
 
 	void gotChatStarted(String chatID);
 
@@ -59,4 +69,9 @@ public interface ChatServerMessageReceiver {
 	void setState(ChatClientState chatClientState);
 
 	void gotChatters(ArrayList<String> chatters);
+
+	
+
+
+
 }
