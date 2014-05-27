@@ -2,6 +2,8 @@ package Test_StateClasses;
 
 import javax.jms.JMSException;
 
+import de.fh_zwickau.pti.chatclientcommon.ChatServerMessageReceiver;
+
 import States.ChatClientState;
 import States.StatesClasses.*;
 import messaging.interfaces.*;
@@ -27,15 +29,15 @@ public class main_Test {
 			}
 
 			@Override
-			public void requestParticipian(String chatterID) throws JMSException {
-				System.out.println(this.toString() + "requestParticipian( parameter: "
-						+ chatterID + ")");
+			public void requestParticipian(String chatterID)
+					throws JMSException {
+				System.out.println(this.toString()
+						+ "requestParticipian( parameter: " + chatterID + ")");
 			}
 
 			@Override
 			public void reject() throws JMSException {
-				// TODO Auto-generated method stub
-
+				System.out.println(this.toString() + "requestParticipian() ");
 			}
 
 			@Override
@@ -122,10 +124,32 @@ public class main_Test {
 
 			}
 		};
+		messageReceiver = new ChatServerMessageReceiver() {
+			
+			@Override
+			public void gotSuccess() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void gotLogout() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void gotFail() {
+				// TODO Auto-generated method stub
+				
+			}
+		};
 	}
+	
 
 	public static void main(String[] args) {
 		NotLoggedIn notLoggedInTest = new NotLoggedIn(messageProducer,
 				messageReceiver);
+		
 	}
 }
