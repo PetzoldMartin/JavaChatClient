@@ -199,7 +199,7 @@ public class Chatter extends User implements Serializable {
 		id = inMsg.getStringProperty(MessageHeader.ChatroomID.toString());
 		if (id != null)
 			outMsg.setStringProperty(MessageHeader.ChatroomID.toString(), id);
-		if (id==null&&kind.toString()==MessageKind.clientNewChat.toString())
+		if (id==null&&(kind.toString()==MessageKind.clientNewChat.toString()||kind.toString()==MessageKind.clientParticipantEntered.toString()||kind.toString()==MessageKind.clientParticipantLeft.toString()))
 			outMsg.setStringProperty(MessageHeader.RefID.toString(), inMsg.getStringProperty(MessageHeader.ChatterNickname.toString()));
 		outMsg.setJMSReplyTo(getReplyDestination());
 		outMsg.setJMSDestination(getClientDestination());
