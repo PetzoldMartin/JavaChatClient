@@ -4,3 +4,6 @@ After solve a TODO --> Delete TODO!
 
 // user has deny a chat invitation
 unexpected event: States.StatesClasses.WaitingStates.Invited->onDeny
+
+// user was rejected by chat owner
+unexpected event: States.StatesClasses.WaitingStates.Requesting->gotRejected
