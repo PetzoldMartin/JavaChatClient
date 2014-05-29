@@ -106,20 +106,27 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	}
 	
 	@Override
+	
 	public void gotRejected(String chatterID) {
 		// TODO Auto-generated method stub
 
 	}
 	
 	@Override
+	/**
+	 * Other user has joint the chat room
+	 */
 	public void gotParticipantEntered(String chatterID) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
+	/**
+	 * Other user has left the chat room
+	 */
 	public void gotParticipantLeft(String chatterID) {
-		// TODO Auto-generated method stub
+		gui.AddLineToLog(chatterID + ": has left the chatroom.");
 
 	}
 
@@ -130,9 +137,15 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	}
 
 	@Override
+	/**
+	 * Other user wants to join my chat
+	 */
 	public void gotRequest(String chatterID) {
-		// TODO Auto-generated method stub
-
+		if (JOptionPane.showConfirmDialog(null, "Accept " + chatterID + " to join?", "Other user want to joint",
+				JOptionPane.YES_NO_OPTION) == 0) {
+			// you accept Invite
+			state.onAccept(chatterID);
+		}
 	}
 	
 	
