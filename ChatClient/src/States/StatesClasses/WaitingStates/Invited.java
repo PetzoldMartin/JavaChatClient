@@ -19,9 +19,10 @@ public class Invited extends AbstractWaiting {
 	/**
 	 * deny an invite
 	 */
-	public void onDeny() {
+	@Override
+	public void onDeny(String Chatroomid) {
 		try {
-			messageProducer.deny();
+			messageProducer.deny(Chatroomid);
 			new LoggedIn(this);
 		} catch (JMSException e) {
 			// TODO Auto-generated catch block

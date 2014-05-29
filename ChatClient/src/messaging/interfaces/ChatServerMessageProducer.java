@@ -51,10 +51,11 @@ public interface ChatServerMessageProducer {
 
 	/**
 	 * deny an request
+	 * @param chatroomid 
 	 * 
 	 * @throws JMSException
 	 */
-	void deny() throws JMSException;
+	void deny(String chatroomid) throws JMSException;
 
 	/**
 	 * start a new chat

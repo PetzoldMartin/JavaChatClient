@@ -85,11 +85,7 @@ public class NotLoggedInTest {
 
 			}
 
-			@Override
-			public void deny() throws JMSException {
-				System.out.println(":");
-
-			}
+			
 
 			@Override
 			public void connectToServer(String brokerUri) {
@@ -137,6 +133,12 @@ public class NotLoggedInTest {
 			public void accept(String chatterID) throws JMSException {
 				System.out.println(":");
 
+			}
+
+			@Override
+			public void deny(String chatroomid) throws JMSException {
+				// TODO Auto-generated method stub
+				
 			}
 		};
 		messageReceiver = new ChatServerMessageReceiver() {
