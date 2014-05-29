@@ -119,7 +119,7 @@ public class SwingWindow {
 		btnSend.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				chatClient.btnSendPressed();
+				chatClient.buttonSendPressed();
 			}
 		});
 

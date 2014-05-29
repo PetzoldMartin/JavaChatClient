@@ -25,13 +25,6 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	private SwingWindow gui;
 	private ChatClientState state;
 
-	// public static ChatGUIAdapter getInstance() {
-	// if (chatSwingClient == null) {
-	// chatSwingClient = new ChatGUIAdapter();
-	// }
-	// return chatSwingClient;
-	// }
-
 	public ChatGUIAdapter() {
 		ChatServerMessageProducer messageProducer = new ChatJmsAdapter();
 		state = new NotLoggedIn(messageProducer, this);
@@ -40,6 +33,8 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 		messageProducer.connectToServer(localConnection);
 	}
 
+	// START GOT METHODS ///////////////////////////////// AREA //
+	
 	@Override
 	public void gotSuccess() {
 		gui.AddLineToLog("System: sucess");
@@ -113,9 +108,44 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	public void gotChatters(ArrayList<String> chatters) {
 		new ListBrowser(this, chatters, "Invite");
 	}
+	
+	@Override
+	public void gotRejected(String chatterID) {
+		// TODO Auto-generated method stub
 
-	// START BUTTON PRESSED AREA ////////////////
+	}
+	
+	@Override
+	public void gotParticipantEntered(String chatterID) {
+		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void gotParticipantLeft(String chatterID) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void gotRequestCancelled(String chatterID) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void gotRequest(String chatterID) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	
+	// END GOT METHODS //////////////////////////////////////////////////////// AREA //
+
+	
+	// START BUTTON PRESSED /////////////////////////////////////////////////// AREA //
+
+	
 	public void buttonRegisterPressed() {
 		userName = gui.getName();
 
@@ -182,7 +212,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	/**
 	 * Button to send a message is Pressed
 	 */
-	public void btnSendPressed() {
+	public void buttonSendPressed() {
 		String message = gui.getMessage();
 
 		// Add message to Log
@@ -195,35 +225,24 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 		state.onStartChat();
 	}
 
+	
+	// END BUTTON PRESSED ///////////////////////////////////////////////////// AREA //
+	
+	
 	@Override
 	public void setState(ChatClientState state) {
 		this.state = state;
 	}
-
-	@Override
-	public void gotParticipantEntered(String chatterID) {
-		// TODO Auto-generated method stub
-
+	
+	public void setGui(SwingWindow gui) {
+		this.gui = gui;
+		setNotLoggedin();
 	}
 
-	@Override
-	public void gotParticipantLeft(String chatterID) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void gotRequestCancelled(String chatterID) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void gotRequest(String chatterID) {
-		// TODO Auto-generated method stub
-
-	}
-
+	
+	// START GUI SETTER /////////////////////////////////////////////////////// AREA //
+	
+	
 	private void setLogedin() {
 		gui.SetStatusColor(Color.GREEN);
 		gui.setFirstButtonUsage("Logout");
@@ -263,15 +282,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 		gui.SetShowLogout(true);
 		gui.SetShowRegister(false);
 	}
-
-	@Override
-	public void gotRejected(String chatterID) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void setGui(SwingWindow gui) {
-		this.gui = gui;
-		setNotLoggedin();
-	}
+	
+	
+	// END GUI SETTER ///////////////////////////////////////////////////////// AREA //
 }
