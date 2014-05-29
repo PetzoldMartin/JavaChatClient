@@ -64,6 +64,8 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 			// User accept Invite
 			state.onAcceptInvitation(chatID);
 			setInOtherChat();
+		} else {
+			state.onDeny(chatID);
 		}
 	}
 
@@ -107,8 +109,11 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	
 	@Override
 	
+	/**
+	 * Rejected by chat owner
+	 */
 	public void gotRejected(String chatterID) {
-		// TODO Auto-generated method stub
+		gui.AddLineToLog("your request to join a chat room was rejected by user: " + chatterID);
 
 	}
 	
@@ -117,7 +122,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	 * Other user has joint the chat room
 	 */
 	public void gotParticipantEntered(String chatterID) {
-		// TODO Auto-generated method stub
+		gui.AddLineToLog(chatterID + ": has joint the chatroom.");
 
 	}
 
@@ -131,8 +136,11 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	}
 
 	@Override
+	/**
+	 * The user that you have invited don't want to join your chat
+	 */
 	public void gotRequestCancelled(String chatterID) {
-		// TODO Auto-generated method stub
+		gui.AddLineToLog(chatterID + "don't want to join your chat!");
 
 	}
 
