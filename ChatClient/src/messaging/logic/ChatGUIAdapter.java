@@ -183,6 +183,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	 */
 	public void buttonLeavePressed() {
 		state.onLeave();
+		setLogedin();
 	}
 
 	/**
@@ -210,6 +211,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	 */
 	public void buttonClosePressed() {
 		state.onChatClose();
+		setLogedin();
 	}
 
 	/**
