@@ -36,17 +36,17 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 	private Session session;
 	private MessageProducer requestProducer;
 
-	private String CID, RefID, messageText;
+	private String chatroomId, referenceID, messageText;
 	private ArrayList<String> chatters, chatsWithOwners;
 
 	private ArrayList<ChatChatterRelationship> chatsAndChatters;
 
 	public String getCID() {
-		return CID;
+		return chatroomId;
 	}
 
 	public String getRefID() {
-		return RefID;
+		return referenceID;
 	}
 
 	public ChatJmsAdapter() {
@@ -131,7 +131,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 		message.setStringProperty(MessageHeader.MsgKind.toString(), MessageKind.chatterMsgDeny.toString());
 		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
 		message.setStringProperty(MessageHeader.ChatroomID.toString(), Chatroomid);
-		message.setStringProperty(MessageHeader.RefID.toString(), RefID);
+		message.setStringProperty(MessageHeader.RefID.toString(), referenceID);
 		requestProducer.send(chatServiceQ, message);
 	}
 
@@ -169,7 +169,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 				MessageKind.chatterMsgAcceptInvitation.toString());
 		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
 		message.setStringProperty(MessageHeader.RefID.toString(), request);
-		message.setStringProperty(MessageHeader.ChatroomID.toString(), CID);
+		message.setStringProperty(MessageHeader.ChatroomID.toString(), chatroomId);
 		requestProducer.send(chatServiceQ, message);
 	}
 
@@ -195,7 +195,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 				MessageKind.chatterMsgInvite.toString());
 		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
 		message.setStringProperty(MessageHeader.RefID.toString(), chatterID);
-		message.setStringProperty(MessageHeader.ChatroomID.toString(), CID);
+		message.setStringProperty(MessageHeader.ChatroomID.toString(), chatroomId);
 		requestProducer.send(chatServiceQ, message);
 
 	}
@@ -207,7 +207,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 				MessageKind.chatterMsgReject.toString());
 		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
 		message.setStringProperty(MessageHeader.RefID.toString(), chatterID);
-		message.setStringProperty(MessageHeader.ChatroomID.toString(), CID);
+		message.setStringProperty(MessageHeader.ChatroomID.toString(), chatroomId);
 		requestProducer.send(chatServiceQ, message);
 
 	}
@@ -219,7 +219,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 				MessageKind.chatterMsgAccept.toString());
 		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
 		message.setStringProperty(MessageHeader.RefID.toString(), chatterID);
-		message.setStringProperty(MessageHeader.ChatroomID.toString(), CID);
+		message.setStringProperty(MessageHeader.ChatroomID.toString(), chatroomId);
 		requestProducer.send(chatServiceQ, message);
 
 	}
@@ -289,8 +289,8 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 		TextMessage message = createMessage(chatServiceQ);
 		message.setStringProperty(MessageHeader.MsgKind.toString(), Msgkind);
 		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
-		message.setStringProperty(MessageHeader.ChatroomID.toString(), CID);
-		message.setStringProperty(MessageHeader.RefID.toString(), RefID);
+		message.setStringProperty(MessageHeader.ChatroomID.toString(), chatroomId);
+		message.setStringProperty(MessageHeader.RefID.toString(), referenceID);
 		requestProducer.send(chatServiceQ, message);
 	}
 
@@ -356,9 +356,9 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 
 					String msgKind = textMessage
 							.getStringProperty(MessageHeader.MsgKind.toString());
-					RefID = textMessage.getStringProperty(MessageHeader.RefID
+					referenceID = textMessage.getStringProperty(MessageHeader.RefID
 							.toString());
-					CID = textMessage
+					chatroomId = textMessage
 							.getStringProperty(MessageHeader.ChatroomID
 									.toString());
 					MessageKind messageKind = MessageKind.valueOf(msgKind);
@@ -406,7 +406,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 							SwingUtilities.invokeLater(new Runnable() {
 								@Override
 								public void run() {
-									state.gotChatStarted(CID);
+									state.gotChatStarted(chatroomId);
 								}
 							});
 						break;
@@ -415,7 +415,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 							SwingUtilities.invokeLater(new Runnable() {
 								@Override
 								public void run() {
-									state.gotNewChat(RefID, messageText);
+									state.gotNewChat(referenceID, messageText);
 								}
 							});
 						break;
@@ -433,7 +433,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 							SwingUtilities.invokeLater(new Runnable() {
 								@Override
 								public void run() {
-									state.gotRequest(RefID);
+									state.gotRequest(referenceID);
 								}
 							});
 						break;
@@ -451,7 +451,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 							SwingUtilities.invokeLater(new Runnable() {
 								@Override
 								public void run() {
-									state.gotRejected(RefID);
+									state.gotRejected(referenceID);
 								}
 							});
 						break;
@@ -460,7 +460,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 							SwingUtilities.invokeLater(new Runnable() {
 								@Override
 								public void run() {
-									state.gotRequestCancelled(RefID);
+									state.gotRequestCancelled(referenceID);
 								}
 							});
 						break;
@@ -469,7 +469,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 							SwingUtilities.invokeLater(new Runnable() {
 								@Override
 								public void run() {
-									state.gotInvite(RefID, CID);
+									state.gotInvite(referenceID, chatroomId);
 								}
 							});
 						break;
@@ -478,7 +478,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 							SwingUtilities.invokeLater(new Runnable() {
 								@Override
 								public void run() {
-									state.gotAccepted(RefID);
+									state.gotAccepted(referenceID);
 								}
 							});
 						break;
@@ -487,7 +487,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 							SwingUtilities.invokeLater(new Runnable() {
 								@Override
 								public void run() {
-									state.gotDenied(RefID);
+									state.gotDenied(referenceID);
 								}
 							});
 						break;
@@ -496,7 +496,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 							SwingUtilities.invokeLater(new Runnable() {
 								@Override
 								public void run() {
-									state.gotParticipantEntered(RefID);
+									state.gotParticipantEntered(referenceID);
 								}
 							});
 						break;
@@ -505,7 +505,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 							SwingUtilities.invokeLater(new Runnable() {
 								@Override
 								public void run() {
-									state.gotParticipantLeft(RefID);
+									state.gotParticipantLeft(referenceID);
 								}
 							});
 						break;
@@ -547,16 +547,6 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 		}
 	};
 
-	/**
-	 * get instance of {@link ChatJmsAdapter}
-	 * 
-	 * @return instance of {@link ChatJmsAdapter}
-	 */
-	// public static ChatJmsAdapter getInstance() {
-	// if (chatJmsAdapter == null) {
-	// chatJmsAdapter = new ChatJmsAdapter();
-	// }
-	// return chatJmsAdapter;
-	// }
+	
 
 }
