@@ -67,7 +67,8 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 				+ " Do you want to join?", "Got Invite from " + chatter,
 				JOptionPane.YES_NO_OPTION) == 0) {
 			// User accept Invite
-			state.onAcceptInvitation("todo");
+			state.onAcceptInvitation(chatID);
+			setInOtherChat();
 		}
 	}
 

@@ -1,4 +1,7 @@
 TODO LIST
 
-// state change fail?
+After solve a TODO --> Delete TODO!
+
+
+// 2014.05.29 09:15 >> state change fail?
 login -> create -> close  = unexpected event: States.StatesClasses.LoggedIn->gotChatClosed
