@@ -153,6 +153,8 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 				JOptionPane.YES_NO_OPTION) == 0) {
 			// you accept Invite
 			state.onAccept(chatterID);
+		} else {
+			state.onReject(chatterID);
 		}
 	}
 	
