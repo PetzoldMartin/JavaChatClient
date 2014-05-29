@@ -16,6 +16,11 @@ import javax.swing.JTextPane;
 
 import messaging.logic.ChatGUIAdapter;
 
+/**
+ * The Clients Swing GUI
+ * @author Andre Furchner
+ *
+ */
 public class SwingWindow {
 
 	private final ChatGUIAdapter chatClient;
@@ -183,7 +188,26 @@ public class SwingWindow {
 		txtUser.setColumns(10);
 
 	}
-
+	
+	/**
+	 * Add Text to the ChatLog
+	 * @param text Text to add
+	 */
+	public void AddLineToLog(String text) {
+		textPaneLog.setText(textPaneLog.getText() + "\n" + text);
+	}
+	
+	/**
+	 * Clears the clients SendMessage Text Field
+	 */
+	public void ClearSendTextField() {
+		txtSendmessage.setText("");
+	}
+	
+	
+	// S GET METHODS ////////////////////////////////////////////////////////// AREA //
+	
+	
 	public String getName() {
 		return txtName.getText();
 	}
@@ -199,11 +223,14 @@ public class SwingWindow {
 	public String getPartyUser() {
 		return txtUser.getText();
 	}
-
-	public void AddLineToLog(String text) {
-		textPaneLog.setText(textPaneLog.getText() + "\n" + text);
-	}
-
+	
+	
+	// E GET METHODS ////////////////////////////////////////////////////////// AREA //
+	
+	
+	// S SHOW AND HIDE GUI ELEMENTS /////////////////////////////////////////// AREA //
+	
+	
 	public void SetStatusColor(Color color) {
 		panelStatus.setBackground(color);
 	}
@@ -244,4 +271,8 @@ public class SwingWindow {
 		btnLoginOut.setVisible(show);
 	}
 
+	
+	// E SHOW AND HIDE GUI ELEMENTS ////////////////////////////////////////// AREA //
+	
+	
 }

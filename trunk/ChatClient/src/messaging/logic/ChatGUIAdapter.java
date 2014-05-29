@@ -218,6 +218,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	public void buttonSendPressed() {
 		String message = gui.getMessage();
 		state.onChat(message);
+		gui.ClearSendTextField();
 	}
 
 	public void buttonCreateChatPressed() {
