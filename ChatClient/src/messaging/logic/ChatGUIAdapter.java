@@ -17,11 +17,6 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 
 	// Singleton instance
 	private static ChatGUIAdapter chatSwingClient = null;
-
-	// client info
-	private String userName;
-	// TODO remove userName
-
 	private SwingWindow gui;
 	private ChatClientState state;
 
@@ -85,7 +80,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 
 	@Override
 	public void gotNewChat(String Chatter, String messageText) {
-		// TODO display chat msg
+		gui.AddLineToLog(Chatter + ": " + messageText);
 	}
 
 	@Override
@@ -148,7 +143,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 
 	
 	public void buttonRegisterPressed() {
-		userName = gui.getName();
+		String userName = gui.getName();
 
 		// get password
 		String password = gui.getPassword();
@@ -161,7 +156,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	 * Button for Login is Pressed
 	 */
 	public void buttonLoginPressed() {
-		userName = gui.getName();
+		String userName = gui.getName();
 		String password = gui.getPassword();
 
 		state.onLogin(userName, password);
@@ -222,10 +217,6 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	 */
 	public void buttonSendPressed() {
 		String message = gui.getMessage();
-
-		// Add message to Log
-		gui.AddLineToLog(userName + ": " + message);
-
 		state.onChat(message);
 	}
 
