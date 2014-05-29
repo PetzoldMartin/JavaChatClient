@@ -92,6 +92,8 @@ public class SwingWindow {
 					chatClient.buttonLogoutPressed();
 				} else if (arg0.getActionCommand().equals("Leave")) {
 					chatClient.buttonLeavePressed();
+				} else if (arg0.getActionCommand().equals("Close")) {
+					chatClient.buttonClosePressed();
 				}
 			}
 		});

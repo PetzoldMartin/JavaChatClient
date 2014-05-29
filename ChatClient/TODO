@@ -1,0 +1,4 @@
+TODO LIST
+
+// state change fail?
+login -> create -> close  = unexpected event: States.StatesClasses.LoggedIn->gotChatClosed
