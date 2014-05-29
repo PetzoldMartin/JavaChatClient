@@ -30,7 +30,6 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 
 	private ChatClientState state;
 
-	private static ChatJmsAdapter chatJmsAdapter = null;
 	private String authToken = "";
 	private Destination chatServiceQ;
 	private Destination loginQ, reply;
@@ -127,8 +126,13 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 	}
 
 	@Override
-	public void deny() throws JMSException {
-		sendParameterLessSimpleRequest(MessageKind.chatterMsgDeny.toString());
+	public void deny(String Chatroomid) throws JMSException {
+		TextMessage message = createMessage(chatServiceQ);
+		message.setStringProperty(MessageHeader.MsgKind.toString(), MessageKind.chatterMsgDeny.toString());
+		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
+		message.setStringProperty(MessageHeader.ChatroomID.toString(), Chatroomid);
+		message.setStringProperty(MessageHeader.RefID.toString(), RefID);
+		requestProducer.send(chatServiceQ, message);
 	}
 
 	@Override
@@ -231,6 +235,27 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 				.toString());
 	}
 
+	/**
+	 * get instance of {@link ChatJmsAdapter}
+	 * 
+	 * @return instance of {@link ChatJmsAdapter}
+	 */
+	// public static ChatJmsAdapter getInstance() {
+	// if (chatJmsAdapter == null) {
+	// chatJmsAdapter = new ChatJmsAdapter();
+	// }
+	// return chatJmsAdapter;
+	// }
+	
+	/**
+	 * 
+	 * @param state
+	 */
+	@Override
+	public void setState(ChatClientState state) {
+		this.state = state;
+	}
+
 	private TextMessage createMessage(Destination destination)
 			throws JMSException {
 		TextMessage textMessage = session.createTextMessage();
@@ -238,6 +263,85 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 		textMessage.setJMSReplyTo(reply);
 		textMessage.setJMSDestination(destination);
 		return textMessage;
+	}
+
+	/**
+	 * get instance of {@link ChatJmsAdapter}
+	 * 
+	 * @return instance of {@link ChatJmsAdapter}
+	 */
+	// public static ChatJmsAdapter getInstance() {
+	// if (chatJmsAdapter == null) {
+	// chatJmsAdapter = new ChatJmsAdapter();
+	// }
+	// return chatJmsAdapter;
+	// }
+	
+	/**
+	 * method for an parameterless Msg
+	 * 
+	 * @param Msgkind
+	 * @throws JMSException
+	 */
+	private void sendParameterLessSimpleRequest(String Msgkind)
+			throws JMSException {
+		// TODO commit
+		TextMessage message = createMessage(chatServiceQ);
+		message.setStringProperty(MessageHeader.MsgKind.toString(), Msgkind);
+		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
+		message.setStringProperty(MessageHeader.ChatroomID.toString(), CID);
+		message.setStringProperty(MessageHeader.RefID.toString(), RefID);
+		requestProducer.send(chatServiceQ, message);
+	}
+
+	/**
+	 * read chatters out of a string
+	 * 
+	 * @param chatters
+	 */
+	private void setChatters(String chatters) {
+		this.chatters = new ArrayList<String>();
+		Scanner scanner = new Scanner(chatters);
+		while (scanner.hasNextLine())
+			this.chatters.add(scanner.nextLine());
+		scanner.close();
+	
+	}
+
+	/**
+	 * read chatrooms with his owners out of a string depreced for futur
+	 * implementation
+	 * 
+	 * @param chatsAndChatters
+	 */
+	private void setChatsAndChatters(String chatsAndChatters) {
+		this.chatsAndChatters = new ArrayList<ChatChatterRelationship>();
+		Scanner scanner = new Scanner(chatsAndChatters);
+		while (scanner.hasNextLine()) {
+			String[] segs = scanner.nextLine().split(Pattern.quote(":"));
+			if (segs.length > 1)
+				this.chatsAndChatters.add(new ChatChatterRelationship(segs[0],
+						segs[1]));
+			else
+				this.chatsAndChatters.add(new ChatChatterRelationship(segs[0],
+						""));
+		}
+		scanner.close();
+	}
+
+	/**
+	 * read chatrooms with his owners out of a string
+	 * 
+	 * @param chatsAndChatters
+	 */
+	private void setChatsWithOwner(String chatsAndChatters) {
+		this.chatsWithOwners = new ArrayList<String>();
+		Scanner scanner = new Scanner(chatsAndChatters);
+		while (scanner.hasNextLine()) {
+			String[] segs = scanner.nextLine().split(Pattern.quote(":"));
+			this.chatsWithOwners.add(segs[0]);
+		}
+		scanner.close();
 	}
 
 	private final MessageListener msgListener = new MessageListener() {
@@ -347,7 +451,7 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 							SwingUtilities.invokeLater(new Runnable() {
 								@Override
 								public void run() {
-									state.gotRejected();
+									state.gotRejected(RefID);
 								}
 							});
 						break;
@@ -455,79 +559,4 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 	// return chatJmsAdapter;
 	// }
 
-	/**
-	 * 
-	 * @param state
-	 */
-	@Override
-	public void setState(ChatClientState state) {
-		this.state = state;
-	}
-
-	/**
-	 * method for an parameterless Msg
-	 * 
-	 * @param Msgkind
-	 * @throws JMSException
-	 */
-	private void sendParameterLessSimpleRequest(String Msgkind)
-			throws JMSException {
-		// TODO commit
-		TextMessage message = createMessage(chatServiceQ);
-		message.setStringProperty(MessageHeader.MsgKind.toString(), Msgkind);
-		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
-		message.setStringProperty(MessageHeader.ChatroomID.toString(), CID);
-		message.setStringProperty(MessageHeader.RefID.toString(), RefID);
-		requestProducer.send(chatServiceQ, message);
-	}
-
-	/**
-	 * read chatters out of a string
-	 * 
-	 * @param chatters
-	 */
-	private void setChatters(String chatters) {
-		this.chatters = new ArrayList<String>();
-		Scanner scanner = new Scanner(chatters);
-		while (scanner.hasNextLine())
-			this.chatters.add(scanner.nextLine());
-		scanner.close();
-
-	}
-
-	/**
-	 * read chatrooms with his owners out of a string depreced for fuur
-	 * implementation
-	 * 
-	 * @param chatsAndChatters
-	 */
-	private void setChatsAndChatters(String chatsAndChatters) {
-		this.chatsAndChatters = new ArrayList<ChatChatterRelationship>();
-		Scanner scanner = new Scanner(chatsAndChatters);
-		while (scanner.hasNextLine()) {
-			String[] segs = scanner.nextLine().split(Pattern.quote(":"));
-			if (segs.length > 1)
-				this.chatsAndChatters.add(new ChatChatterRelationship(segs[0],
-						segs[1]));
-			else
-				this.chatsAndChatters.add(new ChatChatterRelationship(segs[0],
-						""));
-		}
-		scanner.close();
-	}
-
-	/**
-	 * read chatrooms with his owners out of a string
-	 * 
-	 * @param chatsAndChatters
-	 */
-	private void setChatsWithOwner(String chatsAndChatters) {
-		this.chatsWithOwners = new ArrayList<String>();
-		Scanner scanner = new Scanner(chatsAndChatters);
-		while (scanner.hasNextLine()) {
-			String[] segs = scanner.nextLine().split(Pattern.quote(":"));
-			this.chatsWithOwners.add(segs[0]);
-		}
-		scanner.close();
-	}
 }
