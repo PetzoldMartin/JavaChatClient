@@ -137,6 +137,7 @@ public class ChatServer {
 		 */
 		@Override
 		public void onMessage(Message message) {
+			
 			String msgKind = "";
 			String token = "";
 			try {

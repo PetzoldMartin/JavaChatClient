@@ -190,6 +190,7 @@ public class Chatter extends User implements Serializable {
 	 */
 	private void sendClient(Message inMsg, Message outMsg, MessageKind kind)
 			throws JMSException {
+		
 		String id = inMsg.getStringProperty(MessageHeader.RefID.toString());
 		if (id != null && activeChatters.keySet().contains(id))
 			outMsg.setStringProperty(MessageHeader.RefID.toString(), activeChatters.get(id).getUsername());
@@ -198,6 +199,8 @@ public class Chatter extends User implements Serializable {
 		id = inMsg.getStringProperty(MessageHeader.ChatroomID.toString());
 		if (id != null)
 			outMsg.setStringProperty(MessageHeader.ChatroomID.toString(), id);
+		if (id==null&&kind.toString()==MessageKind.clientNewChat.toString())
+			outMsg.setStringProperty(MessageHeader.RefID.toString(), inMsg.getStringProperty(MessageHeader.ChatterNickname.toString()));
 		outMsg.setJMSReplyTo(getReplyDestination());
 		outMsg.setJMSDestination(getClientDestination());
 //		outMsg.setStringProperty(MessageHeader.AuthToken.toString(), inMsg
@@ -615,6 +618,7 @@ public class Chatter extends User implements Serializable {
 			TextMessage outMsg = new ActiveMQTextMessage();
 			if (message instanceof TextMessage)
 				outMsg.setText(((TextMessage) message).getText());
+				
 			sendClient(message, outMsg, MessageKind.clientNewChat);
 			return true;
 		}
