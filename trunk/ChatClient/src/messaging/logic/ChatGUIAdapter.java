@@ -33,7 +33,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 		messageProducer.connectToServer(localConnection);
 	}
 
-	// START GOT METHODS ///////////////////////////////// AREA //
+	// START GOT METHODS ////////////////////////////////////////////////////// AREA //
 	
 	@Override
 	public void gotSuccess() {
@@ -73,8 +73,8 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 
 	@Override
 	public void gotChatStarted(String chatId) {
-		// TODO implement chat id
 		setInOwnChat();
+		gui.AddLineToLog("You are now in your own chat: " + chatId);
 	}
 
 	@Override
@@ -208,6 +208,13 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	public void buttonLogoutPressed() {
 		state.onLogout();
 	}
+	
+	/**
+	 * User is in own chat and want to close it
+	 */
+	public void buttonClosePressed() {
+		state.onChatClose();
+	}
 
 	/**
 	 * Button to send a message is Pressed
@@ -275,7 +282,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 
 	private void setInOwnChat() {
 		gui.SetStatusColor(Color.PINK);
-		gui.setFirstButtonUsage("Leave");
+		gui.setFirstButtonUsage("Close");
 		gui.SetShowJoin(false);
 		gui.SetShowInvite(true);
 		gui.SetShowCreate(false);
