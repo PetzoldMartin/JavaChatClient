@@ -183,6 +183,8 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 		TextMessage message = createMessage(chatServiceQ);
 		message.setStringProperty(MessageHeader.MsgKind.toString(),
 				MessageKind.chatterMsgChat.toString());
+		message.setStringProperty(MessageHeader.RefID.toString(), referenceID);
+
 		message.setStringProperty(MessageHeader.AuthToken.toString(), authToken);
 		message.setText(messageText);
 		requestProducer.send(chatServiceQ, message);
