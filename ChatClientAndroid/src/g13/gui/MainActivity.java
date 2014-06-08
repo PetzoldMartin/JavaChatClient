@@ -35,11 +35,23 @@ public class MainActivity extends Activity {
 		final TextView name = (TextView)findViewById(R.id.name);
 		final TextView password = (TextView)findViewById(R.id.password);
 		
+		// Login Button
 		findViewById(R.id.btn_login).setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {				
 				guiAdapter.buttonLoginPressed(name.getText().toString(), password.getText().toString());
+				
+			}
+			
+		});
+		
+		// Register Button
+		findViewById(R.id.btn_register).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {				
+				guiAdapter.buttonRegisterPressed(name.getText().toString(), password.getText().toString());
 				
 			}
 			

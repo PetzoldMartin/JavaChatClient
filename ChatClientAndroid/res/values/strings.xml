@@ -8,5 +8,8 @@
     <string name="create_chat">create</string>
     <string name="logout">logout</string>
     <string name="login">login</string>
+    <string name="field_desc_name">name</string>
+    <string name="field_desc_password">Password</string>
+    <string name="register">register</string>
 
 </resources>

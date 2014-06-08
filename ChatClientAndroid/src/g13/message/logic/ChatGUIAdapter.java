@@ -158,14 +158,8 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	// START BUTTON PRESSED /////////////////////////////////////////////////// AREA //
 
 	
-	public void buttonRegisterPressed() {
-//		String userName = gui.getName();
-
-		// get password
-//		String password = gui.getPassword();
-
-		// call register on state
-//		state.onRegister(userName, password);
+	public void buttonRegisterPressed(String name, String password) {
+		state.onRegister(name, password);
 	}
 
 	/**
