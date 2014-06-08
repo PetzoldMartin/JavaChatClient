@@ -2,7 +2,7 @@ package g13.message.logic;
 
 import java.util.ArrayList;
 
-
+import g13.gui.MainActivity;
 import g13.message.interfaces.ChatServerMessageProducer;
 import g13.message.interfaces.ChatServerMessageReceiver;
 import g13.state.ChatClientState;
@@ -10,15 +10,15 @@ import g13.state.client.NotLoggedIn;
 
 public class ChatGUIAdapter implements ChatServerMessageReceiver {
 
-//	private SwingWindow gui;
+	private MainActivity gui;
 	private ChatClientState state;
 
 	public ChatGUIAdapter() {
-		ChatServerMessageProducer messageProducer = new ChatJmsAdapter();
-		state = new NotLoggedIn(messageProducer, this);
+		//ChatServerMessageProducer messageProducer = new ChatJmsAdapter();
+		//state = new NotLoggedIn(messageProducer, this);
 		// messageProducer.setState(state);
-		String localConnection = "tcp://localhost:61616";
-		messageProducer.connectToServer(localConnection);
+		//String localConnection = "tcp://localhost:61616";
+		//messageProducer.connectToServer(localConnection);
 	}
 
 	// START GOT METHODS ////////////////////////////////////////////////////// AREA //
@@ -171,11 +171,8 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	/**
 	 * Button for Login is Pressed
 	 */
-	public void buttonLoginPressed() {
-//		String userName = gui.getName();
-//		String password = gui.getPassword();
-
-//		state.onLogin(userName, password);
+	public void buttonLoginPressed(String name, String password) {
+		state.onLogin(name, password);
 	}
 
 	/**
@@ -252,10 +249,10 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 		this.state = state;
 	}
 	
-//	public void setGui(SwingWindow gui) {
-//		this.gui = gui;
-//		setNotLoggedin();
-//	}
+	public void setGui(MainActivity gui) {
+		this.gui = gui;
+		setNotLoggedin();
+	}
 
 	
 	// START GUI SETTER /////////////////////////////////////////////////////// AREA //
