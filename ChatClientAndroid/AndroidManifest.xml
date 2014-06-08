@@ -16,5 +16,9 @@
         </activity>
         <!--created by foxel at 2014-06-08 13:06:09-->
         <activity android:name=".LoggedInActivity"/>
+        <!--created by foxel at 2014-06-08 15:21:43-->
+        <activity android:name=".ChatActivity"/>
+        <!--created by foxel at 2014-06-08 15:27:23-->
+        <activity android:name=".NotLoggedInActivity"/>
     </application>
 </manifest>

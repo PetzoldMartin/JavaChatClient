@@ -244,6 +244,12 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 		this.gui = gui;
 		setNotLoggedin();
 	}
+	
+	public void Connect(String ip) {
+		ChatServerMessageProducer messageProducer = new ChatJmsAdapter();
+		state = new NotLoggedIn(messageProducer, this);
+		messageProducer.connectToServer("tcp://" + ip); // default localhost:61616"
+	}
 
 	
 	// START GUI SETTER /////////////////////////////////////////////////////// AREA //
