@@ -9,6 +9,6 @@ import android.app.Activity;
  * @author foxel
  *
  */
-public class LoggedInActivity extends Activity {
+public class LoggedInActivity extends MainActivity {
 
 }

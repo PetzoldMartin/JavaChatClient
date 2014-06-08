@@ -6,6 +6,7 @@ import g13.gui.MainActivity;
 import g13.message.interfaces.ChatServerMessageProducer;
 import g13.message.interfaces.ChatServerMessageReceiver;
 import g13.state.ChatClientState;
+import g13.state.client.LoggedIn;
 import g13.state.client.NotLoggedIn;
 
 public class ChatGUIAdapter implements ChatServerMessageReceiver {
@@ -25,27 +26,23 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	
 	@Override
 	public void gotSuccess() {
-//		gui.AddLineToLog("System: sucess");
-		setLogedin();
+		gui.SetActivity(LoggedIn.class);
 	}
 
 	@Override
+	// login failed
 	public void gotFail() {
-		// login fail
-//		gui.AddLineToLog("System: fail");
-		setNotLoggedin();
+		gui.SetActivity(MainActivity.class);
 	}
 
 	@Override
 	public void gotLogout() {
-//		gui.AddLineToLog("System: Logout");
-		setNotLoggedin();
+		gui.SetActivity(MainActivity.class);
 	}
 
 	@Override
 	public void gotChatClosed() {
-//		gui.AddLineToLog("System: Chat closed");
-		setLogedin();
+		gui.SetActivity(LoggedIn.class);
 	}
 
 	@Override
@@ -253,13 +250,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	
 	
 	private void setLogedin() {
-//		gui.SetStatusColor(Color.GREEN);
-//		gui.setFirstButtonUsage("Logout");
-//		gui.SetShowJoin(true);
-//		gui.SetShowCreate(true);
-//		gui.SetShowInvite(false);
-//		gui.SetShowLogout(true);
-//		gui.SetShowRegister(false);
+		
 	}
 
 	private void setNotLoggedin() {

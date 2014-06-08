@@ -3,6 +3,7 @@ package g13.gui;
 import g13.gui.R;
 import g13.message.logic.ChatGUIAdapter;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,11 +17,10 @@ import android.widget.TextView;
  */
 public class MainActivity extends Activity {
 
-	ChatGUIAdapter guiAdapter;
+	protected static ChatGUIAdapter guiAdapter = new ChatGUIAdapter();
 	
 	public MainActivity() {
 		super();
-		guiAdapter = new ChatGUIAdapter();
 		guiAdapter.setGui(this);
 	}
 
@@ -28,8 +28,6 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		
 		
 		
 		final TextView name = (TextView)findViewById(R.id.name);
@@ -41,7 +39,6 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {				
 				guiAdapter.buttonLoginPressed(name.getText().toString(), password.getText().toString());
-				
 			}
 			
 		});
@@ -52,11 +49,16 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {				
 				guiAdapter.buttonRegisterPressed(name.getText().toString(), password.getText().toString());
-				
 			}
 			
 		});
 
+	}
+	
+	public void SetActivity(Class<?> activity) {
+		Intent intent = new Intent (this, activity);
+		startActivity(intent);
+		finish();
 	}
 
 }
