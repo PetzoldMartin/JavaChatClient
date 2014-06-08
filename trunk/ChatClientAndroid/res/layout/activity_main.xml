@@ -29,10 +29,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName" >
-
-            <requestFocus />
-        </EditText>
+            android:hint="@string/field_desc_name"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/password"
@@ -40,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
+            android:hint="@string/field_desc_password"
             android:inputType="textPassword" />
 
     </LinearLayout>
@@ -49,5 +48,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/login" />
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/register" />
 
 </LinearLayout>
