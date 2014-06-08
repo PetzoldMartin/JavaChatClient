@@ -1,4 +1,4 @@
-package g13.android.util;
+package android.gui.util;
 
 import android.app.Activity;
 import android.view.View;
