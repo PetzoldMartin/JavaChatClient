@@ -1,10 +1,12 @@
 package g13.gui;
 
 import g13.gui.R;
+import g13.message.logic.ChatGUIAdapter;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -14,20 +16,30 @@ import android.view.View.OnClickListener;
  */
 public class MainActivity extends Activity {
 
+	ChatGUIAdapter guiAdapter;
+	
+	public MainActivity() {
+		super();
+		guiAdapter = new ChatGUIAdapter();
+		guiAdapter.setGui(this);
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.activity_main);
-
-		//final View controlsView = findViewById(R.id.fullscreen_content_controls);
-		//final View contentView = findViewById(R.id.fullscreen_content);
+		
+		
+		
+		
+		final TextView name = (TextView)findViewById(R.id.name);
+		final TextView password = (TextView)findViewById(R.id.password);
+		
 		findViewById(R.id.btn_login).setOnClickListener(new OnClickListener() {
 			
 			@Override
-			public void onClick(View v) {
-				System.err.println("LOGIN!!");
-				
+			public void onClick(View v) {				
+				guiAdapter.buttonLoginPressed(name.getText().toString(), password.getText().toString());
 				
 			}
 			
