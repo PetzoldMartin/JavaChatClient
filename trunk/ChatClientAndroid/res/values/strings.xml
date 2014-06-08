@@ -4,5 +4,9 @@
     <string name="app_name">ChatClientAndroid</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="join_chat">join</string>
+    <string name="create_chat">create</string>
+    <string name="logout">logout</string>
+    <string name="login">login</string>
 
 </resources>
