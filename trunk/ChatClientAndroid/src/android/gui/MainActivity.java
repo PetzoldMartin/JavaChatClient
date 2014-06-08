@@ -1,9 +1,9 @@
-package g13.android;
-
-import g13.android.util.SystemUiHider;
+package android.gui;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.gui.R;
+import android.gui.util.SystemUiHider;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
