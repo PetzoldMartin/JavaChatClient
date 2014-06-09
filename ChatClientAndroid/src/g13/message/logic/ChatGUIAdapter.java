@@ -3,6 +3,7 @@ package g13.message.logic;
 import java.util.ArrayList;
 
 import g13.gui.MainActivity;
+import g13.gui.R;
 import g13.message.interfaces.ChatServerMessageProducer;
 import g13.message.interfaces.ChatServerMessageReceiver;
 import g13.state.ChatClientState;
@@ -270,6 +271,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	}
 
 	private void setInOtherChat() {
+		//gui.setContentView(R.layout.activity_other_chat);
 //		gui.SetStatusColor(Color.PINK);
 //		gui.setFirstButtonUsage("Leave");
 //		gui.SetShowJoin(false);
