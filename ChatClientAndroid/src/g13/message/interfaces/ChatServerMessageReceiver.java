@@ -5,7 +5,6 @@ package g13.message.interfaces;
 
 import java.util.ArrayList;
 
-import javax.jms.JMSException;
 
 import g13.state.ChatClientState;
 
