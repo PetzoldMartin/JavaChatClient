@@ -1,6 +1,11 @@
 package g13.gui;
 
+import g13.message.interfaces.IReceiveStompMessages;
+import g13.message.interfaces.ISendStompMessages;
+import g13.message.interfaces.StompCommunicationService;
 import g13.message.logic.ChatGUIAdapter;
+import g13.message.logic.ChatStompAdaptertwo;
+import de.fh_zwickau.android.base.architecture.BindServiceHelper;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,9 +23,20 @@ public class MainActivity extends Activity {
 
 	protected static ChatGUIAdapter guiAdapter = new ChatGUIAdapter();
 	protected static boolean isTestGUI = true;
-
+	
+	private ChatStompAdaptertwo stompAdapter;
+	private BindServiceHelper<ISendStompMessages, IReceiveStompMessages, MainActivity> stompServiceHelper;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
+		stompAdapter = new ChatStompAdaptertwo();
+		stompServiceHelper = new BindServiceHelper<ISendStompMessages, IReceiveStompMessages, MainActivity>(
+				stompAdapter, this, new Intent(this,
+						StompCommunicationService.class));
+		stompAdapter.setServiceHelper(stompServiceHelper);
+		
+		
+		stompServiceHelper.bindService();
 		super.onCreate(savedInstanceState);
 		guiAdapter.setGui(this);
 		
