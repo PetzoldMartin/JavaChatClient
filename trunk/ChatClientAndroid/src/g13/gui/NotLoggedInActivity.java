@@ -3,15 +3,14 @@
  */
 package g13.gui;
 
-import g13.state.client.LoggedIn;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 /**
- * @author foxel
- *
+ * The Activity for not logged in state
+ * @author Andre Furchner
  */
 public class NotLoggedInActivity extends MainActivity {
 	

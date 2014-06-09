@@ -14,5 +14,8 @@
     <string name="server">localhost:61616</string>
     <string name="ok">ok</string>
     <string name="gui_test">Enable GUI Test</string>
+    <string name="invite_to_chat">invite</string>
+    <string name="close_chat">close</string>
+    <string name="str_chatlog"></string>
 
 </resources>
