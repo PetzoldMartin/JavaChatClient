@@ -1,6 +1,5 @@
 package g13.state.client.wait;
 
-import javax.jms.JMSException;
 
 import g13.state.ChatClientState;
 import g13.state.client.LoggedIn;
@@ -38,7 +37,7 @@ public class Requesting extends AbstractWaiting {
 		try {
 			messageProducer.cancel();
 			new LoggedIn(this);
-		} catch (JMSException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

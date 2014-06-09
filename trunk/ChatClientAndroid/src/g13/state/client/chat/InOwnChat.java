@@ -2,7 +2,7 @@ package g13.state.client.chat;
 
 import java.util.ArrayList;
 
-import javax.jms.JMSException;
+
 
 import g13.state.ChatClientState;
 import g13.state.client.LoggedIn;
@@ -81,7 +81,7 @@ public class InOwnChat extends AbstractChatting {
 	public void onAskForChatters() {
 		try {
 			messageProducer.askForChatters();
-		} catch (JMSException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

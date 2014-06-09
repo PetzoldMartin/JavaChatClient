@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-import javax.jms.JMSException;
+
 
 public class ChatJmsAdapter implements ChatServerMessageProducer {
 

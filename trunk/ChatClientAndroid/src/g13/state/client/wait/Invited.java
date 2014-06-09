@@ -1,6 +1,6 @@
 package g13.state.client.wait;
 
-import javax.jms.JMSException;
+
 
 import g13.state.ChatClientState;
 import g13.state.client.LoggedIn;
@@ -25,7 +25,7 @@ public class Invited extends AbstractWaiting {
 		try {
 			messageProducer.deny(Chatroomid);
 			new LoggedIn(this);
-		} catch (JMSException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -36,7 +36,7 @@ public class Invited extends AbstractWaiting {
 		try {
 			messageProducer.acceptInvitation(request);
 			new InOtherChat(this);
-		} catch (JMSException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

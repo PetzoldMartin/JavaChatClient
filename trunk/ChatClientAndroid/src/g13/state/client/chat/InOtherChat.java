@@ -1,6 +1,6 @@
 package g13.state.client.chat;
 
-import javax.jms.JMSException;
+
 
 import g13.state.ChatClientState;
 import g13.state.client.LoggedIn;
@@ -18,7 +18,7 @@ public class InOtherChat extends AbstractChatting {
 		try {
 			messageProducer.leave();
 			new LoggedIn(this);
-		} catch (JMSException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

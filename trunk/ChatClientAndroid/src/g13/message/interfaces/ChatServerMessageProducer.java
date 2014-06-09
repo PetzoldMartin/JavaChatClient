@@ -3,7 +3,7 @@
  */
 package g13.message.interfaces;
 
-import javax.jms.JMSException;
+
 
 import g13.state.ChatClientState;
 
@@ -33,7 +33,7 @@ public interface ChatServerMessageProducer {
 	 *            user nickname
 	 * @param pword
 	 *            user password
-	 * @throws JMSException
+	 * @throws Exception
 	 */
 	void login(String uname, String pword) throws Exception;
 
@@ -53,72 +53,72 @@ public interface ChatServerMessageProducer {
 	 * deny an request
 	 * @param chatroomid 
 	 * 
-	 * @throws JMSException
+	 * @throws Exception
 	 */
-	void deny(String chatroomid) throws JMSException;
+	void deny(String chatroomid) throws Exception;
 
 	/**
 	 * start a new chat
 	 * 
-	 * @throws JMSException
+	 * @throws Exception
 	 */
-	void startChat() throws JMSException;
+	void startChat() throws Exception;
 
 	/**
 	 * cancel an own Request
 	 * 
-	 * @throws JMSException
+	 * @throws Exception
 	 */
-	void cancel() throws JMSException;
+	void cancel() throws Exception;
 
 	/**
 	 * leave an Chat
 	 * 
-	 * @throws JMSException
+	 * @throws Exception
 	 */
-	void leave() throws JMSException;
+	void leave() throws Exception;
 
 	/**
 	 * accept an Invitation
 	 * 
 	 * @param request
 	 * 
-	 * @throws JMSException
+	 * @throws Exception
 	 */
-	void acceptInvitation(String request) throws JMSException;
+	void acceptInvitation(String request) throws Exception;
 
 	/**
 	 * close a chat you own
 	 * 
-	 * @throws JMSException
+	 * @throws Exception
 	 */
-	void close() throws JMSException;
+	void close() throws Exception;
 
 	/**
 	 * send achat message
 	 * 
 	 * @param messageText
-	 * @throws JMSException
+	 * @throws Exception
 	 */
-	void chat(String messageText) throws JMSException;
+	void chat(String messageText) throws Exception;
 
 	/**
 	 * reject an Invitation
 	 * 
 	 * @param chatterID
 	 * 
-	 * @throws JMSException
+	 * @throws Exception
 	 */
-	void reject(String chatterID) throws JMSException;
+	void reject(String chatterID) throws Exception;
 
 	/**
 	 * accept an request
 	 * 
 	 * @param chatterID
 	 * 
-	 * @throws JMSException
+	 * @throws Exception
 	 */
-	void accept(String chatterID) throws JMSException;
+	void accept(String chatterID) throws Exception;
 
 	/**
 	 * 
@@ -129,32 +129,32 @@ public interface ChatServerMessageProducer {
 	/**
 	 * ask for available chats
 	 * 
-	 * @throws JMSException
+	 * @throws Exception
 	 */
-	void askForChats() throws JMSException;
+	void askForChats() throws Exception;
 
 	/**
 	 * ask for available chatters not in chat
 	 * 
-	 * @throws JMSException
+	 * @throws Exception
 	 */
-	void askForChatters() throws JMSException;
+	void askForChatters() throws Exception;
 
 	/**
 	 * invite a chatter
 	 * 
 	 * @param CNN
-	 * @throws JMSException
+	 * @throws Exception
 	 */
-	void invite(String CNN) throws JMSException;
+	void invite(String CNN) throws Exception;
 
 	/**
 	 * request for a Chatroom request
 	 * 
 	 * @param cID
-	 * @throws JMSException
+	 * @throws Exception
 	 */
-	void requestParticipian(String chatterID) throws JMSException;
+	void requestParticipian(String chatterID) throws Exception;
 
 	void setState(ChatClientState chatClientState);
 

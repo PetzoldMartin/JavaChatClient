@@ -2,7 +2,7 @@ package g13.state.client;
 
 import java.util.ArrayList;
 
-import javax.jms.JMSException;
+
 
 import g13.state.ChatClientState;
 import g13.state.client.wait.Invited;
@@ -48,7 +48,7 @@ public class LoggedIn extends ChatClientState {
 		try {
 			messageProducer.requestParticipian(chatRoomID);
 			new Requesting(this);
-		} catch (JMSException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -59,7 +59,7 @@ public class LoggedIn extends ChatClientState {
 		try {
 			messageProducer.startChat();
 			new WaitForChat(this);
-		} catch (JMSException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -77,7 +77,7 @@ public class LoggedIn extends ChatClientState {
 	public void onAskForChats() {
 		try {
 			messageProducer.askForChats();
-		} catch (JMSException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

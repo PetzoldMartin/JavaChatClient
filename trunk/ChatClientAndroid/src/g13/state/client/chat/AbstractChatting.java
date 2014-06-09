@@ -1,6 +1,5 @@
 package g13.state.client.chat;
 
-import javax.jms.JMSException;
 
 import g13.state.ChatClientState;
 
@@ -16,7 +15,7 @@ public class AbstractChatting extends ChatClientState {
 	public void onChat(String messageText) {
 		try {
 			messageProducer.chat(messageText);
-		} catch (JMSException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
