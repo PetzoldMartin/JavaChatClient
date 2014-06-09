@@ -39,6 +39,16 @@ public interface ChatServerMessageProducer {
 	 * @throws Exception 
 	 */
 	void logout() throws Exception;
+	
+	/**
+	 * request a list of all idle chatters
+	 */
+	void getChatters();
+	
+	/**
+	 * request a list of all active chatrooms
+	 */
+	void getChatrooms();
 
 	/**
 	 * @param chatSwingClient
