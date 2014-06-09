@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
 	private BindServiceHelper<ISendStompMessages, IReceiveStompMessages, MainActivity> stompServiceHelper;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
+		super.onCreate(savedInstanceState);
 		stompAdapter = new ChatStompAdaptertwo();
 		stompServiceHelper = new BindServiceHelper<ISendStompMessages, IReceiveStompMessages, MainActivity>(
 				stompAdapter, this, new Intent(this,
@@ -37,7 +37,7 @@ public class MainActivity extends Activity {
 		
 		
 		stompServiceHelper.bindService();
-		super.onCreate(savedInstanceState);
+		
 		guiAdapter.setGui(this);
 		
 		gotoMainView();			
