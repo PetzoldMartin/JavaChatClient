@@ -19,11 +19,25 @@
          android:fitsSystemWindows.
     -->
 
-    <CheckBox
-        android:id="@+id/isDebug"
+    <LinearLayout
+        android:id="@+id/linear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/gui_test" />
+        android:orientation="horizontal" >
+
+        <CheckBox
+            android:id="@+id/isDebug"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gui_test" />
+
+        <Button
+            android:id="@+id/test"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/test" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/server"
