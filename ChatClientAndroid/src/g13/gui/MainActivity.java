@@ -11,10 +11,8 @@ import android.widget.TextView;
 
 
 /**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- * 
- * @see SystemUiHider
+ * This is the Main Activity for the chat client
+ * @author Andre Furchner
  */
 public class MainActivity extends Activity {
 
@@ -151,7 +149,7 @@ public class MainActivity extends Activity {
 	 */
 	public void AddLineToLog(String log) {
 		TextView txt = (TextView)findViewById(R.string.str_chatlog);
-		
+		txt.setText(txt.getText() + "\n" + log);
 	}
 
 }

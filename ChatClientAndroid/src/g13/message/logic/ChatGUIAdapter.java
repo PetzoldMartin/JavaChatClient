@@ -3,7 +3,6 @@ package g13.message.logic;
 import java.util.ArrayList;
 
 import g13.gui.MainActivity;
-import g13.gui.R;
 import g13.message.interfaces.ChatServerMessageProducer;
 import g13.message.interfaces.ChatServerMessageReceiver;
 import g13.state.ChatClientState;
@@ -16,34 +15,30 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	private ChatClientState state;
 
 	public ChatGUIAdapter() {
-		//ChatServerMessageProducer messageProducer = new ChatJmsAdapter();
-		//state = new NotLoggedIn(messageProducer, this);
-		// messageProducer.setState(state);
-		//String localConnection = "tcp://localhost:61616";
-		//messageProducer.connectToServer(localConnection);
+
 	}
 
 	// START GOT METHODS ////////////////////////////////////////////////////// AREA //
 	
 	@Override
 	public void gotSuccess() {
-		gui.SetActivity(LoggedIn.class);
+		gui.gotoLoggedInView();
 	}
 
 	@Override
 	// login failed
 	public void gotFail() {
-		gui.SetActivity(MainActivity.class);
+		gui.gotoNotLoggedInView();
 	}
 
 	@Override
 	public void gotLogout() {
-		gui.SetActivity(MainActivity.class);
+		gui.gotoNotLoggedInView();
 	}
 
 	@Override
 	public void gotChatClosed() {
-		gui.SetActivity(LoggedIn.class);
+		gui.gotoLoggedInView();
 	}
 
 	@Override
@@ -62,13 +57,13 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 
 	@Override
 	public void gotChatStarted(String chatId) {
-		setInOwnChat();
-//		gui.AddLineToLog("You are now in your own chat: " + chatId);
+		gui.gotoOwnChatView();
+		gui.AddLineToLog("You are now in your own chat: " + chatId);
 	}
 
 	@Override
 	public void gotParticipating() {
-		setInOtherChat();
+//		setInOtherChat();
 	}
 
 	@Override
@@ -78,7 +73,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 
 	@Override
 	public void gotDenied(String cNN) {
-		setLogedin();
+		gui.gotoLoggedInView();
 	}
 
 	@Override
@@ -104,7 +99,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	 * Rejected by chat owner
 	 */
 	public void gotRejected(String chatterID) {
-//		gui.AddLineToLog("your request to join a chat room was rejected by user: " + chatterID);
+		gui.AddLineToLog("your request to join a chat room was rejected by user: " + chatterID);
 
 	}
 	
@@ -113,7 +108,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	 * Other user has joint the chat room
 	 */
 	public void gotParticipantEntered(String chatterID) {
-//		gui.AddLineToLog(chatterID + ": has joint the chatroom.");
+		gui.AddLineToLog(chatterID + ": has joint the chatroom.");
 
 	}
 
@@ -122,8 +117,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	 * Other user has left the chat room
 	 */
 	public void gotParticipantLeft(String chatterID) {
-//		gui.AddLineToLog(chatterID + ": has left the chatroom.");
-
+		gui.AddLineToLog(chatterID + ": has left the chatroom.");
 	}
 
 	@Override
@@ -131,8 +125,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	 * The user that you have invited don't want to join your chat
 	 */
 	public void gotRequestCancelled(String chatterID) {
-//		gui.AddLineToLog(chatterID + "don't want to join your chat!");
-
+		gui.AddLineToLog(chatterID + "don't want to join your chat!");
 	}
 
 	@Override
@@ -188,7 +181,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	 */
 	public void buttonLeavePressed() {
 		state.onLeave();
-		setLogedin();
+		gui.gotoLoggedInView();
 	}
 
 	/**
@@ -216,7 +209,7 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	 */
 	public void buttonClosePressed() {
 		state.onChatClose();
-		setLogedin();
+		gui.gotoLoggedInView();
 	}
 
 	/**
@@ -243,7 +236,6 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 	
 	public void setGui(MainActivity gui) {
 		this.gui = gui;
-		setNotLoggedin();
 	}
 	
 	public void Connect(String ip) {
@@ -252,45 +244,4 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 		messageProducer.connectToServer("tcp://" + ip); // default localhost:61616"
 	}
 
-	
-	// START GUI SETTER /////////////////////////////////////////////////////// AREA //
-	
-	
-	private void setLogedin() {
-		
-	}
-
-	private void setNotLoggedin() {
-//		gui.SetStatusColor(Color.YELLOW);
-//		gui.setFirstButtonUsage("Login");
-//		gui.SetShowRegister(true);
-//		gui.SetShowJoin(false);
-//		gui.SetShowInvite(false);
-//		gui.SetShowCreate(false);
-//		gui.SetShowPartyUser(false);
-	}
-
-	private void setInOtherChat() {
-		//gui.setContentView(R.layout.activity_other_chat);
-//		gui.SetStatusColor(Color.PINK);
-//		gui.setFirstButtonUsage("Leave");
-//		gui.SetShowJoin(false);
-//		gui.SetShowInvite(false);
-//		gui.SetShowCreate(false);
-//		gui.SetShowLogout(true);
-//		gui.SetShowRegister(false);
-	}
-
-	private void setInOwnChat() {
-//		gui.SetStatusColor(Color.PINK);
-//		gui.setFirstButtonUsage("Close");
-//		gui.SetShowJoin(false);
-//		gui.SetShowInvite(true);
-//		gui.SetShowCreate(false);
-//		gui.SetShowLogout(true);
-//		gui.SetShowRegister(false);
-	}
-	
-	
-	// END GUI SETTER ///////////////////////////////////////////////////////// AREA //
 }
