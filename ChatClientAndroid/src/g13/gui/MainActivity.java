@@ -9,6 +9,7 @@ import de.fh_zwickau.android.base.architecture.BindServiceHelper;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CheckBox;
@@ -179,6 +180,18 @@ public class MainActivity extends Activity {
 	public void AddLineToLog(String log) {
 		TextView txt = (TextView)findViewById(R.string.str_chatlog);
 		txt.setText(txt.getText() + "\n" + log);
+	}
+	
+	public void onExit(MenuItem item) {
+		try {
+			stompAdapter.logout();
+		} catch (Exception e) {
+			
+		}
+		stompAdapter.disconnect();
+		stompServiceHelper.stopService();
+		stompServiceHelper.unbindService();
+		this.finish();
 	}
 
 }
