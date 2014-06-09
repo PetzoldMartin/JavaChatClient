@@ -68,5 +68,10 @@ public class MainActivity extends Activity {
 		startActivity(intent);
 		finish();
 	}
+	
+	public void AddLineToLog(String log) {
+		TextView txt = (TextView)findViewById(R.string.str_chatlog);
+		
+	}
 
 }
