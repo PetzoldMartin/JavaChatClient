@@ -25,5 +25,15 @@ public interface ChatServerMessageReceiver {
 	 * session ended
 	 */
 	void gotLogout();
+	/**
+	 * got chatters
+	 */
+	public void gotChatters(String[] chatters);
+
+	/**
+	 * got chatrooms
+	 */
+	public void gotChatrooms(String[] chatrooms);
+
 
 }
