@@ -89,6 +89,8 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				// TODO: TEST FUNCTION
 				
+				stompAdapter.connect("192.168.1.128", 61613, "user", "pw");
+				
 			}
 		});
 		// DEBUG AREA ///////////////////////////////////////////////////////// DEBUG AREA //
