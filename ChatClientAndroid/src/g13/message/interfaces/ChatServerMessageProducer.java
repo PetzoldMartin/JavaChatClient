@@ -158,4 +158,6 @@ public interface ChatServerMessageProducer {
 
 	void setState(ChatClientState chatClientState);
 
+	void connectToServer(String url, int port, String user, String pw);
+
 }
