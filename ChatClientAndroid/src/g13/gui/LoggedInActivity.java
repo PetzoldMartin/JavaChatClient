@@ -29,5 +29,15 @@ public class LoggedInActivity extends MainActivity {
 			
 		});
 	}
+	
+	@Override
+	/**
+	 * User Want to logout
+	 */
+	public void onBackPressed() {
+		// FIXME: DEBUG IF ELSE
+		if(isTestGUI) finish();
+		else guiAdapter.buttonLogoutPressed();
+	}
 		
 }

@@ -66,7 +66,6 @@ public class MainActivity extends Activity {
 	public void SetActivity(Class<?> activity) {
 		Intent intent = new Intent (this, activity);
 		startActivity(intent);
-		finish();
 	}
 	
 	public void AddLineToLog(String log) {
