@@ -18,4 +18,14 @@ public class ChatActivity extends MainActivity {
 		setContentView(R.layout.activity_own_chat);
 	}
 	
+	@Override
+	/**
+	 * User Want leave the chat
+	 */
+	public void onBackPressed() {
+		// FIXME: DEBUG IF ELSE
+		if(isTestGUI) finish();
+		else guiAdapter.buttonLeavePressed();
+	}
+	
 }
