@@ -18,5 +18,7 @@
     <string name="close_chat">close</string>
     <string name="str_chatlog"></string>
     <string name="test">test</string>
+    <string name="hint_send_message">send a message</string>
+    <string name="send">send</string>
 
 </resources>
