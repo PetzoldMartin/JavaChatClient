@@ -29,6 +29,10 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		guiAdapter.setGui(this);
+		gotoMainView();	
+		
+		
 		stompAdapter = new ChatStompAdaptertwo();
 		stompServiceHelper = new BindServiceHelper<ISendStompMessages, IReceiveStompMessages, MainActivity>(
 				stompAdapter, this, new Intent(this,
@@ -38,9 +42,7 @@ public class MainActivity extends Activity {
 		
 		stompServiceHelper.bindService();
 		
-		guiAdapter.setGui(this);
 		
-		gotoMainView();			
 		
 	}
 	
@@ -77,6 +79,17 @@ public class MainActivity extends Activity {
 			}
 			
 		});
+		
+		// DEBUG TEST BUTTON ////////////////////////////////////////////////// DEBUG AREA //
+		findViewById(R.id.test).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO: TEST FUNCTION
+				
+			}
+		});
+		// DEBUG AREA ///////////////////////////////////////////////////////// DEBUG AREA //
 	}
 	
 	/**
