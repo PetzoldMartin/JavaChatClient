@@ -220,6 +220,14 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 		scanner.close();
 	}
 
+	@Override
+	public void connectToServer(String url, int port, String user, String pw) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
 
 
 	
