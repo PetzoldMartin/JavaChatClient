@@ -3,11 +3,11 @@
  */
 package g13.gui;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 /**
- * @author foxel
+ * The Basic Activity to chat
+ * @author Andre Furchner
  *
  */
 public class ChatActivity extends MainActivity {
@@ -17,4 +17,5 @@ public class ChatActivity extends MainActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_own_chat);
 	}
+	
 }
