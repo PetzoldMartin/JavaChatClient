@@ -15,7 +15,6 @@
 			<attribute name="javadoc_location" value="http://activemq.apache.org/maven/5.8.0/apidocs"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/MQChatCommon"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
