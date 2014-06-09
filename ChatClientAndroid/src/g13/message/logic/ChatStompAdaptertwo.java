@@ -22,6 +22,9 @@ import java.util.regex.Pattern;
 
 
 
+
+
+
 import de.fh_zwickau.android.base.architecture.BindServiceHelper;
 import de.fh_zwickau.informatik.stompj.StompMessage;
 import de.fh_zwickau.informatik.stompj.internal.MessageImpl;
@@ -32,6 +35,7 @@ import de.fh_zwickau.pti.mqgamecommon.MessageKind;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.util.Log;
+import android.view.ViewDebug.IntToString;
 
 
 
