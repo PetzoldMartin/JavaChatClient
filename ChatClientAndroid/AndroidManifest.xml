@@ -21,7 +21,7 @@
         created by foxel at 2014-06-08 15:27:23
        	<activity android:name=".NotLoggedInActivity"/>--> 
         <service
-            android:name="g13.message.interfaces.StompCommunicationService"
+            android:name="g13.message.logic.service.StompCommunicationService"
             android:enabled="true"
             android:exported="false" >
         </service>
