@@ -5,16 +5,15 @@ import g13.message.interfaces.ISendStompMessages;
 import g13.message.interfaces.StompCommunicationService;
 import g13.message.logic.ChatGUIAdapter;
 import g13.message.logic.ChatStompAdaptertwo;
-import de.fh_zwickau.android.base.architecture.BindServiceHelper;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import de.fh_zwickau.android.base.architecture.BindServiceHelper;
 
 
 /**
@@ -89,8 +88,8 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				// TODO: TEST FUNCTION
 				
-				stompAdapter.connect("192.168.1.128", 61613, "user", "pw");
-				
+				stompAdapter.connect("141.32.26.79", 61613, "user", "pw");
+				stompAdapter.login("xx", "xx");
 			}
 		});
 		// DEBUG AREA ///////////////////////////////////////////////////////// DEBUG AREA //
