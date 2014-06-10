@@ -262,13 +262,13 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 
 	@Override
 	public void onStompMessage(Serializable message) {
-		Log.e("ClientStateManager.onStompMessage", "should never be called");
+		Log.e("ChatguiAdapter", "should never be called on Stomp Message");
 
 	}
 
 	@Override
 	public void onConnection(boolean success) {
-		Log.e("ClientStateManager.onStompMessage", "should never be called");
+		Log.e("ChatguiAdapter", "should never be called on Stomp Message");
 
 	}
 

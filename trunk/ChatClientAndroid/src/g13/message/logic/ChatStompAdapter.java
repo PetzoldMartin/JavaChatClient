@@ -262,7 +262,7 @@ IReceiveStompMessages{
 
 	@Override
 	public void onStompMessage(Serializable message) {
-		System.out.println("Client: " + message.toString());
+		Log.e("Message","Client: " + message.toString());
 		try {
 			if (message instanceof StompMessage) {
 				StompMessage textMessage = (StompMessage) message;
