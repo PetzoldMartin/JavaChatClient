@@ -3,6 +3,7 @@ package g13.message.logic;
 import g13.gui.MainActivity;
 import g13.message.ChatChatterRelationship;
 import g13.message.interfaces.ChatServerMessageProducer;
+import g13.message.interfaces.ChatServerMessageReceiver;
 import g13.message.interfaces.IBrokerConnection;
 import g13.message.interfaces.IReceiveStompMessages;
 import g13.message.interfaces.ISendStompMessages;
@@ -15,27 +16,14 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-
-
-
-
-
-
-
-
-
-
+import android.content.ComponentName;
+import android.util.Log;
 import de.fh_zwickau.android.base.architecture.BindServiceHelper;
 import de.fh_zwickau.informatik.stompj.StompMessage;
 import de.fh_zwickau.informatik.stompj.internal.MessageImpl;
-import de.fh_zwickau.pti.chatclientcommon.ChatServerMessageReceiver;
 import de.fh_zwickau.pti.mqgamecommon.MQConstantDefs;
 import de.fh_zwickau.pti.mqgamecommon.MessageHeader;
 import de.fh_zwickau.pti.mqgamecommon.MessageKind;
-import android.content.ComponentName;
-import android.content.Intent;
-import android.util.Log;
-import android.view.ViewDebug.IntToString;
 
 
 
