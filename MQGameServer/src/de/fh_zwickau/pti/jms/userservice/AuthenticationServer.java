@@ -39,8 +39,8 @@ public class AuthenticationServer {
 	private Session session;
 	private Destination logInOutDestination, userDestination;
 	private MessageProducer replyProducer;
-	private String brokerUri;
-	private UserFactory userFactory;
+	private final String brokerUri;
+	private final UserFactory userFactory;
 
 	/**
 	 * Servewr anlegen
@@ -147,7 +147,7 @@ public class AuthenticationServer {
 
 	}
 
-	private ExceptionListener exceptionListener = new ExceptionListener() {
+	private final ExceptionListener exceptionListener = new ExceptionListener() {
 		@Override
 		public void onException(JMSException e) {
 			Logger.getRootLogger().log(Level.ERROR, "Server error " + e);
@@ -157,7 +157,7 @@ public class AuthenticationServer {
 	/**
 	 * listener für login messages
 	 */
-	private MessageListener logInOutListener = new MessageListener() {
+	private final MessageListener logInOutListener = new MessageListener() {
 		/**
 		 * wird per callback für jede eingehende Methode der verbundenen Queue
 		 * aufgerufen
@@ -167,6 +167,7 @@ public class AuthenticationServer {
 		 */
 		@Override
 		public void onMessage(Message message) {
+			System.out.println(message.toString());
 			String msgKind = "";
 			try {
 				msgKind = message.getStringProperty(MessageHeader.MsgKind
