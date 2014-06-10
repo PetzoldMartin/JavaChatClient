@@ -8,6 +8,7 @@ import g13.message.logic.ChatStompAdaptertwo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -45,9 +46,10 @@ public class MainActivity extends Activity {
 		stompServiceHelper.bindService();
 
 		
-		// while (!stompServiceHelper.isBound()) {
-		// Log.e("nop", "nop");
-		// }
+		//while (!stompServiceHelper.isBound()) {
+			
+		//Log.e("nop", "nop");
+		 //}
 
 
 	}
@@ -92,8 +94,9 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO: TEST FUNCTION
+				Log.e("test", "testclick");
 				stompAdapter.connect("192.168.1.128", 61613, "user", "pw");
-				stompAdapter.login("xx", "xx");
+				//stompAdapter.login("xx", "xx");
 
 			}
 		});
