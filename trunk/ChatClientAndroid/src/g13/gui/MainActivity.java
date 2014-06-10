@@ -42,8 +42,9 @@ public class MainActivity extends Activity {
 						StompCommunicationService.class));
 		stompAdapter.setServiceHelper(stompServiceHelper);
 		stompAdapter.setMessageReceiver(stateManager);
+		stompServiceHelper.bindService();
 
-		stompServiceHelper.bindMessageHandler();
+		
 		// while (!stompServiceHelper.isBound()) {
 		// Log.e("nop", "nop");
 		// }
@@ -91,8 +92,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO: TEST FUNCTION
-				
-				stompAdapter.connect("10.0.2.2", 61613, "user", "pw");
+				stompAdapter.connect("192.168.1.128", 61613, "user", "pw");
 				stompAdapter.login("xx", "xx");
 
 			}
