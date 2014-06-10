@@ -1,15 +1,20 @@
 package g13.message.logic;
 
-import java.util.ArrayList;
-
 import g13.gui.MainActivity;
 import g13.message.interfaces.ChatServerMessageProducer;
 import g13.message.interfaces.ChatServerMessageReceiver;
+import g13.message.interfaces.IReceiveStompMessages;
 import g13.state.ChatClientState;
-import g13.state.client.LoggedIn;
 import g13.state.client.NotLoggedIn;
 
-public class ChatGUIAdapter implements ChatServerMessageReceiver {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+import android.content.ComponentName;
+import android.util.Log;
+
+public class ChatGUIAdapter implements IReceiveStompMessages,
+		ChatServerMessageReceiver {
 
 	private MainActivity gui;
 	private ChatClientState state;
@@ -242,6 +247,36 @@ public class ChatGUIAdapter implements ChatServerMessageReceiver {
 		ChatServerMessageProducer messageProducer = new ChatJmsAdapter();
 		state = new NotLoggedIn(messageProducer, this);
 		messageProducer.connectToServer("tcp://" + ip); // default localhost:61616"
+	}
+
+	@Override
+	public void onServiceBound(ComponentName name) {
+		state.serviceBound();
+
+	}
+
+	@Override
+	public void onServiceUnbound(ComponentName name) {
+		Log.e("ClientStateManager.onServiceUnbound", "should never be called");
+
+	}
+
+	@Override
+	public void onStompMessage(Serializable message) {
+		Log.e("ClientStateManager.onStompMessage", "should never be called");
+
+	}
+
+	@Override
+	public void onConnection(boolean success) {
+		Log.e("ClientStateManager.onStompMessage", "should never be called");
+
+	}
+
+	@Override
+	public void onError(String error) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

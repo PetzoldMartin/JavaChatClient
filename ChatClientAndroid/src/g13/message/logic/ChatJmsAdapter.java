@@ -2,6 +2,7 @@ package g13.message.logic;
 
 import g13.message.ChatChatterRelationship;
 import g13.message.interfaces.ChatServerMessageProducer;
+import g13.message.interfaces.ChatServerMessageReceiver;
 import g13.state.ChatClientState;
 
 import java.util.ArrayList;
@@ -226,6 +227,11 @@ public class ChatJmsAdapter implements ChatServerMessageProducer {
 		
 	}
 
+	@Override
+	public void setMessageReceiver(ChatServerMessageReceiver msgReceiver) {
+		// TODO Auto-generated method stub
+
+	}
 	
 
 

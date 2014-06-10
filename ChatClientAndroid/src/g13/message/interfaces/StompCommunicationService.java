@@ -66,7 +66,7 @@ public class StompCommunicationService extends Service {
 	/**
 	 * test message handler
 	 */
-	private MessageHandler stompHandler = new MessageHandler() {
+	private final MessageHandler stompHandler = new MessageHandler() {
 
 		@Override
 		public void onMessage(StompMessage message) {
@@ -79,7 +79,7 @@ public class StompCommunicationService extends Service {
 		return binder;
 	}
 
-	private StompBinder binder = new StompBinder();
+	private final StompBinder binder = new StompBinder();
 
 	public class StompBinder extends Binder implements ISendStompMessages {
 
@@ -137,7 +137,7 @@ public class StompCommunicationService extends Service {
 
 	}
 
-	private StompCallbackProvider callbackProvider = new StompCallbackProvider();
+	private final StompCallbackProvider callbackProvider = new StompCallbackProvider();
 
 	private class StompCallbackProvider {
 

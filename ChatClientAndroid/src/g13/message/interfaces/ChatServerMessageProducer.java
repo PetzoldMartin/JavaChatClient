@@ -160,4 +160,6 @@ public interface ChatServerMessageProducer {
 
 	void connectToServer(String url, int port, String user, String pw);
 
+	void setMessageReceiver(ChatServerMessageReceiver msgReceiver);
+
 }

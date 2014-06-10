@@ -1,9 +1,9 @@
 package g13.state;
 
-import java.util.ArrayList;
-
 import g13.message.interfaces.ChatServerMessageProducer;
 import g13.message.interfaces.ChatServerMessageReceiver;
+
+import java.util.ArrayList;
 
 /**
  * @author Peter 33141 aufgetretene fragen: s.h. TODO
@@ -326,5 +326,10 @@ public abstract class ChatClientState {
 
 	public void OnAskForChatters() {
 		unexpectedEvent();
+	}
+
+	public void serviceBound() {
+		// TODO Auto-generated method stub
+
 	}
 }
