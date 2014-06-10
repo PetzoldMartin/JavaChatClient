@@ -49,16 +49,16 @@ public class BindServiceHelper<IServiceBinder extends IBindMessageHandler, ICall
 	/**
 	 * callback Methoden der Activity oder einer anderen Klasse
 	 */
-	private ICallback callbackProvider;
+	private final ICallback callbackProvider;
 	/**
 	 * Der Applikationskontext (d.h. Activity, Service o.ä.), in den der Service
 	 * gebunden wird
 	 */
-	private ContextWrapper contextWrapper;
+	private final ContextWrapper contextWrapper;
 	/**
 	 * Identifikation des Service durch einen Intent
 	 */
-	private Intent serviceIntent;
+	private final Intent serviceIntent;
 	/**
 	 * Name des gebundenen Service
 	 */
@@ -67,7 +67,7 @@ public class BindServiceHelper<IServiceBinder extends IBindMessageHandler, ICall
 	 * Callback Handler bereitstellen: Handler kann vom Service über das OS
 	 * aufgerufen werden und dann asynchron messages im Main Thread verarbeiten
 	 */
-	private Handler messageHandler;
+	private final Handler messageHandler;
 
 	/**
 	 * Zugriff auf alle Callbackmethoden über ihren Namen
@@ -107,7 +107,7 @@ public class BindServiceHelper<IServiceBinder extends IBindMessageHandler, ICall
 	 * Objekt, das Callbacks vom Service empfängt, wenn dieser verbunden oder
 	 * getrennt wird.
 	 */
-	private ServiceConnection serviceConnection = new ServiceConnection() {
+	private final ServiceConnection serviceConnection = new ServiceConnection() {
 		@Override
 		public void onServiceDisconnected(ComponentName name) {
 			serviceBinder = null;
@@ -185,6 +185,7 @@ public class BindServiceHelper<IServiceBinder extends IBindMessageHandler, ICall
 						try {
 							Thread.sleep(50);
 						} catch (InterruptedException e) {
+							Log.e("exception", e.toString());
 						}
 					}
 					return null;
@@ -262,12 +263,12 @@ public class BindServiceHelper<IServiceBinder extends IBindMessageHandler, ICall
 		/**
 		 * Zugriff auf alle Callbackmethoden über ihren Namen
 		 */
-		private HashMap<String, Method> callbacks = new HashMap<String, Method>();
+		private final HashMap<String, Method> callbacks = new HashMap<String, Method>();
 		/**
 		 * implementiert callback Methoden in der Activity oder einer anderen
 		 * Klasse
 		 */
-		private T callbackProvider;
+		private final T callbackProvider;
 
 		/**
 		 * Map von Callback Methoden für Messages aufbauen
