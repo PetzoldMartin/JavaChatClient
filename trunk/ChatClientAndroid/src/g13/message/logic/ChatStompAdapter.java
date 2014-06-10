@@ -7,7 +7,7 @@ import g13.message.interfaces.ChatServerMessageReceiver;
 import g13.message.interfaces.IBrokerConnection;
 import g13.message.interfaces.IReceiveStompMessages;
 import g13.message.interfaces.ISendStompMessages;
-import g13.message.interfaces.StompCommunicationService;
+import g13.message.logic.service.StompCommunicationService;
 import g13.state.ChatClientState;
 
 import java.io.Serializable;

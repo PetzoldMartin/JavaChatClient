@@ -2,9 +2,9 @@ package g13.gui;
 
 import g13.message.interfaces.IReceiveStompMessages;
 import g13.message.interfaces.ISendStompMessages;
-import g13.message.interfaces.StompCommunicationService;
 import g13.message.logic.ChatGUIAdapter;
 import g13.message.logic.ChatStompAdapter;
+import g13.message.logic.service.StompCommunicationService;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

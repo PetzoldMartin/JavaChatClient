@@ -1,5 +1,6 @@
-package g13.message.interfaces;
+package g13.message.logic.service;
 
+import g13.message.interfaces.ISendStompMessages;
 import android.app.Service;
 import android.content.Intent;
 import android.os.AsyncTask;
