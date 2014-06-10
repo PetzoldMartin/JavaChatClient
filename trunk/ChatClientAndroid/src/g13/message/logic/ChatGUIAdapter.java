@@ -252,7 +252,6 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	@Override
 	public void onServiceBound(ComponentName name) {
 		//state.serviceBound();
-
 	}
 
 	@Override
