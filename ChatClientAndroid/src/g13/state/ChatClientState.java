@@ -5,6 +5,8 @@ import g13.message.interfaces.ChatServerMessageReceiver;
 
 import java.util.ArrayList;
 
+import android.util.Log;
+
 /**
  * @author Peter 33141 aufgetretene fragen: s.h. TODO
  */
@@ -23,7 +25,7 @@ public abstract class ChatClientState {
 		this.messageReceiver = messageReceiver;
 		messageReceiver.setState(this);
 		messageProducer.setState(this);
-		System.out.println("change state to " + getName());
+		Log.i("state", "set state to " + getName());
 	}
 
 	public ChatServerMessageProducer getProducer() {
@@ -295,7 +297,7 @@ public abstract class ChatClientState {
 
 	protected void unexpectedEvent() {
 		Exception exp = new Exception();
-		System.err.println("unexpected event: " + getName() + "->"
+		Log.i("state","unexpected event: " + getName() + "->"
 				+ (exp.getStackTrace())[1].getMethodName());
 	}
 

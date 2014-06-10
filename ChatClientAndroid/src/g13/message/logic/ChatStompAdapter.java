@@ -27,7 +27,7 @@ import de.fh_zwickau.pti.mqgamecommon.MessageKind;
 
 
 
-public class ChatStompAdaptertwo implements ChatServerMessageProducer , IBrokerConnection,
+public class ChatStompAdapter implements ChatServerMessageProducer , IBrokerConnection,
 IReceiveStompMessages{
 
 	private ChatClientState state;
@@ -55,7 +55,7 @@ IReceiveStompMessages{
 		return referenceID;
 	}
 
-	public ChatStompAdaptertwo() {
+	public ChatStompAdapter() {
 		
 	}
 

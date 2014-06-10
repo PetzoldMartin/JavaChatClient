@@ -4,7 +4,7 @@ import g13.message.interfaces.IReceiveStompMessages;
 import g13.message.interfaces.ISendStompMessages;
 import g13.message.interfaces.StompCommunicationService;
 import g13.message.logic.ChatGUIAdapter;
-import g13.message.logic.ChatStompAdaptertwo;
+import g13.message.logic.ChatStompAdapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
 	protected static boolean isTestGUI = true;
 	private ChatGUIAdapter stateManager;
 	
-	private ChatStompAdaptertwo stompAdapter;
+	private ChatStompAdapter stompAdapter;
 	private BindServiceHelper<ISendStompMessages, IReceiveStompMessages, MainActivity> stompServiceHelper;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class MainActivity extends Activity {
 		gotoMainView();
 		
 		
-		stompAdapter = new ChatStompAdaptertwo();
+		stompAdapter = new ChatStompAdapter();
 		stateManager = new ChatGUIAdapter();
 		stateManager.setGui(this);
 		stompServiceHelper = new BindServiceHelper<ISendStompMessages, IReceiveStompMessages, MainActivity>(
@@ -44,7 +44,6 @@ public class MainActivity extends Activity {
 		stompAdapter.setServiceHelper(stompServiceHelper);
 		stompAdapter.setMessageReceiver(stateManager);
 		stompServiceHelper.bindService();
-
 		
 		//while (!stompServiceHelper.isBound()) {
 			
@@ -72,7 +71,7 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				String ip = server.getText().toString();
 				if(ip.equals("")) {
-					ip = "localhost:61616";
+							ip = getString(R.string.server);
 				}
 				
 				// DEBUG FLAG
@@ -94,10 +93,9 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO: TEST FUNCTION
-				Log.e("test", "testclick");
+				Log.i("main", "testclick");
 				stompAdapter.connect("192.168.1.128", 61613, "user", "pw");
 				//stompAdapter.login("xx", "xx");
-
 			}
 		});
 		// DEBUG AREA ///////////////////////////////////////////////////////// DEBUG AREA //
