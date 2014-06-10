@@ -24,27 +24,31 @@ public class MainActivity extends Activity {
 
 	protected static ChatGUIAdapter guiAdapter = new ChatGUIAdapter();
 	protected static boolean isTestGUI = true;
+	private ChatGUIAdapter stateManager;
 	
 	private ChatStompAdaptertwo stompAdapter;
 	private BindServiceHelper<ISendStompMessages, IReceiveStompMessages, MainActivity> stompServiceHelper;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		guiAdapter.setGui(this);
-		gotoMainView();	
+		gotoMainView();
 		
 		
 		stompAdapter = new ChatStompAdaptertwo();
+		stateManager = new ChatGUIAdapter();
+		stateManager.setGui(this);
 		stompServiceHelper = new BindServiceHelper<ISendStompMessages, IReceiveStompMessages, MainActivity>(
 				stompAdapter, this, new Intent(this,
 						StompCommunicationService.class));
 		stompAdapter.setServiceHelper(stompServiceHelper);
-		
-		
-		stompServiceHelper.bindService();
-		
-		
-		
+		stompAdapter.setMessageReceiver(stateManager);
+
+		stompServiceHelper.bindMessageHandler();
+		// while (!stompServiceHelper.isBound()) {
+		// Log.e("nop", "nop");
+		// }
+
+
 	}
 	
 	/**
@@ -88,8 +92,9 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				// TODO: TEST FUNCTION
 				
-				stompAdapter.connect("141.32.26.79", 61613, "user", "pw");
+				stompAdapter.connect("10.0.2.2", 61613, "user", "pw");
 				stompAdapter.login("xx", "xx");
+
 			}
 		});
 		// DEBUG AREA ///////////////////////////////////////////////////////// DEBUG AREA //

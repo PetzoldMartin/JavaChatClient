@@ -483,5 +483,8 @@ IReceiveStompMessages{
 		
 	}
 
-	
+	@Override
+	public void setMessageReceiver(ChatServerMessageReceiver msgReceiver) {
+		messageReceiver = msgReceiver;
+	}
 }
