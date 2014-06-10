@@ -49,7 +49,7 @@ public class MainActivity extends Activity {
 		//while (!stompServiceHelper.isBound()) {
 			
 		//Log.e("nop", "nop");
-		 //}
+		// }
 
 
 	}
