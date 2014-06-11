@@ -29,6 +29,7 @@ public class MainActivity extends Activity {
 	
 	private ChatStompAdapter stompAdapter;
 	private BindServiceHelper<ISendStompMessages, IReceiveStompMessages, MainActivity> stompServiceHelper;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -157,7 +158,7 @@ public class MainActivity extends Activity {
 	}
 	
 	public void gotoOwnChatView() {
-		setContentView(R.layout.activity_own_chat);	
+		setContentView(R.layout.activity_chat);	
 	}
 	
 	/**
