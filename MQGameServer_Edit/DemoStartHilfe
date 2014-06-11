@@ -1,0 +1,10 @@
+Erklärung zur Demo:
+
+1. authenfikation server starten unter : 
+/MQGameServer/src/de/fh_zwickau/pti
+/jms/userservice/AuthenticationServer.java
+2. chatserver starten
+/MQGameServer/src/de/fh_zwickau/pti
+/jms/userservice/chat/ChatServer.java
+3. chatprogramm starten
+/MQDemo/src/demo/MqClientFrame.java
