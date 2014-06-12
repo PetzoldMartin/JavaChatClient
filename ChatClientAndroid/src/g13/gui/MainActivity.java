@@ -23,9 +23,8 @@ import de.fh_zwickau.android.base.architecture.BindServiceHelper;
  */
 public class MainActivity extends Activity {
 
-	protected static ChatGUIAdapter guiAdapter = new ChatGUIAdapter();
 	protected static boolean isTestGUI = true;
-	private ChatGUIAdapter stateManager;
+	private ChatGUIAdapter guiAdapter;
 	
 	private ChatStompAdapter stompAdapter;
 	private BindServiceHelper<ISendStompMessages, IReceiveStompMessages, MainActivity> stompServiceHelper;
@@ -33,17 +32,17 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		gotoMainView();
+		
 		
 		
 		stompAdapter = new ChatStompAdapter();
-		stateManager = new ChatGUIAdapter();
-		stateManager.setGui(this);
+		guiAdapter = new ChatGUIAdapter(this);
+		
 		stompServiceHelper = new BindServiceHelper<ISendStompMessages, IReceiveStompMessages, MainActivity>(
 				stompAdapter, this, new Intent(this,
 						StompCommunicationService.class));
 		stompAdapter.setServiceHelper(stompServiceHelper);
-		stompAdapter.setMessageReceiver(stateManager);
+		stompAdapter.setMessageReceiver(guiAdapter);
 		stompServiceHelper.bindService();
 		
 		//while (!stompServiceHelper.isBound()) {
@@ -51,7 +50,7 @@ public class MainActivity extends Activity {
 		//Log.e("nop", "nop");
 		// }
 
-
+		gotoMainView();
 	}
 	
 	/**
@@ -95,8 +94,8 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				// TODO: TEST FUNCTION
 				Log.i("main", "testclick");
-				stompAdapter.connect("192.168.1.128", 61613, "user", "pw");
-				//stompAdapter.login("xx", "xx");
+				stompAdapter.connect("10.0.2.2", 61613, "user", "pw");
+				stompAdapter.login("xx", "xx");
 			}
 		});
 		// DEBUG AREA ///////////////////////////////////////////////////////// DEBUG AREA //
