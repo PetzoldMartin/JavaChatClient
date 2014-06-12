@@ -23,9 +23,11 @@ public class ListActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		ListView list = (ListView) findViewById(R.id.list);
-		ArrayList<Button> buttons = new ArrayList<>();
-		buttons.add(new Button(this));
+		setContentView(R.layout.activity_list);
+		
+		//ListView list = (ListView) findViewById(R.id.list);
+		//ArrayList<Button> buttons = new ArrayList<>();
+		//buttons.add(new Button(this));
 		//list.addChildrenForAccessibility(buttons);
 
 	}

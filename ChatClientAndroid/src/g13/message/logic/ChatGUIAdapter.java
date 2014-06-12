@@ -1,5 +1,6 @@
 package g13.message.logic;
 
+import g13.gui.ListActivity;
 import g13.gui.MainActivity;
 import g13.message.interfaces.ChatServerMessageProducer;
 import g13.message.interfaces.ChatServerMessageReceiver;
@@ -91,7 +92,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 
 	@Override
 	public void gotChats(ArrayList<String> chatRooms) {
-//		new ListBrowser(this, chatRooms, "Join");
+		gui.SetActivity(ListActivity.class, chatRooms);
 	}
 
 	@Override
