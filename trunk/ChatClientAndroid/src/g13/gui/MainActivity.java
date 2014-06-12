@@ -34,7 +34,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		gotoMainView();
 		
 		
 		stompAdapter = new ChatStompAdapter();
@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
 		//Log.e("nop", "nop");
 		// }
 
-		gotoMainView();
+
 	}
 	
 	/**
@@ -96,7 +96,7 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				// TODO: TEST FUNCTION
 				Log.i("main", "testclick");
-				stompAdapter.connect("10.0.2.2", 61613, "user", "pw");
+				stompAdapter.connectToServer("10.0.2.2", 61613, "hut", "schnur");
 				stompAdapter.login("xx", "xx");
 			}
 		});

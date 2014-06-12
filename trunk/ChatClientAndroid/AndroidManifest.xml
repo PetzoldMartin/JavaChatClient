@@ -2,6 +2,12 @@
 <manifest android:versionCode="1" android:versionName="1.0"
     package="g13.gui" xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="19"/>
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" >
+    </uses-permission>
     <application android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" android:theme="@style/AppTheme">
@@ -22,6 +28,7 @@
         <activity android:name=".ChatActivity"/>
         created by foxel at 2014-06-08 15:27:23
        	<activity android:name=".NotLoggedInActivity"/>-->
-        <service android:enabled="true" android:exported="false" android:name="g13.message.logic.service.StompCommunicationService"/>
+        <service android:name="g13.message.logic.service.StompCommunicationService"
+            android:enabled="true" android:exported="false" />
     </application>
 </manifest>
