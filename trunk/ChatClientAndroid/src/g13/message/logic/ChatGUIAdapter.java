@@ -19,14 +19,15 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	private MainActivity gui;
 	private ChatClientState state;
 
-	public ChatGUIAdapter() {
-
+	public ChatGUIAdapter(MainActivity mainActivity) {
+		gui = mainActivity;
 	}
 
 	// START GOT METHODS ////////////////////////////////////////////////////// AREA //
 	
 	@Override
 	public void gotSuccess() {
+		Log.i("GUI-Adapter", "gotSuccess()");
 		gui.gotoLoggedInView();
 	}
 
@@ -237,6 +238,11 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	@Override
 	public void setState(ChatClientState state) {
 		this.state = state;
+		
+		// TODO: remove this later
+		if(state instanceof NotLoggedIn) {
+			gui.gotoNotLoggedInView();
+		}
 	}
 	
 	public void setGui(MainActivity gui) {
