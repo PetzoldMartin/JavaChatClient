@@ -1,5 +1,7 @@
 package g13.gui;
 
+import java.util.ArrayList;
+
 import g13.message.interfaces.IReceiveStompMessages;
 import g13.message.interfaces.ISendStompMessages;
 import g13.message.logic.ChatGUIAdapter;
@@ -140,7 +142,7 @@ public class MainActivity extends Activity {
 	 * Create Listener for logged in view
 	 */
 	public void gotoLoggedInView() {
-		setContentView(R.layout.activity_loggedin);	
+		setContentView(R.layout.activity_loggedin);
 		
 		// Button to create a new chat room
 		findViewById(R.id.create).setOnClickListener(new OnClickListener() {
@@ -149,7 +151,27 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				// FIXME: DEBUG IF ELSE
 				if(isTestGUI) gotoOwnChatView();
-				//else // TODO:
+				else guiAdapter.buttonCreateChatPressed();
+			}
+			
+		});
+		
+		// Button Join Pressed
+		findViewById(R.id.join).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// FIXME: DEBUG IF ELSE
+				if(isTestGUI) {
+					ArrayList<String> chatRooms = new ArrayList<>();
+					chatRooms.add("Peters Chat");
+					chatRooms.add("Martins Chat");
+					chatRooms.add("Markus Chat");
+					chatRooms.add("Andre Chat");
+					guiAdapter.gotChats(chatRooms);
+				} else {
+					guiAdapter.buttonJoinPressed();
+				}
 			}
 			
 		});
@@ -161,22 +183,15 @@ public class MainActivity extends Activity {
 	}
 	
 	/**
-	 * Activate A new Activity
-	 * @param activity Class Name
-	 */
-	public void SetActivity(Class<?> activity) {
-		SetActivity(activity, "");
-	}
-	
-	/**
 	 * Activate a new Activity with specific type
 	 * @param activity Class Name
 	 * @param type specific type
 	 */
-	public void SetActivity(Class<?> activity, String type) {
+	public void SetActivity(Class<?> activity, ArrayList<String> items) {
 		Intent intent = new Intent (this, activity);
 		Bundle bundle = new Bundle();
-		bundle.putString("type", type);
+		
+		bundle.putStringArrayList("items", items);
 		
 		startActivity(intent, bundle);
 	}
