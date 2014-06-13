@@ -103,64 +103,102 @@ IReceiveStompMessages{
 
 	@Override
 	public void requestParticipian(String chatterID) {
-
+		MessageImpl message = makeMessage(MessageKind.chatterMsgRequestParticipation);
+		message.setProperty(MessageHeader.AuthToken.toString(), authToken);
+		message.setProperty(MessageHeader.RefID.toString(), chatterID);
+		stompServiceBinder.sendMessage(message, chatServiceQ);
 	}
 
+	private void sendParameterLessSimpleRequest(MessageKind Msgkind) {
+		// TODO commit
+		MessageImpl message = makeMessage(Msgkind);
+		message.setProperty(MessageHeader.AuthToken.toString(), authToken);
+		message.setProperty(MessageHeader.ChatroomID.toString(), chatroomId);
+		message.setProperty(MessageHeader.RefID.toString(), referenceID);
+		stompServiceBinder.sendMessage(message, chatServiceQ);
+	}
 	@Override
 	public void startChat() {
-
+		sendParameterLessSimpleRequest(MessageKind.chatterMsgStartChat);
 	}
 
 	@Override
 	public void cancel() {
+		sendParameterLessSimpleRequest(MessageKind.chatterMsgStartChat);
 	}
 
 	@Override
 	public void leave() {
+		sendParameterLessSimpleRequest(MessageKind.chatterMsgLeave);
 	}
 
 	@Override
 	public void acceptInvitation(String request) {
-
+		MessageImpl message = makeMessage(MessageKind.chatterMsgDeny);
+		message.setProperty(MessageHeader.MsgKind.toString(),
+				MessageKind.chatterMsgAcceptInvitation.toString());
+		message.setProperty(MessageHeader.AuthToken.toString(), authToken);
+		message.setProperty(MessageHeader.RefID.toString(), request);
+		message.setProperty(MessageHeader.ChatroomID.toString(), chatroomId);
+		stompServiceBinder.sendMessage(message, chatServiceQ);
 	}
 
 	@Override
 	public void close() {
-
+		sendParameterLessSimpleRequest(MessageKind.chatterMsgClose);
 	}
 
 	@Override
 	public void chat(String messageText) {
+		MessageImpl message = makeMessage(MessageKind.chatterMsgChat);
+		message.setProperty(MessageHeader.MsgKind.toString(),
+				MessageKind.chatterMsgChat.toString());
+		message.setProperty(MessageHeader.RefID.toString(), referenceID);
 
+		message.setProperty(MessageHeader.AuthToken.toString(), authToken);
+		message.setContent(messageText);
+		stompServiceBinder.sendMessage(message, chatServiceQ);
 	}
 
 	@Override
 	public void invite(String chatterID) {
-
+		MessageImpl message = makeMessage(MessageKind.chatterMsgInvite);
+		message.setProperty(MessageHeader.AuthToken.toString(), authToken);
+		message.setProperty(MessageHeader.RefID.toString(), chatterID);
+		message.setProperty(MessageHeader.ChatroomID.toString(), chatroomId);
+		stompServiceBinder.sendMessage(message, chatServiceQ);
 	}
 
 	@Override
 	public void reject(String chatterID) {
-
+		MessageImpl message = makeMessage(MessageKind.chatterMsgReject);
+		message.setProperty(MessageHeader.AuthToken.toString(), authToken);
+		message.setProperty(MessageHeader.RefID.toString(), chatterID);
+		message.setProperty(MessageHeader.ChatroomID.toString(), chatroomId);
+		stompServiceBinder.sendMessage(message, chatServiceQ);
 	}
 
 	@Override
 	public void accept(String chatterID) {
-
+		MessageImpl message = makeMessage(MessageKind.chatterMsgAccept);
+		message.setProperty(MessageHeader.AuthToken.toString(), authToken);
+		message.setProperty(MessageHeader.RefID.toString(), chatterID);
+		message.setProperty(MessageHeader.ChatroomID.toString(), chatroomId);
+		stompServiceBinder.sendMessage(message, chatServiceQ);
 	}
 
 	@Override
 	public void askForChats() {
-		MessageImpl msg = makeMessage(MessageKind.chatterMsgChats);
+
 		if (stompServiceBinder != null)
-			stompServiceBinder.sendMessage(msg, chatServiceQ);
+			sendParameterLessSimpleRequest(MessageKind.chatterMsgChats);
+		;
 	}
 
 	@Override
 	public void askForChatters() {
-		MessageImpl msg = makeMessage(MessageKind.chatterMsgChatters);
 		if (stompServiceBinder != null)
-			stompServiceBinder.sendMessage(msg, chatServiceQ);
+			sendParameterLessSimpleRequest(MessageKind.chatterMsgChatters);
 	}
 
 	
@@ -177,17 +215,6 @@ IReceiveStompMessages{
 
 	
 	
-	/**
-	 * method for an parameterless Msg
-	 * 
-	 * @param Msgkind
-	 * @throws JMSException
-	 */
-	private void sendParameterLessSimpleRequest(String Msgkind)
- {
-		// TODO commit
-
-	}
 
 	/**
 	 * read chatters out of a string
@@ -262,11 +289,16 @@ IReceiveStompMessages{
 
 	@Override
 	public void onStompMessage(Serializable message) {
-		Log.e("Message","Client: " + message.toString());
+		Log.i("Message",
+				"Client: "
+						+ ((StompMessage) message)
+								.getProperty(MessageHeader.MsgKind.toString()));
+		Log.i("Message",
+				"Client: " + ((StompMessage) message).getContentAsString());
 		try {
 			if (message instanceof StompMessage) {
 				StompMessage textMessage = (StompMessage) message;
-				// System.out.println("Client: "+textMessage.toString());
+
 
 				String msgKind = textMessage
 						.getProperty(MessageHeader.MsgKind.toString());
@@ -288,6 +320,8 @@ IReceiveStompMessages{
 							.getProperty(MessageHeader.AuthToken
 									.toString());
 					chatServiceQ = textMessage.getProperty("reply-to");
+					Log.i("Message Saves", referenceID + chatroomId
+							+ messageText + chatServiceQ);
 					if (state != null)
 						{	state.gotSucess();	
 						};
@@ -410,6 +444,7 @@ IReceiveStompMessages{
 	public void onConnection(boolean success) {
 		if (messageReceiver instanceof IReceiveStompMessages) {
 			((IReceiveStompMessages) messageReceiver).onConnection(success);
+			Log.i("ChatStompAdapter.onConnection", "message send");
 		} else {
 			Log.e("ChatStompAdapter.onConnection",
 					"no receiver for connect message");
@@ -479,7 +514,7 @@ IReceiveStompMessages{
 
 	@Override
 	public void connectToServer(String brokerUri) {
-		// TODO Auto-generated method stub
+		// TODO Depraced
 		
 	}
 
