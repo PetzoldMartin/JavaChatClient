@@ -5,6 +5,8 @@ import g13.message.interfaces.ISendStompMessages;
 import g13.message.logic.ChatGUIAdapter;
 import g13.message.logic.ChatStompAdapter;
 import g13.message.logic.service.StompCommunicationService;
+import g13.state.ChatClientState;
+import g13.state.client.connection.NotConnected;
 
 import java.util.ArrayList;
 
@@ -26,6 +28,8 @@ import de.fh_zwickau.android.base.architecture.BindServiceHelper;
  */
 public class MainActivity extends Activity {
 
+	private ChatClientState savedState = null;
+
 	protected static boolean isTestGUI = true;
 	private ChatGUIAdapter guiAdapter;
 	
@@ -46,6 +50,11 @@ public class MainActivity extends Activity {
 						StompCommunicationService.class));
 		stompAdapter.setServiceHelper(stompServiceHelper);
 		stompAdapter.setMessageReceiver(guiAdapter);
+		if (savedState!=null) {
+			savedState.register(stompAdapter, guiAdapter);
+		} else {
+			new NotConnected(stompAdapter, guiAdapter);
+		}
 		stompServiceHelper.bindService();
 		
 		//while (!stompServiceHelper.isBound()) {
@@ -84,7 +93,8 @@ public class MainActivity extends Activity {
 					gotoNotLoggedInView();
 				}
 				else {
-					guiAdapter.Connect(ip);
+							// guiAdapter.onConnect(ip); //TODO implement on
+							// connect
 				}
 			}
 			
@@ -261,8 +271,8 @@ public class MainActivity extends Activity {
 	 * @param log
 	 */
 	public void AddLineToLog(String log) {
-		TextView txt = (TextView)findViewById(R.string.str_chatlog);
-		txt.setText(txt.getText() + "\n" + log);
+		TextView debugText = (TextView) findViewById(R.id.debugLog);
+		debugText.setText(log);
 	}
 	
 	public void onExit(MenuItem item) {
@@ -276,6 +286,9 @@ public class MainActivity extends Activity {
 		stompServiceHelper.unbindService();
 		this.finish();
 	}
-
-	
+	@Override
+	public void onPause() {
+		savedState = guiAdapter.getState();
+		super.onPause();
+	}
 }

@@ -2,7 +2,6 @@ package g13.message.logic;
 
 import g13.gui.ListActivity;
 import g13.gui.MainActivity;
-import g13.message.interfaces.ChatServerMessageProducer;
 import g13.message.interfaces.ChatServerMessageReceiver;
 import g13.message.interfaces.IReceiveStompMessages;
 import g13.state.ChatClientState;
@@ -250,16 +249,19 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 		this.gui = gui;
 	}
 	
-	public void Connect(String ip) {
-		ChatServerMessageProducer messageProducer = new ChatJmsAdapter();
-		state = new NotLoggedIn(messageProducer, this);
-		messageProducer.connectToServer("tcp://" + ip); // default localhost:61616"
-	}
+	// public void Connect(String ip) {
+	// // ChatServerMessageProducer messageProducer = new ChatJmsAdapter();
+	// // state = new NotLoggedIn(messageProducer, this);
+	// messageProducer.connectToServer("tcp://" + ip); // default
+	// localhost:61616"
+	// }
 
 	@Override
 	public void onServiceBound(ComponentName name) {
-		// state.serviceBound();
-		// TODO bind the states
+		if (state != null) {
+			state.serviceBound();
+		}
+		// TODO bind the service
 	}
 
 	@Override
@@ -282,8 +284,16 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 
 	@Override
 	public void onError(String error) {
-		// TODO Auto-generated method stub
+		Log.e("Error", error); // TODO refractor tag
+	}
 
+	public ChatClientState getState() {
+		return state;
+	}
+
+	@Override
+	public void debug(String debug) {
+		gui.AddLineToLog(debug);
 	}
 
 }
