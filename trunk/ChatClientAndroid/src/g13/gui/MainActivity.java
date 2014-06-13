@@ -1,12 +1,13 @@
 package g13.gui;
 
-import java.util.ArrayList;
-
 import g13.message.interfaces.IReceiveStompMessages;
 import g13.message.interfaces.ISendStompMessages;
 import g13.message.logic.ChatGUIAdapter;
 import g13.message.logic.ChatStompAdapter;
 import g13.message.logic.service.StompCommunicationService;
+
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -96,13 +97,72 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				// TODO: TEST FUNCTION
 				Log.i("main", "testclick");
-				stompAdapter.connectToServer("10.0.2.2", 61613, "hut", "schnur");
-				stompAdapter.login("xx", "xx");
+				// stompAdapter.connectToServer("10.0.2.2", 61613, "hut",
+				// "schnur");
+				// stompAdapter.login("hut", "schnur");
+				gotoTestView();
+				// stompAdapter.askForChats();
+				// stompAdapter.askForChatters();
 			}
 		});
 		// DEBUG AREA ///////////////////////////////////////////////////////// DEBUG AREA //
 	}
-	
+
+	// DEBUG AREA /////////////////////////////////////////////////////////
+	// DEBUG AREA //
+	public void gotoTestView() {
+		setContentView(R.layout.activity_test);
+
+		// Button to create a new chat room
+		findViewById(R.id.toMain).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				gotoMainView();
+			}
+		});
+
+		findViewById(R.id.button1).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				stompAdapter
+.connectToServer("10.0.2.2", 61613, "", "");
+			}
+		});
+		findViewById(R.id.button2).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				stompAdapter.login("xx", "xy");
+			}
+		});
+		findViewById(R.id.button3).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				stompAdapter.askForChats();
+			}
+		});
+		findViewById(R.id.button4).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				stompAdapter.askForChatters();
+			}
+		});
+		findViewById(R.id.button5).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				stompAdapter.logout();
+			}
+		});
+		findViewById(R.id.button6).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				stompAdapter.register("xx", "xy");
+				;
+			}
+		});
+	}
+
+	// DEBUG AREA /////////////////////////////////////////////////////////
+	// DEBUG AREA //
 	/**
 	 * Create Listener for Not logged in view
 	 */
@@ -216,5 +276,6 @@ public class MainActivity extends Activity {
 		stompServiceHelper.unbindService();
 		this.finish();
 	}
+
 	
 }
