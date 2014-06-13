@@ -39,6 +39,13 @@
             android:text="@string/test" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/debugLog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/str_chatlog" />
+
     <EditText
         android:id="@+id/server"
         android:layout_width="match_parent"

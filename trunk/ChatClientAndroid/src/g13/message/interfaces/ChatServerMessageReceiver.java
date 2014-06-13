@@ -3,10 +3,9 @@
  */
 package g13.message.interfaces;
 
-import java.util.ArrayList;
-
-
 import g13.state.ChatClientState;
+
+import java.util.ArrayList;
 
 /**
  * interface defines methods for all messages that could be sent from chat
@@ -70,5 +69,7 @@ public interface ChatServerMessageReceiver {
 	void setState(ChatClientState chatClientState);
 
 	void gotChatters(ArrayList<String> chatters);
+
+	void debug(String debug);
 
 }

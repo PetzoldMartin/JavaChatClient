@@ -1,7 +1,5 @@
 package g13.state.client;
 
-import g13.message.interfaces.ChatServerMessageProducer;
-import g13.message.interfaces.ChatServerMessageReceiver;
 import g13.state.ChatClientState;
 
 public class NotLoggedIn extends ChatClientState {
@@ -9,11 +7,6 @@ public class NotLoggedIn extends ChatClientState {
 	public NotLoggedIn(ChatClientState oldState) {
 		super(oldState);
 		// TODO Auto-generated constructor stub
-	}
-
-	public NotLoggedIn(ChatServerMessageProducer messageProducer,
-			ChatServerMessageReceiver messageReceiver) {
-		super(messageProducer, messageReceiver);
 	}
 
 	@Override

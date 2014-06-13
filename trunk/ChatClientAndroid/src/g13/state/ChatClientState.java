@@ -21,11 +21,21 @@ public abstract class ChatClientState {
 
 	protected ChatClientState(ChatServerMessageProducer messageProducer,
 			ChatServerMessageReceiver messageReceiver) {
+		register(messageProducer, messageReceiver);
+	}
+
+	public void register(ChatServerMessageProducer messageProducer,
+			ChatServerMessageReceiver messageReceiver) {
 		this.messageProducer = messageProducer;
 		this.messageReceiver = messageReceiver;
 		messageReceiver.setState(this);
 		messageProducer.setState(this);
+		messageReceiver.debug("set state to " + getName());
 		Log.i("state", "set state to " + getName());
+	}
+
+	public void register() {
+		register(this.messageProducer, this.messageReceiver);
 	}
 
 	public ChatServerMessageProducer getProducer() {
@@ -331,7 +341,19 @@ public abstract class ChatClientState {
 	}
 
 	public void serviceBound() {
-		// TODO Auto-generated method stub
+		Log.i("state", "bind  " + getName());
+	}
 
+	// notConnetced
+	public void onConnect(String url, int port, String user, String pw) {
+		unexpectedEvent();
+	}
+
+	public void gotConnectFailture(String error) {
+		unexpectedEvent();
+	}
+
+	public void gotConnectSuccess() {
+		unexpectedEvent();
 	}
 }
