@@ -57,12 +57,6 @@ public class MainActivity extends Activity {
 		}
 		stompServiceHelper.bindService();
 		
-		//while (!stompServiceHelper.isBound()) {
-			
-		//Log.e("nop", "nop");
-		// }
-
-
 	}
 	
 	/**
@@ -107,12 +101,9 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				// TODO: TEST FUNCTION
 				Log.i("main", "testclick");
-				// stompAdapter.connectToServer("10.0.2.2", 61613, "hut",
-				// "schnur");
-				// stompAdapter.login("hut", "schnur");
 				gotoTestView();
-				// stompAdapter.askForChats();
-				// stompAdapter.askForChatters();
+				
+
 			}
 		});
 		// DEBUG AREA ///////////////////////////////////////////////////////// DEBUG AREA //
