@@ -7,6 +7,12 @@
     android:orientation="vertical"
     android:layerType="software" >
 
+    <TextView
+        android:id="@+id/debugLog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/str_chatlog" />
+
     <Button
         android:id="@+id/join"
         android:layout_width="match_parent"
