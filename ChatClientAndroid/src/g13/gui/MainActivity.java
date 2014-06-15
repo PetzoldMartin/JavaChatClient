@@ -32,6 +32,7 @@ public class MainActivity extends Activity {
 	private ChatClientState savedState = null;
 
 	protected static boolean isTestGUI = true;
+	protected static ArrayList<String> itemList = new ArrayList<String>();
 	private ChatGUIAdapter guiAdapter;
 	
 	private ChatStompAdapter stompAdapter;
@@ -279,12 +280,9 @@ public class MainActivity extends Activity {
 	 * @param type specific type
 	 */
 	public void SetActivity(Class<?> activity, ArrayList<String> items) {
+		itemList = items;
 		Intent intent = new Intent (this, activity);
-		Bundle bundle = new Bundle();
-		
-		bundle.putStringArrayList("items", items);
-		
-		startActivity(intent, bundle);
+		startActivity(intent);
 	}
 	
 	/**

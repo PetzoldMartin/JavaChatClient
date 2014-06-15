@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <!--created by foxel at 2014-06-11 11:15:38-->
-        <activity android:hardwareAccelerated="false" android:name=".ListActivity"/>
+        <activity android:hardwareAccelerated="false" android:name="g13.gui.ListActivity"/>
         <!--created by Aismael at 2014-06-15 13:18:53-->
         <activity android:name=".clear"/>
         <service android:enabled="true" android:exported="false" android:name="g13.message.logic.service.StompCommunicationService"/>
