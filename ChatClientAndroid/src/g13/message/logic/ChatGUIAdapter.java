@@ -243,7 +243,6 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	 */
 	public void buttonClosePressed() {
 		state.onChatClose();
-		gui.gotoLoggedInView();
 	}
 
 	/**
