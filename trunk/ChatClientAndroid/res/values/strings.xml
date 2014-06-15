@@ -20,5 +20,6 @@
     <string name="test">test</string>
     <string name="hint_send_message">send a message</string>
     <string name="send">send</string>
+    <string name="leave_chat">leave</string>
 
 </resources>

@@ -251,10 +251,8 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	/**
 	 * Button to send a message is Pressed
 	 */
-	public void buttonSendPressed() {
-//		String message = gui.getMessage();
-//		state.onChat(message);
-//		gui.ClearSendTextField();
+	public void buttonSendPressed(String message) {
+		state.onChat(message);
 	}
 
 	public void buttonCreateChatPressed() {
@@ -279,12 +277,6 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 		this.gui = gui;
 	}
 	
-	// public void Connect(String ip) {
-	// // ChatServerMessageProducer messageProducer = new ChatJmsAdapter();
-	// // state = new NotLoggedIn(messageProducer, this);
-	// messageProducer.connectToServer("tcp://" + ip); // default
-	// localhost:61616"
-	// }
 
 	@Override
 	public void onServiceBound(ComponentName name) {
