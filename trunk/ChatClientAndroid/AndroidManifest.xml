@@ -2,17 +2,16 @@
 <manifest android:versionCode="1" android:versionName="1.0"
     package="g13.gui" xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="19"/>
-    <uses-permission android:name="android.permission.INTERNET" >
-    </uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" >
-    </uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" >
-    </uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <application android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" android:theme="@style/AppTheme">
         <activity
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:hardwareAccelerated="false"
             android:label="@string/app_name"
             android:name="g13.gui.MainActivity" android:theme="@style/FullscreenTheme">
             <intent-filter>
@@ -21,14 +20,9 @@
             </intent-filter>
         </activity>
         <!--created by foxel at 2014-06-11 11:15:38-->
-        <activity android:name=".ListActivity"/>
-        <!-- created by foxel at 2014-06-08 13:06:09
-        <activity android:name=".LoggedInActivity"/>
-        created by foxel at 2014-06-08 15:21:43 
-        <activity android:name=".ChatActivity"/>
-        created by foxel at 2014-06-08 15:27:23
-       	<activity android:name=".NotLoggedInActivity"/>-->
-        <service android:name="g13.message.logic.service.StompCommunicationService"
-            android:enabled="true" android:exported="false" />
+        <activity android:hardwareAccelerated="false" android:name=".ListActivity"/>
+        <!--created by Aismael at 2014-06-15 13:18:53-->
+        <activity android:name=".clear"/>
+        <service android:enabled="true" android:exported="false" android:name="g13.message.logic.service.StompCommunicationService"/>
     </application>
 </manifest>

@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="gui.util.MainActivity" >
+    tools:context="gui.util.MainActivity"
+    android:layerType="software" >
 
     <!--
          The primary full-screen view. This can be replaced with whatever view

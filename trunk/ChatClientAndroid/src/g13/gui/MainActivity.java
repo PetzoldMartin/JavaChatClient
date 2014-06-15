@@ -11,6 +11,7 @@ import g13.state.client.connection.NotConnected;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -63,8 +64,9 @@ public class MainActivity extends Activity {
 	 * Create Listener for Main view
 	 */
 	public void gotoMainView() {
+
 		setContentView(R.layout.activity_main);	
-		
+
 		final TextView server = (TextView)findViewById(R.id.server);
 		
 		// DEBUG
@@ -112,8 +114,9 @@ public class MainActivity extends Activity {
 	// DEBUG AREA /////////////////////////////////////////////////////////
 	// DEBUG AREA //
 	public void gotoTestView() {
-		setContentView(R.layout.activity_test);
+		setContentView(R.layout.clear);
 
+		setContentView(R.layout.activity_test);
 		// Button to create a new chat room
 		findViewById(R.id.toMain).setOnClickListener(new OnClickListener() {
 			@Override
@@ -168,6 +171,8 @@ public class MainActivity extends Activity {
 	 * Create Listener for Not logged in view
 	 */
 	public void gotoNotLoggedInView() {
+		setContentView(R.layout.clear);
+
 		setContentView(R.layout.activity_not_logged_in);	
 		
 		final TextView name = (TextView)findViewById(R.id.name);
