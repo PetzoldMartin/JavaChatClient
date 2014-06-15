@@ -246,6 +246,21 @@ public class MainActivity extends Activity {
 			
 		});
 		
+		// Button Logout Pressed
+		findViewById(R.id.logout).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// FIXME: DEBUG IF ELSE
+				if(isTestGUI) {
+					guiAdapter.gotLogout();
+				} else {
+					guiAdapter.buttonLogoutPressed();
+				}
+			}
+			
+		});
+		
 	}
 	
 	/**
@@ -293,6 +308,22 @@ public class MainActivity extends Activity {
 					guiAdapter.gotChatters(user);
 				} else {
 					guiAdapter.buttonInvitePressed();
+				}
+				
+			}
+				
+		});
+		
+		// Button Close Pressed
+		findViewById(R.id.btn_close).setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// FIXME: DEBUG IF ELSE
+				if(isTestGUI) {
+					guiAdapter.gotChatClosed();
+				} else {
+					guiAdapter.buttonClosePressed();
 				}
 				
 			}
