@@ -74,10 +74,15 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 //		setInOtherChat();
 	}
 
+
+	/**
+	 * A Chatter has send a textMessage 
+	 * @param chatter The Chatter user
+	 * @param textMessage The received message
+	 */
 	@Override
-	public void gotNewChat(String Chatter, String messageText) {
-//		gui.AddLineToLog(Chatter + ": " + messageText);
-		gui.setChatinChatlog(Chatter,messageText);
+	public void gotNewChat(String chatter, String textMessage) {
+		gui.setChatinChatlog(chatter,textMessage);
 	}
 
 	@Override
@@ -137,10 +142,11 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 		gui.AddLineToLog(chatterID + "don't want to join your chat!");
 	}
 
-	@Override
 	/**
 	 * Other user wants to join my chat
+	 * @param chatterID The joined Chatters ID
 	 */
+	@Override
 	public void gotRequest(String chatterID) {
 //		if (JOptionPane.showConfirmDialog(null, "Accept " + chatterID + " to join?", "Other user want to joint",
 //				JOptionPane.YES_NO_OPTION) == 0) {
