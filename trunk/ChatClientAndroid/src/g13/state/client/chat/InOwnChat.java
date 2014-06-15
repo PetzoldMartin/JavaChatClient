@@ -71,6 +71,7 @@ public class InOwnChat extends AbstractChatting {
 	public void onChatClose() {
 		try {
 			messageProducer.close();
+			//TODO in gotChatclosed erst statewechsel
 			new LoggedIn(this);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -86,5 +87,9 @@ public class InOwnChat extends AbstractChatting {
 			e.printStackTrace();
 		}
 	}
-
+ @Override
+ public void gotChatClosed(){
+	 //TODO implement
+ }
+	
 }
