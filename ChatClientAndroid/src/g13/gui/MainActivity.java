@@ -6,6 +6,8 @@ import g13.message.logic.ChatGUIAdapter;
 import g13.message.logic.ChatStompAdapter;
 import g13.message.logic.service.StompCommunicationService;
 import g13.state.ChatClientState;
+import g13.state.client.LoggedIn;
+import g13.state.client.chat.InOwnChat;
 import g13.state.client.connection.NotConnected;
 
 import java.util.ArrayList;
@@ -24,16 +26,17 @@ import de.fh_zwickau.android.base.architecture.BindServiceHelper;
 
 
 /**
- * This is the Main Activity for the chat client
+ * The Main Activity for the chat client
  * @author Andre Furchner
  */
 public class MainActivity extends Activity {
 
 	private ChatClientState savedState = null;
 
-	protected static boolean isTestGUI = true;
-	protected static ArrayList<String> itemList = new ArrayList<String>();
-	protected static ChatGUIAdapter guiAdapter;
+	private static boolean debug_isTestGUI = true;
+	
+	private static ArrayList<String> itemList = new ArrayList<String>();
+	private static ChatGUIAdapter guiAdapter;
 	
 	private ChatStompAdapter stompAdapter;
 	private BindServiceHelper<ISendStompMessages, IReceiveStompMessages, MainActivity> stompServiceHelper;
@@ -90,9 +93,9 @@ public class MainActivity extends Activity {
 				}
 				
 				// DEBUG FLAG
-				isTestGUI = box.isChecked();
+				debug_isTestGUI = box.isChecked();
 				// FIXME: DEBUG IF ELSE
-				if(isTestGUI) {
+				if(debug_isTestGUI) {
 					gotoNotLoggedInView();
 				}
 				else {
@@ -188,7 +191,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// FIXME: DEBUG IF ELSE
-				if(isTestGUI) guiAdapter.gotSuccess();
+				if(debug_isTestGUI) guiAdapter.gotSuccess();
 				else guiAdapter.buttonLoginPressed(name.getText().toString(), password.getText().toString());
 			}
 			
@@ -200,7 +203,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// FIXME: DEBUG IF ELSE
-				if(isTestGUI) guiAdapter.gotSuccess();
+				if(debug_isTestGUI) guiAdapter.gotSuccess();
 				else guiAdapter.buttonRegisterPressed(name.getText().toString(), password.getText().toString());
 			}
 			
@@ -220,7 +223,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// FIXME: DEBUG IF ELSE
-				if(isTestGUI) guiAdapter.gotChatStarted("Debug chatroom");
+				if(debug_isTestGUI) guiAdapter.gotChatStarted("Debug chatroom");
 				else guiAdapter.buttonCreateChatPressed();
 			}
 			
@@ -232,7 +235,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// FIXME: DEBUG IF ELSE
-				if(isTestGUI) {
+				if(debug_isTestGUI) {
 					ArrayList<String> chatRooms = new ArrayList<>();
 					chatRooms.add("Peters Chat");
 					chatRooms.add("Martins Chat");
@@ -252,7 +255,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// FIXME: DEBUG IF ELSE
-				if(isTestGUI) {
+				if(debug_isTestGUI) {
 					guiAdapter.gotLogout();
 				} else {
 					guiAdapter.buttonLogoutPressed();
@@ -261,6 +264,36 @@ public class MainActivity extends Activity {
 			
 		});
 		
+	}
+	
+	/**
+	 * Create the Listener for the other chat view
+	 */
+	public void gotoOtherChatView() {
+		setContentView(R.layout.activity_chat);
+		final TextView textView = (TextView)findViewById(R.id.send_textfield);
+		findViewById(R.id.btn_close).setVisibility(TRIM_MEMORY_UI_HIDDEN);
+		
+		// Button Send Pressed
+		findViewById(R.id.btn_send).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				String chatText = textView.getText().toString();
+				if(chatText.equals("")) {
+							chatText = getString(R.string.server);
+				}
+				
+
+				if(debug_isTestGUI) {
+					guiAdapter.gotNewChat("Me", chatText);
+				}
+				else {
+					guiAdapter.onNewChat(chatText);
+					textView.setText("");
+				}
+			}
+		});
 	}
 	
 	/**
@@ -281,7 +314,7 @@ public class MainActivity extends Activity {
 				}
 				
 
-				if(isTestGUI) {
+				if(debug_isTestGUI) {
 					guiAdapter.gotNewChat("Me", chatText);
 				}
 				else {
@@ -299,7 +332,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// FIXME: DEBUG IF ELSE
-				if(isTestGUI) {
+				if(debug_isTestGUI) {
 					ArrayList<String> user = new ArrayList<>();
 					user.add("Peter");
 					user.add("Martin");
@@ -320,7 +353,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// FIXME: DEBUG IF ELSE
-				if(isTestGUI) {
+				if(debug_isTestGUI) {
 					guiAdapter.gotChatClosed();
 				} else {
 					guiAdapter.buttonClosePressed();
@@ -380,6 +413,12 @@ public class MainActivity extends Activity {
 	}
 	
 	public static void gotSelectedItem(String item) {
-		guiAdapter.listItemSelected(item);
+		// FIXME: DEBUG IF ELSE
+		if(debug_isTestGUI) {
+			if(guiAdapter.debugGetState() instanceof LoggedIn) guiAdapter.gotParticipating();
+			if(guiAdapter.debugGetState() instanceof InOwnChat) guiAdapter.gotAccepted(item);
+		} else {
+			guiAdapter.listItemSelected(item);
+		}
 	}
 }

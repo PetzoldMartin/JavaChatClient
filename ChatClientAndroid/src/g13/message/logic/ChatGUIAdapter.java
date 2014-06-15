@@ -75,7 +75,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 
 	@Override
 	public void gotParticipating() {
-//		setInOtherChat();
+		gui.gotoOtherChatView();
 	}
 
 
@@ -94,11 +94,14 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 		gui.gotoLoggedInView();
 	}
 
+	/**
+	 * User is in his own chat and has invited a another user
+	 * he becomes a info that the invite is accepted
+	 * @param chatterID The invited chatterID
+	 */
 	@Override
 	public void gotAccepted(String chatterID) {
-		// TODO implement chatterID
-//		gui.AddLineToLog("System: Accepted");
-
+		gui.AddLineToLog(chatterID + " Accepted your invite.");
 	}
 
 	@Override
@@ -328,6 +331,10 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	@Override
 	public void debug(String debug) {
 		gui.AddLineToLog(debug);
+	}
+	
+	public ChatClientState debugGetState() {
+		return state;
 	}
 
 	public void onConnect(String ip, int i, String string, String string2) {
