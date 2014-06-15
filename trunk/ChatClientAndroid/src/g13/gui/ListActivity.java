@@ -28,7 +28,7 @@ public class ListActivity extends MainActivity {
 		
 		ListView list = (ListView) findViewById(R.id.list);
 		
-		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.activity_list, itemList);
+		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, itemList);
 		
 		list.setAdapter(arrayAdapter);
 		//ArrayList<Button> buttons = new ArrayList<>();
