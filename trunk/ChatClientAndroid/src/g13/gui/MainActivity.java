@@ -232,7 +232,6 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// FIXME: DEBUG IF ELSE
-				
 				if(isTestGUI) {
 					ArrayList<String> chatRooms = new ArrayList<>();
 					chatRooms.add("Peters Chat");
@@ -274,8 +273,32 @@ public class MainActivity extends Activity {
 					guiAdapter.onNewChat(chatText);
 					textView.setText("");
 				}
-			}});
-		 textOut = (TextView)findViewById(R.id.txt_chatlog);
+			}
+		});
+		
+		textOut = (TextView)findViewById(R.id.txt_chatlog);
+		 
+		// Button Invite Pressed
+		findViewById(R.id.btn_invite).setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// FIXME: DEBUG IF ELSE
+				if(isTestGUI) {
+					ArrayList<String> user = new ArrayList<>();
+					user.add("Peter");
+					user.add("Martin");
+					user.add("Marku");
+					user.add("Andre");
+					guiAdapter.gotChatters(user);
+				} else {
+					guiAdapter.buttonInvitePressed();
+				}
+				
+			}
+				
+		});
+			
 					
 	}
 	
