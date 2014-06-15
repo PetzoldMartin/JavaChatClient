@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
 
 	protected static boolean isTestGUI = true;
 	protected static ArrayList<String> itemList = new ArrayList<String>();
-	private ChatGUIAdapter guiAdapter;
+	protected static ChatGUIAdapter guiAdapter;
 	
 	private ChatStompAdapter stompAdapter;
 	private BindServiceHelper<ISendStompMessages, IReceiveStompMessages, MainActivity> stompServiceHelper;
@@ -43,6 +43,8 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+
 		gotoMainView();
 		
 		
@@ -247,6 +249,9 @@ public class MainActivity extends Activity {
 		
 	}
 	
+	/**
+	 * Create the Listener and View for the own chat
+	 */
 	public void gotoOwnChatView() {
 		setContentView(R.layout.activity_chat);
 		final TextView textView = (TextView)findViewById(R.id.send_textfield);
@@ -314,5 +319,13 @@ public class MainActivity extends Activity {
 	public void setChatinChatlog(String chatter, String messageText) {
 		textOut.setText(textOut.getText().toString()+"\n"+chatter+": "+messageText);
 		
+	}
+	
+	public static ArrayList<String> getItemList() {
+		return itemList;
+	}
+	
+	public static void gotSelectedItem(String item) {
+		guiAdapter.listItemSelected(item);
 	}
 }

@@ -5,9 +5,13 @@ import g13.gui.MainActivity;
 import g13.message.interfaces.ChatServerMessageReceiver;
 import g13.message.interfaces.IReceiveStompMessages;
 import g13.state.ChatClientState;
+import g13.state.client.LoggedIn;
 import g13.state.client.NotLoggedIn;
+import g13.state.client.chat.InOtherChat;
+import g13.state.client.chat.InOwnChat;
 
 import java.io.Serializable;
+import java.security.acl.Owner;
 import java.util.ArrayList;
 
 import de.fh_zwickau.informatik.stompj.StompMessage;
@@ -104,7 +108,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 
 	@Override
 	public void gotChatters(ArrayList<String> chatters) {
-//		new ListBrowser(this, chatters, "Invite");
+		gui.SetActivity(ListActivity.class, chatters);
 	}
 	
 	@Override
@@ -181,6 +185,21 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	 */
 	public void buttonJoinPressed() {
 		state.onAskForChats();
+	}
+	
+	/**
+	 * The use has selected a item in a List
+	 * @param item name
+	 */
+	public void listItemSelected(String item) {
+		if(state instanceof LoggedIn){
+			Log.i("GUI", "User want to join " + item);
+			state.onRequest(item);
+		}
+		if(state instanceof InOwnChat){
+			Log.i("GUI", "User want to invite " + item);
+			state.onInvite(item);
+		}
 	}
 
 	/**

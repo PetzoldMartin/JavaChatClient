@@ -3,23 +3,23 @@
  */
 package g13.gui;
 
-import java.util.ArrayList;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 /**
  * @author Andre Furchner
+ * A Basic List of items that can be selected
  *
  */
-public class ListActivity extends MainActivity {
+public class ListActivity extends Activity {
 
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,13 +27,18 @@ public class ListActivity extends MainActivity {
 		setContentView(R.layout.activity_list);
 		
 		ListView list = (ListView) findViewById(R.id.list);
-		
-		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, itemList);
-		
+		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, MainActivity.getItemList());		
 		list.setAdapter(arrayAdapter);
-		//ArrayList<Button> buttons = new ArrayList<>();
-		//buttons.add(new Button(this));
-		//list.addChildrenForAccessibility(buttons);
+		list.setOnItemClickListener(new OnItemClickListener(){
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				MainActivity.gotSelectedItem((String)parent.getItemAtPosition(position));
+				finish();
+			}
+			
+		});		
 
 	}
 
