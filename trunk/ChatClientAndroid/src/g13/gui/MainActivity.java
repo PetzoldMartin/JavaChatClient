@@ -36,6 +36,8 @@ public class MainActivity extends Activity {
 	
 	private ChatStompAdapter stompAdapter;
 	private BindServiceHelper<ISendStompMessages, IReceiveStompMessages, MainActivity> stompServiceHelper;
+
+	private TextView textOut=null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,8 @@ public class MainActivity extends Activity {
 	public void gotoMainView() {
 
 		setContentView(R.layout.activity_main);	
+		
+
 
 		final TextView server = (TextView)findViewById(R.id.server);
 		
@@ -89,8 +93,7 @@ public class MainActivity extends Activity {
 					gotoNotLoggedInView();
 				}
 				else {
-							// guiAdapter.onConnect(ip); //TODO implement on
-							// connect
+					guiAdapter.onConnect(ip, 61613, "", "");
 				}
 			}
 			
@@ -129,7 +132,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				stompAdapter
-.connectToServer("10.0.2.2", 61613, "", "");
+.connectToServer("192.168.1.128", 61613, "", "");
 			}
 		});
 		findViewById(R.id.button2).setOnClickListener(new OnClickListener() {
@@ -228,6 +231,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// FIXME: DEBUG IF ELSE
+				
 				if(isTestGUI) {
 					ArrayList<String> chatRooms = new ArrayList<>();
 					chatRooms.add("Peters Chat");
@@ -245,7 +249,29 @@ public class MainActivity extends Activity {
 	}
 	
 	public void gotoOwnChatView() {
-		setContentView(R.layout.activity_chat);	
+		setContentView(R.layout.activity_chat);
+		final TextView textView = (TextView)findViewById(R.id.send_textfield);
+
+		findViewById(R.id.btn_send).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				String chatText = textView.getText().toString();
+				if(chatText.equals("")) {
+							chatText = getString(R.string.server);
+				}
+				
+
+				if(isTestGUI) {
+					gotoNotLoggedInView();
+				}
+				else {
+					guiAdapter.onNewChat(chatText);
+					textView.setText("");
+				}
+			}});
+		 textOut = (TextView)findViewById(R.id.txt_chatlog);
+					
 	}
 	
 	/**
@@ -286,5 +312,10 @@ public class MainActivity extends Activity {
 	public void onPause() {
 		savedState = guiAdapter.getState();
 		super.onPause();
+	}
+
+	public void setChatinChatlog(String chatter, String messageText) {
+		textOut.setText(textOut.getText().toString()+"\n"+chatter+": "+messageText);
+		
 	}
 }

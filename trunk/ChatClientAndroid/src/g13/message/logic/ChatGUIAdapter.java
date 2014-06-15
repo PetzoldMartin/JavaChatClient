@@ -10,6 +10,8 @@ import g13.state.client.NotLoggedIn;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import de.fh_zwickau.informatik.stompj.StompMessage;
+import de.fh_zwickau.pti.mqgamecommon.MessageHeader;
 import android.content.ComponentName;
 import android.util.Log;
 
@@ -75,6 +77,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	@Override
 	public void gotNewChat(String Chatter, String messageText) {
 //		gui.AddLineToLog(Chatter + ": " + messageText);
+		gui.setChatinChatlog(Chatter,messageText);
 	}
 
 	@Override
@@ -273,12 +276,19 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	@Override
 	public void onStompMessage(Serializable message) {
 		Log.e("ChatguiAdapter", "should never be called on Stomp Message");
-
+		Log.i("Message on wrong place",
+				"Client: "
+						+ ((StompMessage) message)
+								.getProperty(MessageHeader.MsgKind.toString()));
+		Log.i("Message on wrong place",
+				"Client: " + ((StompMessage) message).getContentAsString());
+		
 	}
 
 	@Override
 	public void onConnection(boolean success) {
-		Log.e("ChatguiAdapter", "should never be called on Stomp Message");
+		Log.e("ChatguiAdapter", "should never be called on Stomp Connection");
+		
 
 	}
 
@@ -294,6 +304,16 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	@Override
 	public void debug(String debug) {
 		gui.AddLineToLog(debug);
+	}
+
+	public void onConnect(String ip, int i, String string, String string2) {
+		state.onConnect(ip, i, string, string2);
+		
+	}
+
+	public void onNewChat(String chatText) {
+		state.onChat(chatText);
+		
 	}
 
 }

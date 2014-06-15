@@ -3,6 +3,7 @@ package g13.state.client.connection;
 import g13.message.interfaces.ChatServerMessageProducer;
 import g13.message.interfaces.ChatServerMessageReceiver;
 import g13.state.ChatClientState;
+import g13.state.client.NotLoggedIn;
 
 public class NotConnected extends ChatClientState {
 
@@ -23,7 +24,8 @@ public class NotConnected extends ChatClientState {
 
 	@Override
 	public void gotConnectSuccess() {
-		new Connected(this);
+		//todo refactor connected state new Connected(this);
+		new NotLoggedIn(this);
 	}
 
 	@Override

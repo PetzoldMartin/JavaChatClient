@@ -445,6 +445,8 @@ IReceiveStompMessages{
 		if (messageReceiver instanceof IReceiveStompMessages) {
 			((IReceiveStompMessages) messageReceiver).onConnection(success);
 			Log.i("ChatStompAdapter.onConnection", "message send");
+			if(success==true){state.gotConnectSuccess();} 
+			else{state.gotConnectFailture("failure");}
 		} else {
 			Log.e("ChatStompAdapter.onConnection",
 					"no receiver for connect message");
