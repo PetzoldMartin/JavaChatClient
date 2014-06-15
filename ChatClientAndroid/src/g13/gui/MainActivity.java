@@ -133,7 +133,7 @@ public class MainActivity extends Activity {
 			}
 		});
 
-		findViewById(R.id.button1).setOnClickListener(new OnClickListener() {
+		findViewById(R.id.btn_leave).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				stompAdapter
@@ -272,7 +272,62 @@ public class MainActivity extends Activity {
 	public void gotoOtherChatView() {
 		setContentView(R.layout.activity_chat);
 		final TextView textView = (TextView)findViewById(R.id.send_textfield);
-		findViewById(R.id.btn_close).setVisibility(TRIM_MEMORY_UI_HIDDEN);
+		
+		// hide and show some buttons
+		findViewById(R.id.btn_close).setVisibility(View.INVISIBLE);
+		findViewById(R.id.btn_invite).setVisibility(View.INVISIBLE);
+		findViewById(R.id.btn_leave).setVisibility(View.VISIBLE);
+		
+		// Button Send Pressed
+		findViewById(R.id.btn_send).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				String chatText = textView.getText().toString();
+				if(chatText.equals("")) {
+							chatText = getString(R.string.server);
+				}
+				
+				// FIXME: DEBUG IF ELSE
+				if(debug_isTestGUI) {
+					guiAdapter.gotNewChat("Me", chatText);
+				}
+				else {
+					guiAdapter.buttonSendPressed(chatText);
+					textView.setText("");
+				}
+			}
+		});
+		
+		// Button Leave Pressed
+		findViewById(R.id.btn_leave).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// FIXME: DEBUG IF ELSE
+				if(debug_isTestGUI) {
+					gotoLoggedInView();
+				}
+				else {
+					guiAdapter.buttonLeavePressed();
+				}
+			}
+		});
+		
+		textOut = (TextView)findViewById(R.id.txt_chatlog);
+	}
+	
+	/**
+	 * Create the Listener and View for the own chat
+	 */
+	public void gotoOwnChatView() {
+		setContentView(R.layout.activity_chat);
+		final TextView textView = (TextView)findViewById(R.id.send_textfield);
+
+		// hide and show some buttons
+		findViewById(R.id.btn_close).setVisibility(View.VISIBLE);
+		findViewById(R.id.btn_invite).setVisibility(View.VISIBLE);
+		findViewById(R.id.btn_leave).setVisibility(View.INVISIBLE);
 		
 		// Button Send Pressed
 		findViewById(R.id.btn_send).setOnClickListener(new OnClickListener() {
@@ -289,36 +344,7 @@ public class MainActivity extends Activity {
 					guiAdapter.gotNewChat("Me", chatText);
 				}
 				else {
-					guiAdapter.onNewChat(chatText);
-					textView.setText("");
-				}
-			}
-		});
-	}
-	
-	/**
-	 * Create the Listener and View for the own chat
-	 */
-	public void gotoOwnChatView() {
-		setContentView(R.layout.activity_chat);
-		final TextView textView = (TextView)findViewById(R.id.send_textfield);
-
-		// Button Send Pressed
-		findViewById(R.id.btn_send).setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				String chatText = textView.getText().toString();
-				if(chatText.equals("")) {
-							chatText = getString(R.string.server);
-				}
-				
-
-				if(debug_isTestGUI) {
-					guiAdapter.gotNewChat("Me", chatText);
-				}
-				else {
-					guiAdapter.onNewChat(chatText);
+					guiAdapter.buttonSendPressed(chatText);
 					textView.setText("");
 				}
 			}
@@ -417,6 +443,8 @@ public class MainActivity extends Activity {
 		if(debug_isTestGUI) {
 			if(guiAdapter.debugGetState() instanceof LoggedIn) guiAdapter.gotParticipating();
 			if(guiAdapter.debugGetState() instanceof InOwnChat) guiAdapter.gotAccepted(item);
+			// TODO: REMOVE THIS
+			guiAdapter.gotParticipating();
 		} else {
 			guiAdapter.listItemSelected(item);
 		}
