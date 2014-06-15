@@ -114,8 +114,7 @@ public class MainActivity extends Activity {
 		// DEBUG AREA ///////////////////////////////////////////////////////// DEBUG AREA //
 	}
 
-	// DEBUG AREA /////////////////////////////////////////////////////////
-	// DEBUG AREA //
+	// DEBUG AREA /////////////////////////////////////////////////////////// DEBUG AREA //
 	public void gotoTestView() {
 		setContentView(R.layout.clear);
 
@@ -168,8 +167,7 @@ public class MainActivity extends Activity {
 		});
 	}
 
-	// DEBUG AREA /////////////////////////////////////////////////////////
-	// DEBUG AREA //
+	// DEBUG AREA /////////////////////////////////////////////////////////// DEBUG AREA //
 	/**
 	 * Create Listener for Not logged in view
 	 */
@@ -187,7 +185,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// FIXME: DEBUG IF ELSE
-				if(isTestGUI) gotoLoggedInView();
+				if(isTestGUI) guiAdapter.gotSuccess();
 				else guiAdapter.buttonLoginPressed(name.getText().toString(), password.getText().toString());
 			}
 			
@@ -199,7 +197,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// FIXME: DEBUG IF ELSE
-				if(isTestGUI) gotoLoggedInView();
+				if(isTestGUI) guiAdapter.gotSuccess();
 				else guiAdapter.buttonRegisterPressed(name.getText().toString(), password.getText().toString());
 			}
 			
@@ -219,7 +217,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// FIXME: DEBUG IF ELSE
-				if(isTestGUI) gotoOwnChatView();
+				if(isTestGUI) guiAdapter.gotChatStarted("Debug chatroom");
 				else guiAdapter.buttonCreateChatPressed();
 			}
 			
@@ -252,6 +250,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_chat);
 		final TextView textView = (TextView)findViewById(R.id.send_textfield);
 
+		// Button Send Pressed
 		findViewById(R.id.btn_send).setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -263,7 +262,7 @@ public class MainActivity extends Activity {
 				
 
 				if(isTestGUI) {
-					gotoNotLoggedInView();
+					guiAdapter.gotNewChat("Me", chatText);
 				}
 				else {
 					guiAdapter.onNewChat(chatText);
