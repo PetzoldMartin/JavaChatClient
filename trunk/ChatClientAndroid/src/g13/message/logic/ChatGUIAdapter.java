@@ -66,7 +66,6 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	@Override
 	public void gotChatStarted(String chatId) {
 		gui.gotoOwnChatView();
-		gui.DebugLog("You are now in your own chat: " + chatId);
 	}
 
 	@Override
@@ -97,7 +96,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	 */
 	@Override
 	public void gotAccepted(String chatterID) {
-		gui.DebugLog(chatterID + " Accepted your invite.");
+		//gui.(chatterID + " Accepted your invite.");
 	}
 
 	@Override
@@ -116,7 +115,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	 * Rejected by chat owner
 	 */
 	public void gotRejected(String chatterID) {
-		gui.DebugLog("your request to join a chat room was rejected by user: " + chatterID);
+		//gui.DebugLog("your request to join a chat room was rejected by user: " + chatterID);
 
 	}
 	
@@ -125,7 +124,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	 * Other user has joint the chat room
 	 */
 	public void gotParticipantEntered(String chatterID) {
-		gui.DebugLog(chatterID + ": has joint the chatroom.");
+		//gui.DebugLog(chatterID + ": has joint the chatroom.");
 
 	}
 
@@ -134,7 +133,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	 * Other user has left the chat room
 	 */
 	public void gotParticipantLeft(String chatterID) {
-		gui.DebugLog(chatterID + ": has left the chatroom.");
+		//gui.DebugLog(chatterID + ": has left the chatroom.");
 	}
 
 	@Override
@@ -142,7 +141,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	 * The user that you have invited don't want to join your chat
 	 */
 	public void gotRequestCancelled(String chatterID) {
-		gui.DebugLog(chatterID + "don't want to join your chat!");
+		//gui.DebugLog(chatterID + "don't want to join your chat!");
 	}
 
 	/**
@@ -331,11 +330,6 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	public ChatClientState getState() {
 		return state;
 	}
-
-	@Override
-	public void debug(String debug) {
-		gui.DebugLog(debug);
-	}
 	
 	public ChatClientState debugGetState() {
 		return state;
@@ -348,6 +342,12 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 
 	public void onNewChat(String chatText) {
 		state.onChat(chatText);
+	}
+
+	@Override
+	public void debug(String debug) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
