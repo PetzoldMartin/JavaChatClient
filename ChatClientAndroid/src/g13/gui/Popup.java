@@ -2,6 +2,7 @@ package g13.gui;
 
 import g13.message.logic.ChatGUIAdapter;
 import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
@@ -10,13 +11,13 @@ import android.os.Bundle;
 public class Popup extends DialogFragment {
 	private AlertDialog.Builder builder;
 	private ChatGUIAdapter guiAdapter;
-	private String type, item;
+	private String type, item, msg;
 	
     public Dialog onCreateDialog(Bundle savedInstanceState) {
     	
         // Use the Builder class for convenient dialog construction
-        builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("bla bla blub")
+    	builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(msg)
                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                    public void onClick(DialogInterface dialog, int id) {
                        guiAdapter.popupOkPressed(type, item);
@@ -36,7 +37,7 @@ public class Popup extends DialogFragment {
     }
     
     public void setMessage(String type, String item, String msg) {
-    	builder.setMessage("msg");
+    	this.msg = msg;
     	this.type = type;
     	this.item = item;
     }
