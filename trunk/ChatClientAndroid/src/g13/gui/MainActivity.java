@@ -442,10 +442,15 @@ public class MainActivity extends Activity {
 	}
 
 
-	public void setChatinChatlog(String chatter, String messageText) {
-		textOut.setText(textOut.getText().toString()+"\n"+chatter+": "+messageText);
-		
+	public void addLineToChatLog(String chatter, String messageText) {
+		if(textOut != null) textOut.setText(textOut.getText().toString()+"\n"+chatter+": "+messageText);
 	}
+	
+	public void addLineToChatLog(String line) {
+		if(textOut != null) textOut.setText(textOut.getText().toString() + "\n" + line);
+	}
+	
+	
 	
 	public static ArrayList<String> getItemList() {
 		return itemList;

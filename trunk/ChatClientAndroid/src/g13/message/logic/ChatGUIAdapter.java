@@ -79,7 +79,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	 */
 	@Override
 	public void gotNewChat(String chatter, String textMessage) {
-		gui.setChatinChatlog(chatter,textMessage);
+		gui.addLineToChatLog(chatter,textMessage);
 	}
 
 	@Override
@@ -104,7 +104,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	 */
 	@Override
 	public void gotAccepted(String chatterID) {
-		//gui.(chatterID + " Accepted your invite.");
+		gui.addLineToChatLog(chatterID + " Accepted your invite.");
 	}
 	
 	@Override
@@ -112,7 +112,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	 * Rejected by chat owner
 	 */
 	public void gotRejected(String chatterID) {
-		//gui.DebugLog("your request to join a chat room was rejected by user: " + chatterID);
+		gui.addLineToChatLog("your request to join a chat room was rejected by user: " + chatterID);
 
 	}
 	
@@ -121,8 +121,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	 * Other user has joint the chat room
 	 */
 	public void gotParticipantEntered(String chatterID) {
-		//gui.DebugLog(chatterID + ": has joint the chatroom.");
-
+		gui.addLineToChatLog(chatterID + ": has joint the chatroom.");
 	}
 
 	@Override
@@ -130,7 +129,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	 * Other user has left the chat room
 	 */
 	public void gotParticipantLeft(String chatterID) {
-		//gui.DebugLog(chatterID + ": has left the chatroom.");
+		gui.addLineToChatLog(chatterID + ": has left the chatroom.");
 	}
 
 	@Override
@@ -145,7 +144,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	public void gotInvite(String chatter, String chatID) {
 		Popup popup = new Popup();
 		popup.setGUIAdapter(this);
-		popup.setMessage("gotInvite", chatter, "Do you want to join" + chatter);
+		popup.setMessage("gotInvite", chatter, "Do you want to join " + chatter);
 		FragmentManager fm = gui.getFragmentManager();
 		popup.show(fm,"tag");
 		
