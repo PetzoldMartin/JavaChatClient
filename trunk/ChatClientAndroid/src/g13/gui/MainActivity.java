@@ -48,9 +48,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-
 		gotoMainView();
-		
 		
 		stompAdapter = new ChatStompAdapter();
 		guiAdapter = new ChatGUIAdapter(this);
