@@ -65,7 +65,6 @@ public class MainActivity extends Activity {
 		stompServiceHelper.bindService();
 
 		debugLog = (TextView) findViewById(R.id.debugLog);
-		// debugLog.;
 	}
 	
 	@Override
@@ -451,6 +450,7 @@ public class MainActivity extends Activity {
 	 * @param log
 	 */
 	public void DebugLog(String log) {
+		debugLog = (TextView) findViewById(R.id.debugLog);
 		debugLog.setText(log + "\n" + debugLog.getText());
 	}
 
