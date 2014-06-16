@@ -57,7 +57,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	public void gotInvite(String chatter, String chatID) {
 		Popup popup = new Popup();
 		popup.setGUIAdapter(this);
-		popup.setMessage("gotInvite", chatID, "Do you want to join" + chatID);
+		popup.setMessage("gotInvite", chatter, "Do you want to join" + chatter);
 		FragmentManager fm = gui.getFragmentManager();
 		popup.show(fm,"tag");
 		
