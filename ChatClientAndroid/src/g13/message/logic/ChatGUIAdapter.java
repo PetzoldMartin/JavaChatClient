@@ -2,6 +2,7 @@ package g13.message.logic;
 
 import g13.gui.ListActivity;
 import g13.gui.MainActivity;
+import g13.gui.Popup;
 import g13.message.interfaces.ChatServerMessageReceiver;
 import g13.message.interfaces.IReceiveStompMessages;
 import g13.state.ChatClientState;
@@ -12,6 +13,7 @@ import g13.state.client.chat.InOwnChat;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import android.app.FragmentManager;
 import android.content.ComponentName;
 import android.util.Log;
 import de.fh_zwickau.informatik.stompj.StompMessage;
@@ -21,10 +23,12 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 		ChatServerMessageReceiver {
 
 	private MainActivity gui;
+	private Popup popup;
 	private ChatClientState state;
 
 	public ChatGUIAdapter(MainActivity mainActivity) {
 		gui = mainActivity;
+		popup = new Popup();
 	}
 
 	// START GOT METHODS ////////////////////////////////////////////////////// AREA //
@@ -53,16 +57,10 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 
 	@Override
 	public void gotInvite(String chatter, String chatID) {
-		// TODO implement parameters
-//		if (JOptionPane.showConfirmDialog(null, chatter
-//				+ " Do you want to join?", "Got Invite from " + chatter,
-//				JOptionPane.YES_NO_OPTION) == 0) {
-//			// User accept Invite
-//			state.onAcceptInvitation(chatID);
-//			setInOtherChat();
-//		} else {
-//			state.onDeny(chatID);
-//		}
+		popup.setMessage("gotInvite", chatID, "Do you want to join" + chatID);
+		FragmentManager fm = gui.getFragmentManager();
+		popup.show(fm,"tag");
+		
 	}
 
 	@Override
@@ -153,13 +151,10 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	 */
 	@Override
 	public void gotRequest(String chatterID) {
-//		if (JOptionPane.showConfirmDialog(null, "Accept " + chatterID + " to join?", "Other user want to joint",
-//				JOptionPane.YES_NO_OPTION) == 0) {
-//			// you accept Invite
-//			state.onAccept(chatterID);
-//		} else {
-//			state.onReject(chatterID);
-//		}
+		popup.setMessage("accUser", chatterID, "Accept " + chatterID + " to join?");
+		
+		FragmentManager fm = gui.getFragmentManager();
+		popup.show(fm,"tag");
 	}
 	
 	
@@ -186,6 +181,24 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	 */
 	public void buttonJoinPressed() {
 		state.onAskForChats();
+	}
+	
+	public void popupOkPressed(String type, String item) {
+		if(type.equals("gotInvite")) {
+			state.onAcceptInvitation(item);
+		} else {
+			// own chat
+			state.onAccept(item);
+		}
+	}
+	
+	public void popupCanclePressed(String type, String item) {
+		if(type.equals("gotInvite")) {
+			state.onDeny(item);;
+		} else {
+			// own chat
+			state.onReject(item);
+		}
 	}
 	
 	/**
