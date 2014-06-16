@@ -19,16 +19,14 @@ public class Requesting extends AbstractWaiting {
 	 */
 	@Override
 	public void gotRejected(String chatterID) {
-		new LoggedIn(this);
 		messageReceiver.gotRejected(chatterID);
-
+		new LoggedIn(this);
 	}
 
 	@Override
 	public void gotParticipating() {
-		new InOtherChat(this);
 		messageReceiver.gotParticipating();
-
+		new InOtherChat(this);
 	}
 
 	@Override
