@@ -12,17 +12,23 @@ import java.util.HashMap;
  * 
  */
 public class UserFactory {
-
 	/** Ablage f√ºr registrierte User Objekte */
-	private HashMap<String, User> users = new HashMap<>();
+	private final HashMap<String, User> users;
 
 	/**
-	 * Einige User automatisch zu Testzwecken anlegen
+	 * l‰dt vorhandene User aus Datenbank TODO
 	 */
-	{
-		users.put("schlapp", new User("schlapp", "hut"));
-		users.put("hut", new User("hut", "schnur"));
-		users.put("muetze", new User("muetze", "cap"));
+	public UserFactory() {
+		users = new HashMap<>();
+		/**
+		 * Einige User automatisch zu Testzwecken anlegen
+		 */
+		{
+			users.put("schlapp", new User("schlapp", "hut"));
+			users.put("hut", new User("hut", "schnur"));
+			users.put("muetze", new User("muetze", "cap"));
+		}
+
 	}
 
 	/**
@@ -35,8 +41,7 @@ public class UserFactory {
 	 * @return vorhanden User oder null bei fehlerhaften Eingaben
 	 */
 	public User createUser(String uname, String pword) {
-		if (users.containsKey(uname)
-				&& users.get(uname).authenticate(pword)) {
+		if (users.containsKey(uname) && users.get(uname).authenticate(pword)) {
 			return users.get(uname);
 		} else {
 			return null;
