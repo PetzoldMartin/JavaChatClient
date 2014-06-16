@@ -56,6 +56,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	@Override
 	public void gotInvite(String chatter, String chatID) {
 		Popup popup = new Popup();
+		popup.setGUIAdapter(this);
 		popup.setMessage("gotInvite", chatID, "Do you want to join" + chatID);
 		FragmentManager fm = gui.getFragmentManager();
 		popup.show(fm,"tag");
@@ -149,7 +150,8 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	 */
 	@Override
 	public void gotRequest(String chatterID) {
-		Popup popup = new Popup(); 
+		Popup popup = new Popup();
+		popup.setGUIAdapter(this);
 		popup.setMessage("accUser", chatterID, "Accept " + chatterID + " to join?");
 		FragmentManager fm = gui.getFragmentManager();
 		popup.show(fm,"tag");

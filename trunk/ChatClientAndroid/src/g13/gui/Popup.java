@@ -12,8 +12,7 @@ public class Popup extends DialogFragment {
 	private ChatGUIAdapter guiAdapter;
 	private String type, item;
 	
-    public Dialog onCreateDialog(Bundle savedInstanceState, final ChatGUIAdapter guiAdapter) {
-    	this.guiAdapter = guiAdapter;
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
     	
         // Use the Builder class for convenient dialog construction
         builder = new AlertDialog.Builder(getActivity());
@@ -30,6 +29,10 @@ public class Popup extends DialogFragment {
                });
         // Create the AlertDialog object and return it
         return builder.create();
+    }
+    
+    public void setGUIAdapter(ChatGUIAdapter cga) {
+    	guiAdapter = cga;
     }
     
     public void setMessage(String type, String item, String msg) {
