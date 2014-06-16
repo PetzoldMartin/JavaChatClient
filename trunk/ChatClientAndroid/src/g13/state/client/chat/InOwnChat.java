@@ -1,11 +1,9 @@
 package g13.state.client.chat;
 
-import java.util.ArrayList;
-
-
-
 import g13.state.ChatClientState;
 import g13.state.client.LoggedIn;
+
+import java.util.ArrayList;
 
 
 public class InOwnChat extends AbstractChatting {
@@ -71,8 +69,6 @@ public class InOwnChat extends AbstractChatting {
 	public void onChatClose() {
 		try {
 			messageProducer.close();
-			//TODO in gotChatclosed erst statewechsel
-			new LoggedIn(this);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -89,7 +85,8 @@ public class InOwnChat extends AbstractChatting {
 	}
  @Override
  public void gotChatClosed(){
-	 //TODO implement
- }
+		messageReceiver.gotChatClosed();
+		new LoggedIn(this);
+	}
 	
 }
