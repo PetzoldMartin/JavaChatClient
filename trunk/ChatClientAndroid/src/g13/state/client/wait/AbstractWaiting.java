@@ -4,11 +4,10 @@ import g13.state.ChatClientState;
 import g13.state.client.LoggedIn;
 
 
-public class AbstractWaiting extends ChatClientState {
+public abstract class AbstractWaiting extends ChatClientState {
 
 	public AbstractWaiting(ChatClientState oldState) {
 		super(oldState);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

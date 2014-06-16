@@ -14,7 +14,6 @@ public class Invited extends AbstractWaiting {
 	 */
 	public Invited(ChatClientState oldState) {
 		super(oldState);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

@@ -1,31 +1,22 @@
 package g13.state.client;
 
-import java.util.ArrayList;
-
-
-
 import g13.state.ChatClientState;
 import g13.state.client.wait.Invited;
 import g13.state.client.wait.Requesting;
+
+import java.util.ArrayList;
 
 
 public class LoggedIn extends ChatClientState {
 
 	public LoggedIn(ChatClientState oldState) {
 		super(oldState);
-		// TODO Auto-generated constructor stub
 	}
 
 	// @Override TODO needed? no, because its not
 	// interesting for the user in this state
 	// public void gotChatClosed() {
 	// messageReceiver.gotChatClosed();
-	// }
-
-	// @Override TODO needed? no, because its not
-	// interesting for the user in this state
-	// public void gotDenied(String CNN) {
-	// messageReceiver.gotDenied(CNN);
 	// }
 
 	@Override

@@ -29,17 +29,17 @@ public class ClientStateManager implements IReceiveStompMessages,
 
 	protected ChatServerMessageProducer messageProducer;
 
-	private EditText urlEditText;
-	private EditText portEditText;
-	private EditText unameEditText;
-	private EditText pwordEditText;
-	private TextView outputText;
-	private ToggleButton connectToggleButton;
-	private Button loginButton;
-	private Button logoutButton;
-	private Button registerButton;
-	private Button getChattersButton;
-	private Button getChatroomsButton;
+	private final EditText urlEditText;
+	private final EditText portEditText;
+	private final EditText unameEditText;
+	private final EditText pwordEditText;
+	private final TextView outputText;
+	private final ToggleButton connectToggleButton;
+	private final Button loginButton;
+	private final Button logoutButton;
+	private final Button registerButton;
+	private final Button getChattersButton;
+	private final Button getChatroomsButton;
 
 	/**
 	 * initialize access to gui elements and state chart

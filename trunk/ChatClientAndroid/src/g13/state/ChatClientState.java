@@ -15,6 +15,11 @@ public abstract class ChatClientState {
 	protected ChatServerMessageProducer messageProducer;
 	protected ChatServerMessageReceiver messageReceiver;
 
+	protected String url = null;
+	protected int port = 0;
+	protected String user = null;
+	protected String pw = null;
+
 	public ChatClientState(ChatClientState oldState) {
 		this(oldState.messageProducer, oldState.messageReceiver);
 	}
@@ -355,5 +360,9 @@ public abstract class ChatClientState {
 
 	public void gotConnectSuccess() {
 		unexpectedEvent();
+	}
+
+	public void restore() {
+		messageProducer.connectToServer(url, port, user, pw);
 	}
 }

@@ -2,11 +2,15 @@ package g13.state.client.connection;
 
 import g13.state.ChatClientState;
 
-public class Connected extends ChatClientState {
+public class Connected extends ChatClientState { // TODO let all connected
+													// extends from this
 
-	
-	private static ChatClientState state;
 	public Connected(ChatClientState oldState) {
 		super(oldState);
+	}
+
+	@Override
+	public void restore() {
+		super.restore(); // TODO main restore function for all substates
 	}
 }

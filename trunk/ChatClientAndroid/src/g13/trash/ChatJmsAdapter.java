@@ -1,4 +1,4 @@
-package g13.message.logic;
+package g13.trash;
 
 import g13.message.ChatChatterRelationship;
 import g13.message.interfaces.ChatServerMessageProducer;

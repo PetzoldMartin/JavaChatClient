@@ -13,10 +13,10 @@ import g13.state.client.connection.NotConnected;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -42,6 +42,7 @@ public class MainActivity extends Activity {
 	private BindServiceHelper<ISendStompMessages, IReceiveStompMessages, MainActivity> stompServiceHelper;
 
 	private TextView textOut=null;
+	private TextView debugLog = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,23 +60,66 @@ public class MainActivity extends Activity {
 						StompCommunicationService.class));
 		stompAdapter.setServiceHelper(stompServiceHelper);
 		stompAdapter.setMessageReceiver(guiAdapter);
-		if (savedState!=null) {
+		restoreState();
+
+		stompServiceHelper.bindService();
+
+		debugLog = (TextView) findViewById(R.id.debugLog);
+		// debugLog.;
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		// getMenuInflater().inflate(R.menu.chat, menu);
+		return true;
+	}
+
+	public void onExit(MenuItem item) {
+		try {
+			stompAdapter.logout();
+		} catch (Exception e) {
+
+		}
+		stompAdapter.disconnect();
+		stompServiceHelper.stopService();
+		stompServiceHelper.unbindService();
+		this.finish();
+	}
+
+	@Override
+	public void onPause() {
+		saveState();
+		super.onPause();
+	}
+
+	/**
+	 * saves the old state for restore
+	 */
+	private void saveState() {
+		// TODO how to save the state when app is totally erased from memory!!!
+		savedState = guiAdapter.getState();
+	}
+
+	/**
+	 * restore the saved state
+	 */
+	private void restoreState() {
+		if (savedState != null) {
+			// TODO restore old state ? in bind service ?
 			savedState.register(stompAdapter, guiAdapter);
+			savedState.restore();
 		} else {
 			new NotConnected(stompAdapter, guiAdapter);
 		}
-		stompServiceHelper.bindService();
-		
 	}
-	
+
 	/**
 	 * Create Listener for Main view
 	 */
 	public void gotoMainView() {
 
 		setContentView(R.layout.activity_main);	
-		
-
 
 		final TextView server = (TextView)findViewById(R.id.server);
 		
@@ -384,7 +428,6 @@ public class MainActivity extends Activity {
 				} else {
 					guiAdapter.buttonClosePressed();
 				}
-				
 			}
 				
 		});
@@ -407,26 +450,8 @@ public class MainActivity extends Activity {
 	 * Add a sting line to chat log
 	 * @param log
 	 */
-	public void AddLineToLog(String log) {
-		TextView debugText = (TextView) findViewById(R.id.debugLog);
-		debugText.setText(log);
-	}
-	
-	public void onExit(MenuItem item) {
-		try {
-			stompAdapter.logout();
-		} catch (Exception e) {
-			
-		}
-		stompAdapter.disconnect();
-		stompServiceHelper.stopService();
-		stompServiceHelper.unbindService();
-		this.finish();
-	}
-	@Override
-	public void onPause() {
-		savedState = guiAdapter.getState();
-		super.onPause();
+	public void DebugLog(String log) {
+		debugLog.setText(log + "\n" + debugLog.getText());
 	}
 
 	public void setChatinChatlog(String chatter, String messageText) {
