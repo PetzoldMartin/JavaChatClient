@@ -52,17 +52,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	public void gotChatClosed() {
 		gui.gotoLoggedInView();
 	}
-
-	@Override
-	public void gotInvite(String chatter, String chatID) {
-		Popup popup = new Popup();
-		popup.setGUIAdapter(this);
-		popup.setMessage("gotInvite", chatter, "Do you want to join" + chatter);
-		FragmentManager fm = gui.getFragmentManager();
-		popup.show(fm,"tag");
-		
-	}
-
+	
 	@Override
 	public void gotChatStarted(String chatId) {
 		gui.gotoOwnChatView();
@@ -144,6 +134,16 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 		//gui.DebugLog(chatterID + "don't want to join your chat!");
 	}
 
+	@Override
+	public void gotInvite(String chatter, String chatID) {
+		Popup popup = new Popup();
+		popup.setGUIAdapter(this);
+		popup.setMessage("gotInvite", chatter, "Do you want to join" + chatter);
+		FragmentManager fm = gui.getFragmentManager();
+		popup.show(fm,"tag");
+		
+	}
+
 	/**
 	 * Other user wants to join my chat
 	 * @param chatterID The joined Chatters ID
@@ -155,14 +155,31 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 		popup.setMessage("accUser", chatterID, "Accept " + chatterID + " to join?");
 		FragmentManager fm = gui.getFragmentManager();
 		popup.show(fm,"tag");
-	}
-	
+	}	
 	
 	// END GOT METHODS //////////////////////////////////////////////////////// AREA //
 
 	
 	// START BUTTON PRESSED /////////////////////////////////////////////////// AREA //
 
+	public void popupOkPressed(String type, String item) {
+		if(type.equals("gotInvite")) {
+			state.onAcceptInvitation(item);
+		} else {
+			// own chat
+			state.onAccept(item);
+		}
+	}
+	
+	public void popupCanclePressed(String type, String item) {
+		if(type.equals("gotInvite")) {
+			state.onDeny(item);
+		} else {
+			// own chat
+			state.onReject(item);
+		}
+	}
+	
 	
 	public void buttonRegisterPressed(String name, String password) {
 		state.onRegister(name, password);
@@ -182,24 +199,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	public void buttonJoinPressed() {
 		state.onAskForChats();
 	}
-	
-	public void popupOkPressed(String type, String item) {
-		if(type.equals("gotInvite")) {
-			state.onAcceptInvitation(item);
-		} else {
-			// own chat
-			state.onAccept(item);
-		}
-	}
-	
-	public void popupCanclePressed(String type, String item) {
-		if(type.equals("gotInvite")) {
-			state.onDeny(item);;
-		} else {
-			// own chat
-			state.onReject(item);
-		}
-	}
+
 	
 	/**
 	 * The use has selected a item in a List
