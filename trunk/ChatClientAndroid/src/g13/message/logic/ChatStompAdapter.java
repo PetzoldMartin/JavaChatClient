@@ -299,7 +299,6 @@ IReceiveStompMessages{
 			if (message instanceof StompMessage) {
 				StompMessage textMessage = (StompMessage) message;
 
-
 				String msgKind = textMessage
 						.getProperty(MessageHeader.MsgKind.toString());
 				referenceID = textMessage.getProperty(MessageHeader.RefID

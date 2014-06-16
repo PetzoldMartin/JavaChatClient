@@ -59,9 +59,8 @@ public class LoggedIn extends ChatClientState {
 
 	@Override
 	public void gotLogout() {
-		new NotLoggedIn(this);
 		messageReceiver.gotLogout();
-
+		new NotLoggedIn(this);
 	}
 
 	@Override
@@ -76,9 +75,8 @@ public class LoggedIn extends ChatClientState {
 
 	@Override
 	public void gotInvite(String chatterID, String chatRoomID) {
-		new Invited(this);
 		messageReceiver.gotInvite(chatterID, chatRoomID);
-
+		new Invited(this);
 	}
 
 }
