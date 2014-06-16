@@ -34,6 +34,8 @@ public class Invited extends AbstractWaiting {
 	public void onAcceptInvitation(String request) {
 		try {
 			messageProducer.acceptInvitation(request);
+			messageReceiver.gotParticipating(); // TODO state changes in
+												// constructor
 			new InOtherChat(this);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
