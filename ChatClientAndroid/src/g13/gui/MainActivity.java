@@ -61,8 +61,6 @@ public class MainActivity extends Activity {
 		restoreState();
 
 		stompServiceHelper.bindService();
-
-		debugLog = (TextView) findViewById(R.id.debugLog);
 	}
 	
 	@Override
@@ -442,15 +440,7 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent (this, activity);
 		startActivity(intent);
 	}
-	
-	/**
-	 * Add a sting line to chat log
-	 * @param log
-	 */
-	public void DebugLog(String log) {
-		debugLog = (TextView) findViewById(R.id.debugLog);
-		debugLog.setText(log + "\n" + debugLog.getText());
-	}
+
 
 	public void setChatinChatlog(String chatter, String messageText) {
 		textOut.setText(textOut.getText().toString()+"\n"+chatter+": "+messageText);
