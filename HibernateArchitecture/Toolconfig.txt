@@ -1,0 +1,7 @@
+Hsql Server
+
+-cp ${resource_loc:/HibernateArchitecture/libs/HibernateDependencies-4.2/hsqldb.jar} org.hsqldb.Server -database.0 ${workspace_loc}/data/addresses -dbname.0 addresses
+
+Hsql Manager
+
+-cp ${resource_loc:/HibernateArchitecture/libs/HibernateDependencies-4.2/hsqldb.jar} org.hsqldb.util.DatabaseManagerSwing --url jdbc:hsqldb:hsql://localhost/addresses
