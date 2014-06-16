@@ -48,21 +48,29 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 		gui.gotoNotLoggedInView();
 	}
 
+	/**
+	 * chat has closed
+	 */
 	@Override
 	public void gotChatClosed() {
 		gui.gotoLoggedInView();
 	}
 	
+	/**
+	 * Users own chat started
+	 */
 	@Override
 	public void gotChatStarted(String chatId) {
 		gui.gotoOwnChatView();
 	}
 
+	/**
+	 * User have joined other chat
+	 */
 	@Override
 	public void gotParticipating() {
 		gui.gotoOtherChatView();
 	}
-
 
 	/**
 	 * A Chatter has send a textMessage 
@@ -79,16 +87,6 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 		gui.gotoLoggedInView();
 	}
 
-	/**
-	 * User is in his own chat and has invited a another user
-	 * he becomes a info that the invite is accepted
-	 * @param chatterID The invited chatterID
-	 */
-	@Override
-	public void gotAccepted(String chatterID) {
-		//gui.(chatterID + " Accepted your invite.");
-	}
-
 	@Override
 	public void gotChats(ArrayList<String> chatRooms) {
 		gui.SetActivity(ListActivity.class, chatRooms);
@@ -99,8 +97,17 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 		gui.SetActivity(ListActivity.class, chatters);
 	}
 	
+	/**
+	 * User is in his own chat and has invited a another user
+	 * he becomes a info that the invite is accepted
+	 * @param chatterID The invited chatterID
+	 */
 	@Override
+	public void gotAccepted(String chatterID) {
+		//gui.(chatterID + " Accepted your invite.");
+	}
 	
+	@Override
 	/**
 	 * Rejected by chat owner
 	 */
