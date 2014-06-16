@@ -9,7 +9,6 @@ public class NotConnected extends ChatClientState {
 
 	public NotConnected(ChatClientState oldState) {
 		super(oldState);
-		// TODO Auto-generated constructor stub
 	}
 
 	public NotConnected(ChatServerMessageProducer messageProducer,
@@ -20,16 +19,28 @@ public class NotConnected extends ChatClientState {
 	@Override
 	public void onConnect(String url, int port, String user, String pw) {
 		messageProducer.connectToServer(url, port, user, pw);
+		this.url = url;
+		this.port = port;
+		this.user = user;
+		this.pw = pw;
 	}
 
 	@Override
 	public void gotConnectSuccess() {
-		//todo refactor connected state new Connected(this);
+		// TODO refractor connected state new Connected(this);
 		new NotLoggedIn(this);
 	}
 
 	@Override
 	public void gotConnectFailture(String error) {
 		// TODO failture
+		this.messageReceiver.debug(error);
+	}
+
+	@Override
+	public void restore() {
+		// TODO Auto-generated method stub
+		unexpectedEvent(); // cant be called because connection wars not
+							// established
 	}
 }

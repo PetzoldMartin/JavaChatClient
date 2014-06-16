@@ -7,17 +7,15 @@ import g13.message.interfaces.IReceiveStompMessages;
 import g13.state.ChatClientState;
 import g13.state.client.LoggedIn;
 import g13.state.client.NotLoggedIn;
-import g13.state.client.chat.InOtherChat;
 import g13.state.client.chat.InOwnChat;
 
 import java.io.Serializable;
-import java.security.acl.Owner;
 import java.util.ArrayList;
 
-import de.fh_zwickau.informatik.stompj.StompMessage;
-import de.fh_zwickau.pti.mqgamecommon.MessageHeader;
 import android.content.ComponentName;
 import android.util.Log;
+import de.fh_zwickau.informatik.stompj.StompMessage;
+import de.fh_zwickau.pti.mqgamecommon.MessageHeader;
 
 public class ChatGUIAdapter implements IReceiveStompMessages,
 		ChatServerMessageReceiver {
@@ -70,7 +68,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	@Override
 	public void gotChatStarted(String chatId) {
 		gui.gotoOwnChatView();
-		gui.AddLineToLog("You are now in your own chat: " + chatId);
+		gui.DebugLog("You are now in your own chat: " + chatId);
 	}
 
 	@Override
@@ -101,7 +99,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	 */
 	@Override
 	public void gotAccepted(String chatterID) {
-		gui.AddLineToLog(chatterID + " Accepted your invite.");
+		gui.DebugLog(chatterID + " Accepted your invite.");
 	}
 
 	@Override
@@ -120,7 +118,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	 * Rejected by chat owner
 	 */
 	public void gotRejected(String chatterID) {
-		gui.AddLineToLog("your request to join a chat room was rejected by user: " + chatterID);
+		gui.DebugLog("your request to join a chat room was rejected by user: " + chatterID);
 
 	}
 	
@@ -129,7 +127,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	 * Other user has joint the chat room
 	 */
 	public void gotParticipantEntered(String chatterID) {
-		gui.AddLineToLog(chatterID + ": has joint the chatroom.");
+		gui.DebugLog(chatterID + ": has joint the chatroom.");
 
 	}
 
@@ -138,7 +136,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	 * Other user has left the chat room
 	 */
 	public void gotParticipantLeft(String chatterID) {
-		gui.AddLineToLog(chatterID + ": has left the chatroom.");
+		gui.DebugLog(chatterID + ": has left the chatroom.");
 	}
 
 	@Override
@@ -146,7 +144,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	 * The user that you have invited don't want to join your chat
 	 */
 	public void gotRequestCancelled(String chatterID) {
-		gui.AddLineToLog(chatterID + "don't want to join your chat!");
+		gui.DebugLog(chatterID + "don't want to join your chat!");
 	}
 
 	/**
@@ -314,6 +312,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	@Override
 	public void onError(String error) {
 		Log.e("Error", error); // TODO refractor tag
+		debug(error);
 	}
 
 	public ChatClientState getState() {
@@ -322,21 +321,20 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 
 	@Override
 	public void debug(String debug) {
-		gui.AddLineToLog(debug);
+		gui.DebugLog(debug);
 	}
 	
 	public ChatClientState debugGetState() {
 		return state;
 	}
 
-	public void onConnect(String ip, int i, String string, String string2) {
-		state.onConnect(ip, i, string, string2);
-		
+	public void onConnect(String url, int port, String user, String pw) {
+		state.onConnect(url, port, user, pw);
+		debug(url + "\t" + port + "\t" + user + " \t" + pw);
 	}
 
 	public void onNewChat(String chatText) {
 		state.onChat(chatText);
-		
 	}
 
 }

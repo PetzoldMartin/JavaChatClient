@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:layerType="none"
     android:orientation="vertical"
-    tools:context="gui.util.MainActivity"
-    android:layerType="none" >
+    tools:context="gui.util.MainActivity" >
 
     <!--
          The primary full-screen view. This can be replaced with whatever view
@@ -19,6 +19,11 @@
          This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows.
     -->
+
+    <TextView
+        android:id="@+id/debugLog"
+        android:layout_width="297dp"
+        android:layout_height="198dp" />
 
     <LinearLayout
         android:id="@+id/linear"
@@ -39,12 +44,6 @@
             android:layout_height="wrap_content"
             android:text="@string/test" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/debugLog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/str_chatlog" />
 
     <EditText
         android:id="@+id/server"

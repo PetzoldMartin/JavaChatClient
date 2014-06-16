@@ -10,7 +10,6 @@ public class Requesting extends AbstractWaiting {
 
 	public Requesting(ChatClientState oldState) {
 		super(oldState);
-		// TODO Auto-generated constructor stub
 	}
 
 	/*

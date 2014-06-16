@@ -6,7 +6,6 @@ public class NotLoggedIn extends ChatClientState {
 
 	public NotLoggedIn(ChatClientState oldState) {
 		super(oldState);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
