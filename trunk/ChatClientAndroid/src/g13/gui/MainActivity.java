@@ -32,7 +32,6 @@ import de.fh_zwickau.android.base.architecture.BindServiceHelper;
 public class MainActivity extends Activity {
 
 	private ChatClientState savedState = null;
-
 	private static boolean debug_isTestGUI = true;
 	
 	private static ArrayList<String> itemList = new ArrayList<String>();
@@ -43,6 +42,7 @@ public class MainActivity extends Activity {
 
 	private TextView textOut=null;
 	private TextView debugLog = null;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,13 +61,6 @@ public class MainActivity extends Activity {
 		restoreState();
 
 		stompServiceHelper.bindService();
-	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		// getMenuInflater().inflate(R.menu.chat, menu);
-		return true;
 	}
 
 	public void onExit(MenuItem item) {
@@ -441,16 +434,22 @@ public class MainActivity extends Activity {
 		startActivity(intent);
 	}
 
-
+	/**
+	 * Add a line to the chat log
+	 * @param chatter user name
+	 * @param messageText message from user
+	 */
 	public void addLineToChatLog(String chatter, String messageText) {
 		if(textOut != null) textOut.setText(textOut.getText().toString()+"\n"+chatter+": "+messageText);
 	}
 	
+	/**
+	 * Add a line to the chat log
+	 * @param line a line to add
+	 */
 	public void addLineToChatLog(String line) {
 		if(textOut != null) textOut.setText(textOut.getText().toString() + "\n" + line);
 	}
-	
-	
 	
 	public static ArrayList<String> getItemList() {
 		return itemList;
