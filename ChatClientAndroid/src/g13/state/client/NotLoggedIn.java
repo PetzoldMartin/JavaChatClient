@@ -1,8 +1,9 @@
 package g13.state.client;
 
 import g13.state.ChatClientState;
+import g13.state.client.connection.Connected;
 
-public class NotLoggedIn extends ChatClientState {
+public class NotLoggedIn extends Connected {
 
 	public NotLoggedIn(ChatClientState oldState) {
 		super(oldState);
@@ -11,13 +12,12 @@ public class NotLoggedIn extends ChatClientState {
 	@Override
 	public void gotFail() {
 		messageReceiver.gotFail();
+		messageReceiver.error("fail to login");
 	}
 
 	@Override
 	public void gotSucess() {
-		messageReceiver.gotSuccess();
 		new LoggedIn(this);
-
 	}
 
 	@Override
@@ -38,4 +38,8 @@ public class NotLoggedIn extends ChatClientState {
 		}
 	}
 
+	@Override
+	public void setView() {
+		messageReceiver.gotConnectSuccess();
+	}
 }

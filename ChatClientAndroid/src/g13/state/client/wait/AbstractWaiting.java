@@ -2,9 +2,10 @@ package g13.state.client.wait;
 
 import g13.state.ChatClientState;
 import g13.state.client.LoggedIn;
+import g13.state.client.connection.Connected;
 
 
-public abstract class AbstractWaiting extends ChatClientState {
+public abstract class AbstractWaiting extends Connected {
 
 	public AbstractWaiting(ChatClientState oldState) {
 		super(oldState);

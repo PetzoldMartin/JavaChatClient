@@ -42,4 +42,9 @@ public class Invited extends AbstractWaiting {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public void setView() {
+		// nothing
+	}
 }

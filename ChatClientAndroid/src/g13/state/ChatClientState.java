@@ -12,13 +12,13 @@ import android.util.Log;
  */
 public abstract class ChatClientState {
 
-	protected ChatServerMessageProducer messageProducer;
-	protected ChatServerMessageReceiver messageReceiver;
-
 	protected String url = null;
 	protected int port = 0;
 	protected String user = null;
 	protected String pw = null;
+
+	protected ChatServerMessageProducer messageProducer;
+	protected ChatServerMessageReceiver messageReceiver;
 
 	public ChatClientState(ChatClientState oldState) {
 		this(oldState.messageProducer, oldState.messageReceiver);
@@ -36,8 +36,12 @@ public abstract class ChatClientState {
 		messageReceiver.setState(this);
 		messageProducer.setState(this);
 		messageReceiver.debug("set state to " + getName());
+		setView();
 		Log.i("state", "set state to " + getName());
 	}
+
+
+	public abstract void setView();
 
 	public void register() {
 		register(this.messageProducer, this.messageReceiver);
@@ -347,6 +351,7 @@ public abstract class ChatClientState {
 
 	public void serviceBound() {
 		Log.i("state", "bind  " + getName());
+		register();
 	}
 
 	// notConnetced
@@ -360,9 +365,5 @@ public abstract class ChatClientState {
 
 	public void gotConnectSuccess() {
 		unexpectedEvent();
-	}
-
-	public void restore() {
-		messageProducer.connectToServer(url, port, user, pw);
 	}
 }

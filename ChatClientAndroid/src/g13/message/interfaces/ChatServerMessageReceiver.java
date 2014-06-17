@@ -72,4 +72,10 @@ public interface ChatServerMessageReceiver {
 
 	void debug(String debug);
 
+	void error(String error);
+
+	void gotConnectSuccess();
+
+	void gotConnectFail();
+
 }

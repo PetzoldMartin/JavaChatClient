@@ -2,9 +2,10 @@ package g13.state.client.chat;
 
 
 import g13.state.ChatClientState;
+import g13.state.client.connection.Connected;
 
 
-public class AbstractChatting extends ChatClientState {
+public abstract class AbstractChatting extends Connected {
 
 	public AbstractChatting(ChatClientState oldState) {
 		super(oldState);
@@ -35,4 +36,7 @@ public class AbstractChatting extends ChatClientState {
 	public void gotParticipantLeft(String chatterID) {
 		messageReceiver.gotParticipantLeft(chatterID);
 	}
+
+	@Override
+	public abstract void setView();
 }

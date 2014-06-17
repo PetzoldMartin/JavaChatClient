@@ -16,7 +16,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,7 +30,7 @@ import de.fh_zwickau.android.base.architecture.BindServiceHelper;
  */
 public class MainActivity extends Activity {
 
-	private ChatClientState savedState = null;
+	private static ChatClientState savedState = null;
 	private static boolean debug_isTestGUI = true;
 	
 	private static ArrayList<String> itemList = new ArrayList<String>();
@@ -41,51 +40,53 @@ public class MainActivity extends Activity {
 	private BindServiceHelper<ISendStompMessages, IReceiveStompMessages, MainActivity> stompServiceHelper;
 
 	private TextView textOut=null;
-	private TextView debugLog = null;
 	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		gotoMainView();
-		
 		stompAdapter = new ChatStompAdapter();
 		guiAdapter = new ChatGUIAdapter(this);
 		
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
 		stompServiceHelper = new BindServiceHelper<ISendStompMessages, IReceiveStompMessages, MainActivity>(
 				stompAdapter, this, new Intent(this,
 						StompCommunicationService.class));
 		stompAdapter.setServiceHelper(stompServiceHelper);
 		stompAdapter.setMessageReceiver(guiAdapter);
-		restoreState();
-
 		stompServiceHelper.bindService();
+		restoreState();
 	}
 
 	public void onExit(MenuItem item) {
 		try {
 			stompAdapter.logout();
 		} catch (Exception e) {
-
+			Log.e("Stomp-Adapter", "logout fail");
 		}
 		stompAdapter.disconnect();
-		stompServiceHelper.stopService();
 		stompServiceHelper.unbindService();
+		stompServiceHelper.stopService();
+		Log.d("MainActivity", "onExit");
 		this.finish();
 	}
 
+
 	@Override
 	public void onPause() {
-		saveState();
 		super.onPause();
+		saveState();
+		
 	}
 
 	/**
 	 * saves the old state for restore
 	 */
 	private void saveState() {
-		// TODO how to save the state when app is totally erased from memory!!!
 		savedState = guiAdapter.getState();
 	}
 
@@ -94,9 +95,9 @@ public class MainActivity extends Activity {
 	 */
 	private void restoreState() {
 		if (savedState != null) {
-			// TODO restore old state ? in bind service ?
 			savedState.register(stompAdapter, guiAdapter);
-			savedState.restore();
+			savedState.serviceBound();
+			Log.i("State", "Try to restore state " + savedState.getName());
 		} else {
 			new NotConnected(stompAdapter, guiAdapter);
 		}
@@ -105,7 +106,8 @@ public class MainActivity extends Activity {
 	/**
 	 * Create Listener for Main view
 	 */
-	public void gotoMainView() {
+	public void gotoConnectView() {
+		setContentView(R.layout.clear);
 
 		setContentView(R.layout.activity_main);	
 
@@ -134,7 +136,6 @@ public class MainActivity extends Activity {
 					guiAdapter.onConnect(ip, 61613, "", "");
 				}
 			}
-			
 		});
 		
 		// DEBUG TEST BUTTON ////////////////////////////////////////////////// DEBUG AREA //
@@ -161,7 +162,7 @@ public class MainActivity extends Activity {
 		findViewById(R.id.toMain).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				gotoMainView();
+				gotoConnectView();
 			}
 		});
 
