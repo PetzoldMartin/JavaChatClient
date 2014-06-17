@@ -7,7 +7,6 @@ import g13.message.interfaces.ChatServerMessageReceiver;
 import g13.message.interfaces.IReceiveStompMessages;
 import g13.state.ChatClientState;
 import g13.state.client.LoggedIn;
-import g13.state.client.NotLoggedIn;
 import g13.state.client.chat.InOwnChat;
 
 import java.io.Serializable;
@@ -31,6 +30,18 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 
 	// START GOT METHODS ////////////////////////////////////////////////////// AREA //
 	
+	@Override
+	public void gotConnectSuccess() {
+		Log.i("GUI-Adapter", "gotLoginSuccess()");
+		gui.gotoNotLoggedInView();
+	}
+
+	@Override
+	public void gotConnectFail() {
+		Log.i("GUI-Adapter", "gotLoginFail()");
+		gui.gotoConnectView();
+	}
+
 	@Override
 	public void gotSuccess() {
 		Log.i("GUI-Adapter", "gotSuccess()");
@@ -112,8 +123,13 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	 * Rejected by chat owner
 	 */
 	public void gotRejected(String chatterID) {
-		gui.addLineToChatLog("your request to join a chat room was rejected by user: " + chatterID);
-
+		// gui.addLineToChatLog("your request to join a chat room was rejected by user: "
+		// + chatterID);
+		Popup popup = new Popup();
+		popup.setGUIAdapter(this);
+		popup.setMessage("error", chatterID, "rejected" + chatterID);
+		FragmentManager fm = gui.getFragmentManager();
+		popup.show(fm, "tag");
 	}
 	
 	@Override
@@ -138,6 +154,11 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	 */
 	public void gotRequestCancelled(String chatterID) {
 		//gui.DebugLog(chatterID + "don't want to join your chat!");
+		Popup popup = new Popup();
+		popup.setGUIAdapter(this);
+		popup.setMessage("error", chatterID, "cancel request" + chatterID);
+		FragmentManager fm = gui.getFragmentManager();
+		popup.show(fm, "tag");
 	}
 
 	@Override
@@ -171,9 +192,11 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	public void popupOkPressed(String type, String item) {
 		if(type.equals("gotInvite")) {
 			state.onAcceptInvitation(item);
-		} else {
+		} else if (type.equals("accUser")) {
 			// own chat
 			state.onAccept(item);
+		} else {
+			// nothing
 		}
 	}
 	
@@ -283,11 +306,6 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	@Override
 	public void setState(ChatClientState state) {
 		this.state = state;
-		
-		// TODO: remove this later
-		if(state instanceof NotLoggedIn) {
-			gui.gotoNotLoggedInView();
-		}
 	}
 	
 	public void setGui(MainActivity gui) {
@@ -353,8 +371,16 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 
 	@Override
 	public void debug(String debug) {
-		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void error(String error) {
+		Popup popup = new Popup();
+		popup.setGUIAdapter(this);
+		popup.setMessage("error", "error", error);
+		FragmentManager fm = gui.getFragmentManager();
+		popup.show(fm, "tag");
 	}
 
 }

@@ -27,20 +27,16 @@ public class NotConnected extends ChatClientState {
 
 	@Override
 	public void gotConnectSuccess() {
-		// TODO refractor connected state new Connected(this);
 		new NotLoggedIn(this);
 	}
 
 	@Override
 	public void gotConnectFailture(String error) {
-		// TODO failture
-		this.messageReceiver.debug(error);
+		messageReceiver.error(error);
 	}
 
 	@Override
-	public void restore() {
-		// TODO Auto-generated method stub
-		unexpectedEvent(); // cant be called because connection wars not
-							// established
+	public void setView() {
+		messageReceiver.gotConnectFail();
 	}
 }

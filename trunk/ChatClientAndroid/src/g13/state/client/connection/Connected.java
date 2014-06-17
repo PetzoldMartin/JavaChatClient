@@ -2,15 +2,23 @@ package g13.state.client.connection;
 
 import g13.state.ChatClientState;
 
-public class Connected extends ChatClientState { // TODO let all connected
-													// extends from this
+public abstract class Connected extends ChatClientState {
 
 	public Connected(ChatClientState oldState) {
 		super(oldState);
 	}
 
 	@Override
-	public void restore() {
-		super.restore(); // TODO main restore function for all substates
+	public void serviceBound() {
+		super.serviceBound();
+		messageProducer.connectToServer(url, port, user, pw);
+		// setView();
 	}
+
+	@Override
+	public void gotConnectSuccess() {
+		// setView();
+	}
+
+	// protected abstract void setView();
 }

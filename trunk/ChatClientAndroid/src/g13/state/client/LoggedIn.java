@@ -1,13 +1,14 @@
 package g13.state.client;
 
 import g13.state.ChatClientState;
+import g13.state.client.connection.Connected;
 import g13.state.client.wait.Invited;
 import g13.state.client.wait.Requesting;
 
 import java.util.ArrayList;
 
 
-public class LoggedIn extends ChatClientState {
+public class LoggedIn extends Connected {
 
 	public LoggedIn(ChatClientState oldState) {
 		super(oldState);
@@ -37,7 +38,6 @@ public class LoggedIn extends ChatClientState {
 	@Override
 	public void onRequest(String chatRoomID) {
 		try {
-			messageProducer.requestParticipian(chatRoomID);
 			new Requesting(this);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -47,14 +47,7 @@ public class LoggedIn extends ChatClientState {
 
 	@Override
 	public void onStartChat() {
-		try {
-			messageProducer.startChat();
 			new WaitForChat(this);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 	}
 
 	@Override
@@ -77,6 +70,11 @@ public class LoggedIn extends ChatClientState {
 	public void gotInvite(String chatterID, String chatRoomID) {
 		messageReceiver.gotInvite(chatterID, chatRoomID);
 		new Invited(this);
+	}
+
+	@Override
+	public void setView() {
+		messageReceiver.gotSuccess();
 	}
 
 }

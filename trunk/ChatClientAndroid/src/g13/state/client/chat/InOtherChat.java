@@ -29,4 +29,9 @@ public class InOtherChat extends AbstractChatting {
 		messageReceiver.gotChatClosed();
 		new LoggedIn(this);
 	}
+
+	@Override
+	public void setView() {
+		messageReceiver.gotParticipating();
+	}
 }

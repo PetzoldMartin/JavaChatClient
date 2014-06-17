@@ -88,5 +88,10 @@ public class InOwnChat extends AbstractChatting {
 		messageReceiver.gotChatClosed();
 		new LoggedIn(this);
 	}
+
+	@Override
+	public void setView() {
+		messageReceiver.gotChatStarted(null);
+	}
 	
 }
