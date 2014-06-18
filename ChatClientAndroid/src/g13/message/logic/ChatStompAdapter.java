@@ -24,7 +24,12 @@ import de.fh_zwickau.pti.mqgamecommon.MQConstantDefs;
 import de.fh_zwickau.pti.mqgamecommon.MessageHeader;
 import de.fh_zwickau.pti.mqgamecommon.MessageKind;
 
-
+/**
+ * The Adapter who receive and send,produce Stompmessages
+ * 
+ * @author aismael
+ * 
+ */
 
 public class ChatStompAdapter implements ChatServerMessageProducer , IBrokerConnection,
 IReceiveStompMessages{
@@ -280,13 +285,16 @@ IReceiveStompMessages{
 
 	@Override
 	public void onStompMessage(Serializable message) {
+		// Message Receive Logs
 		Log.i("Message",
 				"Client: "
 						+ ((StompMessage) message)
 								.getProperty(MessageHeader.MsgKind.toString()));
 		Log.i("Message",
 				"Client: " + ((StompMessage) message).getContentAsString());
+		// Message Receive Logs
 		try {
+			// get message parameters
 			if (message instanceof StompMessage) {
 				StompMessage textMessage = (StompMessage) message;
 
@@ -304,6 +312,7 @@ IReceiveStompMessages{
 					StompMessage messageIn = (StompMessage) message;
 					messageText = messageIn.getContentAsString();
 				}
+				// give commando to state if message received
 				switch (messageKind) {
 				case authenticated:
 					authToken = textMessage
