@@ -44,10 +44,6 @@ public interface ChatServerMessageProducer {
 	 */
 	void logout() throws Exception;
 
-	// /**
-	// * @param chatSwingClient
-	// */
-	// void setMessageReceiver(ChatServerMessageReceiver messageReceiver);
 
 	/**
 	 * deny an request
@@ -156,10 +152,28 @@ public interface ChatServerMessageProducer {
 	 */
 	void requestParticipian(String chatterID) throws Exception;
 
+	/**
+	 * Sets the Aktuall state of the chatter to the Message Producer
+	 * 
+	 * @param chatClientState
+	 */
 	void setState(ChatClientState chatClientState);
 
+	/**
+	 * Connecting to server with url, port, username and password
+	 * 
+	 * @param url
+	 * @param port
+	 * @param user
+	 * @param pw
+	 */
 	void connectToServer(String url, int port, String user, String pw);
 
+	/**
+	 * set the message receiver for this Producer
+	 * 
+	 * @param msgReceiver
+	 */
 	void setMessageReceiver(ChatServerMessageReceiver msgReceiver);
 
 }

@@ -1,7 +1,6 @@
 package g13.message.logic;
 
 import g13.gui.MainActivity;
-import g13.message.ChatChatterRelationship;
 import g13.message.interfaces.ChatServerMessageProducer;
 import g13.message.interfaces.ChatServerMessageReceiver;
 import g13.message.interfaces.IBrokerConnection;
@@ -45,16 +44,27 @@ IReceiveStompMessages{
 	private String chatroomId, referenceID, messageText;
 	private ArrayList<String> chatters, chatsWithOwners;
 
-	private ArrayList<ChatChatterRelationship> chatsAndChatters;
-
+	/**
+	 * gives the actual ChatroomID when the client is in a chatroom
+	 * 
+	 * @return String ChatroomID
+	 */
 	public String getCID() {
 		return chatroomId;
 	}
 
+	/**
+	 * gives the actual referenceID where the Message is come from
+	 * 
+	 * @return reference ID
+	 */
 	public String getRefID() {
 		return referenceID;
 	}
 
+	/**
+	 * Constructor
+	 */
 	public ChatStompAdapter() {
 		
 	}
@@ -109,8 +119,13 @@ IReceiveStompMessages{
 		stompServiceBinder.sendMessage(message, chatServiceQ);
 	}
 
+	/**
+	 * set the message Properties for a parameterless Message
+	 * 
+	 * @param Msgkind
+	 *            kind of the Message
+	 */
 	private void sendParameterLessSimpleRequest(MessageKind Msgkind) {
-		// TODO commit
 		MessageImpl message = makeMessage(Msgkind);
 		message.setProperty(MessageHeader.AuthToken.toString(), authToken);
 		message.setProperty(MessageHeader.ChatroomID.toString(), chatroomId);
@@ -202,10 +217,7 @@ IReceiveStompMessages{
 	}
 
 	
-	/**
-	 * 
-	 * @param state
-	 */
+
 	@Override
 	public void setState(ChatClientState state) {
 		this.state = state;
@@ -228,27 +240,6 @@ IReceiveStompMessages{
 			this.chatters.add(scanner.nextLine());
 		scanner.close();
 	
-	}
-
-	/**
-	 * read chatrooms with his owners out of a string depreced for futur
-	 * implementation
-	 * 
-	 * @param chatsAndChatters
-	 */
-	private void setChatsAndChatters(String chatsAndChatters) {
-		this.chatsAndChatters = new ArrayList<ChatChatterRelationship>();
-		Scanner scanner = new Scanner(chatsAndChatters);
-		while (scanner.hasNextLine()) {
-			String[] segs = scanner.nextLine().split(Pattern.quote(":"));
-			if (segs.length > 1)
-				this.chatsAndChatters.add(new ChatChatterRelationship(segs[0],
-						segs[1]));
-			else
-				this.chatsAndChatters.add(new ChatChatterRelationship(segs[0],
-						""));
-		}
-		scanner.close();
 	}
 
 	/**
@@ -433,7 +424,7 @@ IReceiveStompMessages{
 				}
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			Log.e("Stomp Adapter", "Message cannot delivered to State");
 			e.printStackTrace();
 		}
 		
@@ -481,12 +472,29 @@ IReceiveStompMessages{
 			return false;
 	}
 
+	/**
+	 * Set the Userid and password to a message
+	 * 
+	 * @param message
+	 *            where things set
+	 * @param uname
+	 *            Username
+	 * @param pword
+	 *            Password
+	 */
 	private void setUid(MessageImpl message, String uname, String pword) {
 		message.setProperty(MessageHeader.LoginUser.toString(), uname);
 		message.setProperty(MessageHeader.LoginPassword.toString(), pword);
 		message.setProperty(MessageHeader.ChatterNickname.toString(), uname);
 	}
 
+	/**
+	 * prepare and make am message bevor sending over Stomp
+	 * 
+	 * @param kind
+	 *            of the message
+	 * @return the maked message
+	 */
 	private MessageImpl makeMessage(MessageKind kind) {
 		MessageImpl msg = new MessageImpl();
 		// message properties werden als HashMap übergeben
@@ -515,7 +523,7 @@ IReceiveStompMessages{
 
 	@Override
 	public void connectToServer(String brokerUri) {
-		// TODO Depraced
+		// Depraced
 		
 	}
 
