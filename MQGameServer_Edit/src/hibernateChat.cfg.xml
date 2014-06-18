@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- dieses Element ignorieren wir erst mal ;-) -->
+		<property name="hibernate.bytecode.use_reflection_optimizer">
+			false
+		</property>
+		<!-- Verbindung zur HSQL Datenbank konfigurieren , diese muss vorher existieren, sonst gehts nicht, trotz "CREATE" -->
+		<property name="hibernate.connection.driver_class">
+			org.hsqldb.jdbcDriver
+		</property>
+		<property name="hibernate.connection.url">
+			<!-- hsql ist der vormals jdbc:hsqldb:hsql://localhost/addresses -->
+			jdbc:hsqldb:hsql://localhost/addresses
+		</property>
+		<property name="hibernate.connection.username">SA</property>
+		<property name="hibernate.default_schema">PUBLIC</property>
+		<property name="hibernate.dialect">
+			org.hibernate.dialect.HSQLDialect
+		</property>
+
+		<!-- Connection Pool c3p0 konfigurieren -->
+		<property name="hibernate.c3p0.min_size">5</property>
+		<property name="hibernate.c3p0.max_size">100</property>
+		<property name="hibernate.c3p0.timeout">300</property>
+		<property name="hibernate.c3p0.max_statements">200</property>
+		<property name="hibernate.c3p0.idle_test_period">3000</property>
+
+		<!-- SQL Ausgabe konfigurieren -->
+		<property name="hibernate.show_sql">false</property>
+		<property name="hibernate.format_sql">true</property>
+
+		<!-- automatischen Schemaexport bei Programmstart konfigurieren
+		create: 
+			try to create the schema (DDL) when the session factory is started. When 
+			running with JPA, it happens when the EJB module is being deployed.
+		create-drop: 
+			like 'create', but also try to destroy the schema when the factory is destroyed 
+			(with JPA - when the EJB module is undeployed)
+		validate:
+			just ensure the	schema is as expected based on the mapping files
+		update:
+			try to make incremental	changes to the existing schema if it does not match the expected schema. -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+
+		<!-- Angabe der Klassen für das Mapping um gottes willen keine dateiendung
+		 anbringen. genauso schreiben wie im import z.b. -->
+		<mapping class="de.fh_zwickau.pti.jms.userservice.User" />
+
+	</session-factory>
+</hibernate-configuration>
