@@ -7,6 +7,12 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+/**
+ * The Popup class is an DialogFragment.
+ * He is used to invoke an accept or deny for different client states.
+ * @author Andre Furchner
+ *
+ */
 public class Popup extends DialogFragment {
 	private AlertDialog.Builder builder;
 	private ChatGUIAdapter guiAdapter;
@@ -22,7 +28,7 @@ public class Popup extends DialogFragment {
 					new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int id) {
-							guiAdapter.popupCanclePressed(type, item);
+							guiAdapter.popupCancelPressed(type, item);
 						}
 					});
 			break;
@@ -42,10 +48,20 @@ public class Popup extends DialogFragment {
         return builder.create();
     }
     
+	/**
+	 * Set the communication GUIAdapter. 
+	 * @param cga The ChatGUIAdaper
+	 */
     public void setGUIAdapter(ChatGUIAdapter cga) {
     	guiAdapter = cga;
     }
     
+    /**
+     * Set Message for Popup window
+     * @param type The Popup type to identify
+     * @param item The Item to accept or deny
+     * @param msg A Message to display
+     */
     public void setMessage(String type, String item, String msg) {
     	this.msg = msg;
     	this.type = type;

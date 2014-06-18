@@ -13,9 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 /**
- * @author Andre Furchner
  * A Basic List of items that can be selected
- *
+ *  @author Andre Furchner
  */
 public class ListActivity extends Activity {
 
