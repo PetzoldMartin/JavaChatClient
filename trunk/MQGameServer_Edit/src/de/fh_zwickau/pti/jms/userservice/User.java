@@ -3,12 +3,18 @@
  */
 package de.fh_zwickau.pti.jms.userservice;
 
-import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import javax.jms.Destination;
 import javax.jms.Message;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -22,18 +28,40 @@ import org.apache.log4j.Logger;
  * @author georg beier
  * 
  */
-@SuppressWarnings("serial")
-public class User implements Serializable {
-
-	private static MessageDigest md;
+@Entity
+@Table(name="userList")
+// @SuppressWarnings("serial")
+// public class User implements Serializable {
+public class User {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Long id;
+	// private final String username;
 	private String username;
 	private String pwhash;
+
+	// nur zum testen:
+	public String getPwhash() {
+		return pwhash;
+	}
+
+	public Long getId() {
+		return id;
+	}
+	@Transient
+	private static MessageDigest md;
+	@Transient
 	private Destination replyDestination;
 	/**
 	 * implementation of ..1 association end across jms by a unique destination
 	 */
+	@Transient
 	private Destination clientDestination;
 
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
 	/**
 	 * erzeugt ein MessageDigest Objekt
 	 */

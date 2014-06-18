@@ -5,6 +5,9 @@ package de.fh_zwickau.pti.jms.userservice;
 
 import java.util.HashMap;
 
+import architecture.hibernate.DaoHibernate;
+import architecture.hibernate.DbHibernate;
+
 /**
  * Klasse zur Erzeugung und Verwaltung von User Objekten im System
  * 
@@ -14,12 +17,15 @@ import java.util.HashMap;
 public class UserFactory {
 	/** Ablage f√ºr registrierte User Objekte */
 	private final HashMap<String, User> users;
-
+	private static DbHibernate db;
+	private DaoHibernate<User> userDao;
 	/**
 	 * l‰dt vorhandene User aus Datenbank TODO
 	 */
 	public UserFactory() {
+
 		users = new HashMap<>();
+
 		/**
 		 * Einige User automatisch zu Testzwecken anlegen
 		 */

@@ -27,7 +27,8 @@ import de.fh_zwickau.pti.mqgamecommon.MessageHeader;
 import de.fh_zwickau.pti.mqgamecommon.MessageKind;
 
 /**
- * JMS Service Provider und Demo-Programm für unterschiedliche ActiveMQ Features
+ * JMS Service Provider und Demo-Programm für unterschiedliche ActiveMQ
+ * Features
  * 
  * @author georg beier
  * 
@@ -56,9 +57,9 @@ public class AuthenticationServer {
 	}
 
 	/**
-	 * main programm stellt JMS Message Broker Service zur Verfügung und startet
-	 * den AuthenticationServer, wenn Connectoren als Kommandozeilenargumente
-	 * angegeben sind
+	 * main programm stellt JMS Message Broker Service zur Verfügung und
+	 * startet den AuthenticationServer, wenn Connectoren als
+	 * Kommandozeilenargumente angegeben sind
 	 * 
 	 * @param args
 	 *            args[0] URI des AMQ Brokers. Wenn args.length == 0 wird
@@ -114,8 +115,8 @@ public class AuthenticationServer {
 			factory = new ChatterFactory();
 			System.out.println("creating chatters");
 		}
-		AuthenticationServer authenticationServer =
-				new AuthenticationServer(brokerUri, factory);
+		AuthenticationServer authenticationServer = new AuthenticationServer(
+				brokerUri, factory);
 		authenticationServer.runServer();
 	}
 
@@ -141,8 +142,8 @@ public class AuthenticationServer {
 					logInOutListener);
 
 		} catch (Exception e) {
-			Logger.getRootLogger().log(Level.ERROR,
-					"Server startup error " + e);
+			Logger.getRootLogger()
+					.log(Level.ERROR, "Server startup error " + e);
 		}
 
 	}
@@ -207,8 +208,7 @@ public class AuthenticationServer {
 						// Message absenden
 						replyProducer.send(userDestination, replyMessage);
 					} else {
-						TextMessage textMessage = session
-								.createTextMessage();
+						TextMessage textMessage = session.createTextMessage();
 						if (kind == MessageKind.login)
 							textMessage.setText("Login failed");
 						else
@@ -238,8 +238,7 @@ public class AuthenticationServer {
 					ObjectMessage invalidateMessage = session
 							.createObjectMessage();
 					invalidateMessage.setStringProperty(
-							MessageHeader.AuthToken.toString(),
-							token);
+							MessageHeader.AuthToken.toString(), token);
 					invalidateMessage.setStringProperty(
 							MessageHeader.MsgKind.toString(),
 							MessageKind.loggedOut.toString());
@@ -256,6 +255,11 @@ public class AuthenticationServer {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+
+		private void loadUserFromDatabase() {
+			// TODO Auto-generated method stub
+
 		}
 	};
 }
