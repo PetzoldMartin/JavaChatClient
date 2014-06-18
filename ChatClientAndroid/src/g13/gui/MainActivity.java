@@ -6,12 +6,8 @@ import g13.message.logic.ChatGUIAdapter;
 import g13.message.logic.ChatStompAdapter;
 import g13.message.logic.service.StompCommunicationService;
 import g13.state.ChatClientState;
-import g13.state.client.LoggedIn;
-import g13.state.client.chat.InOwnChat;
 import g13.state.client.connection.NotConnected;
-
 import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,7 +19,6 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import de.fh_zwickau.android.base.architecture.BindServiceHelper;
 
-
 /**
  * The Main Activity for the chat client
  * He is working together with the ListActivity
@@ -33,15 +28,13 @@ public class MainActivity extends Activity {
 
 	// static fields
 	private static ChatClientState savedState = null;
-	private static boolean debug_isTestGUI = true;
 	private static ArrayList<String> itemList = new ArrayList<String>();
 	private static ChatGUIAdapter guiAdapter;
 	
 	// member fields
 	private ChatStompAdapter stompAdapter;
 	private BindServiceHelper<ISendStompMessages, IReceiveStompMessages, MainActivity> stompServiceHelper;
-	private TextView textOut = null;
-	
+	private TextView textOut = null;	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -114,9 +107,6 @@ public class MainActivity extends Activity {
 
 		final TextView server = (TextView)findViewById(R.id.server);
 		
-		// DEBUG
-		final CheckBox box = (CheckBox)findViewById(R.id.isDebug);
-		
 		// Button to connect to server
 		findViewById(R.id.btn_main_ok).setOnClickListener(new OnClickListener() {
 			
@@ -126,88 +116,11 @@ public class MainActivity extends Activity {
 				if(ip.equals("")) {
 							ip = getString(R.string.server);
 				}
-				
-				// DEBUG FLAG
-				debug_isTestGUI = box.isChecked();
-				// FIXME: DEBUG IF ELSE
-				if(debug_isTestGUI) {
-					gotoNotLoggedInView();
-				}
-				else {
-					guiAdapter.onConnect(ip, 61613, "", "");
-				}
-			}
-		});
-		
-		// DEBUG TEST BUTTON ////////////////////////////////////////////////// DEBUG AREA //
-		findViewById(R.id.test).setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO: TEST FUNCTION
-				Log.i("main", "testclick");
-				gotoTestView();
-				
-
-			}
-		});
-		// DEBUG AREA ///////////////////////////////////////////////////////// DEBUG AREA //
-	}
-
-	// DEBUG AREA /////////////////////////////////////////////////////////// DEBUG AREA //
-	public void gotoTestView() {
-		setContentView(R.layout.clear);
-
-		setContentView(R.layout.activity_test);
-		// Button to create a new chat room
-		findViewById(R.id.toMain).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				gotoConnectView();
-			}
-		});
-
-		findViewById(R.id.btn_leave).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				stompAdapter
-.connectToServer("192.168.1.128", 61613, "", "");
-			}
-		});
-		findViewById(R.id.button2).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				stompAdapter.login("xx", "xy");
-			}
-		});
-		findViewById(R.id.button3).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				stompAdapter.askForChats();
-			}
-		});
-		findViewById(R.id.button4).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				stompAdapter.askForChatters();
-			}
-		});
-		findViewById(R.id.button5).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				stompAdapter.logout();
-			}
-		});
-		findViewById(R.id.button6).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				stompAdapter.register("xx", "xy");
-				;
+				guiAdapter.onConnect(ip, 61613, "", "");
 			}
 		});
 	}
 
-	// DEBUG AREA /////////////////////////////////////////////////////////// DEBUG AREA //
 	/**
 	 * Create Listener for Not logged in view
 	 */
@@ -224,11 +137,8 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// FIXME: DEBUG IF ELSE
-				if(debug_isTestGUI) guiAdapter.gotSuccess();
-				else guiAdapter.buttonLoginPressed(name.getText().toString(), password.getText().toString());
+				guiAdapter.buttonLoginPressed(name.getText().toString(), password.getText().toString());
 			}
-			
 		});
 		
 		// Register Button
@@ -236,13 +146,9 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// FIXME: DEBUG IF ELSE
-				if(debug_isTestGUI) guiAdapter.gotSuccess();
-				else guiAdapter.buttonRegisterPressed(name.getText().toString(), password.getText().toString());
+				guiAdapter.buttonRegisterPressed(name.getText().toString(), password.getText().toString());
 			}
-			
 		});
-		
 	}
 	
 	/**
@@ -256,11 +162,8 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// FIXME: DEBUG IF ELSE
-				if(debug_isTestGUI) guiAdapter.gotChatStarted("Debug chatroom");
-				else guiAdapter.buttonCreateChatPressed();
+				guiAdapter.buttonCreateChatPressed();
 			}
-			
 		});
 		
 		// Button Join Pressed
@@ -268,19 +171,8 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// FIXME: DEBUG IF ELSE
-				if(debug_isTestGUI) {
-					ArrayList<String> chatRooms = new ArrayList<>();
-					chatRooms.add("Peters Chat");
-					chatRooms.add("Martins Chat");
-					chatRooms.add("Markus Chat");
-					chatRooms.add("Andre Chat");
-					guiAdapter.gotChats(chatRooms);
-				} else {
-					guiAdapter.buttonJoinPressed();
-				}
+				guiAdapter.buttonJoinPressed();
 			}
-			
 		});
 		
 		// Button Logout Pressed
@@ -288,16 +180,9 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// FIXME: DEBUG IF ELSE
-				if(debug_isTestGUI) {
-					guiAdapter.gotLogout();
-				} else {
-					guiAdapter.buttonLogoutPressed();
-				}
+				guiAdapter.buttonLogoutPressed();
 			}
-			
 		});
-		
 	}
 	
 	/**
@@ -321,15 +206,8 @@ public class MainActivity extends Activity {
 				if(chatText.equals("")) {
 							chatText = getString(R.string.server);
 				}
-				
-				// FIXME: DEBUG IF ELSE
-				if(debug_isTestGUI) {
-					guiAdapter.gotNewChat("Me", chatText);
-				}
-				else {
-					guiAdapter.buttonSendPressed(chatText);
-					textView.setText("");
-				}
+				guiAdapter.buttonSendPressed(chatText);
+				textView.setText("");
 			}
 		});
 		
@@ -338,16 +216,9 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// FIXME: DEBUG IF ELSE
-				if(debug_isTestGUI) {
-					gotoLoggedInView();
-				}
-				else {
-					guiAdapter.buttonLeavePressed();
-				}
+				guiAdapter.buttonLeavePressed();
 			}
 		});
-		
 		textOut = (TextView)findViewById(R.id.txt_chatlog);
 	}
 	
@@ -370,17 +241,10 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				String chatText = textView.getText().toString();
 				if(chatText.equals("")) {
-							chatText = getString(R.string.server);
+					chatText = getString(R.string.server);
 				}
-				
-
-				if(debug_isTestGUI) {
-					guiAdapter.gotNewChat("Me", chatText);
-				}
-				else {
-					guiAdapter.buttonSendPressed(chatText);
-					textView.setText("");
-				}
+				guiAdapter.buttonSendPressed(chatText);
+				textView.setText("");
 			}
 		});
 		
@@ -391,20 +255,8 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// FIXME: DEBUG IF ELSE
-				if(debug_isTestGUI) {
-					ArrayList<String> user = new ArrayList<>();
-					user.add("Peter");
-					user.add("Martin");
-					user.add("Marku");
-					user.add("Andre");
-					guiAdapter.gotChatters(user);
-				} else {
-					guiAdapter.buttonInvitePressed();
-				}
-				
+				guiAdapter.buttonInvitePressed();
 			}
-				
 		});
 		
 		// Button Close Pressed
@@ -412,17 +264,9 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// FIXME: DEBUG IF ELSE
-				if(debug_isTestGUI) {
-					guiAdapter.gotChatClosed();
-				} else {
-					guiAdapter.buttonClosePressed();
-				}
+				guiAdapter.buttonClosePressed();
 			}
-				
-		});
-			
-					
+		});		
 	}
 	
 	/**
@@ -466,14 +310,6 @@ public class MainActivity extends Activity {
 	 * @param item selected Item
 	 */
 	public static void gotSelectedItem(String item) {
-		// FIXME: DEBUG IF ELSE
-		if(debug_isTestGUI) {
-			if(guiAdapter.debugGetState() instanceof LoggedIn) guiAdapter.gotParticipating();
-			if(guiAdapter.debugGetState() instanceof InOwnChat) guiAdapter.gotAccepted(item);
-			// TODO: REMOVE THIS
-			guiAdapter.gotParticipating();
-		} else {
-			guiAdapter.listItemSelected(item);
-		}
+		guiAdapter.listItemSelected(item);
 	}
 }
