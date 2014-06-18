@@ -25,19 +25,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
-
-        <CheckBox
-            android:id="@+id/isDebug"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/gui_test" />
-
-        <Button
-            android:id="@+id/test"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/test" />
     </LinearLayout>
 
     <EditText
