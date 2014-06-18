@@ -18,6 +18,11 @@ import android.util.Log;
 import de.fh_zwickau.informatik.stompj.StompMessage;
 import de.fh_zwickau.pti.mqgamecommon.MessageHeader;
 
+/**
+ * The GUI Controller Class
+ * @author Andre Furchner
+ *
+ */
 public class ChatGUIAdapter implements IReceiveStompMessages,
 		ChatServerMessageReceiver {
 
@@ -161,6 +166,10 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 		popup.show(fm, "tag");
 	}
 
+	/**
+	 * User has got an invite to another chat
+	 * The GUI will now launch an Popup window
+	 */
 	@Override
 	public void gotInvite(String chatter, String chatID) {
 		Popup popup = new Popup();
@@ -189,6 +198,11 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	
 	// START BUTTON PRESSED /////////////////////////////////////////////////// AREA //
 
+	/**
+	 * A @Popup window for a @type has accepted the @item
+	 * @param type
+	 * @param item
+	 */
 	public void popupOkPressed(String type, String item) {
 		if(type.equals("gotInvite")) {
 			state.onAcceptInvitation(item);
@@ -199,8 +213,13 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 			// nothing
 		}
 	}
-	
-	public void popupCanclePressed(String type, String item) {
+
+	/**
+	 * A @Popup window for a @type has canceled the @item
+	 * @param type
+	 * @param item
+	 */
+	public void popupCancelPressed(String type, String item) {
 		if(type.equals("gotInvite")) {
 			state.onDeny(item);
 		} else {
@@ -209,13 +228,19 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 		}
 	}
 	
-	
+	/**
+	 * User has pressed the register button
+	 * @param name username
+	 * @param password password
+	 */
 	public void buttonRegisterPressed(String name, String password) {
 		state.onRegister(name, password);
 	}
 
 	/**
-	 * Button for Login is Pressed
+	 * User has pressed the login button
+	 * @param name username
+	 * @param password password
 	 */
 	public void buttonLoginPressed(String name, String password) {
 		state.onLogin(name, password);
@@ -295,6 +320,9 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 		state.onChat(message);
 	}
 
+	/**
+	 * User is loggedin and want to create a chatroom
+	 */
 	public void buttonCreateChatPressed() {
 		state.onStartChat();
 	}
@@ -302,12 +330,19 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	
 	// END BUTTON PRESSED ///////////////////////////////////////////////////// AREA //
 	
-	
+	/**
+	 * Set the actual @ChatClientState
+	 * @param state The State
+	 */
 	@Override
 	public void setState(ChatClientState state) {
 		this.state = state;
 	}
 	
+	/**
+	 * Set the GUI
+	 * @param gui The GUI
+	 */
 	public void setGui(MainActivity gui) {
 		this.gui = gui;
 	}
@@ -348,7 +383,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 
 	@Override
 	public void onError(String error) {
-		Log.e("Error", error); // TODO refractor tag
+		Log.e("Error", error);
 		debug(error);
 	}
 

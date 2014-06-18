@@ -26,20 +26,21 @@ import de.fh_zwickau.android.base.architecture.BindServiceHelper;
 
 /**
  * The Main Activity for the chat client
+ * He is working together with the ListActivity
  * @author Andre Furchner
  */
 public class MainActivity extends Activity {
 
+	// static fields
 	private static ChatClientState savedState = null;
 	private static boolean debug_isTestGUI = true;
-	
 	private static ArrayList<String> itemList = new ArrayList<String>();
 	private static ChatGUIAdapter guiAdapter;
 	
+	// member fields
 	private ChatStompAdapter stompAdapter;
 	private BindServiceHelper<ISendStompMessages, IReceiveStompMessages, MainActivity> stompServiceHelper;
-
-	private TextView textOut=null;
+	private TextView textOut = null;
 	
 	
 	@Override
@@ -61,7 +62,7 @@ public class MainActivity extends Activity {
 		stompServiceHelper.bindService();
 		restoreState();
 	}
-
+	
 	public void onExit(MenuItem item) {
 		try {
 			stompAdapter.logout();
@@ -107,8 +108,8 @@ public class MainActivity extends Activity {
 	 * Create Listener for Main view
 	 */
 	public void gotoConnectView() {
+		
 		setContentView(R.layout.clear);
-
 		setContentView(R.layout.activity_main);	
 
 		final TextView server = (TextView)findViewById(R.id.server);
@@ -452,10 +453,18 @@ public class MainActivity extends Activity {
 		if(textOut != null) textOut.setText(textOut.getText().toString() + "\n" + line);
 	}
 	
+	/**
+	 * Returns the item list for the ListActivity
+	 * @return items
+	 */
 	public static ArrayList<String> getItemList() {
 		return itemList;
 	}
 	
+	/**
+	 * Called when a ListActivity has selected an item
+	 * @param item selected Item
+	 */
 	public static void gotSelectedItem(String item) {
 		// FIXME: DEBUG IF ELSE
 		if(debug_isTestGUI) {
