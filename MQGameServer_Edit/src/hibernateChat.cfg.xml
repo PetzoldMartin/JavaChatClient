@@ -14,7 +14,7 @@
 		</property>
 		<property name="hibernate.connection.url">
 			<!-- hsql ist der vormals jdbc:hsqldb:hsql://localhost/addresses -->
-			jdbc:hsqldb:hsql://localhost/addresses
+			jdbc:hsqldb:hsql://localhost/userList
 		</property>
 		<property name="hibernate.connection.username">SA</property>
 		<property name="hibernate.default_schema">PUBLIC</property>

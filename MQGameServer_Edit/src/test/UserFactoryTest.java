@@ -1,49 +1,32 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
+import de.fh_zwickau.pti.jms.userservice.User;
+import de.fh_zwickau.pti.jms.userservice.UserFactory;
+
 public class UserFactoryTest {
-
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
+	UserFactory userFactory = new UserFactory();
+	String userName = "userName";
+	String userPassword = "password";
 
 	@Test
 	public void testUserFactory() {
-		fail("Not yet implemented"); // TODO
-	}
 
-	@Test
-	public void testCreateUser() {
-		fail("Not yet implemented"); // TODO
+
+		User testUser = new User(userName, userPassword);
+
+		User testUser2 = userFactory.createUser(userName, userPassword);
+		assertEquals(testUser.getPwhash(), testUser2.getPwhash());
 	}
 
 	@Test
 	public void testRegisterUser() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testRegister() {
-		fail("Not yet implemented"); // TODO
+		User testUser = userFactory.registerUser(userName, userPassword);
+		assertTrue(userName.equals(testUser.getUsername()));
 	}
 
 }
