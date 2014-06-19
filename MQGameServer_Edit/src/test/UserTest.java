@@ -62,6 +62,10 @@ public class UserTest {
 		System.out.println("userAPW : " + userA.getPwhash() + " userB : "
 				+ userB.getPwhash());
 
+		userDao.save(new User("schlapp", "hut"));
+		userDao.save(new User("hut", "schnur"));
+		userDao.save(new User("muetze", "cap"));
+
 	}
 
 }
