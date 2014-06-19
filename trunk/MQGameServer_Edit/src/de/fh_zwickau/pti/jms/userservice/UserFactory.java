@@ -18,22 +18,32 @@ public class UserFactory {
 	/** Ablage fÃ¼r registrierte User Objekte */
 	private final HashMap<String, User> users;
 	private static DbHibernate db;
-	private DaoHibernate<User> userDao;
+	private final DaoHibernate<User> userDao;
+
 	/**
 	 * lädt vorhandene User aus Datenbank TODO
 	 */
 	public UserFactory() {
+		// die LaufzeitUserListe:
+		users = new HashMap<String, User>();
+		// die Datenbank erzeugen, bzw. gleich Verbindung öffnen
+		db = new DbHibernate();
+		// Data Access Object für User
+		userDao = new DaoHibernate<User>(User.class, db);
+		// Die User aus der DB in die Hashmap laden
+		// vorerst nur einen standard
+		User standardUser = userDao.findByExample(new User("schlapp", "hut"))
+				.get(0);
+		users.put(standardUser.getUsername(), standardUser);
 
-		users = new HashMap<>();
-
-		/**
-		 * Einige User automatisch zu Testzwecken anlegen
-		 */
-		{
-			users.put("schlapp", new User("schlapp", "hut"));
-			users.put("hut", new User("hut", "schnur"));
-			users.put("muetze", new User("muetze", "cap"));
-		}
+		// /**
+		// * Einige User automatisch zu Testzwecken anlegen
+		// */
+		// {
+		// users.put("schlapp", new User("schlapp", "hut"));
+		// users.put("hut", new User("hut", "schnur"));
+		// users.put("muetze", new User("muetze", "cap"));
+		// }
 
 	}
 
