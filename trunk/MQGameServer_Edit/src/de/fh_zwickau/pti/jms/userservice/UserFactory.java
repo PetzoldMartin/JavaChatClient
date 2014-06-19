@@ -4,6 +4,7 @@
 package de.fh_zwickau.pti.jms.userservice;
 
 import java.util.HashMap;
+import java.util.List;
 
 import architecture.hibernate.DaoHibernate;
 import architecture.hibernate.DbHibernate;
@@ -18,8 +19,13 @@ public class UserFactory {
 	/** Ablage fÃ¼r registrierte User Objekte */
 	private final HashMap<String, User> users;
 	private static DbHibernate db;
-	private final DaoHibernate<User> userDao;
+	private DaoHibernate<User> userDao;
 
+	@Override
+	protected void finalize() throws Throwable {
+		DbHibernate.closeDatabase();
+		super.finalize();
+	}
 	/**
 	 * lädt vorhandene User aus Datenbank TODO
 	 */
@@ -31,10 +37,13 @@ public class UserFactory {
 		// Data Access Object für User
 		userDao = new DaoHibernate<User>(User.class, db);
 		// Die User aus der DB in die Hashmap laden
-		// vorerst nur einen standard
-		User standardUser = userDao.findByExample(new User("schlapp", "hut"))
-				.get(0);
-		users.put(standardUser.getUsername(), standardUser);
+		List<User> list = userDao.fetchAll();
+		System.out.println("users ist mit " + list.size() + " belegt ");
+		System.out.println("diese sind:" + list.toString());
+		for (User user : list) {
+			users.put(user.getUsername(), user);
+			System.out.println("Lese User ein, bei " + user.getUsername());
+		}
 
 		// /**
 		// * Einige User automatisch zu Testzwecken anlegen
@@ -76,6 +85,9 @@ public class UserFactory {
 	public User registerUser(String uname, String pword) {
 		if (!users.containsKey(uname)) {
 			User p = new User(uname, pword);
+			userDao = new DaoHibernate<User>(User.class, db);
+			userDao.save(p);
+			userDao.closeSession();
 			users.put(uname, p);
 			return p;
 		} else {
