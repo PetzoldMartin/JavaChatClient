@@ -3,7 +3,6 @@
  */
 package de.fh_zwickau.pti.jms.userservice;
 
-import java.util.HashMap;
 import java.util.List;
 
 import architecture.hibernate.DaoHibernate;
@@ -17,8 +16,8 @@ import architecture.hibernate.DbHibernate;
  */
 public class UserFactory {
 	/** Ablage fÃ¼r registrierte User Objekte */
-	private final HashMap<String, User> users;
 	private static DbHibernate db;
+	/** Object zum Zugriff auf die Datenbank */
 	private DaoHibernate<User> userDao;
 
 	@Override
@@ -26,24 +25,16 @@ public class UserFactory {
 		DbHibernate.closeDatabase();
 		super.finalize();
 	}
+
 	/**
-	 * lädt vorhandene User aus Datenbank TODO
+	 * erstellt DB verbindung;
 	 */
 	public UserFactory() {
-		// die LaufzeitUserListe:
-		users = new HashMap<String, User>();
+
 		// die Datenbank erzeugen, bzw. gleich Verbindung öffnen
 		db = new DbHibernate();
 		// Data Access Object für User
 		userDao = new DaoHibernate<User>(User.class, db);
-		// Die User aus der DB in die Hashmap laden
-		List<User> list = userDao.fetchAll();
-		System.out.println("users ist mit " + list.size() + " belegt ");
-		System.out.println("diese sind:" + list.toString());
-		for (User user : list) {
-			users.put(user.getUsername(), user);
-			System.out.println("Lese User ein, bei " + user.getUsername());
-		}
 
 		// /**
 		// * Einige User automatisch zu Testzwecken anlegen
@@ -57,6 +48,30 @@ public class UserFactory {
 	}
 
 	/**
+	 * Neues User Objekt erzeugen, in Ablage speichern und zurÃ¼ckgeben.
+	 * 
+	 * @param uname
+	 *            Name, muss eindeutig sein
+	 * @param pword
+	 *            Passwort
+	 * @return User, if not exist before call
+	 * @return null, if exist before call
+	 */
+	public synchronized User registerUser(String uname, String pword) {
+		if (this.createUser(uname, pword) == null) {
+
+			userDao = new DaoHibernate<User>(User.class, db);
+			User p = new User(uname, pword);
+			// was passiert bei Verbindungsabbruch zur Datenbank??? TODO
+			userDao.save(p);
+			userDao.closeSession();
+			return p;
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * User Objekt aus der Ablage holen, wenn Name und Passwort stimmen
 	 * 
 	 * @param uname
@@ -65,48 +80,47 @@ public class UserFactory {
 	 *            Passwort
 	 * @return vorhanden User oder null bei fehlerhaften Eingaben
 	 */
-	public User createUser(String uname, String pword) {
-		if (users.containsKey(uname) && users.get(uname).authenticate(pword)) {
-			return users.get(uname);
+	public synchronized User createUser(String uname, String pword) {
+		// der erste User aus der Datenbank, der mit den Parametern
+		// übereinstimmt
+		userDao = new DaoHibernate<User>(User.class, db);
+		List<User> list = userDao.findByExample(new User(uname, pword));
+		User user;
+		if (!list.isEmpty()) {
+			user = list.get(0);
 		} else {
-			return null;
+			user = null;
 		}
+		userDao.closeSession();
+		return user;
 	}
 
 	/**
-	 * Neues User Objekt erzeugen, in Ablage speichern und zurÃ¼ckgeben.
-	 * 
-	 * @param uname
-	 *            Name, muss eindeutig sein
-	 * @param pword
-	 *            Passwort
-	 * @return User Objekt oder null
-	 */
-	public User registerUser(String uname, String pword) {
-		if (!users.containsKey(uname)) {
-			User p = new User(uname, pword);
-			userDao = new DaoHibernate<User>(User.class, db);
-			userDao.save(p);
-			userDao.closeSession();
-			users.put(uname, p);
-			return p;
-		} else {
-			return null;
-		}
-	}
-
-	/**
-	 * User Objekt (oder Subklasse von User) registrieren
+	 * User Objekt (oder Subklasse von User) registrieren und persistent in DB
+	 * ablegen
 	 * 
 	 * @param p
 	 *            Objekt, das registriert werden soll
-	 * @return true bei Erfolg
+	 * @return true bei Erfolg, sonst false, da Objekt schon registriert
 	 */
 	protected boolean register(User p) {
-		if (!users.containsKey(p.getUsername())) {
-			users.put(p.getUsername(), p);
+		// test TODO
+		// public synchronized boolean register(User p) {
+		userDao = new DaoHibernate<User>(User.class, db);
+		List<User> list = userDao.findByExample(p);
+		if (list != null && userDao.findByExample(p).size() == 0) {
+			userDao.save(p);
 			return true;
 		}
+		userDao.closeSession();
 		return false;
 	}
+
+	// test TODO
+	// public synchronized void deleteAllUser() {
+	// userDao = new DaoHibernate<User>(User.class, db);
+	// userDao.deleteAll();
+	// userDao.closeSession();
+	// }
+
 }
