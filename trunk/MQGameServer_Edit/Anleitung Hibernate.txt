@@ -1,0 +1,43 @@
+Anleitung Einrichten der Umgebung Eclipse für Hibernate am Beispiel des AndroidProjektes:
+
+1. Hybernate Architecture richtig Konfigurieren 
+(Die Userlibrary die keine ist)
+
+a.1)	im HibernateArchitecture Projekt...
+	die unter libs/HibernateDependencies-4.2 befindlichen
+	jars als UserLibrary ins HybernateProjekt sowie 
+	ins MQGameServerEdit einbinden, sorgt dafür,
+	das die Annotationen des javax.persistent pakets
+	funktionieren und in Userklasse erkannt werden
+a.2)	die Klasse DbHibernate im o.g. Projekt muss
+	in der namenlosen static methode umgeschrieben werden
+	die zeile mit "configuration.configure("hibernate.cfg.xml");"
+	muss als parameter den dateinamen der config.xml der jeweiligen anwendung haben,
+	z.B. "hibernateChat.cfg.xml"
+	d.h. dort werden die tabellen und db zugriffe konfiguriert
+	
+2. Datenbank - ServerKonfiguration
+unter Menüpunkt 
+Run/ Externat Tools/ Externat Tools Configuration
+
+rechtsklick auf Program in linker Fensterseite
+"New" wählen
+
+rechte Fensterseite folgendes eintragen:
+Name: "ausdenken"
+
+Location:
+...\jdk1.7.0_21\bin\java.exe
+//Speicherort des JDK
+
+Working Directory: 
+${workspace_loc:/HibernateArchitecture/src}
+//Speicherort des Hibern.Arch. Projekts bzw der JARs
+
+Arguments:
+-cp ${resource_loc:/HibernateArchitecture/libs/HibernateDependencies-4.2/hsqldb.jar}
+org.hsqldb.Server -database.0 ${workspace_loc}/data/userList -dbname.0 userList
+// Wichtig.. HibernateDependencies-4.2 ist eine Eigne Lib die aus den Hibernate Lybs zusammengestellt wurde 
+// einfach alle nötigen Libs/ JARs in einen Ordner Packen und entsprechend bennen
+//${workspace_loc}/data/userList ist die adresse der datenbankdateien.
+

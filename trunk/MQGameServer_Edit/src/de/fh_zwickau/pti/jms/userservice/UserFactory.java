@@ -103,9 +103,9 @@ public class UserFactory {
 	 *            Objekt, das registriert werden soll
 	 * @return true bei Erfolg, sonst false, da Objekt schon registriert
 	 */
-	protected boolean register(User p) {
-		// test TODO
-		// public synchronized boolean register(User p) {
+	// protected synchronized boolean register(User p) {
+	// test TODO
+	public synchronized boolean register(User p) {
 		userDao = new DaoHibernate<User>(User.class, db);
 		List<User> list = userDao.findByExample(p);
 		if (list != null && userDao.findByExample(p).size() == 0) {
@@ -117,10 +117,10 @@ public class UserFactory {
 	}
 
 	// test TODO
-	// public synchronized void deleteAllUser() {
-	// userDao = new DaoHibernate<User>(User.class, db);
-	// userDao.deleteAll();
-	// userDao.closeSession();
-	// }
+	public synchronized void deleteAllUser() {
+		userDao = new DaoHibernate<User>(User.class, db);
+		userDao.deleteAll();
+		userDao.closeSession();
+	}
 
 }
