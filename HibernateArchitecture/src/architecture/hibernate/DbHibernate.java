@@ -85,8 +85,8 @@ public class DbHibernate {
 					.println("configuration = new org.hibernate.cfg.AnnotationConfiguration();");
 			configuration = new org.hibernate.cfg.AnnotationConfiguration();
 			System.out
-					.println("configuration.configure(\"hibernate.cfg.xml\");");
-			configuration.configure("hibernate.cfg.xml");
+					.println("configuration.configure(\"hibernateChat.cfg.xml\");");
+			configuration.configure("hibernateChat.cfg.xml");
 			System.out
 					.println("sessionFactory = configuration.buildSessionFactory();");
 			sessionFactory = configuration.buildSessionFactory();
