@@ -27,7 +27,7 @@ public class UserFactoryTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		userFactory = new UserFactory();
-		userFactory.deleteAllUser();
+
 	}
 
 	@AfterClass
@@ -37,6 +37,7 @@ public class UserFactoryTest {
 
 	@Before
 	public void setUp() throws Exception {
+		userFactory.deleteAllUser();
 		userTestRegisterUser = new User("userTestRegisterUser()", userPassword);
 		userTestCreateUser = new User("usertestCreateUser()", userPassword);
 		userTestRegister = new User("usertestRegister()", userPassword);
@@ -56,12 +57,13 @@ public class UserFactoryTest {
 	public void testRegisterUser() {
 		System.out.println("testRegisterUser() : START>>>>>>");
 		// neuen nutzer in DB schreiben
-		User testUser = userFactory.registerUser(
+		User testUser1 = userFactory.registerUser(
 				userTestRegisterUser.getUsername(), userPassword);
+		System.out.println("!!!!!" + testUser1);
 		assertTrue(userTestRegisterUser.getUsername().equals(
-				testUser.getUsername()));
+				testUser1.getUsername()));
 		assertTrue(userTestRegisterUser.getPwhash()
-				.equals(testUser.getPwhash()));
+				.equals(testUser1.getPwhash()));
 		System.out.println("testRegisterUser() : ENDE <<<<<<<<");
 	}
 
@@ -72,13 +74,13 @@ public class UserFactoryTest {
 		// neuen nutzer in db schreiben
 
 		userFactory.register(userTestCreateUser);
-		User testUser = userFactory.createUser(
+		User testUser2 = userFactory.createUser(
 				userTestCreateUser.getUsername(), userPassword);
-		System.out.println("\ntestUser1 " + testUser.getUsername());
+		System.out.println("\ntestUser1 " + testUser2.getUsername());
 		System.out.println("\ntestUser2 " + userTestCreateUser.getUsername());
-		assertTrue(testUser.getUsername().equals(
+		assertTrue(testUser2.getUsername().equals(
 				userTestCreateUser.getUsername()));
-		assertTrue(testUser.getPwhash().equals(userTestCreateUser.getPwhash()));
+		assertTrue(testUser2.getPwhash().equals(userTestCreateUser.getPwhash()));
 		System.out.println("testCreateUser() : ENDE <<<<<<<<");
 	}
 
