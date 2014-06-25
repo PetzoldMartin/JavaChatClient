@@ -336,6 +336,7 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 	 */
 	@Override
 	public void setState(ChatClientState state) {
+		gui.setTitle(state.getName());
 		this.state = state;
 	}
 	
