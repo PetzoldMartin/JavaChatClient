@@ -27,6 +27,7 @@ public class InOtherChat extends AbstractChatting {
 	@Override
 	public void gotChatClosed() {
 		messageReceiver.gotChatClosed();
+		messageReceiver.error("Chat closed");
 		new LoggedIn(this);
 	}
 

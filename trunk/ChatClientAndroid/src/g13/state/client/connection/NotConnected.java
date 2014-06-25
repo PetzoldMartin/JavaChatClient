@@ -32,7 +32,7 @@ public class NotConnected extends ChatClientState {
 
 	@Override
 	public void gotConnectFailture(String error) {
-		messageReceiver.error(error);
+		messageReceiver.error("Connection " + error);
 	}
 
 	@Override

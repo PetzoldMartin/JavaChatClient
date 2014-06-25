@@ -38,6 +38,7 @@ public class LoggedIn extends Connected {
 	@Override
 	public void onRequest(String chatRoomID) {
 		try {
+			messageProducer.requestParticipian(chatRoomID);
 			new Requesting(this);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

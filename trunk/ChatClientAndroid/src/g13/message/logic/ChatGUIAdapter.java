@@ -419,4 +419,9 @@ public class ChatGUIAdapter implements IReceiveStompMessages,
 		popup.show(fm, "tag");
 	}
 
+	@Override
+	public void setWaiting() {
+		this.gui.setWaiting();
+	}
+
 }
