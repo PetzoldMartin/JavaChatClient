@@ -13,10 +13,11 @@ public class ChatterFactory extends UserFactory {
 
 	@Override
 	public User registerUser(String uname, String pword) {
+		System.err.println("@override register(Chatter)");
 		User c = new Chatter(uname, pword);
-		if (register(c))
+		if (register(c)) {
 			return c;
-		else
-			return null;
+		}
+		return null;
 	}
 }

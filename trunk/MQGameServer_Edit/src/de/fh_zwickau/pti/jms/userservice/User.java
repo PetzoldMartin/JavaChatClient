@@ -3,18 +3,23 @@
  */
 package de.fh_zwickau.pti.jms.userservice;
 
+import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import javax.jms.Destination;
 import javax.jms.Message;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Transient;
+
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
@@ -28,10 +33,14 @@ import org.apache.log4j.Logger;
  * 
  */
 @Entity
-@Table(name="userList")
-// @SuppressWarnings("serial")
-// public class User implements Serializable {
-public class User {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "User", discriminatorType = DiscriminatorType.STRING)
+public class User implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	// public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -48,6 +57,7 @@ public class User {
 	public Long getId() {
 		return id;
 	}
+
 	@Transient
 	private static MessageDigest md;
 	@Transient
@@ -61,6 +71,7 @@ public class User {
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
+
 	/**
 	 * erzeugt ein MessageDigest Objekt
 	 */
