@@ -78,4 +78,6 @@ public interface ChatServerMessageReceiver {
 
 	void gotConnectFail();
 
+	void setWaiting();
+
 }

@@ -16,4 +16,9 @@ public abstract class AbstractWaiting extends Connected {
 		messageReceiver.gotChatClosed();
 		new LoggedIn(this);
 	}
+
+	@Override
+	public void setView() {
+		messageReceiver.setWaiting();
+	}
 }

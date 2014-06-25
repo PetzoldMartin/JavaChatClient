@@ -5,12 +5,12 @@ import g13.message.interfaces.ISendStompMessages;
 import g13.message.logic.ChatGUIAdapter;
 import g13.message.logic.ChatStompAdapter;
 import g13.message.logic.service.StompCommunicationService;
-import g13.state.ChatClientState;
 import g13.state.client.connection.NotConnected;
 
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,14 +28,13 @@ import de.fh_zwickau.android.base.architecture.BindServiceHelper;
 public class MainActivity extends Activity {
 
 	// static fields
-	private static ChatClientState savedState = null;
 	private static ArrayList<String> itemList = new ArrayList<String>();
 	private static ChatGUIAdapter guiAdapter;
 	
 	// member fields
 	private ChatStompAdapter stompAdapter;
 	private BindServiceHelper<ISendStompMessages, IReceiveStompMessages, MainActivity> stompServiceHelper;
-	private TextView textOut = null;	
+	private TextView textOut = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,15 +47,9 @@ public class MainActivity extends Activity {
 		stompAdapter.setServiceHelper(stompServiceHelper);
 		stompAdapter.setMessageReceiver(guiAdapter);
 		stompServiceHelper.bindService();
-		restoreState();
+		initState();
 	}
 
-	@Override
-	protected void onStart() {
-		savedState.setView();
-		super.onStart();
-	}
-	
 	public void onExit(MenuItem item) {
 		try {
 			stompAdapter.logout();
@@ -70,43 +63,12 @@ public class MainActivity extends Activity {
 		this.finish();
 	}
 
-
-	@Override
-	public void onPause() {
-		super.onPause();
-		saveState();
-
-	}
-
-	/**
-	 * saves the old state for restore
-	 */
-	private void saveState() {
-		savedState = guiAdapter.getState();
-	}
-
-	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		saveState();
-	}
 	/**
 	 * restore the saved state
 	 */
-	private void restoreState() {
-		if (savedState != null) {
-			if (!stompServiceHelper.isBound()) {
-				savedState.serviceBound();
-			}
-			// savedState.register(stompAdapter, guiAdapter);
-			// new NotConnected(savedState);
-			// TODO restore state funktionallity
-			Log.i("State", "Try to restore state " + savedState.getName());
-		} else {
-			savedState = new NotConnected(stompAdapter, guiAdapter);
-		}
+	private void initState() {
+		new NotConnected(stompAdapter, guiAdapter);
 	}
-
 	/**
 	 * Create Listener for Main view
 	 */
@@ -116,6 +78,9 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);	
 
 		final TextView server = (TextView)findViewById(R.id.server);
+		// server.setText("141.32.24.100");
+		server.setText("192.168.99.100");
+		// server.setText("192.168.0.7");
 		
 		// Button to connect to server
 		findViewById(R.id.btn_main_ok).setOnClickListener(new OnClickListener() {
@@ -322,4 +287,11 @@ public class MainActivity extends Activity {
 	public static void gotSelectedItem(String item) {
 		guiAdapter.listItemSelected(item);
 	}
-}
+
+	public void setWaiting() {
+		ProgressDialog dialog = new ProgressDialog(this);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setMessage("Loading. Please wait...");
+        dialog.setIndeterminate(true);
+		}
+	}

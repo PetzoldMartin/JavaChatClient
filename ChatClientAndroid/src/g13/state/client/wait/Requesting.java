@@ -40,9 +40,4 @@ public class Requesting extends AbstractWaiting {
 		}
 		// unexpectedEvent();
 	}
-
-	@Override
-	public void setView() {
-		// nothing
-	}
 }
