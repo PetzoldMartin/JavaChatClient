@@ -40,5 +40,4 @@ public class ListActivity extends Activity {
 		});		
 
 	}
-
 }

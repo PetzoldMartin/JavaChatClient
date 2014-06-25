@@ -7,7 +7,9 @@ import g13.message.logic.ChatStompAdapter;
 import g13.message.logic.service.StompCommunicationService;
 import g13.state.ChatClientState;
 import g13.state.client.connection.NotConnected;
+
 import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +17,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.CheckBox;
 import android.widget.TextView;
 import de.fh_zwickau.android.base.architecture.BindServiceHelper;
 
@@ -41,12 +42,6 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		stompAdapter = new ChatStompAdapter();
 		guiAdapter = new ChatGUIAdapter(this);
-		
-	}
-
-	@Override
-	protected void onStart() {
-		super.onStart();
 		stompServiceHelper = new BindServiceHelper<ISendStompMessages, IReceiveStompMessages, MainActivity>(
 				stompAdapter, this, new Intent(this,
 						StompCommunicationService.class));
@@ -54,6 +49,12 @@ public class MainActivity extends Activity {
 		stompAdapter.setMessageReceiver(guiAdapter);
 		stompServiceHelper.bindService();
 		restoreState();
+	}
+
+	@Override
+	protected void onStart() {
+		savedState.setView();
+		super.onStart();
 	}
 	
 	public void onExit(MenuItem item) {
@@ -74,7 +75,7 @@ public class MainActivity extends Activity {
 	public void onPause() {
 		super.onPause();
 		saveState();
-		
+
 	}
 
 	/**
@@ -84,16 +85,25 @@ public class MainActivity extends Activity {
 		savedState = guiAdapter.getState();
 	}
 
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		saveState();
+	}
 	/**
 	 * restore the saved state
 	 */
 	private void restoreState() {
 		if (savedState != null) {
-			savedState.register(stompAdapter, guiAdapter);
-			savedState.serviceBound();
+			if (!stompServiceHelper.isBound()) {
+				savedState.serviceBound();
+			}
+			// savedState.register(stompAdapter, guiAdapter);
+			// new NotConnected(savedState);
+			// TODO restore state funktionallity
 			Log.i("State", "Try to restore state " + savedState.getName());
 		} else {
-			new NotConnected(stompAdapter, guiAdapter);
+			savedState = new NotConnected(stompAdapter, guiAdapter);
 		}
 	}
 
