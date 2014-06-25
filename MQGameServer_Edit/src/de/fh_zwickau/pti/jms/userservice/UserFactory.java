@@ -137,8 +137,9 @@ public class UserFactory {
 
 	@Override
 	protected void finalize() throws Throwable {
-		DbHibernate.closeDatabase();
 		super.finalize();
+		DbHibernate.closeDatabase();
+
 	}
 
 	/**
@@ -172,6 +173,7 @@ public class UserFactory {
 	 * @return vorhanden User oder null bei fehlerhaften Eingaben
 	 */
 	public synchronized User createUser(String uname, String pword) {
+		System.err.println("createUser");
 		if (users.containsKey(uname) && users.get(uname).authenticate(pword)) {
 			return users.get(uname);
 		} else {
@@ -189,9 +191,10 @@ public class UserFactory {
 	 * @return User Objekt oder null
 	 */
 	public synchronized User registerUser(String uname, String pword) {
+		System.err.println("registerUser");
 		if (!users.containsKey(uname)) {
 			User p = new User(uname, pword);
-			users.put(uname, p);
+			users.put(p.getUsername(), p);
 			this.saveUser(p);
 			return p;
 		} else {
@@ -199,7 +202,8 @@ public class UserFactory {
 		}
 	}
 
-	private synchronized void saveUser(User p) {
+	protected synchronized void saveUser(User p) {
+
 		userDao = new DaoHibernate<User>(User.class, db);
 		try {
 			userDao.save(p);
@@ -211,6 +215,7 @@ public class UserFactory {
 	}
 
 	private synchronized void loadFromDB() {
+		System.out.println("loadFromDB");
 		userDao = new DaoHibernate<User>(User.class, db);
 		List<User> list = null;
 		try {
@@ -221,6 +226,7 @@ public class UserFactory {
 			userDao.closeSession();
 		}
 		if (list != null) {
+			users.clear();
 			for (User user : list) {
 				users.put(user.getUsername(), user);
 				System.out.println("Nutzer " + user.getUsername() + " geladen");
@@ -235,14 +241,20 @@ public class UserFactory {
 	 *            Objekt, das registriert werden soll
 	 * @return true bei Erfolg
 	 */
-	public synchronized boolean register(User p) {
+	protected synchronized boolean register(User p) {
+		System.err.println("register");
+		// loadFromDB();
 		if (!users.containsKey(p.getUsername())) {
 			users.put(p.getUsername(), p);
+			saveUser(p);
 			return true;
 		}
 		return false;
 	}
 
+	/**
+	 * TODO dienst nur zum Test per JUnit
+	 */
 	public synchronized void deleteAllUser() {
 		System.out.println(" LÖSCHE ALLES!!!)");
 		HashMap<String, User> m = new HashMap<String, User>();
