@@ -41,3 +41,6 @@ org.hsqldb.Server -database.0 ${workspace_loc}/data/userList -dbname.0 userList
 // einfach alle nötigen Libs/ JARs in einen Ordner Packen und entsprechend bennen
 //${workspace_loc}/data/userList ist die adresse der datenbankdateien.
 
+beim manager die letzte zeile ändern auf, sonst gleich wie server:
+-cp ${resource_loc:/HibernateArchitecture/libs/HibernateDependencies-4.2/hsqldb.jar}
+org.hsqldb.util.DatabaseManagerSwing --url jdbc:hsqldb:hsql://localhost/user
